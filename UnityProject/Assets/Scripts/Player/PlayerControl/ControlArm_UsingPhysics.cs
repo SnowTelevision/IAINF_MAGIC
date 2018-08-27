@@ -29,6 +29,9 @@ public class ControlArm_UsingPhysics : ControlArm
     public float armStaminaConsumptionRateWhileMovingBody; // How much stamina the arm will consume per sec while it is moving the body
     public float maxStaminaInitialBurstMulti; // How much times of the default force the arm can apply when it just start moving while on maximum stamina
     public Transform armTipStretchLimiter; // The inverted sphere collider that limits how far the armTips can be away from the body
+    public float swimMinVelocityThershold; // The minimum velocity of the body when it is swimming for the arm to calculate the drag accordingly
+    public float armDefaultDragInWater; // The default drag of the arm when it is in the water
+    public float armDefaultAngularDragInWater; // The default angular drag of the arm when it is in the water
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
@@ -36,6 +39,11 @@ public class ControlArm_UsingPhysics : ControlArm
     public float armCurrentStamina; // This arm's current stamina amount
     public Vector3 armTipGrabbingPosition; // The armTip's position when it starts grabbing
     public bool inWater; // Is this armTip currently in water
+    public float armDragInWater; // The drag of the arm segments when they are in the water
+    public float armAngularDragInWater; // The angular drag of the arm segments when they are in the water
+
+    //Test//
+    public float bodySpeed; // The speed of the body
 
     // Use this for initialization
     void Start()
@@ -124,8 +132,14 @@ public class ControlArm_UsingPhysics : ControlArm
 
         //UpdateArmTransform();
         UpdateArmStamina();
+
+        if(inWater)
+        {
+            CalculateArmDragInWater();
+        }
         // Test
         //TestControllerInput();
+        bodySpeed = body.GetComponent<Rigidbody>().velocity.magnitude;
     }
 
     private void FixedUpdate()
@@ -728,6 +742,31 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         //movingItem.GetComponent<Rigidbody>().AddForce(CalculateArmForce(false, movingItem.transform.position, movingItem.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
         armTip.GetComponent<Rigidbody>().AddForce(CalculateArmForce(false, armTip.transform.position, movingItem.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// Calculates the drag and the angular drag for the arm segments when the player is in the water
+    /// </summary>
+    public void CalculateArmDragInWater()
+    {
+        Vector3 bodyVelocity = body.GetComponent<Rigidbody>().velocity;
+
+        if (bodyVelocity.magnitude <= swimMinVelocityThershold) // If the body is not moving very fast
+        {
+            // Set arm's drag to default
+            armDragInWater = armDefaultDragInWater;
+            armAngularDragInWater = armDefaultAngularDragInWater;
+        }
+        else
+        {
+            // Adjust arm's drag depending on the body's velocity and arm's orientation and arm's length
+            armDragInWater = armDefaultDragInWater * 
+                             Mathf.Sin(Mathf.Deg2Rad * Vector3.Angle(bodyVelocity, armTip.position - body.position)) *
+                             joyStickLength;
+            armAngularDragInWater = armDefaultAngularDragInWater * 
+                                    Mathf.Sin(Mathf.Deg2Rad * Vector3.Angle(bodyVelocity, armTip.position - body.position)) *
+                                    joyStickLength;
+        }
     }
 
     /// <summary>

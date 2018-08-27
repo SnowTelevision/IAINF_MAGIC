@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 53483830}
   - component: {fileID: 53483832}
   - component: {fileID: 53483831}
+  - component: {fileID: 53483836}
   m_Layer: 10
   m_Name: ChainLink (8)
   m_TagString: Untagged
@@ -415,6 +416,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53483836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53483829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &54292630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1581,7 @@ GameObject:
   - component: {fileID: 245702797}
   - component: {fileID: 245702799}
   - component: {fileID: 245702798}
+  - component: {fileID: 245702803}
   m_Layer: 10
   m_Name: ChainLink (1)
   m_TagString: Untagged
@@ -1685,6 +1700,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245702803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245702796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &245850173
 GameObject:
   m_ObjectHideFlags: 0
@@ -2418,6 +2446,7 @@ GameObject:
   - component: {fileID: 390577538}
   - component: {fileID: 390577540}
   - component: {fileID: 390577539}
+  - component: {fileID: 390577544}
   m_Layer: 10
   m_Name: ChainLink (5)
   m_TagString: Untagged
@@ -2536,6 +2565,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &390577544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390577537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &403699015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,6 +2707,7 @@ GameObject:
   - component: {fileID: 415385981}
   - component: {fileID: 415385983}
   - component: {fileID: 415385982}
+  - component: {fileID: 415385987}
   m_Layer: 10
   m_Name: ChainLink (2)
   m_TagString: Untagged
@@ -2783,6 +2826,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &415385987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 415385980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &416856781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,6 +3139,7 @@ GameObject:
   - component: {fileID: 445151829}
   - component: {fileID: 445151831}
   - component: {fileID: 445151830}
+  - component: {fileID: 445151835}
   m_Layer: 10
   m_Name: ChainLink (7)
   m_TagString: Untagged
@@ -3201,6 +3258,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445151835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 445151828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &455423559
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,9 +3528,15 @@ MonoBehaviour:
   armStaminaConsumptionRateWhileMovingBody: 16
   maxStaminaInitialBurstMulti: 25
   armTipStretchLimiter: {fileID: 0}
+  swimMinVelocityThershold: 0
+  armDefaultDragInWater: 0
+  armDefaultAngularDragInWater: 0
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 0
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  bodySpeed: 0
 --- !u!4 &472353809
 Transform:
   m_ObjectHideFlags: 0
@@ -3817,9 +3893,15 @@ MonoBehaviour:
   armStaminaConsumptionRateWhileMovingBody: 16
   maxStaminaInitialBurstMulti: 25
   armTipStretchLimiter: {fileID: 0}
+  swimMinVelocityThershold: 1.2
+  armDefaultDragInWater: 20
+  armDefaultAngularDragInWater: 1
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 0
+  inWater: 1
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  bodySpeed: 0
 --- !u!4 &616588003
 Transform:
   m_ObjectHideFlags: 0
@@ -3848,6 +3930,7 @@ GameObject:
   - component: {fileID: 616603691}
   - component: {fileID: 616603690}
   - component: {fileID: 616603689}
+  - component: {fileID: 616603694}
   - component: {fileID: 616603688}
   m_Layer: 10
   m_Name: ChainLink (9)
@@ -3989,6 +4072,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616603686}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &616603694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 616603686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &617142842
 GameObject:
   m_ObjectHideFlags: 0
@@ -4743,9 +4839,15 @@ MonoBehaviour:
   armStaminaConsumptionRateWhileMovingBody: 16
   maxStaminaInitialBurstMulti: 25
   armTipStretchLimiter: {fileID: 0}
+  swimMinVelocityThershold: 0
+  armDefaultDragInWater: 0
+  armDefaultAngularDragInWater: 0
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 0
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  bodySpeed: 0
 --- !u!1 &745982220
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,6 +4991,7 @@ GameObject:
   - component: {fileID: 767385251}
   - component: {fileID: 767385253}
   - component: {fileID: 767385252}
+  - component: {fileID: 767385257}
   m_Layer: 10
   m_Name: ChainLink (3)
   m_TagString: Untagged
@@ -5007,6 +5110,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767385257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 767385250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &770067664
 GameObject:
   m_ObjectHideFlags: 0
@@ -5411,6 +5527,7 @@ GameObject:
   - component: {fileID: 808047462}
   - component: {fileID: 808047464}
   - component: {fileID: 808047463}
+  - component: {fileID: 808047468}
   m_Layer: 10
   m_Name: ChainLink (8)
   m_TagString: Untagged
@@ -5529,6 +5646,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808047468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 808047461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &809258297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5856,9 +5986,15 @@ MonoBehaviour:
   armStaminaConsumptionRateWhileMovingBody: 16
   maxStaminaInitialBurstMulti: 25
   armTipStretchLimiter: {fileID: 0}
+  swimMinVelocityThershold: 1.2
+  armDefaultDragInWater: 20
+  armDefaultAngularDragInWater: 1
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 0
+  inWater: 1
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  bodySpeed: 0
 --- !u!1 &840601411
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,6 +6141,7 @@ GameObject:
   - component: {fileID: 843273297}
   - component: {fileID: 843273299}
   - component: {fileID: 843273298}
+  - component: {fileID: 843273303}
   m_Layer: 10
   m_Name: ChainLink (1)
   m_TagString: Untagged
@@ -6123,6 +6260,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &843273303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843273296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &843613796
 GameObject:
   m_ObjectHideFlags: 0
@@ -6578,6 +6728,7 @@ GameObject:
   - component: {fileID: 890859767}
   - component: {fileID: 890859769}
   - component: {fileID: 890859768}
+  - component: {fileID: 890859773}
   m_Layer: 10
   m_Name: ChainLink (3)
   m_TagString: Untagged
@@ -6696,6 +6847,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890859773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 890859766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &892284060
 GameObject:
   m_ObjectHideFlags: 0
@@ -8494,6 +8658,7 @@ GameObject:
   - component: {fileID: 1136515441}
   - component: {fileID: 1136515443}
   - component: {fileID: 1136515442}
+  - component: {fileID: 1136515447}
   m_Layer: 10
   m_Name: ChainLink (6)
   m_TagString: Untagged
@@ -8612,6 +8777,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1136515447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1136515440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1143916052
 GameObject:
   m_ObjectHideFlags: 0
@@ -10430,6 +10608,7 @@ GameObject:
   - component: {fileID: 1453645222}
   - component: {fileID: 1453645224}
   - component: {fileID: 1453645223}
+  - component: {fileID: 1453645228}
   m_Layer: 10
   m_Name: ChainLink (6)
   m_TagString: Untagged
@@ -10548,6 +10727,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1453645228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453645221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1457092904
 GameObject:
   m_ObjectHideFlags: 0
@@ -10761,6 +10953,7 @@ GameObject:
   - component: {fileID: 1461808630}
   - component: {fileID: 1461808632}
   - component: {fileID: 1461808631}
+  - component: {fileID: 1461808636}
   m_Layer: 10
   m_Name: ChainLink (7)
   m_TagString: Untagged
@@ -10879,6 +11072,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461808636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1461808629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1467089922
 GameObject:
   m_ObjectHideFlags: 0
@@ -11695,6 +11901,7 @@ GameObject:
   - component: {fileID: 1568991046}
   - component: {fileID: 1568991048}
   - component: {fileID: 1568991047}
+  - component: {fileID: 1568991052}
   m_Layer: 10
   m_Name: ChainLink (2)
   m_TagString: Untagged
@@ -11813,6 +12020,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568991052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1568991045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1574609653
 GameObject:
   m_ObjectHideFlags: 0
@@ -12000,6 +12220,7 @@ GameObject:
   - component: {fileID: 1627299532}
   - component: {fileID: 1627299531}
   - component: {fileID: 1627299530}
+  - component: {fileID: 1627299535}
   - component: {fileID: 1627299529}
   m_Layer: 10
   m_Name: ChainLink (9)
@@ -12141,6 +12362,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1627299527}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1627299535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1627299527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1636204649
 GameObject:
   m_ObjectHideFlags: 0
@@ -12927,6 +13161,7 @@ GameObject:
   - component: {fileID: 1770780408}
   - component: {fileID: 1770780410}
   - component: {fileID: 1770780409}
+  - component: {fileID: 1770780414}
   m_Layer: 10
   m_Name: ChainLink (4)
   m_TagString: Untagged
@@ -13045,6 +13280,19 @@ Transform:
   m_Father: {fileID: 1662562726}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1770780414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770780407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 840465318}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1772614296
 GameObject:
   m_ObjectHideFlags: 0
@@ -14385,6 +14633,7 @@ GameObject:
   - component: {fileID: 1950269612}
   - component: {fileID: 1950269614}
   - component: {fileID: 1950269613}
+  - component: {fileID: 1950269618}
   m_Layer: 10
   m_Name: ChainLink (4)
   m_TagString: Untagged
@@ -14503,6 +14752,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1950269618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1950269611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &1962890016
 GameObject:
   m_ObjectHideFlags: 0
@@ -14937,6 +15199,7 @@ GameObject:
   - component: {fileID: 2000979656}
   - component: {fileID: 2000979658}
   - component: {fileID: 2000979657}
+  - component: {fileID: 2000979662}
   m_Layer: 10
   m_Name: ChainLink (5)
   m_TagString: Untagged
@@ -15055,6 +15318,19 @@ Transform:
   m_Father: {fileID: 1900317033}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000979662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000979655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armController: {fileID: 616588002}
+  thisRigidBody: {fileID: 0}
 --- !u!1 &2026643628
 GameObject:
   m_ObjectHideFlags: 0
