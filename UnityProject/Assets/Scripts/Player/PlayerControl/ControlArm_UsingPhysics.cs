@@ -33,6 +33,7 @@ public class ControlArm_UsingPhysics : ControlArm
     public float stopSwimMinVelocityThershold; // The minimum velocity of the body for it to be considered stop "swimming" in the water
     //public float armDefaultDragInWater; // The default drag of the arm when it is in the water
     //public float armDefaultAngularDragInWater; // The default angular drag of the arm when it is in the water
+    //public float armMinSwimmingSpreadingAngle; // 
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
@@ -42,9 +43,16 @@ public class ControlArm_UsingPhysics : ControlArm
     public bool inWater; // Is this armTip currently in water
     public float armPhysicsMagnitude; // The magnitude to be applied for different arm physics parameters
     public bool startedSwimming; // Does the player started swimming
+    public bool isArmsSpreading; // Is the two arms spreading away from each other? (Is the angle between two arms increasing?)
+    public bool isArmsClosing; // Is the two arms closing together? (Is the angle between two arms decreasing?)
+    public float angleBetweenTwoArms; // The angle between the two arms
+    public float currentLargestSpreadingAngle; // The largest spreading angle before the arm begin to closing
+    public bool isArmSwimming; // Is the arms doing "swimming" movement
+    public float lastArmSwimmingTime; // The last time the arm is doing the "swimming" movement
 
     //Test//
     public float bodySpeed; // The speed of the body
+    public float bodyTopSpeed; // The top speed the body can reach when swimming
 
     // Use this for initialization
     void Start()
@@ -61,6 +69,8 @@ public class ControlArm_UsingPhysics : ControlArm
     // Update is called once per frame
     public override void Update()
     {
+        DetectingArmMovement();
+
         // Don't let the player control the character if the game is in a scripted event
         if (GameManager.inScriptedEvent)
         {
@@ -752,6 +762,10 @@ public class ControlArm_UsingPhysics : ControlArm
     public void CalculateArmPhysicsMagnitudeInWater()
     {
         Vector3 bodyVelocity = body.GetComponent<Rigidbody>().velocity;
+        if (bodyVelocity.magnitude > bodyTopSpeed)
+        {
+            bodyTopSpeed = bodyVelocity.magnitude;
+        }
 
         if (!startedSwimming) // If the body is not moving very fast
         {
@@ -760,9 +774,44 @@ public class ControlArm_UsingPhysics : ControlArm
         }
         else
         {
-            // Adjust magnitude depending on the body's velocity and arm's orientation and arm's length
-            armPhysicsMagnitude = Mathf.Clamp(Mathf.Sin(Mathf.Deg2Rad * Vector3.Angle(bodyVelocity, armTip.position - body.position)) * joyStickLength, 0.01f, 1.0f);
+            // Adjust magnitude depending on the body's velocity and arm's orientation and arm's length and
+            // the sine of(angle between two arms / 2)
+            armPhysicsMagnitude = Mathf.Clamp(Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad *
+                                                                  Vector3.Angle(bodyVelocity, armTip.position - body.position))) *
+                                                                  joyStickLength,
+                                              0.01f, 1.0f);
+
+            armPhysicsMagnitude *= Mathf.Clamp(Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * angleBetweenTwoArms)) / 2.0f, 0.01f, 1.0f);
         }
+
+        // Determine if the arms are "swimming"
+        if (isArmsSpreading)
+        {
+            currentLargestSpreadingAngle = angleBetweenTwoArms;
+        }
+        if (isArmsClosing)
+        {
+            if(currentLargestSpreadingAngle != 0 && currentLargestSpreadingAngle < 170) // If the arms are not properly "swimming"
+            {
+                armPhysicsMagnitude *= Mathf.Clamp(Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * angleBetweenTwoArms)) / 2.0f, 0.01f, 1.0f);
+                isArmSwimming = false;
+            }
+
+            if (currentLargestSpreadingAngle > 170) // If the arms are "swimming" in a circle
+            {
+                isArmSwimming = true;
+                lastArmSwimmingTime = Time.time;
+                currentLargestSpreadingAngle = 0;
+            }
+        }
+
+        if (Time.time - lastArmSwimmingTime > 2) // If the arms are not "swimming"
+        {
+            armPhysicsMagnitude *= 0.01f;// Mathf.Clamp(Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * angleBetweenTwoArms)) / 2.0f, 0.01f, 1.0f);
+        }
+
+        // Further panelize the force arm can provide to swim when the arms are not stretched out
+        Mathf.Pow(armPhysicsMagnitude, 2);
     }
 
     /// <summary>
@@ -785,6 +834,31 @@ public class ControlArm_UsingPhysics : ControlArm
             {
                 startedSwimming = false;
             }
+        }
+    }
+
+    /// <summary>
+    /// Detects different arm movement patterns
+    /// </summary>
+    public void DetectingArmMovement()
+    {
+        float previousAngleBetweenTwoArms = angleBetweenTwoArms;
+        angleBetweenTwoArms = Vector3.Angle(otherArm_Physics.armTip.position - body.position, armTip.position - body.position);
+        
+        if (angleBetweenTwoArms < previousAngleBetweenTwoArms) // If the angle between two arms is decreasing
+        {
+            isArmsClosing = true;
+            isArmsSpreading = false;
+        }
+        else if (angleBetweenTwoArms > previousAngleBetweenTwoArms) // If the angle between two arms is increading
+        {
+            isArmsClosing = false;
+            isArmsSpreading = true;
+        }
+        else
+        {
+            isArmsClosing = false;
+            isArmsSpreading = false;
         }
     }
 

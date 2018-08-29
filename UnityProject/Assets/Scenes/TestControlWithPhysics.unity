@@ -2325,7 +2325,7 @@ Rigidbody:
   m_GameObject: {fileID: 245702796}
   serializedVersion: 2
   m_Mass: 0.0000001
-  m_Drag: 1
+  m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -2353,7 +2353,7 @@ SpringJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 0.00001
-  m_ConnectedMassScale: 200
+  m_ConnectedMassScale: 30
 --- !u!65 &245702799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5023,7 +5023,14 @@ MonoBehaviour:
   inWater: 0
   armPhysicsMagnitude: 0
   startedSwimming: 0
+  isArmsSpreading: 0
+  isArmsClosing: 0
+  angleBetweenTwoArms: 0
+  currentLargestSpreadingAngle: 0
+  isArmSwimming: 0
+  lastArmSwimmingTime: 0
   bodySpeed: 0
+  bodyTopSpeed: 0
 --- !u!4 &472353809
 Transform:
   m_ObjectHideFlags: 0
@@ -6148,14 +6155,21 @@ MonoBehaviour:
   armStaminaConsumptionRateWhileMovingBody: 16
   maxStaminaInitialBurstMulti: 25
   armTipStretchLimiter: {fileID: 0}
-  startSwimMinVelocityThershold: 1.2
+  startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
+  isArmsSpreading: 0
+  isArmsClosing: 0
+  angleBetweenTwoArms: 0
+  currentLargestSpreadingAngle: 0
+  isArmSwimming: 0
+  lastArmSwimmingTime: 0
   bodySpeed: 0
+  bodyTopSpeed: 0
 --- !u!4 &616588003
 Transform:
   m_ObjectHideFlags: 0
@@ -6339,11 +6353,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   test: 0
   armController: {fileID: 616588002}
-  updateDrag: 1
+  updateDrag: 0
   armdefaultdraginwater: 10
   armDefaultAngularDragInWater: 0
   updateJointMassScale: 0
-  updateJointConnectedMassScale: 1
+  updateJointConnectedMassScale: 0
   jointToBeUpdate: {fileID: 616603688}
   armTipJointDefaultMassScale: 0.00001
   armTipJointMaximumMassScale: 0
@@ -7358,7 +7372,14 @@ MonoBehaviour:
   inWater: 0
   armPhysicsMagnitude: 0
   startedSwimming: 0
+  isArmsSpreading: 0
+  isArmsClosing: 0
+  angleBetweenTwoArms: 0
+  currentLargestSpreadingAngle: 0
+  isArmSwimming: 0
+  lastArmSwimmingTime: 0
   bodySpeed: 0
+  bodyTopSpeed: 0
 --- !u!1 &745982220
 GameObject:
   m_ObjectHideFlags: 0
@@ -8924,7 +8945,14 @@ MonoBehaviour:
   inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
+  isArmsSpreading: 0
+  isArmsClosing: 0
+  angleBetweenTwoArms: 0
+  currentLargestSpreadingAngle: 0
+  isArmSwimming: 0
+  lastArmSwimmingTime: 0
   bodySpeed: 0
+  bodyTopSpeed: 0
 --- !u!1 &840601411
 GameObject:
   m_ObjectHideFlags: 0
@@ -9088,7 +9116,7 @@ Rigidbody:
   m_GameObject: {fileID: 843273296}
   serializedVersion: 2
   m_Mass: 0.0000001
-  m_Drag: 1
+  m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -9116,7 +9144,7 @@ SpringJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 0.00001
-  m_ConnectedMassScale: 200
+  m_ConnectedMassScale: 30
 --- !u!65 &843273299
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9201,7 +9229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 1
+  test: 0
   armController: {fileID: 840465318}
   updateDrag: 0
   armdefaultdraginwater: 0
@@ -16242,7 +16270,7 @@ MonoBehaviour:
   minDistance: 0
   followDistance: 0
   chaseSpeed: 20
-  target: {fileID: 1710820582}
+  target: {fileID: 147897929}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1459733037
 GameObject:
@@ -17890,7 +17918,14 @@ MonoBehaviour:
   inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
+  isArmsSpreading: 0
+  isArmsClosing: 0
+  angleBetweenTwoArms: 0
+  currentLargestSpreadingAngle: 0
+  isArmSwimming: 0
+  lastArmSwimmingTime: 0
   bodySpeed: 0
+  bodyTopSpeed: 0
 --- !u!4 &1576693986
 Transform:
   m_ObjectHideFlags: 0
@@ -18305,11 +18340,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   test: 0
   armController: {fileID: 840465318}
-  updateDrag: 1
+  updateDrag: 0
   armdefaultdraginwater: 10
   armDefaultAngularDragInWater: 0
   updateJointMassScale: 0
-  updateJointConnectedMassScale: 1
+  updateJointConnectedMassScale: 0
   jointToBeUpdate: {fileID: 1627299529}
   armTipJointDefaultMassScale: 0.00001
   armTipJointMaximumMassScale: 0
@@ -19293,7 +19328,14 @@ MonoBehaviour:
   inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
+  isArmsSpreading: 0
+  isArmsClosing: 0
+  angleBetweenTwoArms: 0
+  currentLargestSpreadingAngle: 0
+  isArmSwimming: 0
+  lastArmSwimmingTime: 0
   bodySpeed: 0
+  bodyTopSpeed: 0
 --- !u!4 &1691260757
 Transform:
   m_ObjectHideFlags: 0

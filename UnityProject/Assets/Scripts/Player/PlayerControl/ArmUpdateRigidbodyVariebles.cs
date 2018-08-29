@@ -42,10 +42,18 @@ public class ArmUpdateRigidbodyVariebles : MonoBehaviour
         //Test
         if (test)
         {
-            //print(jointToBeUpdate.connectedMassScale);
-            if (jointToBeUpdate.massScale / armTipJointMaximumMassScale > 0.5f)
+            //if (armController.startedSwimming)
             {
-                print(jointToBeUpdate.massScale);
+                
+                //if (jointToBeUpdate.connectedMassScale / armTipJointMaximumConnectedMassScale > 0.5f)
+                //{
+                //    print(jointToBeUpdate.connectedMassScale);
+                //}
+                //if (jointToBeUpdate.massScale / armTipJointMaximumMassScale > 0.5f)
+                if(Time.time - armController.lastArmSwimmingTime > 2)
+                {
+                    print(jointToBeUpdate.massScale);
+                }
             }
         }
     }
