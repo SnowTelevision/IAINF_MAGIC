@@ -33,7 +33,14 @@ public class ControlArm_UsingPhysics : ControlArm
     public float stopSwimMinVelocityThershold; // The minimum velocity of the body for it to be considered stop "swimming" in the water
     //public float armDefaultDragInWater; // The default drag of the arm when it is in the water
     //public float armDefaultAngularDragInWater; // The default angular drag of the arm when it is in the water
-    //public float armMinSwimmingSpreadingAngle; // 
+    //public float armMinSwimmingSpreadingAngle;
+
+    /// <summary>
+    /// Arm flags
+    /// </summary>
+    public bool canGrabObject; // Can the armTip grab object or not
+    public bool isTouchingGround; // Is the arm touching ground or not
+    //public bool isSideScroller; // Is the camera in side-scroller mode or not
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
@@ -49,10 +56,15 @@ public class ControlArm_UsingPhysics : ControlArm
     public float currentLargestSpreadingAngle; // The largest spreading angle before the arm begin to closing
     public bool isArmSwimming; // Is the arms doing "swimming" movement
     public float lastArmSwimmingTime; // The last time the arm is doing the "swimming" movement
+    public float horizontalCameraAngle; // The camera's horizontal when it is in "side-scrolling" mode
 
     //Test//
+    public bool test; // Do we print test outputs
     public float bodySpeed; // The speed of the body
     public float bodyTopSpeed; // The top speed the body can reach when swimming
+    public Vector3 testWindDirection; //
+    public float testWindStrength; //
+    public Vector3 testArmGlidingForce;
 
     // Use this for initialization
     void Start()
@@ -100,12 +112,21 @@ public class ControlArm_UsingPhysics : ControlArm
 
         if (!isGrabbingFloor)
         {
+            if (PlayerInfo.isSideScroller) // If the game is in side-scroller mode then calculate the current game camera forward direction
+            {
+                CalculateHorizontalCameraAngle();
+            }
+
             if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null) // If the arm is not holding item
             {
                 //RotateArm(isLeftArm);
                 //StretchArm(isLeftArm);
                 MoveArm(isLeftArm);
-                DetectIfPickingUpItem();
+
+                if (canGrabObject)
+                {
+                    DetectIfPickingUpItem();
+                }
             }
             else if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null) // If the arm is holding item
             {
@@ -128,7 +149,10 @@ public class ControlArm_UsingPhysics : ControlArm
         //    armTip.position = bodyRotatingCenter.position;
         //}
 
-        DetectGrabbingFloorInput();
+        if (!inWater) // If the arm is not in the water
+        {
+            DetectGrabbingFloorInput();
+        }
 
         if (isGrabbingFloor)
         {
@@ -149,14 +173,31 @@ public class ControlArm_UsingPhysics : ControlArm
             UpdateSwimmingStatus();
             CalculateArmPhysicsMagnitudeInWater();
         }
+
         // Test
-        //TestControllerInput();
-        bodySpeed = body.GetComponent<Rigidbody>().velocity.magnitude;
+        if (test)
+        {
+            //TestControllerInput();
+            bodySpeed = body.GetComponent<Rigidbody>().velocity.magnitude;
+            testArmGlidingForce = CalculateArmGlidingForce(testWindStrength, testWindDirection);
+        }
     }
 
     private void FixedUpdate()
     {
 
+    }
+
+    /// <summary>
+    /// Updates different flag status for the arm
+    /// </summary>
+    public void UpdateArmFlags()
+    {
+
+        if (isGrabbingFloor) // If the arm is grabbing the floor then it cannot grab object
+        {
+            canGrabObject = false;
+        }
     }
 
     //private void FixedUpdate()
@@ -568,50 +609,70 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         Vector3 targetPosition;
 
-        if (moveBody)
+        if (!PlayerInfo.isSideScroller) // If the game is in top-down mode (not in the flying level)
         {
-            targetPosition = armTip.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
-                                                joyStickLength * armMaxLength);
+            if (moveBody)
+            {
+                targetPosition = armTip.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
+                                                    joyStickLength * armMaxLength);
 
-            //print(Vector3.Magnitude(targetPosition - currentPosition) + ", " + armStopThreshold);
-            //print(currentPosition + ", " + targetPosition);
-            //print("armTip: " + armTip.position + ", target: " + targetPosition);
-            //Debug.DrawLine(armTip.position, armTip.position + new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) * joyStickLength * armMaxLength);
-            //print("joystick angle: " + joyStickRotationAngle);
+                //print(Vector3.Magnitude(targetPosition - currentPosition) + ", " + armStopThreshold);
+                //print(currentPosition + ", " + targetPosition);
+                //print("armTip: " + armTip.position + ", target: " + targetPosition);
+                //Debug.DrawLine(armTip.position, armTip.position + new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) * joyStickLength * armMaxLength);
+                //print("joystick angle: " + joyStickRotationAngle);
+            }
+            //else if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null &&
+            //         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight > armLiftingStrength) // If move heavy item
+            //{
+            //    targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
+            //                                        joyStickLength * armMaxLength);
+
+
+
+            //    //// If the arm will collide on something within the current stretching length
+            //    //RaycastHit hit;
+            //    //// Don't extend if the armTip will go into collider
+            //    //if (Physics.Raycast(transform.position - transform.forward * collisionRaycastOriginSetBackDistance, transform.forward,
+            //    //    out hit, joyStickLength * armMaxLength + collisionRaycastOriginSetBackDistance + armTip.localScale.x / 2f, armCollidingLayer))
+            //    //{
+            //    //    // If the ray hits the object that is currently holding by the armTip, then ignore it, don't retract the arm
+            //    //    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null ||
+            //    //        hit.transform != armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.transform)
+            //    //    {
+            //    //        //print(hit.transform.name);
+            //    //        armTip.localPosition =
+            //    //            //new Vector3(0, 0, hit.distance - armTip.localScale.x / Mathf.Cos(Vector3.Angle(hit.normal, transform.forward) * Mathf.Deg2Rad));
+            //    //            new Vector3(0, 0, hit.distance - collisionRaycastOriginSetBackDistance);
+            //    //    }
+            //    //}
+            //}
+            //else
+            //{
+            //    targetPosition = transform.TransformPoint(new Vector3(0, 0, joyStickLength * armMaxLength));
+            //}
+            else
+            {
+                targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
+                                                  joyStickLength * armMaxLength);
+            }
         }
-        //else if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null &&
-        //         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight > armLiftingStrength) // If move heavy item
-        //{
-        //    targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
-        //                                        joyStickLength * armMaxLength);
-
-
-
-        //    //// If the arm will collide on something within the current stretching length
-        //    //RaycastHit hit;
-        //    //// Don't extend if the armTip will go into collider
-        //    //if (Physics.Raycast(transform.position - transform.forward * collisionRaycastOriginSetBackDistance, transform.forward,
-        //    //    out hit, joyStickLength * armMaxLength + collisionRaycastOriginSetBackDistance + armTip.localScale.x / 2f, armCollidingLayer))
-        //    //{
-        //    //    // If the ray hits the object that is currently holding by the armTip, then ignore it, don't retract the arm
-        //    //    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null ||
-        //    //        hit.transform != armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.transform)
-        //    //    {
-        //    //        //print(hit.transform.name);
-        //    //        armTip.localPosition =
-        //    //            //new Vector3(0, 0, hit.distance - armTip.localScale.x / Mathf.Cos(Vector3.Angle(hit.normal, transform.forward) * Mathf.Deg2Rad));
-        //    //            new Vector3(0, 0, hit.distance - collisionRaycastOriginSetBackDistance);
-        //    //    }
-        //    //}
-        //}
-        //else
-        //{
-        //    targetPosition = transform.TransformPoint(new Vector3(0, 0, joyStickLength * armMaxLength));
-        //}
         else
         {
-            targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
-                                              joyStickLength * armMaxLength);
+            if (moveBody)
+            {
+                targetPosition = armTip.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad) * Mathf.Cos(horizontalCameraAngle * Mathf.Deg2Rad),
+                                                                Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad),
+                                                                Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad) * Mathf.Sin(horizontalCameraAngle * Mathf.Deg2Rad)) *
+                                                    joyStickLength * armMaxLength);
+            }
+            else
+            {
+                targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad) * Mathf.Cos(horizontalCameraAngle * Mathf.Deg2Rad),
+                                                              Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad),
+                                                              Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad) * Mathf.Sin(horizontalCameraAngle * Mathf.Deg2Rad)) *
+                                                  joyStickLength * armMaxLength);
+            }
         }
         float targetDistance = Vector3.Magnitude(targetPosition - currentPosition);
 
@@ -686,6 +747,7 @@ public class ControlArm_UsingPhysics : ControlArm
         //bodyRotatingCenter.position = armTip.position;
         //bodyRotatingCenter.eulerAngles = new Vector3(0, joyStickRotationAngle - (Mathf.Sign(joyStickRotationAngle) * 180), 0);
         //body.SetParent(bodyRotatingCenter, true);
+        UpdateArmFlags();
     }
 
     /// <summary>
@@ -699,6 +761,8 @@ public class ControlArm_UsingPhysics : ControlArm
             //body.parent = null;
             //body.SetParent(null, true);
         }
+
+        UpdateArmFlags();
     }
 
     /// <summary>
@@ -791,7 +855,7 @@ public class ControlArm_UsingPhysics : ControlArm
         }
         if (isArmsClosing)
         {
-            if(currentLargestSpreadingAngle != 0 && currentLargestSpreadingAngle < 170) // If the arms are not properly "swimming"
+            if (currentLargestSpreadingAngle != 0 && currentLargestSpreadingAngle < 170) // If the arms are not properly "swimming"
             {
                 armPhysicsMagnitude *= Mathf.Clamp(Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * angleBetweenTwoArms)) / 2.0f, 0.01f, 1.0f);
                 isArmSwimming = false;
@@ -844,7 +908,7 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         float previousAngleBetweenTwoArms = angleBetweenTwoArms;
         angleBetweenTwoArms = Vector3.Angle(otherArm_Physics.armTip.position - body.position, armTip.position - body.position);
-        
+
         if (angleBetweenTwoArms < previousAngleBetweenTwoArms) // If the angle between two arms is decreasing
         {
             isArmsClosing = true;
@@ -860,6 +924,48 @@ public class ControlArm_UsingPhysics : ControlArm
             isArmsClosing = false;
             isArmsSpreading = false;
         }
+    }
+
+    /// <summary>
+    /// Calculates the angle between the camera's facing direction and the global x-axis on the x-z plain 
+    /// (when the direction vector passes x=1,z=1 coordinate, the angle will be 45 degrees, when passing x=0,z=1, angle will be 90
+    ///  when passing x=-1,z=0, angle will be 180)
+    /// </summary>
+    public void CalculateHorizontalCameraAngle()
+    {
+        horizontalCameraAngle = Mathf.Atan(PlayerInfo.sGameCamera.forward.z / PlayerInfo.sGameCamera.forward.x) * Mathf.Rad2Deg;
+        if (PlayerInfo.sGameCamera.forward.x < 0)
+        {
+            horizontalCameraAngle += 180;
+        }
+        else if (PlayerInfo.sGameCamera.forward.x >= 0 && PlayerInfo.sGameCamera.forward.z < 0)
+        {
+            horizontalCameraAngle += 360;
+        }
+
+        horizontalCameraAngle -= 90;
+    }
+
+    /// <summary>
+    /// Calculates how much force the arm is giving to the body when gliding through lifting (or other directions) air blow
+    /// </summary>
+    /// <param name="windStrength"></param>
+    /// <param name="windDirecion"></param>
+    /// <returns></returns>
+    public Vector3 CalculateArmGlidingForce(float windStrength, Vector3 windDirecion)
+    {
+        Vector3 finalForceAppliedToBody = Vector3.one;
+        // Calculate the angle between the arm's stretch direction (from body to the armTip) and the direction of the wind
+        float angleBetweenArmAndWind = Vector3.Angle(armTip.position - transform.position, windDirecion);
+        // Calculate the actual wind force that is applying on a unit length of the arm
+        float effectiveWindStrength = windStrength * Mathf.Sin(angleBetweenArmAndWind * Mathf.Deg2Rad) * 
+                                      Mathf.Sign(PlayerInfo.sGameCamera.InverseTransformVector(Vector3.Cross(armTip.position - transform.position, windDirecion)).z);
+        // Calculate the direction of the force that is applying on the arm
+        Vector3 appliedForceDirection = Vector3.Cross(armTip.position - transform.position, PlayerInfo.sGameCamera.position - body.position).normalized;
+        // Calculate the final force the entire arm provide to the body
+        finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * joyStickLength * armMaxLength;
+
+        return finalForceAppliedToBody;
     }
 
     /// <summary>

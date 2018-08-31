@@ -12,6 +12,10 @@ public class FollowCamera : MonoBehaviour
     public Vector3 offset;
 
     Vector3 targetPos;
+
+    //Test
+    public bool test;
+
     // Use this for initialization
     void Start()
     {
@@ -21,6 +25,12 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (test)
+        {
+            transform.eulerAngles += Vector3.up * 10.0f * Time.fixedDeltaTime;
+            return;
+        }
+
         if (target)
         {
             Vector3 posNoY = transform.position;
