@@ -57,6 +57,7 @@ public class ControlArm_UsingPhysics : ControlArm
     public bool isArmSwimming; // Is the arms doing "swimming" movement
     public float lastArmSwimmingTime; // The last time the arm is doing the "swimming" movement
     public float horizontalCameraAngle; // The camera's horizontal when it is in "side-scrolling" mode
+    public float currentArmTipTouchingWindStrength; // How much wind strength is the windy area the armTip currently in
 
     //Test//
     public bool test; // Do we print test outputs
@@ -968,25 +969,21 @@ public class ControlArm_UsingPhysics : ControlArm
         return finalForceAppliedToBody;
     }
 
+    ///// <summary>
+    ///// Check if the armTip is in a windy area and will provide the body lifting force
+    ///// </summary>
+    //public void CheckIfApplyingGlidingForce()
+    //{
+
+    //}
+
     /// <summary>
-    /// sudo:
-    /// On rotating arm
-    ///     if armTip collide obstacle
-    ///         if rotate left && body is on the right side of the normal of the colliding surface ||
-    ///            rotate right && body is on the left side of the normal of the colliding surface
-    ///         { don't keep rotate}
-    ///         
-    /// On extending arm
-    ///     if armTip collide obstacle
-    ///     { don't keep extending}
-    /// 
-    /// 2nd method:
-    /// On rotating or extending arm:
-    ///     predict the armTip's position in the next frame
-    ///         if the armTip is currently colliding object & the predicted position after rotate or extend is closer to the colliding position
-    ///         { don't apply rotation or extend }
-    ///         
-    /// 3rd method:
-    /// raycast, if raycast hit distance is shorter than the controller pointed position, then only extend armTip to the raycast hit position
+    /// Give body gliding force
     /// </summary>
+    /// <param name="windStrength"></param>
+    /// <param name="windDirecion"></param>
+    public void ApplyGlidingForceToBody(float windStrength, Vector3 windDirecion)
+    {
+        body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(windStrength, windDirecion), ForceMode.Force);
+    }
 }
