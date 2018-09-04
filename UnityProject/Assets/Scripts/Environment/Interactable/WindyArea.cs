@@ -9,6 +9,9 @@ public class WindyArea : MonoBehaviour
 {
     public float windStrength; // The strength of the wind
 
+    // Test
+    public bool test;
+
     // Use this for initialization
     void Start()
     {
@@ -18,14 +21,17 @@ public class WindyArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (test)
+        {
+            transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.GetComponent<ArmUseItem>()) // If this is an armTip
+        if (other.GetComponent<ArmUseItem>()) // If this is an armTip
         {
-            other.GetComponentInParent<ControlArm_UsingPhysics>().ApplyGlidingForceToBody(windStrength, transform.forward);
+            other.GetComponentInParent<ControlArm_UsingPhysics>().armCurrentTotalReceivedWindForce += windStrength * transform.forward;
         }
     }
 }

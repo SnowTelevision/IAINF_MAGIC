@@ -75,8 +75,8 @@ public class PlayerInfo : MonoBehaviour
 
         if (test)
         {
-            print("x: " + Mathf.Sign(transform.position.x) * Mathf.Sign(transform.position.x * transform.position.z) * playerVelocityDirection);
-            print("z: " + -Mathf.Sign(transform.position.z) * Mathf.Sign(transform.position.x * transform.position.z) * playerVelocityDirection);
+            //print("x: " + Mathf.Sign(transform.position.x) * Mathf.Sign(transform.position.x * transform.position.z) * playerVelocityDirection);
+            //print("z: " + -Mathf.Sign(transform.position.z) * Mathf.Sign(transform.position.x * transform.position.z) * playerVelocityDirection);
         }
 
         return tangentVelocity;
@@ -97,8 +97,8 @@ public class PlayerInfo : MonoBehaviour
 
         if (test)
         {
-            Debug.DrawRay(transform.position, targetPosition - new Vector3(transform.position.x, 0, transform.position.z), Color.red);
-            print(targetPosition - new Vector3(transform.position.x, 0, transform.position.z));
+            //Debug.DrawRay(transform.position, targetPosition - new Vector3(transform.position.x, 0, transform.position.z), Color.red);
+            //print(targetPosition - new Vector3(transform.position.x, 0, transform.position.z));
         }
 
         return targetPosition - new Vector3(transform.position.x, 0, transform.position.z);
@@ -111,9 +111,9 @@ public class PlayerInfo : MonoBehaviour
     {
         if (test)
         {
-            Debug.DrawLine(transform.position, transform.position + GetComponent<Rigidbody>().velocity, Color.white);
-            Debug.DrawLine(transform.position, transform.position + CalculateTangentVelocity(), Color.blue);
-            Debug.DrawLine(transform.position, transform.position + CalculateTangentVelocity() - GetComponent<Rigidbody>().velocity, Color.red);
+            //Debug.DrawLine(transform.position, transform.position + GetComponent<Rigidbody>().velocity, Color.white);
+            //Debug.DrawLine(transform.position, transform.position + CalculateTangentVelocity(), Color.blue);
+            //Debug.DrawLine(transform.position, transform.position + CalculateTangentVelocity() - GetComponent<Rigidbody>().velocity, Color.red);
         }
 
         GetComponent<Rigidbody>().AddForce(CalculateTangentVelocity() - GetComponent<Rigidbody>().velocity, ForceMode.Acceleration);

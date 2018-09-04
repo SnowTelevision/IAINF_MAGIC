@@ -34,6 +34,7 @@ public class ControlArm_UsingPhysics : ControlArm
     //public float armDefaultDragInWater; // The default drag of the arm when it is in the water
     //public float armDefaultAngularDragInWater; // The default angular drag of the arm when it is in the water
     //public float armMinSwimmingSpreadingAngle;
+    public float armAirDragMultiplier; // The strength multiplier of the arm's drag when the player is in the air
 
     /// <summary>
     /// Arm flags
@@ -58,6 +59,7 @@ public class ControlArm_UsingPhysics : ControlArm
     public float lastArmSwimmingTime; // The last time the arm is doing the "swimming" movement
     public float horizontalCameraAngle; // The camera's horizontal when it is in "side-scrolling" mode
     public float currentArmTipTouchingWindStrength; // How much wind strength is the windy area the armTip currently in
+    public Vector3 armCurrentTotalReceivedWindForce; // What's the total wind force currently added to the arm
 
     //Test//
     public bool test; // Do we print test outputs
@@ -175,6 +177,13 @@ public class ControlArm_UsingPhysics : ControlArm
             CalculateArmPhysicsMagnitudeInWater();
         }
 
+        // Apply arm drag when the body is flying in the air
+        if (PlayerInfo.isSideScroller)
+        {
+            ApplyGlidingForceToBody();
+            ApplyArmAirDrag();
+        }
+
         // Test
         if (test)
         {
@@ -182,6 +191,11 @@ public class ControlArm_UsingPhysics : ControlArm
             bodySpeed = body.GetComponent<Rigidbody>().velocity.magnitude;
             testArmGlidingForce = CalculateArmGlidingForce(testWindStrength, testWindDirection);
         }
+    }
+
+    private void LateUpdate()
+    {
+        armCurrentTotalReceivedWindForce = Vector3.zero;
     }
 
     private void FixedUpdate()
@@ -959,12 +973,14 @@ public class ControlArm_UsingPhysics : ControlArm
         // Calculate the angle between the arm's stretch direction (from body to the armTip) and the direction of the wind
         float angleBetweenArmAndWind = Vector3.Angle(armTip.position - transform.position, windDirecion);
         // Calculate the actual wind force that is applying on a unit length of the arm
-        float effectiveWindStrength = windStrength * Mathf.Sin(angleBetweenArmAndWind * Mathf.Deg2Rad) * 
+        float effectiveWindStrength = windStrength * Mathf.Sin(angleBetweenArmAndWind * Mathf.Deg2Rad) *
                                       Mathf.Sign(PlayerInfo.sGameCamera.InverseTransformVector(Vector3.Cross(armTip.position - transform.position, windDirecion)).z);
         // Calculate the direction of the force that is applying on the arm
         Vector3 appliedForceDirection = Vector3.Cross(armTip.position - transform.position, PlayerInfo.sGameCamera.position - body.position).normalized;
-        // Calculate the final force the entire arm provide to the body
-        finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * joyStickLength * armMaxLength;
+        // Calculate the final force the entire arm provide to the body based on the actual arm length
+        finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * Vector3.Magnitude(armTip.position - transform.position);
+        //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * joyStickLength * armMaxLength;
+        //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * armMaxLength; // Uniform version
 
         return finalForceAppliedToBody;
     }
@@ -980,10 +996,34 @@ public class ControlArm_UsingPhysics : ControlArm
     /// <summary>
     /// Give body gliding force
     /// </summary>
-    /// <param name="windStrength"></param>
-    /// <param name="windDirecion"></param>
-    public void ApplyGlidingForceToBody(float windStrength, Vector3 windDirecion)
+    public void ApplyGlidingForceToBody()
     {
-        body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(windStrength, windDirecion), ForceMode.Force);
+        body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(armCurrentTotalReceivedWindForce.magnitude, armCurrentTotalReceivedWindForce.normalized), 
+                                                ForceMode.Force);
+    }
+
+    /// <summary>
+    /// Calculates how much drag the arm should have on the player's body based on the player's current velocity and applies it to the player's body
+    /// </summary>
+    /// <returns></returns>
+    public void ApplyArmAirDrag()
+    {
+        Vector3 finalDragForceAppliedToBody = Vector3.one;
+        // Calculate the body's current velocity relative to the current wind velocity at its position
+        Vector3 bodyVelocityRelativeToWindForce = body.GetComponent<Rigidbody>().velocity - armCurrentTotalReceivedWindForce;
+        // Calculate the angle between the arm's stretch direction (from body to the armTip) and the direction of the wind
+        float angleBetweenArmAndBodyVelocity = Vector3.Angle(armTip.position - transform.position, bodyVelocityRelativeToWindForce.normalized);
+        // Calculate the actual wind force that is applying on a unit length of the arm
+        float effectiveDragStrength = bodyVelocityRelativeToWindForce.magnitude * Mathf.Sin(angleBetweenArmAndBodyVelocity * Mathf.Deg2Rad) *
+                                      Mathf.Sign(PlayerInfo.sGameCamera.InverseTransformVector(Vector3.Cross(armTip.position - transform.position,
+                                                                                                             bodyVelocityRelativeToWindForce.normalized)).z);
+        // Calculate the direction of the force that is applying on the arm
+        Vector3 appliedForceDirection = -Vector3.Cross(armTip.position - transform.position, PlayerInfo.sGameCamera.position - body.position).normalized;
+        // Calculate the final force the entire arm provide to the body based on the actual arm length
+        finalDragForceAppliedToBody = effectiveDragStrength * appliedForceDirection * Vector3.Magnitude(armTip.position - transform.position) * armAirDragMultiplier;
+        //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * joyStickLength * armMaxLength;
+        //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * armMaxLength; // Uniform version
+
+        body.GetComponent<Rigidbody>().AddForce(finalDragForceAppliedToBody, ForceMode.Force);
     }
 }

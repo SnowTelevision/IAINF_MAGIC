@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8245f054e1b9d344abe758464c81f52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windStrength: 4
+  windStrength: 24
+  test: 0
 --- !u!65 &7415895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -205,11 +206,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 7415893}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 5, z: -5}
+  m_LocalPosition: {x: 0, y: 5, z: 17}
   m_LocalScale: {x: 16.849203, y: 1, z: 8.577311}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &11153253
 GameObject:
@@ -286,6 +287,7 @@ GameObject:
   - component: {fileID: 19770609}
   - component: {fileID: 19770611}
   - component: {fileID: 19770610}
+  - component: {fileID: 19770615}
   m_Layer: 10
   m_Name: ChainLink (5)
   m_TagString: Untagged
@@ -404,6 +406,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &19770615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 19770608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 19770611}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &23636039
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +653,7 @@ GameObject:
   - component: {fileID: 43190675}
   - component: {fileID: 43190677}
   - component: {fileID: 43190676}
+  - component: {fileID: 43190681}
   m_Layer: 10
   m_Name: ChainLink (6)
   m_TagString: Untagged
@@ -734,6 +772,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &43190681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43190674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 43190677}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &46481891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1194,7 @@ GameObject:
   - component: {fileID: 66669670}
   - component: {fileID: 66669672}
   - component: {fileID: 66669671}
+  - component: {fileID: 66669676}
   m_Layer: 10
   m_Name: ChainLink (3)
   m_TagString: Untagged
@@ -1239,6 +1313,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &66669676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66669669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 66669672}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &70065681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,6 +2250,7 @@ GameObject:
   - component: {fileID: 138453384}
   - component: {fileID: 138453386}
   - component: {fileID: 138453385}
+  - component: {fileID: 138453390}
   m_Layer: 10
   m_Name: ChainLink (7)
   m_TagString: Untagged
@@ -2259,6 +2369,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &138453390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 138453383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 138453386}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &147897929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,11 +2629,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &151967598
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -2686,11 +2838,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 100
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &153806661
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -3218,6 +3377,7 @@ GameObject:
   - component: {fileID: 238590141}
   - component: {fileID: 238590143}
   - component: {fileID: 238590142}
+  - component: {fileID: 238590147}
   m_Layer: 10
   m_Name: ChainLink (4)
   m_TagString: Untagged
@@ -3336,6 +3496,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &238590147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238590140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 238590143}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &243866673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,11 +3717,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0.001
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &245850173
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,11 +5200,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0.0001
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &356089692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5039,11 +5248,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &356089694
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -5343,7 +5559,7 @@ Transform:
   m_LocalScale: {x: 1, y: 3.0778224, z: 2.783306}
   m_Children: []
   m_Father: {fileID: 1866756811}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &370393205
 Rigidbody:
@@ -6517,6 +6733,7 @@ GameObject:
   - component: {fileID: 431757842}
   - component: {fileID: 431757844}
   - component: {fileID: 431757843}
+  - component: {fileID: 431757848}
   m_Layer: 10
   m_Name: ChainLink (2)
   m_TagString: Untagged
@@ -6635,6 +6852,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &431757848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431757841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 431757844}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &431922646
 GameObject:
   m_ObjectHideFlags: 0
@@ -7242,6 +7494,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 0
   stopSwimMinVelocityThershold: 0
+  armAirDragMultiplier: 0
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -7257,6 +7510,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -7540,11 +7794,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &505361299
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -8060,11 +8321,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &543766272
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -8754,6 +9022,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  armAirDragMultiplier: 0
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -8769,6 +9038,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -8968,11 +9238,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 20
   armTipJointMaximumConnectedMassScale: 100
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &617142842
 GameObject:
   m_ObjectHideFlags: 0
@@ -9272,6 +9549,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  armAirDragMultiplier: 1
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -9287,6 +9565,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -9436,6 +9715,7 @@ GameObject:
   - component: {fileID: 668635962}
   - component: {fileID: 668635964}
   - component: {fileID: 668635963}
+  - component: {fileID: 668635968}
   m_Layer: 10
   m_Name: ChainLink (7)
   m_TagString: Untagged
@@ -9554,6 +9834,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &668635968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 668635961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 668635964}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &669842524
 GameObject:
   m_ObjectHideFlags: 0
@@ -10466,6 +10781,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 0
   stopSwimMinVelocityThershold: 0
+  armAirDragMultiplier: 0
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -10481,6 +10797,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -10633,11 +10950,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &746107589
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -11184,6 +11508,7 @@ GameObject:
   - component: {fileID: 776196349}
   - component: {fileID: 776196351}
   - component: {fileID: 776196350}
+  - component: {fileID: 776196355}
   m_Layer: 10
   m_Name: ChainLink (4)
   m_TagString: Untagged
@@ -11302,6 +11627,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776196355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776196348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 776196351}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &777415927
 GameObject:
   m_ObjectHideFlags: 0
@@ -11545,6 +11905,7 @@ GameObject:
   - component: {fileID: 785284276}
   - component: {fileID: 785284278}
   - component: {fileID: 785284277}
+  - component: {fileID: 785284282}
   m_Layer: 10
   m_Name: ChainLink (5)
   m_TagString: Untagged
@@ -11663,6 +12024,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &785284282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785284275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 785284278}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &786554118
 GameObject:
   m_ObjectHideFlags: 0
@@ -12613,6 +13009,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  armAirDragMultiplier: 0
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -12628,6 +13025,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -12994,11 +13392,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0.001
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &843613796
 GameObject:
   m_ObjectHideFlags: 0
@@ -13671,11 +14076,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &875879865
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -13860,11 +14272,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &880153298
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -22665,7 +23084,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &920815647
 GameObject:
@@ -23056,11 +23475,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 20
   armTipJointMaximumConnectedMassScale: 100
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &965917818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23412,11 +23838,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &974488209
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -23830,11 +24263,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1016912918
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -24050,11 +24490,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1029704934
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -24195,14 +24642,21 @@ MonoBehaviour:
   updateJointConnectedMassScale: 0
   jointToBeUpdate: {fileID: 1030056043}
   armTipJointDefaultMassScale: 0.00001
-  armTipJointMaximumMassScale: 0.001
+  armTipJointMaximumMassScale: 0.0001
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &1030056042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26140,14 +26594,21 @@ MonoBehaviour:
   updateJointConnectedMassScale: 0
   jointToBeUpdate: {fileID: 1154143861}
   armTipJointDefaultMassScale: 0.00001
-  armTipJointMaximumMassScale: 0.001
+  armTipJointMaximumMassScale: 0.0001
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &1154143860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27501,6 +27962,91 @@ Transform:
   m_Father: {fileID: 1610053775}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1254021526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1254021531}
+  - component: {fileID: 1254021530}
+  - component: {fileID: 1254021529}
+  - component: {fileID: 1254021528}
+  m_Layer: 0
+  m_Name: AirObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!65 &1254021528
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254021526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1254021529
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254021526}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 53a0a2ff853a3c94ab2a587b5c5ee27a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1254021530
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254021526}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1254021531
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254021526}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 7.1, y: 5, z: 15.2}
+  m_LocalScale: {x: 1.0530761, y: 4.6499996, z: 8.577311}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1255759848
 GameObject:
   m_ObjectHideFlags: 0
@@ -27664,7 +28210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 3.0778224, z: 2.783306}
   m_Children: []
   m_Father: {fileID: 1866756811}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1262346293
 Rigidbody:
@@ -28090,7 +28636,7 @@ GameObject:
   - component: {fileID: 1296755779}
   - component: {fileID: 1296755778}
   m_Layer: 0
-  m_Name: TestWindArea (1)
+  m_Name: TestWindAreaForJumpGlide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28120,7 +28666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8245f054e1b9d344abe758464c81f52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windStrength: 4
+  windStrength: 8
+  test: 1
 --- !u!65 &1296755779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28217,6 +28764,7 @@ GameObject:
   - component: {fileID: 1309165206}
   - component: {fileID: 1309165208}
   - component: {fileID: 1309165207}
+  - component: {fileID: 1309165212}
   m_Layer: 10
   m_Name: ChainLink (6)
   m_TagString: Untagged
@@ -28335,6 +28883,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309165212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1309165205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 1309165208}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &1309456528
 GameObject:
   m_ObjectHideFlags: 0
@@ -28958,7 +29541,7 @@ Transform:
   m_LocalScale: {x: 1, y: 3.180892, z: 1}
   m_Children: []
   m_Father: {fileID: 1866756811}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1341896444
 Rigidbody:
@@ -29187,6 +29770,7 @@ GameObject:
   - component: {fileID: 1363346580}
   - component: {fileID: 1363346582}
   - component: {fileID: 1363346581}
+  - component: {fileID: 1363346586}
   m_Layer: 10
   m_Name: ChainLink (2)
   m_TagString: Untagged
@@ -29305,6 +29889,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1363346586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1363346579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 1363346582}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &1365867880
 GameObject:
   m_ObjectHideFlags: 0
@@ -30111,11 +30730,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 20
   armTipJointMaximumConnectedMassScale: 100
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &1449650408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31398,7 +32024,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1866756811}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1549804143
 Rigidbody:
@@ -32236,11 +32862,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1576099087
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -32337,6 +32970,7 @@ GameObject:
   - component: {fileID: 1576258903}
   - component: {fileID: 1576258905}
   - component: {fileID: 1576258904}
+  - component: {fileID: 1576258909}
   m_Layer: 10
   m_Name: ChainLink (3)
   m_TagString: Untagged
@@ -32455,6 +33089,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1576258909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1576258902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 1576258905}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &1576693984
 GameObject:
   m_ObjectHideFlags: 0
@@ -32526,6 +33195,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 1.2
   stopSwimMinVelocityThershold: 0.2
+  armAirDragMultiplier: 0
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -32541,6 +33211,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -33099,11 +33770,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 20
   armTipJointMaximumConnectedMassScale: 100
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &1627749049
 GameObject:
   m_ObjectHideFlags: 0
@@ -33178,11 +33856,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1627749053
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -33516,7 +34201,7 @@ Transform:
   - {fileID: 1498490716}
   - {fileID: 1193354551}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660238858
 GameObject:
@@ -33836,6 +34521,105 @@ Transform:
   m_Father: {fileID: 360031107}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1671292962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1671292963}
+  - component: {fileID: 1671292967}
+  - component: {fileID: 1671292966}
+  - component: {fileID: 1671292965}
+  - component: {fileID: 1671292964}
+  m_Layer: 0
+  m_Name: TestWindAreaForNormalStrength
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1671292963
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671292962}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 12}
+  m_LocalScale: {x: 16.8492, y: 1.0000005, z: 8.577324}
+  m_Children: []
+  m_Father: {fileID: 1866756811}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1671292964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671292962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8245f054e1b9d344abe758464c81f52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windStrength: 4
+  test: 0
+--- !u!65 &1671292965
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671292962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1671292966
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671292962}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 6242e650312748143b1d20f94f51e4ec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1671292967
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671292962}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1672060180
 GameObject:
   m_ObjectHideFlags: 0
@@ -33850,6 +34634,7 @@ GameObject:
   - component: {fileID: 1672060181}
   - component: {fileID: 1672060183}
   - component: {fileID: 1672060182}
+  - component: {fileID: 1672060187}
   m_Layer: 10
   m_Name: ChainLink (8)
   m_TagString: Untagged
@@ -33968,6 +34753,41 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1672060187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672060180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 1885860286}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 1672060183}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &1672408315
 GameObject:
   m_ObjectHideFlags: 0
@@ -34042,11 +34862,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1672408319
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -34412,6 +35239,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 1.2
   stopSwimMinVelocityThershold: 0.2
+  armAirDragMultiplier: 0
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -34427,6 +35255,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -34698,7 +35527,7 @@ Transform:
   m_LocalScale: {x: 1, y: 3.180892, z: 1}
   m_Children: []
   m_Father: {fileID: 1866756811}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1713250413
 Rigidbody:
@@ -35190,6 +36019,7 @@ GameObject:
   - component: {fileID: 1764311010}
   - component: {fileID: 1764311012}
   - component: {fileID: 1764311011}
+  - component: {fileID: 1764311016}
   m_Layer: 10
   m_Name: ChainLink (8)
   m_TagString: Untagged
@@ -35308,6 +36138,41 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1764311016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764311009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098118375ddc3884e964bde4fa4f6a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  armController: {fileID: 651976046}
+  updateDrag: 0
+  armdefaultdraginwater: 0
+  armDefaultAngularDragInWater: 0
+  updateJointMassScale: 0
+  updateJointConnectedMassScale: 0
+  jointToBeUpdate: {fileID: 1764311012}
+  armTipJointDefaultMassScale: 0
+  armTipJointMaximumMassScale: 0
+  armTipJointDefaultConnectedMassScale: 0
+  armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 1
+  armMaxConnectedAnchor: 1.2
+  armMinConnectedAnchor: -0.8
+  maxJointChangingSpeed: 0.05
+  thisRigidBody: {fileID: 0}
+  armDragInWater: 0
+  armAngularDragInWater: 0
+  armTipConnectedJointMassScale: 0
+  armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!1 &1770780407
 GameObject:
   m_ObjectHideFlags: 0
@@ -35543,11 +36408,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1782416990
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -35704,11 +36576,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1785942270
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -36616,11 +37495,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0.0001
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &1859138593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36657,11 +37543,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &1859138595
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -36871,6 +37764,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1296755777}
+  - {fileID: 1671292963}
   - {fileID: 370393204}
   - {fileID: 1262346292}
   - {fileID: 1341896443}
@@ -36878,7 +37772,7 @@ Transform:
   - {fileID: 1549804142}
   - {fileID: 2121225660}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873408119
 GameObject:
@@ -37063,6 +37957,7 @@ MonoBehaviour:
   armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  armAirDragMultiplier: 1
   canGrabObject: 0
   isTouchingGround: 0
   armCurrentStamina: 0
@@ -37078,6 +37973,7 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -39020,11 +39916,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 100
   armTipJointDefaultConnectedMassScale: 0
   armTipJointMaximumConnectedMassScale: 0
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!145 &2023853823
 SpringJoint:
   m_ObjectHideFlags: 0
@@ -40517,7 +41420,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1866756811}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2121225661
 Rigidbody:
@@ -40707,11 +41610,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 20
   armTipJointMaximumConnectedMassScale: 100
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &2123870416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40891,11 +41801,18 @@ MonoBehaviour:
   armTipJointMaximumMassScale: 0
   armTipJointDefaultConnectedMassScale: 20
   armTipJointMaximumConnectedMassScale: 100
+  updateConnectedAnchor: 0
+  armMaxConnectedAnchor: 0
+  armMinConnectedAnchor: 0
+  maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
   armTipConnectedJointMassScale: 0
   armTipConnectedJointConnectedMassScale: 0
+  lastJoystickLength: 0
+  lastConnectedAnchorPos: 0
+  jointAnchorChangingSpeed: 0
 --- !u!65 &2125650468
 BoxCollider:
   m_ObjectHideFlags: 0
