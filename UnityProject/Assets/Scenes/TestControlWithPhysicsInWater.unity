@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windStrength: 4
+  test: 0
 --- !u!65 &7415895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -949,6 +950,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -957,6 +961,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &54292630
 GameObject:
@@ -2523,6 +2528,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -2531,6 +2539,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &151967598
 SpringJoint:
@@ -2732,6 +2741,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -2740,6 +2752,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &153806661
 SpringJoint:
@@ -3575,7 +3588,10 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
-  maxJointChangingSpeed: 0
+  updateAnchor: 1
+  armMaxAnchor: 0
+  armMinAnchor: -2.2
+  maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
@@ -3583,6 +3599,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &245850173
 GameObject:
@@ -4912,6 +4929,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -4920,6 +4940,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &356089692
 BoxCollider:
@@ -4960,6 +4981,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -4968,6 +4992,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &356089694
 SpringJoint:
@@ -5686,6 +5711,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -5694,6 +5722,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &403699015
 GameObject:
@@ -6137,6 +6166,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -6145,6 +6177,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &416856781
 GameObject:
@@ -6949,6 +6982,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -6957,6 +6993,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &455423559
 GameObject:
@@ -7270,13 +7307,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 0
   stopSwimMinVelocityThershold: 0
+  joystickLengthThresholdForAngleBetweenTwoArms: 0
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 0
@@ -7290,6 +7332,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -7576,6 +7621,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -7584,6 +7632,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &505361299
 SpringJoint:
@@ -8103,6 +8152,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -8111,6 +8163,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &543766272
 SpringJoint:
@@ -8796,13 +8849,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  joystickLengthThresholdForAngleBetweenTwoArms: 0.2
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 1
@@ -8816,6 +8874,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -9018,6 +9079,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -9026,6 +9090,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &617142842
 GameObject:
@@ -9321,13 +9386,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  joystickLengthThresholdForAngleBetweenTwoArms: 0
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 0
@@ -9341,6 +9411,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -10515,13 +10588,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 0
   stopSwimMinVelocityThershold: 0
+  joystickLengthThresholdForAngleBetweenTwoArms: 0
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 0
@@ -10535,6 +10613,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -10690,6 +10771,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -10698,6 +10782,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &746107589
 SpringJoint:
@@ -11069,6 +11154,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -11077,6 +11165,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &770067664
 GameObject:
@@ -12148,6 +12237,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -12156,6 +12248,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &809258297
 GameObject:
@@ -12741,13 +12834,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  joystickLengthThresholdForAngleBetweenTwoArms: 0.2
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 1
@@ -12761,6 +12859,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -13130,7 +13231,10 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
-  maxJointChangingSpeed: 0
+  updateAnchor: 1
+  armMaxAnchor: 0
+  armMinAnchor: -2.2
+  maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
   armAngularDragInWater: 0
@@ -13138,6 +13242,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &843613796
 GameObject:
@@ -13814,6 +13919,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -13822,6 +13930,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &875879865
 SpringJoint:
@@ -14010,6 +14119,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -14018,6 +14130,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &880153298
 SpringJoint:
@@ -14360,6 +14473,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -14368,6 +14484,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &892284060
 GameObject:
@@ -15067,6 +15184,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -15075,6 +15195,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &965917818
 BoxCollider:
@@ -15430,6 +15551,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -15438,6 +15562,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &974488209
 SpringJoint:
@@ -15855,6 +15980,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -15863,6 +15991,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1016912918
 SpringJoint:
@@ -16082,6 +16211,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -16090,6 +16222,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1029704934
 SpringJoint:
@@ -16237,6 +16370,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -16245,6 +16381,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &1030056042
 BoxCollider:
@@ -18065,6 +18202,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -18073,6 +18213,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1143916052
 GameObject:
@@ -18225,6 +18366,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -18233,6 +18377,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &1154143860
 BoxCollider:
@@ -22102,6 +22247,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -22110,6 +22258,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &1449650408
 BoxCollider:
@@ -22387,6 +22536,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -22395,6 +22547,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1457092904
 GameObject:
@@ -22857,6 +23010,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -22865,6 +23021,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1465646757
 GameObject:
@@ -24228,6 +24385,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -24236,6 +24396,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1574609653
 GameObject:
@@ -24342,6 +24503,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -24350,6 +24514,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1576099087
 SpringJoint:
@@ -24631,13 +24796,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 1.2
   stopSwimMinVelocityThershold: 0.2
+  joystickLengthThresholdForAngleBetweenTwoArms: 0
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 1
@@ -24651,6 +24821,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -25212,6 +25385,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -25220,6 +25396,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1627749049
 GameObject:
@@ -25298,6 +25475,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -25306,6 +25486,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1627749053
 SpringJoint:
@@ -26169,6 +26350,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -26177,6 +26361,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1672408319
 SpringJoint:
@@ -26538,13 +26723,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 1.2
   stopSwimMinVelocityThershold: 0.2
+  joystickLengthThresholdForAngleBetweenTwoArms: 0
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 1
@@ -26558,6 +26748,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -27598,6 +27791,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -27606,6 +27802,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1772614296
 GameObject:
@@ -27713,6 +27910,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -27721,6 +27921,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1782416990
 SpringJoint:
@@ -27881,6 +28082,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -27889,6 +28093,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1785942270
 SpringJoint:
@@ -28800,6 +29005,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -28808,6 +29016,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &1859138593
 BoxCollider:
@@ -28848,6 +29057,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -28856,6 +29068,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &1859138595
 SpringJoint:
@@ -29252,13 +29465,18 @@ MonoBehaviour:
   armStopThreshold: 0.1
   armMaximumStamina: 100
   armStaminaDefaultRecoverSpeed: 20
-  armStaminaConsumptionRateWhileMovingBody: 16
+  armStaminaConsumptionRate: 0
   maxStaminaInitialBurstMulti: 25
-  armTipStretchLimiter: {fileID: 0}
   startSwimMinVelocityThershold: 2.5
   stopSwimMinVelocityThershold: 0.2
+  joystickLengthThresholdForAngleBetweenTwoArms: 0
+  armAirDragMultiplier: 0
+  joyStickMoveSpeedControlBurstForceThreshold: 0
+  timeAllowedToUseBurstForceSinceMaxStamina: 0
   canGrabObject: 0
   isTouchingGround: 0
+  joystickPosition: {x: 0, y: 0, z: 0}
+  joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
   inWater: 0
@@ -29272,6 +29490,9 @@ MonoBehaviour:
   lastArmSwimmingTime: 0
   horizontalCameraAngle: 0
   currentArmTipTouchingWindStrength: 0
+  armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
+  armStartGrabbingTime: 0
+  isArmBurstForceUsed: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -30488,6 +30709,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -30496,6 +30720,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &1951856676
 GameObject:
@@ -31105,6 +31330,9 @@ MonoBehaviour:
   updateConnectedAnchor: 1
   armMaxConnectedAnchor: 1.2
   armMinConnectedAnchor: -1
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0.05
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -31113,6 +31341,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!1 &2001918808
 GameObject:
@@ -31289,6 +31518,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -31297,6 +31529,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!145 &2023853823
 SpringJoint:
@@ -32983,6 +33216,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -32991,6 +33227,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &2123870416
 BoxCollider:
@@ -33174,6 +33411,9 @@ MonoBehaviour:
   updateConnectedAnchor: 0
   armMaxConnectedAnchor: 0
   armMinConnectedAnchor: 0
+  updateAnchor: 0
+  armMaxAnchor: 0
+  armMinAnchor: 0
   maxJointChangingSpeed: 0
   thisRigidBody: {fileID: 0}
   armDragInWater: 0
@@ -33182,6 +33422,7 @@ MonoBehaviour:
   armTipConnectedJointConnectedMassScale: 0
   lastJoystickLength: 0
   lastConnectedAnchorPos: 0
+  lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
 --- !u!65 &2125650468
 BoxCollider:

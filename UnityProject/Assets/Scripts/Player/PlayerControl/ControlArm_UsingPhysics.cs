@@ -26,15 +26,18 @@ public class ControlArm_UsingPhysics : ControlArm
     public float armStopThreshold; // How close the armTip has to be to the target position for it to stop being pushed
     public float armMaximumStamina; // How much total stamina each arm has
     public float armStaminaDefaultRecoverSpeed; // The default speed each arm will recharge its stamina
-    public float armStaminaConsumptionRateWhileMovingBody; // How much stamina the arm will consume per sec while it is moving the body
+    public float armStaminaConsumptionRate; // How much stamina the arm will consume per sec while it is moving the body
     public float maxStaminaInitialBurstMulti; // How much times of the default force the arm can apply when it just start moving while on maximum stamina
-    public Transform armTipStretchLimiter; // The inverted sphere collider that limits how far the armTips can be away from the body
+    //public Transform armTipStretchLimiter; // The inverted sphere collider that limits how far the armTips can be away from the body
     public float startSwimMinVelocityThershold; // The minimum velocity of the body for it to be considered start "swimming" in the water
     public float stopSwimMinVelocityThershold; // The minimum velocity of the body for it to be considered stop "swimming" in the water
+    public float joystickLengthThresholdForAngleBetweenTwoArms; // How long the joystick has to extend to be considered streched out to calculate the angle
     //public float armDefaultDragInWater; // The default drag of the arm when it is in the water
     //public float armDefaultAngularDragInWater; // The default angular drag of the arm when it is in the water
     //public float armMinSwimmingSpreadingAngle;
     public float armAirDragMultiplier; // The strength multiplier of the arm's drag when the player is in the air
+    public float joyStickMoveSpeedControlBurstForceThreshold; // How fast the joystick has to be moved for the arm to try to use burst force
+    public float timeAllowedToUseBurstForceSinceMaxStamina; // How much time is given the player to use the burst force when they started grabbing on full stamina
 
     /// <summary>
     /// Arm flags
@@ -42,10 +45,13 @@ public class ControlArm_UsingPhysics : ControlArm
     public bool canGrabObject; // Can the armTip grab object or not
     public bool isTouchingGround; // Is the arm touching ground or not
     //public bool isSideScroller; // Is the camera in side-scroller mode or not
+    public bool isInEchoMode; // If the arm is in listening to vibration echo mode
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
     //public float joyStickLength; // How much the joystick is pushed away
+    public Vector3 joystickPosition; // Where is the joystick
+    public Vector3 joystickLastPosition; // The joystick's position in the last frame
     public float armCurrentStamina; // This arm's current stamina amount
     public Vector3 armTipGrabbingPosition; // The armTip's position when it starts grabbing
     public bool inWater; // Is this armTip currently in water
@@ -60,6 +66,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public float horizontalCameraAngle; // The camera's horizontal when it is in "side-scrolling" mode
     public float currentArmTipTouchingWindStrength; // How much wind strength is the windy area the armTip currently in
     public Vector3 armCurrentTotalReceivedWindForce; // What's the total wind force currently added to the arm
+    public float armStartGrabbingTime; // The time the last time this arm started to grab the floor or an object
+    public bool isArmBurstForceUsed; // Did the arm already used burst force in this interaction cycle?
 
     //Test//
     public bool test; // Do we print test outputs
@@ -92,7 +100,7 @@ public class ControlArm_UsingPhysics : ControlArm
             // Stop the player from grabbing the floor if the armTip is grabbing floor when the event start
             if (isGrabbingFloor)
             {
-                StopGrabbing();
+                StopGrabbingFloor();
             }
 
             // Make sure the armTip doesn't "roll away"
@@ -112,6 +120,7 @@ public class ControlArm_UsingPhysics : ControlArm
 
         CalculateJoyStickRotation(isLeftArm);
         CalculateJoyStickLength(isLeftArm);
+        GetClampedJoystickPosition();
 
         if (!isGrabbingFloor)
         {
@@ -204,6 +213,17 @@ public class ControlArm_UsingPhysics : ControlArm
     }
 
     /// <summary>
+    /// Get the joystick's clamped (from 0 to 1) position
+    /// </summary>
+    public void GetClampedJoystickPosition()
+    {
+        joystickLastPosition = joystickPosition; // Assign the position in the last frame
+        // Calculate the new position in this frame
+        joystickPosition = new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
+                                                 joyStickLength;
+    }
+
+    /// <summary>
     /// Updates different flag status for the arm
     /// </summary>
     public void UpdateArmFlags()
@@ -212,6 +232,10 @@ public class ControlArm_UsingPhysics : ControlArm
         if (isGrabbingFloor) // If the arm is grabbing the floor then it cannot grab object
         {
             canGrabObject = false;
+        }
+        else
+        {
+            canGrabObject = true;
         }
     }
 
@@ -238,7 +262,7 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         if (isGrabbingFloor) // If the arm is grabbing onto floor
         {
-            armCurrentStamina -= armStaminaConsumptionRateWhileMovingBody * Time.deltaTime;
+            armCurrentStamina -= armStaminaConsumptionRate * Time.deltaTime;
             if (armCurrentStamina < 0) // Prevent the stamina goes below 0
             {
                 armCurrentStamina = 0;
@@ -248,7 +272,7 @@ public class ControlArm_UsingPhysics : ControlArm
         {
             if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight > armLiftingStrength)
             {
-                armCurrentStamina -= armStaminaConsumptionRateWhileMovingBody * Time.deltaTime;
+                armCurrentStamina -= armStaminaConsumptionRate * Time.deltaTime;
                 if (armCurrentStamina < 0) // Prevent the stamina goes below 0
                 {
                     armCurrentStamina = 0;
@@ -283,7 +307,7 @@ public class ControlArm_UsingPhysics : ControlArm
                 // If the armTip is currently empty and not holding any item, then start grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StartGrabbing();
+                    StartGrabbingFloor();
                 }
                 else // Drop the current holding item (no matter it can be used or not
                 {
@@ -295,7 +319,7 @@ public class ControlArm_UsingPhysics : ControlArm
                 // If the armTip is currently empty and not holding any item, then stop grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StopGrabbing();
+                    StopGrabbingFloor();
                 }
             }
         }
@@ -308,7 +332,7 @@ public class ControlArm_UsingPhysics : ControlArm
                 // If the armTip is currently empty and not holding any item, then start grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StartGrabbing();
+                    StartGrabbingFloor();
                 }
                 else // Drop the current holding item (no matter it can be used or not
                 {
@@ -320,7 +344,7 @@ public class ControlArm_UsingPhysics : ControlArm
                 // If the armTip is currently empty and not holding any item, then stop grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StopGrabbing();
+                    StopGrabbingFloor();
                 }
             }
         }
@@ -506,6 +530,7 @@ public class ControlArm_UsingPhysics : ControlArm
         droppingItem.GetComponent<ItemInfo>().holdingArm = null;
         // Remove the dropping item from armTip's currentHoldingItem
         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
+        isArmBurstForceUsed = false;
     }
 
     /*
@@ -628,8 +653,12 @@ public class ControlArm_UsingPhysics : ControlArm
         {
             if (moveBody)
             {
-                targetPosition = armTip.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
-                                                    joyStickLength * armMaxLength);
+                // Move in the same direction of the joystick
+                //targetPosition = armTip.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
+                //                                    joyStickLength * armMaxLength);
+
+                // Move in the opposite direction of the joystick
+                targetPosition = armTip.position - (joystickPosition * armMaxLength);
 
                 //print(Vector3.Magnitude(targetPosition - currentPosition) + ", " + armStopThreshold);
                 //print(currentPosition + ", " + targetPosition);
@@ -668,8 +697,7 @@ public class ControlArm_UsingPhysics : ControlArm
             //}
             else
             {
-                targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
-                                                  joyStickLength * armMaxLength);
+                targetPosition = body.position + (joystickPosition * armMaxLength);
             }
         }
         else
@@ -708,12 +736,18 @@ public class ControlArm_UsingPhysics : ControlArm
         }
         else
         {
-            if (armCurrentStamina >= armMaximumStamina) // If the arm just start moving and its stamina is full, then add an extra "bonus" force
+            // If the joystick is moving fast and its stamina is almost full, then add an extra "bonus" force (if the bonus force is not used in this cycle)
+            if (!isArmBurstForceUsed &&
+                armCurrentStamina >= (armMaximumStamina - timeAllowedToUseBurstForceSinceMaxStamina * armStaminaConsumptionRate) &&
+                Vector3.Magnitude(joystickLastPosition - joystickPosition) / Time.deltaTime >= joyStickMoveSpeedControlBurstForceThreshold)
             {
+                // Only give bonus when the arm is moving body or other large objects
                 if (isGrabbingFloor ||
                     (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null &&
-                     armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight > armLiftingStrength)) // Only give bonus when the arm is moving body or other large objects
+                     armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight > armLiftingStrength))
                 {
+                    isArmBurstForceUsed = true;
+
                     return Vector3.Normalize(targetPosition - currentPosition) * CalculateCurrentArmStrength() * maxStaminaInitialBurstMulti;
                 }
                 else
@@ -749,7 +783,7 @@ public class ControlArm_UsingPhysics : ControlArm
     /// <summary>
     /// When this armTip start grabbing floor
     /// </summary>
-    public override void StartGrabbing()
+    public override void StartGrabbingFloor()
     {
         isGrabbingFloor = true;
         armTipGrabbingPosition = armTip.position;
@@ -768,13 +802,14 @@ public class ControlArm_UsingPhysics : ControlArm
     /// <summary>
     /// When this armTip stop grabbing floor
     /// </summary>
-    public override void StopGrabbing()
+    public override void StopGrabbingFloor()
     {
         if (isGrabbingFloor)
         {
             isGrabbingFloor = false;
             //body.parent = null;
             //body.SetParent(null, true);
+            isArmBurstForceUsed = false;
         }
 
         UpdateArmFlags();
@@ -922,7 +957,11 @@ public class ControlArm_UsingPhysics : ControlArm
     public void DetectingArmMovement()
     {
         float previousAngleBetweenTwoArms = angleBetweenTwoArms;
-        angleBetweenTwoArms = Vector3.Angle(otherArm_Physics.armTip.position - body.position, armTip.position - body.position);
+        if (Vector3.Magnitude(armTip.position - body.position) >= joystickLengthThresholdForAngleBetweenTwoArms * armMaxLength &&
+            Vector3.Magnitude(otherArm_Physics.armTip.position - body.position) >= joystickLengthThresholdForAngleBetweenTwoArms * armMaxLength)
+        {
+            angleBetweenTwoArms = Vector3.Angle(otherArm_Physics.armTip.position - body.position, armTip.position - body.position);
+        }
 
         if (angleBetweenTwoArms < previousAngleBetweenTwoArms) // If the angle between two arms is decreasing
         {
@@ -998,7 +1037,7 @@ public class ControlArm_UsingPhysics : ControlArm
     /// </summary>
     public void ApplyGlidingForceToBody()
     {
-        body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(armCurrentTotalReceivedWindForce.magnitude, armCurrentTotalReceivedWindForce.normalized), 
+        body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(armCurrentTotalReceivedWindForce.magnitude, armCurrentTotalReceivedWindForce.normalized),
                                                 ForceMode.Force);
     }
 
@@ -1025,5 +1064,39 @@ public class ControlArm_UsingPhysics : ControlArm
         //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * armMaxLength; // Uniform version
 
         body.GetComponent<Rigidbody>().AddForce(finalDragForceAppliedToBody, ForceMode.Force);
+    }
+
+    /// <summary>
+    /// Detects if the player is switch on or off the echo mode in level 5
+    /// </summary>
+    public void DetectIfSwitchEchoMode()
+    {
+        if (isLeftArm)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton8))
+            {
+                SwitchEchoMode();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton9))
+            {
+                SwitchEchoMode();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Switch on or off echo mode
+    /// </summary>
+    public void SwitchEchoMode()
+    {
+        isInEchoMode = !isInEchoMode;
+    }
+
+    public void ArmTipCreateEcho()
+    {
+
     }
 }

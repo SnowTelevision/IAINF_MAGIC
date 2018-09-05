@@ -43,7 +43,7 @@ public class ControlArm : ArmUseItem
             // Stop the player from grabbing the floor if the armTip is grabbing floor when the event start
             if (isGrabbingFloor)
             {
-                StopGrabbing();
+                StopGrabbingFloor();
             }
 
             // Make sure the armTip doesn't "roll away"
@@ -115,7 +115,7 @@ public class ControlArm : ArmUseItem
                 // If the armTip is currently empty and not holding any item, then start grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StartGrabbing();
+                    StartGrabbingFloor();
                 }
                 else // Drop the current holding item (no matter it can be used or not
                 {
@@ -127,7 +127,7 @@ public class ControlArm : ArmUseItem
                 // If the armTip is currently empty and not holding any item, then stop grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StopGrabbing();
+                    StopGrabbingFloor();
                 }
             }
         }
@@ -140,7 +140,7 @@ public class ControlArm : ArmUseItem
                 // If the armTip is currently empty and not holding any item, then start grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StartGrabbing();
+                    StartGrabbingFloor();
                 }
                 else // Drop the current holding item (no matter it can be used or not
                 {
@@ -152,7 +152,7 @@ public class ControlArm : ArmUseItem
                 // If the armTip is currently empty and not holding any item, then stop grabbing the ground
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
                 {
-                    StopGrabbing();
+                    StopGrabbingFloor();
                 }
             }
         }
@@ -507,7 +507,7 @@ public class ControlArm : ArmUseItem
     /// <summary>
     /// When this armTip start grabbing floor
     /// </summary>
-    public virtual void StartGrabbing()
+    public virtual void StartGrabbingFloor()
     {
         isGrabbingFloor = true;
         if (otherArm.isGrabbingFloor)
@@ -524,7 +524,7 @@ public class ControlArm : ArmUseItem
     /// <summary>
     /// When this armTip stop grabbing floor
     /// </summary>
-    public virtual void StopGrabbing()
+    public virtual void StopGrabbingFloor()
     {
         if (isGrabbingFloor)
         {

@@ -20,8 +20,11 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
     public float armTipJointDefaultConnectedMassScale;
     public float armTipJointMaximumConnectedMassScale; // The maximum connected mass scale of the joint
     public bool updateConnectedAnchor; // Do we update the connected anchor of the joint
-    public float armMaxConnectedAnchor; // The longest distance this arm segment's anchor position on the arm segment it is connected to can extend
-    public float armMinConnectedAnchor; // The shortest distance this arm segment's anchor position on the arm segment it is connected to can extend
+    public float armMaxConnectedAnchor; // The longest distance this arm segment's connected anchor position on the arm segment it is connected to can extend
+    public float armMinConnectedAnchor; // The shortest distance this arm segment's connected anchor position on the arm segment it is connected to can extend
+    public bool updateAnchor; // Do we update the anchor of the joint
+    public float armMaxAnchor; // The longest distance this arm segment's anchor position on the arm segment it is connected to can extend
+    public float armMinAnchor; // The shortest distance this arm segment's anchor position on the arm segment it is connected to can extend
     public float maxJointChangingSpeed; // How fast the joint's position can change (on a 0 to 1 scale, 1 means the joint can instantly changing from min to max)
 
     public Rigidbody thisRigidBody; // The rigidbody component that attaches to this arm
@@ -31,6 +34,7 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
     public float armTipConnectedJointConnectedMassScale; // The connected mass scale of spring joint of the last arm segment that is connected to the armTip when it is in the water
     public float lastJoystickLength; // The joystick length in the last frame;
     public float lastConnectedAnchorPos; // The position of the connected anchor in the last frame
+    public float lastAnchorPos; // The position of the anchor in the last frame
 
     // Test
     public float jointAnchorChangingSpeed; // The speed the joint's anchor's position changes
@@ -51,7 +55,8 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
         UpdateDrag();
         UpdateJointMassScale();
         UpdateJointConnectedMassScale();
-        UpdateJointAnchors();
+        UpdateJointConnectedAnchor();
+        UpdateJointAnchor();
 
         //Test
         if (test)
@@ -136,22 +141,53 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
     }
 
     /// <summary>
-    /// Update the joint's anchors based on the length of the arm
+    /// Update the joint's connected anchor based on the length of the arm
     /// </summary>
-    public void UpdateJointAnchors()
+    public void UpdateJointConnectedAnchor()
     {
         if (test)
         {
             //jointAnchorChangingSpeed = (armMaxConnectedAnchor - armMinConnectedAnchor) * (armController.joyStickLength - lastJoystickLength);
         }
 
-        // Update arm's connected anchor's position (clamped at a maximum speed)
-        GetComponent<SpringJoint>().connectedAnchor =
-            Vector3.up * (lastConnectedAnchorPos +
-                          Mathf.Clamp((armMinConnectedAnchor + (armMaxConnectedAnchor - armMinConnectedAnchor) * lastJoystickLength - lastConnectedAnchorPos),
-                                      -maxJointChangingSpeed, maxJointChangingSpeed));
+        if (updateConnectedAnchor)
+        {
+            // Update arm's connected anchor's position (clamped at a maximum speed)
+            GetComponent<SpringJoint>().connectedAnchor =
+                Vector3.up * (lastConnectedAnchorPos +
+                              Mathf.Clamp((armMinConnectedAnchor + (armMaxConnectedAnchor - armMinConnectedAnchor) * lastJoystickLength - lastConnectedAnchorPos),
+                                          -maxJointChangingSpeed, maxJointChangingSpeed));
 
-        lastConnectedAnchorPos = GetComponent<SpringJoint>().connectedAnchor.y;
-        lastJoystickLength = armController.joyStickLength;
+            lastConnectedAnchorPos = GetComponent<SpringJoint>().connectedAnchor.y;
+            lastJoystickLength = armController.joyStickLength;
+        }
+    }
+
+    /// <summary>
+    /// Update the joint's anchor based on the length of the arm
+    /// </summary>
+    public void UpdateJointAnchor()
+    {
+        if (test)
+        {
+            //jointAnchorChangingSpeed = (armMaxConnectedAnchor - armMinConnectedAnchor) * (armController.joyStickLength - lastJoystickLength);
+        }
+
+        if (updateAnchor)
+        {
+            // Update arm's connected anchor's position (clamped at a maximum speed)
+            GetComponent<SpringJoint>().anchor =
+                Vector3.up * (lastAnchorPos +
+                              Mathf.Clamp((armMaxAnchor + (armMinAnchor - armMaxAnchor) * lastJoystickLength - lastAnchorPos),
+                                          -maxJointChangingSpeed, maxJointChangingSpeed));
+
+            if(test)
+            {
+                //print(armMaxAnchor + (armMinAnchor - armMaxAnchor) * lastJoystickLength);
+            }
+
+            lastAnchorPos = GetComponent<SpringJoint>().anchor.y;
+            lastJoystickLength = armController.joyStickLength;
+        }
     }
 }
