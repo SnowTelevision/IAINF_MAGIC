@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -38,6 +39,10 @@ public class ControlArm_UsingPhysics : ControlArm
     public float armAirDragMultiplier; // The strength multiplier of the arm's drag when the player is in the air
     public float joyStickMoveSpeedControlBurstForceThreshold; // How fast the joystick has to be moved for the arm to try to use burst force
     public float timeAllowedToUseBurstForceSinceMaxStamina; // How much time is given the player to use the burst force when they started grabbing on full stamina
+    public GameObject echoProjectile; // The echo projectile created by the player's armTip
+    public float maxEchoTravelDistance; // How far the viberation echo can travel
+    public float echoTravelSpeed; // How fast the echo travels
+    public float echoProjectileWidth; // How wide is the echo projectile
 
     /// <summary>
     /// Arm flags
@@ -45,7 +50,6 @@ public class ControlArm_UsingPhysics : ControlArm
     public bool canGrabObject; // Can the armTip grab object or not
     public bool isTouchingGround; // Is the arm touching ground or not
     //public bool isSideScroller; // Is the camera in side-scroller mode or not
-    public bool isInEchoMode; // If the arm is in listening to vibration echo mode
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
@@ -68,6 +72,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public Vector3 armCurrentTotalReceivedWindForce; // What's the total wind force currently added to the arm
     public float armStartGrabbingTime; // The time the last time this arm started to grab the floor or an object
     public bool isArmBurstForceUsed; // Did the arm already used burst force in this interaction cycle?
+    //public EchoCollisionInfo currentCreatingEcho; // The vibration echo that's currently being created (if the player continuously generate it)
+    //public List<VibrationEchoBehavior> currentExistingEchoProjectiles; // The list contains all the "living" echo projectiles
 
     //Test//
     public bool test; // Do we print test outputs
@@ -121,6 +127,7 @@ public class ControlArm_UsingPhysics : ControlArm
         CalculateJoyStickRotation(isLeftArm);
         CalculateJoyStickLength(isLeftArm);
         GetClampedJoystickPosition();
+        DetectIfSwitchEchoMode();
 
         if (!isGrabbingFloor)
         {
@@ -797,6 +804,12 @@ public class ControlArm_UsingPhysics : ControlArm
         //bodyRotatingCenter.eulerAngles = new Vector3(0, joyStickRotationAngle - (Mathf.Sign(joyStickRotationAngle) * 180), 0);
         //body.SetParent(bodyRotatingCenter, true);
         UpdateArmFlags();
+
+        // Creates an echo projectile if the player is in echo mode
+        if (PlayerInfo.isInEchoMode)
+        {
+            ArmTipCreateEcho();
+        }
     }
 
     /// <summary>
@@ -1092,11 +1105,45 @@ public class ControlArm_UsingPhysics : ControlArm
     /// </summary>
     public void SwitchEchoMode()
     {
-        isInEchoMode = !isInEchoMode;
+        PlayerInfo.isInEchoMode = !PlayerInfo.isInEchoMode;
     }
 
+    /// <summary>
+    /// Creates an "echo projectile"
+    /// </summary>
+    /// <returns></returns>
     public void ArmTipCreateEcho()
     {
+        //RaycastHit echo; // The hit info to be stored
+        //// If the echo hit something
+        //if (Physics.Raycast(body.position, joystickPosition, out echo, maxEchoTravelDistance, echoCollisionLayer.value))
+        //{
 
+        //}
+        //else
+        //{
+        //    return null;
+        //}
+
+        GameObject newEchoProjectile = Instantiate(echoProjectile, body.position, Quaternion.identity); // Creates a new echo projectile at the body's position
+        newEchoProjectile.transform.localScale = Vector3.one * echoProjectileWidth;
+        // Let the projectile face towards the arm's direction
+        newEchoProjectile.transform.LookAt(new Vector3(armTip.position.x, newEchoProjectile.transform.position.y, armTip.position.z), Vector3.up);
+        newEchoProjectile.transform.position = armTip.position; // Move the projectile to the armTip's position
+        newEchoProjectile.GetComponent<Rigidbody>().AddForce(echoTravelSpeed * newEchoProjectile.transform.forward, ForceMode.VelocityChange); // Add speed to the echo
+        newEchoProjectile.GetComponent<VibrationEchoBehavior>().echoTravelSpeed = echoTravelSpeed;
     }
 }
+
+///// <summary>
+///// Stores informations for an echo that collided on something
+///// </summary>
+//[Serializable]
+//public class EchoCollisionInfo
+//{
+//    public float timeThisEchoWasCreated; // When did the player created this echo
+//    public float echoDuration; // How long this echo lasted
+//    public Vector3 echoCollidingPosition; // Where does this echo collides
+//    public bool activated; // Has this echo "travelled" to the colliding point thus being "activated" 
+//                           // (An echo will only start to check the player's position if it's being activated)
+//}

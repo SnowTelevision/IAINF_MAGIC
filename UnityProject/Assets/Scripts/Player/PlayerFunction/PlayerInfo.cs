@@ -15,6 +15,7 @@ public class PlayerInfo : MonoBehaviour
     public static Transform sGameCamera; // The static reference to gameCamera
     public static PlayerInfo sPlayerInfo; // The static reference to PlayerInfo
     public static bool isSideScroller; // If the game is in side-scroller mode
+    public static bool isInEchoMode; // If the player is in listening to vibration echo mode
 
     // Test
     public bool test;
@@ -118,5 +119,13 @@ public class PlayerInfo : MonoBehaviour
 
         GetComponent<Rigidbody>().AddForce(CalculateTangentVelocity() - GetComponent<Rigidbody>().velocity, ForceMode.Acceleration);
         GetComponent<Rigidbody>().AddForce(CalculateOrbitalAdjustmentForce(), ForceMode.VelocityChange);
+    }
+
+    /// <summary>
+    /// Vibrates the controller when the player receives the reflected echo
+    /// </summary>
+    public void ReceivedReflectedEcho()
+    {
+        print("receive reflected echo");
     }
 }

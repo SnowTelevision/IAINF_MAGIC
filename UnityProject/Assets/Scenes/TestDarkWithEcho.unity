@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 71618280}
   - component: {fileID: 71618279}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TestNonMoving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1376,9 +1376,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71618278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9, y: 0, z: 0}
+  m_LocalPosition: {x: -8.3, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 4.2520013}
-  m_Children: []
+  m_Children:
+  - {fileID: 366579510}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5315,6 +5316,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364968849}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &366579509
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 71618282}
+    m_Modifications:
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65188358335467602, guid: 8d020051314f1f0429c4eb064e609c2d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 135512072861707100, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &366579510 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 366579509}
 --- !u!1 &367134090
 GameObject:
   m_ObjectHideFlags: 0
@@ -7183,34 +7237,6 @@ Transform:
   m_Father: {fileID: 415385986}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &466870727
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 466870728}
-  m_Layer: 0
-  m_Name: SimpleShootEnemyWrap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &466870728
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 466870727}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &470561033
 GameObject:
   m_ObjectHideFlags: 0
@@ -7315,9 +7341,13 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 32
   timeAllowedToUseBurstForceSinceMaxStamina: 0.5
+  echoProjectile: {fileID: 1979297758263894, guid: 2fc8ab8f9f45706409a9cec4310d96ce,
+    type: 2}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 3
+  echoProjectileWidth: 1
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -8858,9 +8888,12 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -9396,9 +9429,12 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -9523,6 +9559,48 @@ Transform:
   m_Father: {fileID: 1018996865}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &661096201
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 826158745}
+    m_Modifications:
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5623a8fb0ab021548bd51f8f5539e6cd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &663056992
 GameObject:
   m_ObjectHideFlags: 0
@@ -10269,6 +10347,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &719657793
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1710820587}
+    m_Modifications:
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 135512072861707100, guid: 8d020051314f1f0429c4eb064e609c2d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 65188358335467602, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 8d020051314f1f0429c4eb064e609c2d, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &719657794 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4549668077005526, guid: 8d020051314f1f0429c4eb064e609c2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 719657793}
 --- !u!1 &719909128
 GameObject:
   m_ObjectHideFlags: 0
@@ -10599,9 +10730,13 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 32
   timeAllowedToUseBurstForceSinceMaxStamina: 0.5
+  echoProjectile: {fileID: 1979297758263894, guid: 2fc8ab8f9f45706409a9cec4310d96ce,
+    type: 2}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 3
+  echoProjectileWidth: 1
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -12357,6 +12492,92 @@ Transform:
   m_Father: {fileID: 1442295233}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &826158741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 826158745}
+  - component: {fileID: 826158744}
+  - component: {fileID: 826158742}
+  - component: {fileID: 826158743}
+  m_Layer: 0
+  m_Name: TestMoving
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &826158742
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826158741}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 7693321b24e126a44bf468c384ae899b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!135 &826158743
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826158741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &826158744
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826158741}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &826158745
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826158741}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.01, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 932262248}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &826662440
 GameObject:
   m_ObjectHideFlags: 0
@@ -12806,9 +13027,12 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -14871,6 +15095,11 @@ Transform:
   m_Father: {fileID: 1074799495}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &932262248 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4594456072985480, guid: 5623a8fb0ab021548bd51f8f5539e6cd,
+    type: 2}
+  m_PrefabInternal: {fileID: 661096201}
 --- !u!1 &937811268
 GameObject:
   m_ObjectHideFlags: 0
@@ -21952,7 +22181,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1431087402
 GameObject:
@@ -22382,6 +22611,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1449650405}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1450292305
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536937059119526, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979297758263894, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2fc8ab8f9f45706409a9cec4310d96ce, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1453645221
 GameObject:
   m_ObjectHideFlags: 0
@@ -24809,9 +25084,12 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -26604,7 +26882,7 @@ Transform:
   m_Children:
   - {fileID: 421669172}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1684668884
 GameObject:
@@ -26737,9 +27015,12 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -26848,6 +27129,7 @@ GameObject:
   - component: {fileID: 1710820585}
   - component: {fileID: 1710820584}
   - component: {fileID: 1710820583}
+  - component: {fileID: 1710820588}
   m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
@@ -26939,9 +27221,26 @@ Transform:
   - {fileID: 744805452}
   - {fileID: 1128024451}
   - {fileID: 826662441}
+  - {fileID: 719657794}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710820588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710820582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71160b2b812d624786420280df177b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  gameCamera: {fileID: 0}
+  targetSideScrollOrbitRadius: 0
+  inWater: 0
+  test: 0
 --- !u!1 &1711387063
 GameObject:
   m_ObjectHideFlags: 0
@@ -29520,9 +29819,12 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
-  isInEchoMode: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
