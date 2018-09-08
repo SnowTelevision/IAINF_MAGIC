@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 135512072861707100}
   - component: {fileID: 65188358335467602}
   - component: {fileID: 54294639959843150}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: EchoRaycastCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

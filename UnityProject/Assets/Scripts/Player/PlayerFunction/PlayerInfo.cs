@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure; // Required in C#
 
 /// <summary>
 /// Stores the info that relates to the player's body
@@ -10,21 +11,47 @@ public class PlayerInfo : MonoBehaviour
     public float maxHealth; // How much health the player can have
     public Transform gameCamera; // The transform of the camera that is looking at the player
     public float targetSideScrollOrbitRadius; // The radius of the player's orbit for the game's side-scrolling session
+    public float armTipCollideWallHapticStrength; // How strong is the haptic feedback when the armTip collide with an object
+    public float armTipCollideWallHapticDuration; // How long is the haptic feedback when the armTip collide with an object
+    //public float reflectedEchoHapticStrength; // How strong is the haptic feedback when the player received a reflected echo
+    //public float reflectedEchoHapticDuration; // How long is the haptic feedback when the player received a reflected echo
+    public float bodyCollideWallHapticStrength; // How strong is the haptic feedback when the body collide with an object
+    public float bodyCollideWallHapticDuration; // How long is the haptic feedback when the body collide with an object
+    public float echoBounceBackHapticStrength; // How strong is the haptic feedback when the echo bounce back from an object
+    public float echoBounceBackHapticDuration; // How long is the haptic feedback when the echo bounce back from an object
+    public float reflectedEchoHitEdgeHapticStrength; // How strong is the haptic feedback when the reflected echo hits the edge of an object
+    public float reflectedEchoHitEdgeHapticDuration; // How long is the haptic feedback when the reflected echo hits the edge of an object
+    public float reflectedEchoTravelObjectHapticStrength; // How strong is the haptic feedback when the reflected echo travelling in a non-moving object
+    public float reflectedEchoTravelObjectHapticDuration; // How long is the haptic feedback when the reflected echo travelling in a non-moving object
+    public GameObject echoIndicator; // Can have different color status indicating different vibration echo status (such as can the player create echo)
+    public Color canCreateEchoColor; // The color of the indicator when the player can create an echo
+    public Color cannotCreateEchoColor; // The color of the indicator when the player cannot create an echo
+    public float echoIndicatorEmissionIntensity; // How high is the emission intensity for the echo indicator
 
     public bool inWater; // Is the body in the water
     public static Transform sGameCamera; // The static reference to gameCamera
     public static PlayerInfo sPlayerInfo; // The static reference to PlayerInfo
     public static bool isSideScroller; // If the game is in side-scroller mode
     public static bool isInEchoMode; // If the player is in listening to vibration echo mode
+    public float totalHapticStrength; // What's the total controller haptic strength currently
+    public static bool canCreateEcho; // Since the player can only create one echo at a time, need to check if the last echo returned
 
     // Test
     public bool test;
+
+    /// XInput
+    bool playerIndexSet = false;
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
 
     private void Awake()
     {
         // Assigning static references for variebles that has to be assigned in the editor thus cannot be static.
         sGameCamera = gameCamera;
         sPlayerInfo = this;
+
+        canCreateEcho = true;
     }
 
     // Use this for initialization
@@ -40,7 +67,26 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /// XInput
+        // Find a PlayerIndex, for a single player game
+        // Will find the first controller that is connected ans use it
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    //Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndex = testPlayerIndex;
+                    playerIndexSet = true;
+                }
+            }
+        }
 
+        prevState = state;
+        state = GamePad.GetState(playerIndex);
     }
 
     private void FixedUpdate()
@@ -48,6 +94,12 @@ public class PlayerInfo : MonoBehaviour
         if (isSideScroller) // If the game is in side-scrolling session
         {
             CorrectPlayerSideScrollingOrbit();
+        }
+
+        // If the player received vibration
+        if (isInEchoMode)
+        {
+            GamePad.SetVibration(playerIndex, totalHapticStrength, totalHapticStrength);
         }
     }
 
@@ -121,11 +173,97 @@ public class PlayerInfo : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(CalculateOrbitalAdjustmentForce(), ForceMode.VelocityChange);
     }
 
+    ///// <summary>
+    ///// Vibrates the controller when the player receives the reflected echo
+    ///// </summary>
+    //public void ReceivedReflectedEcho()
+    //{
+    //    //print("receive reflected echo");
+    //    //GamePad.SetVibration(playerIndex, reflectedEchoHapticStrength, reflectedEchoHapticStrength);
+    //    StartCoroutine(AddEchoVibration(reflectedEchoHapticStrength, reflectedEchoHapticDuration));
+    //}
+
     /// <summary>
     /// Vibrates the controller when the player receives the reflected echo
     /// </summary>
     public void ReceivedReflectedEcho()
     {
-        print("receive reflected echo");
+        //print("receive reflected echo");
+        //GamePad.SetVibration(playerIndex, reflectedEchoHapticStrength, reflectedEchoHapticStrength);
+        canCreateEcho = true; // Allow the player to create new echo when the previous one returns
+
+        // Change the echo indicator's colors
+        Vector4 emissionColor = canCreateEchoColor;
+        echoIndicator.GetComponent<MeshRenderer>().material.color = emissionColor;
+        echoIndicator.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(emissionColor, echoIndicatorEmissionIntensity));
+    }
+
+    /// <summary>
+    /// The haptic feedback when one of the player's armTip collides an object while in echo mode
+    /// </summary>
+    public void ArmTipCollideObjectHaptic()
+    {
+        //print("arm collide");
+        //GamePad.SetVibration(playerIndex, armTipCollideWallHapticStrength, armTipCollideWallHapticStrength);
+        StartCoroutine(AddEchoVibration(armTipCollideWallHapticStrength, armTipCollideWallHapticDuration));
+    }
+
+    /// <summary>
+    /// The haptic feedback when player's body collides an object while in echo mode
+    /// </summary>
+    public void BodyCollideObjectHaptic()
+    {
+        //print("body collide");
+        //GamePad.SetVibration(playerIndex, bodyCollideWallHapticStrength, bodyCollideWallHapticStrength);
+        StartCoroutine(AddEchoVibration(bodyCollideWallHapticStrength, bodyCollideWallHapticDuration));
+    }
+
+    /// <summary>
+    /// The haptic feedback when the echo bounced back from an object
+    /// </summary>
+    public void EchoBounceBackHaptic()
+    {
+        StartCoroutine(AddEchoVibration(echoBounceBackHapticStrength, echoBounceBackHapticDuration));
+    }
+
+    /// <summary>
+    /// The haptic feedback when the reflected echo hits the edge of an object
+    /// </summary>
+    public void ReflectedEchoHitsEdgeHaptic()
+    {
+        StartCoroutine(AddEchoVibration(reflectedEchoHitEdgeHapticStrength, reflectedEchoHitEdgeHapticDuration));
+    }
+
+    /// <summary>
+    /// The haptic feedback when the reflected echo is travelling inside a non-moving object
+    /// </summary>
+    public void ReflectedEchoTravelInObjectHaptic()
+    {
+        StartCoroutine(AddEchoVibration(reflectedEchoTravelObjectHapticStrength, reflectedEchoTravelObjectHapticDuration));
+    }
+
+    /// <summary>
+    /// Add a certain amount of haptic strength to the total haptic strength for a certain period of time
+    /// </summary>
+    /// <param name="strength"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    public IEnumerator AddEchoVibration(float strength, float duration)
+    {
+        totalHapticStrength += strength; // Add haptic strength
+
+        if (duration == 0)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(duration); // Wait for this haptic duration to finish
+        }
+
+        totalHapticStrength -= strength; // Remove haptic strength
     }
 }

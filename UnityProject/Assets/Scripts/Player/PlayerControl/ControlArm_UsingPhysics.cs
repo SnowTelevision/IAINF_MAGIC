@@ -805,8 +805,8 @@ public class ControlArm_UsingPhysics : ControlArm
         //body.SetParent(bodyRotatingCenter, true);
         UpdateArmFlags();
 
-        // Creates an echo projectile if the player is in echo mode
-        if (PlayerInfo.isInEchoMode)
+        // Creates an echo projectile if the player is in echo mode and there is no echo currently alive
+        if (PlayerInfo.isInEchoMode && PlayerInfo.canCreateEcho)
         {
             ArmTipCreateEcho();
         }
@@ -1106,6 +1106,7 @@ public class ControlArm_UsingPhysics : ControlArm
     public void SwitchEchoMode()
     {
         PlayerInfo.isInEchoMode = !PlayerInfo.isInEchoMode;
+        PlayerInfo.sPlayerInfo.echoIndicator.SetActive(PlayerInfo.isInEchoMode); // Turn on or off the echo indicator
     }
 
     /// <summary>
@@ -1125,7 +1126,16 @@ public class ControlArm_UsingPhysics : ControlArm
         //    return null;
         //}
 
-        GameObject newEchoProjectile = Instantiate(echoProjectile, body.position, Quaternion.identity); // Creates a new echo projectile at the body's position
+        PlayerInfo.canCreateEcho = false;
+
+        // Change the echo indicator's colors
+        Vector4 emissionColor = PlayerInfo.sPlayerInfo.cannotCreateEchoColor;
+        PlayerInfo.sPlayerInfo.echoIndicator.GetComponent<MeshRenderer>().material.color = emissionColor;
+        PlayerInfo.sPlayerInfo.echoIndicator.GetComponent<MeshRenderer>().material.
+            SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(emissionColor, PlayerInfo.sPlayerInfo.echoIndicatorEmissionIntensity));
+
+        // Creates a new echo projectile at the body's position
+        GameObject newEchoProjectile = Instantiate(echoProjectile, body.position, Quaternion.identity);
         newEchoProjectile.transform.localScale = Vector3.one * echoProjectileWidth;
         // Let the projectile face towards the arm's direction
         newEchoProjectile.transform.LookAt(new Vector3(armTip.position.x, newEchoProjectile.transform.position.y, armTip.position.z), Vector3.up);
