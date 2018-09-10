@@ -23,7 +23,7 @@ public class ControlArm_UsingPhysics : ControlArm
     //public float armLiftingStrength; // How much weight the arm can lift? (The currently holding item's weight)
     //public float armHoldingJointBreakForce; // How much force the fixed joint between the armTip and the currently holding item can bearing before break
     //public float collisionRaycastOriginSetBackDistance; // How far should the raycast's origin move back from the pivot center when detecting collision of armTip/body
-    public float armDefaultStretchForce; // How much force should be applied for the armTip to strech and retract
+    public float armDefaultStretchForce; // How much force should be applied for the armTip to stretch and retract
     public float armStopThreshold; // How close the armTip has to be to the target position for it to stop being pushed
     public float armMaximumStamina; // How much total stamina each arm has
     public float armStaminaDefaultRecoverSpeed; // The default speed each arm will recharge its stamina
@@ -32,7 +32,7 @@ public class ControlArm_UsingPhysics : ControlArm
     //public Transform armTipStretchLimiter; // The inverted sphere collider that limits how far the armTips can be away from the body
     public float startSwimMinVelocityThershold; // The minimum velocity of the body for it to be considered start "swimming" in the water
     public float stopSwimMinVelocityThershold; // The minimum velocity of the body for it to be considered stop "swimming" in the water
-    public float joystickLengthThresholdForAngleBetweenTwoArms; // How long the joystick has to extend to be considered streched out to calculate the angle
+    public float joystickLengthThresholdForAngleBetweenTwoArms; // How long the joystick has to extend to be considered stretched out to calculate the angle
     //public float armDefaultDragInWater; // The default drag of the arm when it is in the water
     //public float armDefaultAngularDragInWater; // The default angular drag of the arm when it is in the water
     //public float armMinSwimmingSpreadingAngle;
@@ -802,7 +802,7 @@ public class ControlArm_UsingPhysics : ControlArm
     }
 
     /// <summary>
-    /// If the arm is strectched too long, move the armTip towards the last segment to help the arm retract
+    /// If the arm is stretched too long, move the armTip towards the last segment to help the arm retract
     /// </summary>
     public void MoveArmTipTowardsLastArmSegment()
     {
@@ -814,7 +814,7 @@ public class ControlArm_UsingPhysics : ControlArm
 
     /// <summary>
     /// Inceased the connected mass scale of the spring joint on the last arm segment that connects to the armTip
-    /// if the arm is strectched too far
+    /// if the arm is stretched too far
     /// </summary>
     public void AdjustLastSegmentConnectedMassScale()
     {
