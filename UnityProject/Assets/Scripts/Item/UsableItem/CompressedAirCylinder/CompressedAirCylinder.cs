@@ -28,8 +28,8 @@ public class CompressedAirCylinder : MonoBehaviour
     /// </summary>
     public void Propel()
     {
-        GetComponent<ItemInfo>().holdingArm.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale = 1000;
-        GetComponent<ItemInfo>().holdingArm.GetComponent<Rigidbody>().AddForce(transform.forward * pushingForce, ForceMode.Force);
+        GetComponent<ItemInfo>().holdingArmTip.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale = 1000;
+        GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().AddForce(transform.forward * pushingForce, ForceMode.Force);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class CompressedAirCylinder : MonoBehaviour
     /// </summary>
     public void Stop()
     {
-        GetComponent<ItemInfo>().holdingArm.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale = 
+        GetComponent<ItemInfo>().holdingArmTip.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale = 
             defaultFirstArmSegmentConnectedMassScale;
     }
 
@@ -47,6 +47,6 @@ public class CompressedAirCylinder : MonoBehaviour
     public void SetUpOnPickUp()
     {
         defaultFirstArmSegmentConnectedMassScale =
-            GetComponent<ItemInfo>().holdingArm.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale;
+            GetComponent<ItemInfo>().holdingArmTip.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale;
     }
 }

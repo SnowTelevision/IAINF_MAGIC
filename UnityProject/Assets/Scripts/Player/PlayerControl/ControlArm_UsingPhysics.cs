@@ -52,6 +52,7 @@ public class ControlArm_UsingPhysics : ControlArm
     public bool canGrabObject; // Can the armTip grab object or not
     public bool isTouchingGround; // Is the arm touching ground or not
     //public bool isSideScroller; // Is the camera in side-scroller mode or not
+    public bool isUsingMechanicalArm; // Is this arm currently operating a mechanical extending arm or not
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
@@ -92,6 +93,9 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         armCurrentStamina = armMaximumStamina;
         lastArmSegmentDefaultConnectedMassScale = lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale;
+
+        // Set up the flags
+        canGrabObject = true;
 
         // Set up the arm stretch limiter
         if (isLeftArm)
@@ -134,7 +138,7 @@ public class ControlArm_UsingPhysics : ControlArm
         CalculateJoyStickLength(isLeftArm);
         GetClampedJoystickPosition();
         DetectIfSwitchEchoMode();
-        //AdjustLastSegmentConnectedMassScale();
+        AdjustFirstSegmentConnectedMassScale();
 
         if (!isGrabbingFloor)
         {
@@ -156,18 +160,26 @@ public class ControlArm_UsingPhysics : ControlArm
             }
             else if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null) // If the arm is holding item
             {
-                if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight <= armLiftingStrength) // Is the item is not heavy
+                // If the player is not using a mechanical arm
+                if (!isUsingMechanicalArm)
                 {
-                    //RotateArm(isLeftArm);
-                    //StretchArm(isLeftArm);
-                    MoveArm(isLeftArm);
-                }
-                else // If the item is heavy
-                {
-                    MoveHeavyItem(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
-                }
+                    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight <= armLiftingStrength) // Is the item is not heavy
+                    {
+                        //RotateArm(isLeftArm);
+                        //StretchArm(isLeftArm);
+                        MoveArm(isLeftArm);
+                    }
+                    else // If the item is heavy
+                    {
+                        MoveHeavyItem(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
+                    }
 
-                DetectIfDropHeavyItem();
+                    DetectIfDropHeavyItem();
+                }
+                else
+                {
+
+                }
             }
         }
         //else
@@ -364,16 +376,16 @@ public class ControlArm_UsingPhysics : ControlArm
             }
         }
     }
-
-    /*
+    
     /// <summary>
     /// Detect if the armTip is colliding with an item, and if the player want to pick up an item
     /// </summary>
-    public void DetectIfPickingUpItem()
+    public override void DetectIfPickingUpItem()
     {
-        // If the arm tip is colliding with an item
-        if (armTip.GetComponent<DetectCollision>().collidingObject != null &&
-            armTip.GetComponent<DetectCollision>().collidingObject.GetComponent<ItemInfo>())
+        // If the arm tip is colliding with an item and the trigger is released after the last item drop (no matter is forced drop or not)
+        if (armTip.GetComponent<ArmUseItem>().hasTriggerReleased && 
+            armTip.GetComponent<DetectCollision>().collidingObject != null &&
+            armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>())
         {
             // Picking or dropping item
             // Usable item is click trigger to pick up, click shoulder to drop
@@ -384,7 +396,8 @@ public class ControlArm_UsingPhysics : ControlArm
                 // If the left armTip is not holding an item and the left trigger is pressed down
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("LeftTrigger") >= triggerThreshold)
                 {
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject));
+                    armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
+                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>().gameObject));
                 }
             }
 
@@ -393,12 +406,12 @@ public class ControlArm_UsingPhysics : ControlArm
                 // If the right armTip is not holding an item and the right trigger is pressed down
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("RightTrigger") >= triggerThreshold)
                 {
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject));
+                    armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
+                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>().gameObject));
                 }
             }
         }
     }
-    */
 
     /// <summary>
     /// Detect if the player release the trigger to drop an unusable item
@@ -451,6 +464,8 @@ public class ControlArm_UsingPhysics : ControlArm
             System.Delegate.CreateDelegate(typeof(UseItemDelegateClass), pickingItem.GetComponent<ItemInfo>(), "StartUsing") as UseItemDelegateClass;
         armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate =
             System.Delegate.CreateDelegate(typeof(StopUsingItemDelegateClass), pickingItem.GetComponent<ItemInfo>(), "StopUsing") as StopUsingItemDelegateClass;
+        armTip.GetComponent<ArmUseItem>().resetItemDelegate =
+            System.Delegate.CreateDelegate(typeof(ResetItemDelegateClass), pickingItem.GetComponent<ItemInfo>(), "ResetItem") as ResetItemDelegateClass;
 
         // If the other armTip is currently holding the item which is going to be holding by this armTip, then let the other arm drop the item first
         if (otherArm_Physics.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == pickingItem)
@@ -460,33 +475,61 @@ public class ControlArm_UsingPhysics : ControlArm
 
         yield return new WaitForEndOfFrame();
 
+        // Turn off the gravity of the picking item
+        pickingItem.GetComponent<Rigidbody>().useGravity = false;
+
         //// If the item can be lifted by the arm, then disable it's gravity and raise it to the arm's height
-        if (pickingItem.GetComponent<ItemInfo>().itemWeight <= armLiftingStrength)
+        if (pickingItem.GetComponent<ItemInfo>().itemWeight <= armLiftingStrength && !pickingItem.GetComponent<ItemInfo>().fixedPosition)
         {
             // Change the item's velocity to 0
             pickingItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
             pickingItem.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            // Raise the item to the arm's height
-            pickingItem.transform.position = armTip.position;
+
+            // If the item can be moved
+            if (!pickingItem.GetComponent<ItemInfo>().fixedPosition)
+            {
+                // Raise the item to the arm's height
+                pickingItem.transform.position = armTip.position;
+            }
+
+            // Using spring joint
+            armTip.gameObject.AddComponent<SpringJoint>();
+            armTip.GetComponent<SpringJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
+            armTip.GetComponent<SpringJoint>().breakForce = armHoldingJointBreakForce;
+
+            // Turn on drag for better spring physics
+            pickingItem.GetComponent<Rigidbody>().drag = 30;
+            pickingItem.GetComponent<Rigidbody>().angularDrag = 30;
 
             if (pickingItem.GetComponent<ItemInfo>().canUse)
             {
                 //// Turn off the collider
                 //TurnOffColliders(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
-                // Turn off mass, drag, etc.
-                pickingItem.GetComponent<Rigidbody>().drag = 30;
-                pickingItem.GetComponent<Rigidbody>().angularDrag = 30;
+                // Turn off mass
                 pickingItem.GetComponent<Rigidbody>().mass = 0;
                 //// Change the item to kinematic
                 //pickingItem.GetComponent<Rigidbody>().isKinematic = true;
                 // Rotate the item so the player can aim the usable item
                 pickingItem.transform.rotation = armTip.rotation;
+
+                // Setup spring joint
+                armTip.GetComponent<SpringJoint>().spring = 0.0001f;
+                armTip.GetComponent<SpringJoint>().damper = 0;
+            }
+            else
+            {
+                // Setup spring joint
+                armTip.GetComponent<SpringJoint>().spring = pickingItem.GetComponent<Rigidbody>().mass * 1000f;
+                armTip.GetComponent<SpringJoint>().damper = 0;
             }
         }
-        //else
-        //{
-        // Turn off the gravity of the picking item
-        pickingItem.GetComponent<Rigidbody>().useGravity = false;
+        else
+        {
+            // Using fixed joint
+            armTip.gameObject.AddComponent<FixedJoint>();
+            armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
+            armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
+        }
         // Add a fixed joint to the holding item to attach it to the armTip
         //pickingItem.gameObject.AddComponent<FixedJoint>();
         //pickingItem.GetComponent<FixedJoint>().connectedBody = armTip.GetComponent<Rigidbody>();
@@ -498,15 +541,8 @@ public class ControlArm_UsingPhysics : ControlArm
         //armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
         //armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
 
-        // Using spring joint
-        armTip.gameObject.AddComponent<SpringJoint>();
-        armTip.GetComponent<SpringJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
-        armTip.GetComponent<SpringJoint>().spring = 0.0001f;
-        armTip.GetComponent<SpringJoint>().damper = 0;
-        armTip.GetComponent<SpringJoint>().breakForce = armHoldingJointBreakForce;
-
         pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
-        pickingItem.GetComponent<ItemInfo>().holdingArm = armTip;
+        pickingItem.GetComponent<ItemInfo>().holdingArmTip = armTip;
 
         armTip.GetComponent<ArmUseItem>().SetUpItem(); // Invoke the setup item event
     }
@@ -525,24 +561,25 @@ public class ControlArm_UsingPhysics : ControlArm
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().useItem, startUsingAction);
         //UnityAction stopUsingAction = System.Delegate.CreateDelegate(typeof(UnityAction), droppingItem.GetComponent<ItemInfo>(), "StopUsing") as UnityAction;
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().stopUsingItem, stopUsingAction);
+        armTip.GetComponent<ArmUseItem>().resetItemDelegate.Invoke(); // Reset the item when drop it
         armTip.GetComponent<ArmUseItem>().setupItemDelegate = null;
         armTip.GetComponent<ArmUseItem>().useItemDelegate = null;
         armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate = null;
+        armTip.GetComponent<ArmUseItem>().resetItemDelegate = null;
 
         // Enable the gravity on the rigidbody of the dropping item
         droppingItem.GetComponent<Rigidbody>().useGravity = true;
-        // If the item can be used, then restore the drag, angular drag, and mass of the dropping item
-        if (droppingItem.GetComponent<ItemInfo>().canUse)
-        {
-            droppingItem.GetComponent<Rigidbody>().drag = droppingItem.GetComponent<ItemInfo>().normalDrag;
-            droppingItem.GetComponent<Rigidbody>().angularDrag = droppingItem.GetComponent<ItemInfo>().normalAngularDrag;
-            droppingItem.GetComponent<Rigidbody>().mass =
-            droppingItem.GetComponent<ItemInfo>().normalMass;
-            //// Turn on the collider
-            //TurnOnColliders(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
-            // Change the item to not kinematic
-            //droppingItem.GetComponent<Rigidbody>().isKinematic = false;
-        }
+        // Rrestore the drag, angular drag, and mass of the dropping item
+        //if (droppingItem.GetComponent<ItemInfo>().canUse)
+        //{
+        droppingItem.GetComponent<Rigidbody>().drag = droppingItem.GetComponent<ItemInfo>().normalDrag;
+        droppingItem.GetComponent<Rigidbody>().angularDrag = droppingItem.GetComponent<ItemInfo>().normalAngularDrag;
+        droppingItem.GetComponent<Rigidbody>().mass = droppingItem.GetComponent<ItemInfo>().normalMass;
+        //// Turn on the collider
+        //TurnOnColliders(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
+        // Change the item to not kinematic
+        //droppingItem.GetComponent<Rigidbody>().isKinematic = false;
+        //}
         //else
         //{
         // Destroy the fixed joint in the item that's currently holding by the armTip
@@ -560,7 +597,7 @@ public class ControlArm_UsingPhysics : ControlArm
         }
 
         droppingItem.GetComponent<ItemInfo>().isBeingHeld = false;
-        droppingItem.GetComponent<ItemInfo>().holdingArm = null;
+        droppingItem.GetComponent<ItemInfo>().holdingArmTip = null;
         // Remove the dropping item from armTip's currentHoldingItem
         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
         isArmBurstForceUsed = false;
@@ -813,17 +850,17 @@ public class ControlArm_UsingPhysics : ControlArm
     }
 
     /// <summary>
-    /// Inceased the connected mass scale of the spring joint on the last arm segment that connects to the armTip
+    /// Inceased the connected mass scale of the spring joint on the first arm segment that connects to the body
     /// if the arm is stretched too far
     /// </summary>
-    public void AdjustLastSegmentConnectedMassScale()
+    public void AdjustFirstSegmentConnectedMassScale()
     {
         float startAdjustingDistance = 0.35f;
 
         if (firstSegmentDistanceFromBody >= startAdjustingDistance)
         {
             lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
-                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistance)) * 40000f;
+                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistance)) * 900f;
         }
         else
         {

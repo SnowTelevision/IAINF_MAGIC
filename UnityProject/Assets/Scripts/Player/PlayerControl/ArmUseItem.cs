@@ -16,23 +16,67 @@ public class ArmUseItem : MonoBehaviour
     public UnityEvent setupItem; // The event to be triggered for setup the item when the player picked it up
     public UnityEvent useItem; // The event to be triggered for the holding item when the player start using it
     public UnityEvent stopUsingItem; // The event to be triggered for the holding item when the player stop using it
+    public UnityEvent resetItem; // The event to be triggered for reset the item when the player droped it
     public delegate void SetupItemDelegateClass();
     public delegate void UseItemDelegateClass();
     public delegate void StopUsingItemDelegateClass();
+    public delegate void ResetItemDelegateClass();
     public SetupItemDelegateClass setupItemDelegate;
     public UseItemDelegateClass useItemDelegate;
     public StopUsingItemDelegateClass stopUsingItemDelegate;
+    public ResetItemDelegateClass resetItemDelegate;
 
     // Use this for initialization
     void Start()
     {
-        //hasTriggerReleased = true;
+        hasTriggerReleased = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         DetectIfUseItem();
+        UpdateTriggerStatus();
+    }
+
+    /// <summary>
+    /// Update if the trigger has been released
+    /// </summary>
+    public void UpdateTriggerStatus()
+    {
+        if (GetComponentInParent<ControlArm>().isLeftArm)
+        {
+            // If the left trigger is pressed down
+            if (Input.GetAxis("LeftTrigger") >= GetComponentInParent<ControlArm>().triggerThreshold)
+            {
+                // If the player just pressed it down
+                if (hasTriggerReleased)
+                {
+                    hasTriggerReleased = false;
+                }
+            }
+            else
+            {
+                hasTriggerReleased = true;
+            }
+        }
+
+        if (!GetComponentInParent<ControlArm>().isLeftArm)
+        {
+            // If the right armTip is not holding an item and the right trigger is pressed down
+            if (Input.GetAxis("RightTrigger") >= GetComponentInParent<ControlArm>().triggerThreshold)
+            {
+                // If the player just pressed it down
+                if (hasTriggerReleased)
+                {
+                    hasTriggerReleased = false;
+                }
+            }
+            else
+            {
+                hasTriggerReleased = true;
+            }
+        }
     }
 
     /// <summary>
@@ -51,13 +95,11 @@ public class ArmUseItem : MonoBehaviour
                     // If the player just pressed it down
                     if (hasTriggerReleased)
                     {
-                        hasTriggerReleased = false;
                         TryUsingItem();
                     }
                 }
                 else
                 {
-                    hasTriggerReleased = true;
                     StopUsingItem();
                 }
             }
@@ -70,13 +112,11 @@ public class ArmUseItem : MonoBehaviour
                     // If the player just pressed it down
                     if (hasTriggerReleased)
                     {
-                        hasTriggerReleased = false;
                         TryUsingItem();
                     }
                 }
                 else
                 {
-                    hasTriggerReleased = true;
                     StopUsingItem();
                 }
             }
@@ -108,5 +148,14 @@ public class ArmUseItem : MonoBehaviour
     {
         setupItem.Invoke();
         setupItemDelegate();
+    }
+
+    /// <summary>
+    /// If the item is forced to be dropped
+    /// </summary>
+    /// <param name="breakForce"></param>
+    private void OnJointBreak(float breakForce)
+    {
+        currentlyHoldingItem.GetComponent<ItemInfo>().ForceDropItem();
     }
 }

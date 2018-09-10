@@ -10,14 +10,16 @@ public class ItemInfo : MonoBehaviour
     public UnityEvent setupEvent; // An event to be triggered when the item is picked up
     public UnityEvent singleUseEvent; // An event to be triggered for a single use of the item
     public UnityEvent stopUsingEvent; // An event to be triggered when the item is stop being used
+    public UnityEvent resetEvent; // An event to be triggered when the item is dropped
     public float eventCoolDown; // When the player is holding down the use button and constantly using the item, how long it should wait before each use
     public int useLimit; // How many times can this item being used (0 means infinite)
+    public bool fixedPosition; // Can this item be picked up by the player or is fixed on the ground
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
     public float normalMass; // The item's normal mass
     public bool isBeingHeld; // If this item is currently being held by an arm
-    public Transform holdingArm; // The arm that is holding this item
+    public Transform holdingArmTip; // The arm that is holding this item
     public Coroutine usingItem; // The coroutine that continuously triggers the using event
     public int timeUsed; // How many time has this item been used
 
@@ -43,26 +45,21 @@ public class ItemInfo : MonoBehaviour
         if (isBeingHeld)
         {
             // If the item can be lifted by the arm then match its transform with the armTip
-            if (itemWeight <= holdingArm.GetComponentInParent<ControlArm>().armLiftingStrength)
+            if (!fixedPosition && itemWeight <= holdingArmTip.GetComponentInParent<ControlArm>().armLiftingStrength)
             {
                 //GetComponent<Rigidbody>().velocity = Vector3.zero;
                 //GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                transform.eulerAngles = new Vector3(0, holdingArm.GetComponentInParent<ControlArm>().joyStickRotationAngle, 0);
+                transform.eulerAngles = new Vector3(0, holdingArmTip.GetComponentInParent<ControlArm>().joyStickRotationAngle, 0);
                 //transform.position = holdingArm.position;
                 //print(holdingArm.position);
             }
         }
     }
 
-    private void OnJointBreak(float breakForce)
-    {
-        ForceDropItem();
-    }
-
     public void ForceDropItem()
     {
         StopUsing(); // Stop using the item
-        holdingArm.GetComponentInParent<ControlArm>().DropDownItem(gameObject);
+        holdingArmTip.GetComponentInParent<ControlArm>().DropDownItem(gameObject);
     }
 
     /// <summary>
@@ -92,13 +89,19 @@ public class ItemInfo : MonoBehaviour
             StopCoroutine(usingItem);
 
             // If there is an event for when the item is stopped being used, then triggers it
-            if(stopUsingEvent != null)
+            if (stopUsingEvent != null)
             {
                 stopUsingEvent.Invoke();
             }
 
             usingItem = null;
         }
+    }
+
+    public void ResetItem()
+    {
+        StopUsing(); // Stop using the item
+        resetEvent.Invoke(); // Reset the item
     }
 
     /// <summary>

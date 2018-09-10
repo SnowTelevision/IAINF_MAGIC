@@ -161,7 +161,7 @@ public class ControlArm : ArmUseItem
     /// <summary>
     /// Detect if the armTip is colliding with an item, and if the player want to pick up an item
     /// </summary>
-    public void DetectIfPickingUpItem()
+    public virtual void DetectIfPickingUpItem()
     {
         // If the arm tip is colliding with an item
         if (armTip.GetComponent<DetectCollision>().collidingObject != null &&
@@ -274,7 +274,7 @@ public class ControlArm : ArmUseItem
         }
 
         pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
-        pickingItem.GetComponent<ItemInfo>().holdingArm = armTip;
+        pickingItem.GetComponent<ItemInfo>().holdingArmTip = armTip;
     }
 
     /// <summary>
@@ -318,7 +318,7 @@ public class ControlArm : ArmUseItem
         }
 
         droppingItem.GetComponent<ItemInfo>().isBeingHeld = false;
-        droppingItem.GetComponent<ItemInfo>().holdingArm = null;
+        droppingItem.GetComponent<ItemInfo>().holdingArmTip = null;
         // Remove the dropping item from armTip's currentHoldingItem
         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
     }

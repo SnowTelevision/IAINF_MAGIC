@@ -2541,7 +2541,22 @@ MonoBehaviour:
   maxHealth: 100
   gameCamera: {fileID: 1866756811}
   targetSideScrollOrbitRadius: 0
+  armTipCollideWallHapticStrength: 0
+  armTipCollideWallHapticDuration: 0
+  bodyCollideWallHapticStrength: 0
+  bodyCollideWallHapticDuration: 0
+  echoBounceBackHapticStrength: 0
+  echoBounceBackHapticDuration: 0
+  reflectedEchoHitEdgeHapticStrength: 0
+  reflectedEchoHitEdgeHapticDuration: 0
+  reflectedEchoTravelObjectHapticStrength: 0
+  reflectedEchoTravelObjectHapticDuration: 0
+  echoIndicator: {fileID: 0}
+  canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  echoIndicatorEmissionIntensity: 0
   inWater: 0
+  totalHapticStrength: 0
   test: 0
 --- !u!1 &149575384
 GameObject:
@@ -2909,12 +2924,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -6180,12 +6205,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -6666,12 +6701,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -7496,12 +7541,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -7541,8 +7596,15 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 0}
+  lastArmSegment: {fileID: 0}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -7561,6 +7623,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -9038,12 +9102,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -9083,8 +9157,15 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 0}
+  lastArmSegment: {fileID: 0}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -9103,6 +9184,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -9575,12 +9658,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -9620,8 +9713,15 @@ MonoBehaviour:
   armAirDragMultiplier: 1
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0.5
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 1154143861}
+  lastArmSegment: {fileID: 965917816}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -9640,6 +9740,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -10439,17 +10541,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 0
   itemWeight: 2
+  setupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   singleUseEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  stopUsingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: 0
+  useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
+  timeUsed: 0
 --- !u!23 &713553808
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10817,12 +10937,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -10862,8 +10992,15 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 0}
+  lastArmSegment: {fileID: 0}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -10882,6 +11019,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -13063,12 +13202,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -13108,8 +13257,15 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 0}
+  lastArmSegment: {fileID: 0}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -13128,6 +13284,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -13916,12 +14074,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -25208,6 +25376,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 1
   itemWeight: 0.1
+  setupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   singleUseEvent:
     m_PersistentCalls:
       m_Calls:
@@ -25224,12 +25397,25 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  stopUsingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: Infinity
+  useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
+  timeUsed: 0
 --- !u!23 &1060445064
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25988,12 +26174,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -26373,17 +26569,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 1
   itemWeight: 1
+  setupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   singleUseEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  stopUsingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: 0
+  useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
+  timeUsed: 0
 --- !u!23 &1134296754
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27298,17 +27512,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 0
   itemWeight: 0.1
+  setupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   singleUseEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  stopUsingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: 0
+  useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
+  timeUsed: 0
 --- !u!23 &1176674508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30503,17 +30735,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 0
   itemWeight: 2
+  setupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   singleUseEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  stopUsingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: 0
+  useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
+  timeUsed: 0
 --- !u!23 &1427952322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33311,12 +33561,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -33356,8 +33616,15 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 0}
+  lastArmSegment: {fileID: 0}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -33376,6 +33643,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -34286,7 +34555,22 @@ MonoBehaviour:
   maxHealth: 100
   gameCamera: {fileID: 1866756811}
   targetSideScrollOrbitRadius: 17
+  armTipCollideWallHapticStrength: 0
+  armTipCollideWallHapticDuration: 0
+  bodyCollideWallHapticStrength: 0
+  bodyCollideWallHapticDuration: 0
+  echoBounceBackHapticStrength: 0
+  echoBounceBackHapticDuration: 0
+  reflectedEchoHitEdgeHapticStrength: 0
+  reflectedEchoHitEdgeHapticDuration: 0
+  reflectedEchoTravelObjectHapticStrength: 0
+  reflectedEchoTravelObjectHapticDuration: 0
+  echoIndicator: {fileID: 0}
+  canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  echoIndicatorEmissionIntensity: 0
   inWater: 0
+  totalHapticStrength: 0
   test: 1
 --- !u!54 &1656264737
 Rigidbody:
@@ -35212,17 +35496,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 0
   itemWeight: 0.1
+  setupEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   singleUseEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  stopUsingEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: 0
+  useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
+  timeUsed: 0
 --- !u!23 &1683184772
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35377,12 +35679,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -35422,8 +35734,15 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 0}
+  lastArmSegment: {fileID: 0}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -35442,6 +35761,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -38121,12 +38442,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -38166,8 +38497,15 @@ MonoBehaviour:
   armAirDragMultiplier: 1
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0.5
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
+  jointConnectingBody: {fileID: 1030056043}
+  lastArmSegment: {fileID: 1449650406}
   canGrabObject: 0
   isTouchingGround: 0
+  isUsingMechanicalArm: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
@@ -38186,6 +38524,8 @@ MonoBehaviour:
   armCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
+  firstSegmentDistanceFromBody: 0
+  lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
   bodyTopSpeed: 0
@@ -40179,12 +40519,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -40347,12 +40697,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -42418,12 +42778,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlyHoldingItem: {fileID: 0}
   hasTriggerReleased: 0
+  setupItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   useItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   stopUsingItem:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  resetItem:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,

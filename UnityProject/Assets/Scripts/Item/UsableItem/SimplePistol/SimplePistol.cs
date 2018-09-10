@@ -29,7 +29,7 @@ public class SimplePistol : MonoBehaviour
     public void Shoot()
     {
         Quaternion newPistolRotation = Quaternion.identity;
-        newPistolRotation.eulerAngles = new Vector3(0, GetComponent<ItemInfo>().holdingArm.GetComponentInParent<ControlArm>().joyStickRotationAngle, 0);
+        newPistolRotation.eulerAngles = new Vector3(0, GetComponent<ItemInfo>().holdingArmTip.GetComponentInParent<ControlArm>().joyStickRotationAngle, 0);
         GameObject newPistolBullet = Instantiate(pistolBullet, transform.position, newPistolRotation);
         //print(GetComponent<ItemInfo>().holdingArm.GetComponentInParent<ControlArm>().joyStickRotationAngle + ", " + transform.eulerAngles.y + ", in fix update: " + Time.inFixedTimeStep);
         //newPistolBullet.transform.LookAt(transform.position + transform.forward);
