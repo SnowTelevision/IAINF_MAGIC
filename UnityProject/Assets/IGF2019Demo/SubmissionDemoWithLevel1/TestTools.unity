@@ -1156,7 +1156,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2c8813bc2cd645742b966a644cfcef65, type: 3}
+  - {fileID: 2100000, guid: e23d6079f9955ef4a82b335bd958fa65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2240,7 +2240,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-166550
+  m_Name: pb_Mesh-161032
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -8620,7 +8620,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2c8813bc2cd645742b966a644cfcef65, type: 3}
+  - {fileID: 2100000, guid: e23d6079f9955ef4a82b335bd958fa65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
