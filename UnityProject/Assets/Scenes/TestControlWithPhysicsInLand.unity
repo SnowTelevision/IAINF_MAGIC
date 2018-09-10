@@ -2461,7 +2461,22 @@ MonoBehaviour:
   maxHealth: 100
   gameCamera: {fileID: 1866756811}
   targetSideScrollOrbitRadius: 0
+  armTipCollideWallHapticStrength: 0
+  armTipCollideWallHapticDuration: 0
+  bodyCollideWallHapticStrength: 0
+  bodyCollideWallHapticDuration: 0
+  echoBounceBackHapticStrength: 0
+  echoBounceBackHapticDuration: 0
+  reflectedEchoHitEdgeHapticStrength: 0
+  reflectedEchoHitEdgeHapticDuration: 0
+  reflectedEchoTravelObjectHapticStrength: 0
+  reflectedEchoTravelObjectHapticDuration: 0
+  echoIndicator: {fileID: 0}
+  canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  echoIndicatorEmissionIntensity: 0
   inWater: 0
+  totalHapticStrength: 0
   test: 0
 --- !u!1 &149575384
 GameObject:
@@ -7315,6 +7330,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 32
   timeAllowedToUseBurstForceSinceMaxStamina: 0.5
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -8857,6 +8876,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -9394,6 +9417,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -10596,6 +10623,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 32
   timeAllowedToUseBurstForceSinceMaxStamina: 0.5
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -12802,6 +12833,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -24804,6 +24839,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -25734,7 +25773,22 @@ MonoBehaviour:
   maxHealth: 100
   gameCamera: {fileID: 1866756811}
   targetSideScrollOrbitRadius: 0
+  armTipCollideWallHapticStrength: 0
+  armTipCollideWallHapticDuration: 0
+  bodyCollideWallHapticStrength: 0
+  bodyCollideWallHapticDuration: 0
+  echoBounceBackHapticStrength: 0
+  echoBounceBackHapticDuration: 0
+  reflectedEchoHitEdgeHapticStrength: 0
+  reflectedEchoHitEdgeHapticDuration: 0
+  reflectedEchoTravelObjectHapticStrength: 0
+  reflectedEchoTravelObjectHapticDuration: 0
+  echoIndicator: {fileID: 0}
+  canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  echoIndicatorEmissionIntensity: 0
   inWater: 0
+  totalHapticStrength: 0
   test: 1
 --- !u!54 &1656264737
 Rigidbody:
@@ -26731,6 +26785,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}
@@ -26841,6 +26899,7 @@ GameObject:
   - component: {fileID: 1710820585}
   - component: {fileID: 1710820584}
   - component: {fileID: 1710820583}
+  - component: {fileID: 1710820588}
   m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
@@ -26935,6 +26994,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710820588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710820582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71160b2b812d624786420280df177b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  gameCamera: {fileID: 0}
+  targetSideScrollOrbitRadius: 0
+  armTipCollideWallHapticStrength: 0
+  armTipCollideWallHapticDuration: 0
+  bodyCollideWallHapticStrength: 0
+  bodyCollideWallHapticDuration: 0
+  echoBounceBackHapticStrength: 0
+  echoBounceBackHapticDuration: 0
+  reflectedEchoHitEdgeHapticStrength: 0
+  reflectedEchoHitEdgeHapticDuration: 0
+  reflectedEchoTravelObjectHapticStrength: 0
+  reflectedEchoTravelObjectHapticDuration: 0
+  echoIndicator: {fileID: 0}
+  canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
+  echoIndicatorEmissionIntensity: 0
+  inWater: 0
+  totalHapticStrength: 0
+  test: 0
 --- !u!1 &1711387063
 GameObject:
   m_ObjectHideFlags: 0
@@ -29513,6 +29603,10 @@ MonoBehaviour:
   armAirDragMultiplier: 0
   joyStickMoveSpeedControlBurstForceThreshold: 0
   timeAllowedToUseBurstForceSinceMaxStamina: 0
+  echoProjectile: {fileID: 0}
+  maxEchoTravelDistance: 0
+  echoTravelSpeed: 0
+  echoProjectileWidth: 0
   canGrabObject: 0
   isTouchingGround: 0
   joystickPosition: {x: 0, y: 0, z: 0}

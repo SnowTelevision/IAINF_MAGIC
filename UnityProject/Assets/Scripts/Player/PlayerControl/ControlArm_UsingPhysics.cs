@@ -43,6 +43,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public float maxEchoTravelDistance; // How far the viberation echo can travel
     public float echoTravelSpeed; // How fast the echo travels
     public float echoProjectileWidth; // How wide is the echo projectile
+    public SpringJoint jointConnectingBody; // The SpringJoint in the first arm segment that is connected to the body
+    public Transform lastArmSegment; // The arm segment that connects the armTip
 
     /// <summary>
     /// Arm flags
@@ -74,6 +76,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public bool isArmBurstForceUsed; // Did the arm already used burst force in this interaction cycle?
     //public EchoCollisionInfo currentCreatingEcho; // The vibration echo that's currently being created (if the player continuously generate it)
     //public List<VibrationEchoBehavior> currentExistingEchoProjectiles; // The list contains all the "living" echo projectiles
+    public float firstSegmentDistanceFromBody; // How far is the first arm segments away from the body
+    public float lastArmSegmentDefaultConnectedMassScale; // The default connected mass scale on the spring joint of the last arm segment that connects to the armTip
 
     //Test//
     public bool test; // Do we print test outputs
@@ -87,6 +91,7 @@ public class ControlArm_UsingPhysics : ControlArm
     void Start()
     {
         armCurrentStamina = armMaximumStamina;
+        lastArmSegmentDefaultConnectedMassScale = lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale;
 
         // Set up the arm stretch limiter
         if (isLeftArm)
@@ -98,6 +103,7 @@ public class ControlArm_UsingPhysics : ControlArm
     // Update is called once per frame
     public override void Update()
     {
+        firstSegmentDistanceFromBody = Vector3.Distance(jointConnectingBody.transform.position, body.position);
         DetectingArmMovement();
 
         // Don't let the player control the character if the game is in a scripted event
@@ -128,6 +134,7 @@ public class ControlArm_UsingPhysics : ControlArm
         CalculateJoyStickLength(isLeftArm);
         GetClampedJoystickPosition();
         DetectIfSwitchEchoMode();
+        //AdjustLastSegmentConnectedMassScale();
 
         if (!isGrabbingFloor)
         {
@@ -180,7 +187,8 @@ public class ControlArm_UsingPhysics : ControlArm
             MoveBody();
             if (armCurrentStamina > 0)
             {
-                armTip.position = armTipGrabbingPosition;
+                //armTip.position = armTipGrabbingPosition;
+                armTip.GetComponent<Rigidbody>().AddForce(CalculateArmForce(false, armTip.position, armTip.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
             }
         }
 
@@ -204,8 +212,8 @@ public class ControlArm_UsingPhysics : ControlArm
         if (test)
         {
             //TestControllerInput();
-            bodySpeed = body.GetComponent<Rigidbody>().velocity.magnitude;
-            testArmGlidingForce = CalculateArmGlidingForce(testWindStrength, testWindDirection);
+            //bodySpeed = body.GetComponent<Rigidbody>().velocity.magnitude;
+            //testArmGlidingForce = CalculateArmGlidingForce(testWindStrength, testWindDirection);
         }
     }
 
@@ -437,6 +445,8 @@ public class ControlArm_UsingPhysics : ControlArm
         //UnityAction stopUsingAction = System.Delegate.CreateDelegate(typeof(UnityAction), pickingItem.GetComponent<ItemInfo>(), "StopUsing") as UnityAction;
         //UnityEventTools.AddPersistentListener(armTip.GetComponent<ArmUseItem>().stopUsingItem, stopUsingAction);
         //armTip.GetComponent<ArmUseItem>().stopUsingItem.AddListener(pickingItem.GetComponent<ItemInfo>().StopUsing);
+        armTip.GetComponent<ArmUseItem>().setupItemDelegate =
+            System.Delegate.CreateDelegate(typeof(SetupItemDelegateClass), pickingItem.GetComponent<ItemInfo>(), "SetupItem") as SetupItemDelegateClass;
         armTip.GetComponent<ArmUseItem>().useItemDelegate =
             System.Delegate.CreateDelegate(typeof(UseItemDelegateClass), pickingItem.GetComponent<ItemInfo>(), "StartUsing") as UseItemDelegateClass;
         armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate =
@@ -464,8 +474,8 @@ public class ControlArm_UsingPhysics : ControlArm
                 //// Turn off the collider
                 //TurnOffColliders(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
                 // Turn off mass, drag, etc.
-                pickingItem.GetComponent<Rigidbody>().drag = 0;
-                pickingItem.GetComponent<Rigidbody>().angularDrag = 0;
+                pickingItem.GetComponent<Rigidbody>().drag = 30;
+                pickingItem.GetComponent<Rigidbody>().angularDrag = 30;
                 pickingItem.GetComponent<Rigidbody>().mass = 0;
                 //// Change the item to kinematic
                 //pickingItem.GetComponent<Rigidbody>().isKinematic = true;
@@ -482,14 +492,23 @@ public class ControlArm_UsingPhysics : ControlArm
         //pickingItem.GetComponent<FixedJoint>().connectedBody = armTip.GetComponent<Rigidbody>();
         //pickingItem.GetComponent<FixedJoint>().autoConfigureConnectedAnchor = true;
         //pickingItem.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
-        armTip.gameObject.AddComponent<FixedJoint>();
-        armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
-        //armTip.GetComponent<FixedJoint>().autoConfigureConnectedAnchor = true;
-        armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
-        //}
+
+        // Using fixed joint
+        //armTip.gameObject.AddComponent<FixedJoint>();
+        //armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
+        //armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
+
+        // Using spring joint
+        armTip.gameObject.AddComponent<SpringJoint>();
+        armTip.GetComponent<SpringJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
+        armTip.GetComponent<SpringJoint>().spring = 0.0001f;
+        armTip.GetComponent<SpringJoint>().damper = 0;
+        armTip.GetComponent<SpringJoint>().breakForce = armHoldingJointBreakForce;
 
         pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
         pickingItem.GetComponent<ItemInfo>().holdingArm = armTip;
+
+        armTip.GetComponent<ArmUseItem>().SetUpItem(); // Invoke the setup item event
     }
 
     /// <summary>
@@ -506,6 +525,7 @@ public class ControlArm_UsingPhysics : ControlArm
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().useItem, startUsingAction);
         //UnityAction stopUsingAction = System.Delegate.CreateDelegate(typeof(UnityAction), droppingItem.GetComponent<ItemInfo>(), "StopUsing") as UnityAction;
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().stopUsingItem, stopUsingAction);
+        armTip.GetComponent<ArmUseItem>().setupItemDelegate = null;
         armTip.GetComponent<ArmUseItem>().useItemDelegate = null;
         armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate = null;
 
@@ -532,6 +552,12 @@ public class ControlArm_UsingPhysics : ControlArm
             Destroy(armTip.GetComponent<FixedJoint>());
         }
         //}
+
+        // Destroy the spring joint in the item that's currently holding by the armTip
+        if (armTip.GetComponent<SpringJoint>())
+        {
+            Destroy(armTip.GetComponent<SpringJoint>());
+        }
 
         droppingItem.GetComponent<ItemInfo>().isBeingHeld = false;
         droppingItem.GetComponent<ItemInfo>().holdingArm = null;
@@ -673,38 +699,23 @@ public class ControlArm_UsingPhysics : ControlArm
                 //Debug.DrawLine(armTip.position, armTip.position + new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) * joyStickLength * armMaxLength);
                 //print("joystick angle: " + joyStickRotationAngle);
             }
-            //else if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null &&
-            //         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight > armLiftingStrength) // If move heavy item
-            //{
-            //    targetPosition = body.position + (new Vector3(Mathf.Sin(joyStickRotationAngle * Mathf.Deg2Rad), 0, Mathf.Cos(joyStickRotationAngle * Mathf.Deg2Rad)) *
-            //                                        joyStickLength * armMaxLength);
-
-
-
-            //    //// If the arm will collide on something within the current stretching length
-            //    //RaycastHit hit;
-            //    //// Don't extend if the armTip will go into collider
-            //    //if (Physics.Raycast(transform.position - transform.forward * collisionRaycastOriginSetBackDistance, transform.forward,
-            //    //    out hit, joyStickLength * armMaxLength + collisionRaycastOriginSetBackDistance + armTip.localScale.x / 2f, armCollidingLayer))
-            //    //{
-            //    //    // If the ray hits the object that is currently holding by the armTip, then ignore it, don't retract the arm
-            //    //    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null ||
-            //    //        hit.transform != armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.transform)
-            //    //    {
-            //    //        //print(hit.transform.name);
-            //    //        armTip.localPosition =
-            //    //            //new Vector3(0, 0, hit.distance - armTip.localScale.x / Mathf.Cos(Vector3.Angle(hit.normal, transform.forward) * Mathf.Deg2Rad));
-            //    //            new Vector3(0, 0, hit.distance - collisionRaycastOriginSetBackDistance);
-            //    //    }
-            //    //}
-            //}
-            //else
-            //{
-            //    targetPosition = transform.TransformPoint(new Vector3(0, 0, joyStickLength * armMaxLength));
-            //}
             else
             {
-                targetPosition = body.position + (joystickPosition * armMaxLength);
+                // If the arm is not grabbing floor
+                if (!isGrabbingFloor)
+                {
+                    targetPosition = body.position + (joystickPosition * armMaxLength);
+                }
+                else
+                {
+                    targetPosition = armTipGrabbingPosition;
+
+                    // If the armTip moves away from its current grabbing point then the grabbing point should change
+                    if (Vector3.Distance(armTip.position, armTipGrabbingPosition) > 0.1f)
+                    {
+                        armTipGrabbingPosition = armTip.position;
+                    }
+                }
             }
         }
         else
@@ -774,7 +785,51 @@ public class ControlArm_UsingPhysics : ControlArm
     public void MoveArm(bool left)
     {
         Vector3 armTipAppliedForce = CalculateArmForce(false, armTip.transform.position, armTip.GetComponent<Rigidbody>().mass);
+
+        //// If the arm is stretched too far away from the body then apply less force to move the armTip
+        //if (firstSegmentDistanceFromBody >= 0.1f)
+        //{
+        //    //if (test)
+        //    //{
+        //    //    print(Mathf.Clamp01(-4.0f * Mathf.Pow((firstSegmentDistanceFromBody - 0.25f), 2) + 1));
+        //    //}
+
+        //    armTipAppliedForce *= Mathf.Clamp01(-4.0f * Mathf.Pow((firstSegmentDistanceFromBody - 0.1f), 2) + 1);
+        //    //MoveArmTipTowardsLastArmSegment();
+        //}
+
         armTip.GetComponent<Rigidbody>().AddForce(armTipAppliedForce, ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// If the arm is strectched too long, move the armTip towards the last segment to help the arm retract
+    /// </summary>
+    public void MoveArmTipTowardsLastArmSegment()
+    {
+        // Calculate the retract force
+        Vector3 retractForce = (lastArmSegment.position - armTip.position) * Mathf.Pow((firstSegmentDistanceFromBody + 0.75f), 2);
+        // Apply the force to the last arm segment's direction
+        armTip.GetComponent<Rigidbody>().AddForce(retractForce, ForceMode.Impulse);
+    }
+
+    /// <summary>
+    /// Inceased the connected mass scale of the spring joint on the last arm segment that connects to the armTip
+    /// if the arm is strectched too far
+    /// </summary>
+    public void AdjustLastSegmentConnectedMassScale()
+    {
+        float startAdjustingDistance = 0.35f;
+
+        if (firstSegmentDistanceFromBody >= startAdjustingDistance)
+        {
+            lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistance)) * 40000f;
+        }
+        else
+        {
+            lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+                lastArmSegmentDefaultConnectedMassScale;
+        }
     }
 
     ///// <summary>

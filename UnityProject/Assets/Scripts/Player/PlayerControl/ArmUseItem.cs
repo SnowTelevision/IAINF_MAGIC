@@ -13,10 +13,13 @@ public class ArmUseItem : MonoBehaviour
 
     public GameObject currentlyHoldingItem; // The item that is currently holding by this arm
     public bool hasTriggerReleased; // Has the trigger being released since the last pushed down
+    public UnityEvent setupItem; // The event to be triggered for setup the item when the player picked it up
     public UnityEvent useItem; // The event to be triggered for the holding item when the player start using it
     public UnityEvent stopUsingItem; // The event to be triggered for the holding item when the player stop using it
+    public delegate void SetupItemDelegateClass();
     public delegate void UseItemDelegateClass();
     public delegate void StopUsingItemDelegateClass();
+    public SetupItemDelegateClass setupItemDelegate;
     public UseItemDelegateClass useItemDelegate;
     public StopUsingItemDelegateClass stopUsingItemDelegate;
 
@@ -49,7 +52,7 @@ public class ArmUseItem : MonoBehaviour
                     if (hasTriggerReleased)
                     {
                         hasTriggerReleased = false;
-                        StartUsingItem();
+                        TryUsingItem();
                     }
                 }
                 else
@@ -68,7 +71,7 @@ public class ArmUseItem : MonoBehaviour
                     if (hasTriggerReleased)
                     {
                         hasTriggerReleased = false;
-                        StartUsingItem();
+                        TryUsingItem();
                     }
                 }
                 else
@@ -83,7 +86,7 @@ public class ArmUseItem : MonoBehaviour
     /// <summary>
     /// Invoke the start using event that is currently registered to this armTip
     /// </summary>
-    public void StartUsingItem()
+    public void TryUsingItem()
     {
         useItem.Invoke();
         useItemDelegate();
@@ -96,5 +99,14 @@ public class ArmUseItem : MonoBehaviour
     {
         stopUsingItem.Invoke();
         stopUsingItemDelegate();
+    }
+
+    /// <summary>
+    /// Invoke the setup item event
+    /// </summary>
+    public void SetUpItem()
+    {
+        setupItem.Invoke();
+        setupItemDelegate();
     }
 }
