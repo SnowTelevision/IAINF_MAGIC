@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Detects collision
 /// </summary>
 public class DetectCollision : MonoBehaviour
 {
-
+    public bool ignoreTrigger; // If ignore trigger
 
     public bool isColliding; // If the arm is colliding something
     public Vector3 collidingPoint; // The colliding position
     public GameObject collidingObject; // The object it is colliding with
+    public Collision currentCollision; // The collision
 
     // Use this for initialization
     void Start()
@@ -34,6 +33,7 @@ public class DetectCollision : MonoBehaviour
     {
         VerifyCollision(false, collision.gameObject);
 
+        currentCollision = collision;
         collidingObject = collision.gameObject;
     }
 
@@ -42,6 +42,7 @@ public class DetectCollision : MonoBehaviour
         VerifyCollision(false, collision.gameObject);
 
         isColliding = true;
+        collidingObject = collision.gameObject;
         collidingPoint = collision.contacts[0].point;
     }
 
@@ -49,12 +50,18 @@ public class DetectCollision : MonoBehaviour
     {
         VerifyCollision(false, collision.gameObject);
 
+        currentCollision = null;
         collidingObject = null;
         isColliding = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (ignoreTrigger)
+        {
+            return;
+        }
+
         VerifyCollision(false, other.gameObject);
 
         collidingObject = other.gameObject;
@@ -62,6 +69,11 @@ public class DetectCollision : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (ignoreTrigger)
+        {
+            return;
+        }
+
         VerifyCollision(false, other.gameObject);
 
         isColliding = true;
@@ -69,6 +81,11 @@ public class DetectCollision : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (ignoreTrigger)
+        {
+            return;
+        }
+
         VerifyCollision(false, other.gameObject);
 
         collidingObject = null;

@@ -34,11 +34,58 @@ public class MechanicalArm : MonoBehaviour
         //    MoveArm();
         //}
 
+        // Lock the arm's y position when it is out
+        //LockArmHandY();
+        UpdateRigidbodyConstraints();
+
         // Make sure the arm is always facing outward
-        armHand.LookAt(transform, Vector3.up);
-        arm.LookAt(armHand, Vector3.up);
+        CorrectArmRotation();
 
         // Stretch the arm
+        StretchArm();
+    }
+
+    /// <summary>
+    /// Locks the arm hand's local y position to 0
+    /// </summary>
+    public void LockArmHandY()
+    {
+        if (arm.localScale.z > 1.9f)
+        {
+            armHand.localPosition = new Vector3(armHand.localPosition.x, 0, armHand.localPosition.z);
+        }
+    }
+
+    /// <summary>
+    /// Locks the arm and arm hand's y position when it is stretched out of the base
+    /// </summary>
+    public void UpdateRigidbodyConstraints()
+    {
+        if (arm.localScale.z > 1.9f)
+        {
+            armHand.GetComponent<Rigidbody>().constraints =
+                RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        }
+        else
+        {
+            armHand.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        }
+    }
+
+    /// <summary>
+    /// Make sure the arm is always facing outward
+    /// </summary>
+    public void CorrectArmRotation()
+    {
+        armHand.LookAt(transform, Vector3.up);
+        arm.LookAt(armHand, Vector3.up);
+    }
+
+    /// <summary>
+    /// Adjust the arm to proper length
+    /// </summary>
+    public void StretchArm()
+    {
         Vector3 armTargetScale = arm.localScale;
         armTargetScale.z = minimumArmLength + (maximumArmLength - minimumArmLength) * Vector3.Distance(transform.position, armHand.position) / maximumArmReach;
         arm.localScale = armTargetScale;
@@ -79,6 +126,12 @@ public class MechanicalArm : MonoBehaviour
         // Get arm hand's target position
         targetPosition = transform.position + currentAccessingArm.joystickPosition.normalized * //(Mathf.Clamp(currentAccessingArm.joystickPosition.magnitude, 0.01f, 1))
                          currentAccessingArm.joystickPosition.magnitude * maximumArmReach;
+
+        if (DetectIfBlocked())
+        {
+            return;
+        }
+
         // Get the target distance
         float targetDistance = Vector3.Magnitude(targetPosition - armHand.position);
 
@@ -90,6 +143,84 @@ public class MechanicalArm : MonoBehaviour
         else
         {
             armHand.GetComponent<Rigidbody>().AddForce((targetPosition - armHand.position).normalized * armMovingSpeed, ForceMode.Force);
+        }
+    }
+
+    /// <summary>
+    /// Detect if there is some non-movable object in the arm's moving direction
+    /// </summary>
+    /// <returns></returns>
+    public bool DetectIfBlocked()
+    {
+        // If the arm is colliding on some non-movable object
+        if (arm.GetComponent<DetectCollision>().isColliding)
+        {
+            GameObject armCollidingObject = arm.GetComponent<DetectCollision>().collidingObject;
+
+            if (!armCollidingObject.GetComponent<Rigidbody>() || armCollidingObject.GetComponent<Rigidbody>().isKinematic)
+            {
+                // If the collision and the move direction is on the same side
+                if (Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
+                                             (arm.GetComponent<DetectCollision>().collidingPoint - transform.position)).y) ==
+                    Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
+                                             (targetPosition - transform.position)).y))
+                {
+                    armHand.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    arm.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    targetPosition = armHand.position;
+                    return true;
+                }
+                // If the collision and the move direction is not on the same side
+                else
+                {
+                    goto check_arm_hand;
+                }
+            }
+            else
+            {
+                goto check_arm_hand;
+            }
+        }
+        else
+        {
+            goto check_arm_hand;
+        }
+
+        check_arm_hand:
+        //return false;
+
+        // If the arm hand is colliding on some non-movable object
+        if (armHand.GetComponent<DetectCollision>().isColliding)
+        {
+            GameObject armCollidingObject = armHand.GetComponent<DetectCollision>().collidingObject;
+
+            if (!armCollidingObject.GetComponent<Rigidbody>() || armCollidingObject.GetComponent<Rigidbody>().isKinematic)
+            {
+                // If the collision and the move direction is on the same side
+                if (Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
+                                             (armHand.GetComponent<DetectCollision>().collidingPoint - transform.position)).y) ==
+                    Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
+                                             (targetPosition - transform.position)).y))
+                {
+                    armHand.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    arm.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    targetPosition = armHand.position;
+                    return true;
+                }
+                // If the collision and the move direction is not on the same side
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 }

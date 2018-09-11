@@ -216,7 +216,7 @@ public class ControlArm_UsingPhysics : ControlArm
         // Apply arm drag when the body is flying in the air
         if (PlayerInfo.isSideScroller)
         {
-            ApplyGlidingForceToBody();
+            //ApplyGlidingForceToBody();
             ApplyArmAirDrag();
         }
 
@@ -376,14 +376,14 @@ public class ControlArm_UsingPhysics : ControlArm
             }
         }
     }
-    
+
     /// <summary>
     /// Detect if the armTip is colliding with an item, and if the player want to pick up an item
     /// </summary>
     public override void DetectIfPickingUpItem()
     {
         // If the arm tip is colliding with an item and the trigger is released after the last item drop (no matter is forced drop or not)
-        if (armTip.GetComponent<ArmUseItem>().hasTriggerReleased && 
+        if (armTip.GetComponent<ArmUseItem>().hasTriggerReleased &&
             armTip.GetComponent<DetectCollision>().collidingObject != null &&
             armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>())
         {

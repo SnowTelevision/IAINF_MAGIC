@@ -2350,7 +2350,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 685a9b06ca788b64e99141b27c6ac7af, type: 2}
+  - {fileID: 2100000, guid: 04779b6bafcea064fae5fcae5d1e5199, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2835,6 +2835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -3995,7 +3996,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2c8813bc2cd645742b966a644cfcef65, type: 3}
+  - {fileID: 2100000, guid: f1b3eb06655c2df408f67e602163585f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5970,6 +5971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -6506,6 +6508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -13839,6 +13842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -17797,6 +17801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -20845,7 +20850,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2c8813bc2cd645742b966a644cfcef65, type: 3}
+  - {fileID: 2100000, guid: f1b3eb06655c2df408f67e602163585f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31937,6 +31942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -32115,6 +32121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}
@@ -34196,6 +34203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
   isColliding: 0
   collidingPoint: {x: 0, y: 0, z: 0}
   collidingObject: {fileID: 0}

@@ -36,6 +36,10 @@ public class ArmUseItem : MonoBehaviour
     void Update()
     {
         DetectIfUseItem();
+    }
+
+    private void LateUpdate()
+    {
         UpdateTriggerStatus();
     }
 
