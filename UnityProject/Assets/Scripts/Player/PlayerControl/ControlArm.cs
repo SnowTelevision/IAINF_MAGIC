@@ -164,8 +164,8 @@ public class ControlArm : ArmUseItem
     public virtual void DetectIfPickingUpItem()
     {
         // If the arm tip is colliding with an item
-        if (armTip.GetComponent<DetectCollision>().collidingObject != null &&
-            armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>())
+        if (armTip.GetComponent<DetectCollision>().collidingTrigger != null &&
+            armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>())
         {
             // Picking or dropping item
             // Usable item is click trigger to pick up, click shoulder to drop
@@ -176,7 +176,7 @@ public class ControlArm : ArmUseItem
                 // If the left armTip is not holding an item and the left trigger is pressed down
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("LeftTrigger") >= triggerThreshold)
                 {
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>().gameObject));
+                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
                 }
             }
 
@@ -185,7 +185,7 @@ public class ControlArm : ArmUseItem
                 // If the right armTip is not holding an item and the right trigger is pressed down
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("RightTrigger") >= triggerThreshold)
                 {
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>().gameObject));
+                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
                 }
             }
         }

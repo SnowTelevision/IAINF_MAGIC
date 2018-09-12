@@ -13,6 +13,8 @@ public class MechanicalArm : MonoBehaviour
     public float armMovingSpeed; // How fast can the arm hand move
     public Transform armHand; // The mechanical arm's hand
     public Transform arm; // The arm
+    public GameObject armCollisionDetectionTrigger; // The trigger that detects any potential collision to the arm
+    public GameObject armHandCollisionDetectionTrigger; // The trigger that detects any potential collision to the arm hand
     //public float armLengthScalingMagnitude; // The multiplier to calculate how long the arm should extend based on the armHand's distance
 
     public ControlArm_UsingPhysics currentAccessingArm; // The arm (joystick) that is currently controlling it
@@ -36,7 +38,7 @@ public class MechanicalArm : MonoBehaviour
 
         // Lock the arm's y position when it is out
         //LockArmHandY();
-        UpdateRigidbodyConstraints();
+        //UpdateRigidbodyConstraints();
 
         // Make sure the arm is always facing outward
         CorrectArmRotation();
@@ -152,21 +154,23 @@ public class MechanicalArm : MonoBehaviour
     /// <returns></returns>
     public bool DetectIfBlocked()
     {
-        // If the arm is colliding on some non-movable object
-        if (arm.GetComponent<DetectCollision>().isColliding)
+        // If the arm is about to collide on some non-movable object
+        if (armCollisionDetectionTrigger.GetComponent<DetectCollision>().isEnteringCollider)
         {
-            GameObject armCollidingObject = arm.GetComponent<DetectCollision>().collidingObject;
+            GameObject armCollidingObject = armCollisionDetectionTrigger.GetComponent<DetectCollision>().enteringCollider;
 
             if (!armCollidingObject.GetComponent<Rigidbody>() || armCollidingObject.GetComponent<Rigidbody>().isKinematic)
             {
+                // Stop the arm
+                armHand.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                arm.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
                 // If the collision and the move direction is on the same side
                 if (Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
-                                             (arm.GetComponent<DetectCollision>().collidingPoint - transform.position)).y) ==
+                                             (armCollisionDetectionTrigger.GetComponent<DetectCollision>().collidingPoint - transform.position)).y) ==
                     Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
                                              (targetPosition - transform.position)).y))
                 {
-                    armHand.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    arm.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     targetPosition = armHand.position;
                     return true;
                 }
@@ -189,16 +193,32 @@ public class MechanicalArm : MonoBehaviour
         check_arm_hand:
         //return false;
 
-        // If the arm hand is colliding on some non-movable object
-        if (armHand.GetComponent<DetectCollision>().isColliding)
+        // If the arm hand is about to collide on some non-movable object
+        if (armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().isEnteringCollider)
         {
-            GameObject armCollidingObject = armHand.GetComponent<DetectCollision>().collidingObject;
+            GameObject armCollidingObject = armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().enteringCollider;
 
             if (!armCollidingObject.GetComponent<Rigidbody>() || armCollidingObject.GetComponent<Rigidbody>().isKinematic)
             {
+                // Stop the arm
+                armHand.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                arm.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                //Debug.DrawRay(armHand.position, armHand.position - transform.position, Color.yellow, 2);
+                ////Debug.DrawRay(transform.position, armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().collidingPoint - transform.position, Color.red, 2);
+                //Debug.DrawLine(transform.position, armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().collidingPoint, Color.red, 2);
+                //print(armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().collidingPoint);
+                //Debug.DrawRay(armHand.position,
+                //    Vector3.Cross((armHand.position - transform.position),
+                //                  (armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().collidingPoint - transform.position)), Color.magenta, 2);
+                //Debug.DrawRay(armHand.position, targetPosition - transform.position, Color.green, 2);
+                //Debug.DrawRay(armHand.position,
+                //    Vector3.Cross((armHand.position - transform.position),
+                //                  (targetPosition - transform.position)), Color.blue, 2);
+
                 // If the collision and the move direction is on the same side
                 if (Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
-                                             (armHand.GetComponent<DetectCollision>().collidingPoint - transform.position)).y) ==
+                                             (armHandCollisionDetectionTrigger.GetComponent<DetectCollision>().collidingPoint - transform.position)).y) ==
                     Mathf.Sign(Vector3.Cross((armHand.position - transform.position),
                                              (targetPosition - transform.position)).y))
                 {

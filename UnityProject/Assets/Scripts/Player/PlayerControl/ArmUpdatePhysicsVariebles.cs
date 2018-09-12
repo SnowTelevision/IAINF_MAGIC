@@ -55,8 +55,14 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
         UpdateDrag();
         UpdateJointMassScale();
         UpdateJointConnectedMassScale();
-        UpdateJointConnectedAnchor();
-        UpdateJointAnchor();
+
+        // Only update the joint positions if the arm is not using an item that 
+        if (armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null ||
+            !armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().fixedPosition)
+        {
+            UpdateJointConnectedAnchor();
+            UpdateJointAnchor();
+        }
 
         //Test
         if (test)

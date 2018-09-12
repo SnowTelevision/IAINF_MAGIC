@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// Detects collision
@@ -6,10 +7,15 @@
 public class DetectCollision : MonoBehaviour
 {
     public bool ignoreTrigger; // If ignore trigger
+    public Transform[] ignoredGameObjects; // Which game object(s) should this collider/trigger ignore (not in the Unity physics engine level, only in this script)
 
-    public bool isColliding; // If the arm is colliding something
+    public bool isColliding; // If the collider is colliding something
+    public GameObject collidingCollider; // The collider it is colliding with
+    public bool isEnteringCollider; // If the trigger is entering a collider
+    public GameObject enteringCollider; // The collider it is entering
+    public bool isEnteringTrigger; // If the collider is entering a trigger
+    public GameObject collidingTrigger; // The trigger it is entering
     public Vector3 collidingPoint; // The colliding position
-    public GameObject collidingObject; // The object it is colliding with
     public Collision currentCollision; // The collision
 
     // Use this for initialization
@@ -24,72 +30,130 @@ public class DetectCollision : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        isColliding = false;
+        //isColliding = false;
+        //isEnteringCollider = false;
+        //isEnteringTrigger = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        VerifyCollision(false, collision.gameObject);
+        // If the collision should not be detected
+        if (!VerifyCollision(false, collision.gameObject))
+        {
+            return;
+        }
 
         currentCollision = collision;
-        collidingObject = collision.gameObject;
+        collidingCollider = collision.gameObject;
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        VerifyCollision(false, collision.gameObject);
+        // If the collision should not be detected
+        if (!VerifyCollision(false, collision.gameObject))
+        {
+            return;
+        }
 
         isColliding = true;
-        collidingObject = collision.gameObject;
+        collidingCollider = collision.gameObject;
         collidingPoint = collision.contacts[0].point;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        VerifyCollision(false, collision.gameObject);
+        // If the collision should not be detected
+        if (!VerifyCollision(false, collision.gameObject))
+        {
+            return;
+        }
 
         currentCollision = null;
-        collidingObject = null;
+        collidingCollider = null;
         isColliding = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (ignoreTrigger)
+        // If the collision should not be detected
+        if (!VerifyCollision(false, other.gameObject))
         {
             return;
         }
 
-        VerifyCollision(false, other.gameObject);
+        // If ignoring trigger colliders
+        if (ignoreTrigger && other.isTrigger)
+        {
+            return;
+        }
 
-        collidingObject = other.gameObject;
+        // If the entering collider is not a trigger
+        if (!other.isTrigger)
+        {
+            enteringCollider = other.gameObject;
+        }
+        else
+        {
+            collidingTrigger = other.gameObject;
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (ignoreTrigger)
+        // If the collision should not be detected
+        if (!VerifyCollision(false, other.gameObject))
         {
             return;
         }
 
-        VerifyCollision(false, other.gameObject);
+        // If ignoring trigger colliders
+        if (ignoreTrigger && other.isTrigger)
+        {
+            return;
+        }
 
-        isColliding = true;
+        // If the entering collider is not a trigger
+        if (!other.isTrigger)
+        {
+            enteringCollider = other.gameObject;
+            collidingPoint = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            isEnteringCollider = true;
+        }
+        else
+        {
+            collidingTrigger = other.gameObject;
+            collidingPoint = other.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            isEnteringTrigger = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (ignoreTrigger)
+        // If the collision should not be detected
+        if (!VerifyCollision(false, other.gameObject))
         {
             return;
         }
 
-        VerifyCollision(false, other.gameObject);
+        // If ignoring trigger colliders
+        if (ignoreTrigger && other.isTrigger)
+        {
+            return;
+        }
 
-        collidingObject = null;
-        isColliding = false;
+        // If the entering collider is not a trigger
+        if (!other.isTrigger)
+        {
+            enteringCollider = null;
+            isEnteringCollider = false;
+        }
+        else
+        {
+            collidingTrigger = null;
+            isEnteringTrigger = false;
+        }
     }
 
     /// <summary>
@@ -97,18 +161,30 @@ public class DetectCollision : MonoBehaviour
     /// </summary>
     /// <param name="trigger"></param>
     /// <param name="other"></param>
-    public void VerifyCollision(bool trigger, GameObject other)
+    /// <returns></returns>
+    public bool VerifyCollision(bool trigger, GameObject other)
     {
+        // Don't detect ignored colliders/triggers
+        foreach (Transform t in ignoredGameObjects)
+        {
+            if (other == t || other.GetComponentsInChildren<Transform>().Contains(t))
+            {
+                return false;
+            }
+        }
+
         // Don't detect tutorial trigger box
         if (other.GetComponent<TriggerDetectStartEvent>())
         {
-            return;
+            return false;
         }
 
         // If this is the armTip and the collider is not an item
         if (trigger && GetComponent<ArmUseItem>() && !other.GetComponent<ItemInfo>())
         {
-            return;
+            return false;
         }
+
+        return true;
     }
 }

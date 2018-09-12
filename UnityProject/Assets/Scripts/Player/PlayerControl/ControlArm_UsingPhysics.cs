@@ -160,8 +160,8 @@ public class ControlArm_UsingPhysics : ControlArm
             }
             else if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem != null) // If the arm is holding item
             {
-                // If the player is not using a mechanical arm
-                if (!isUsingMechanicalArm)
+                // If the player is not using a mechanical arm or an item that cannot be moved
+                if (!armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().fixedPosition && !isUsingMechanicalArm)
                 {
                     if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().itemWeight <= armLiftingStrength) // Is the item is not heavy
                     {
@@ -384,8 +384,8 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         // If the arm tip is colliding with an item and the trigger is released after the last item drop (no matter is forced drop or not)
         if (armTip.GetComponent<ArmUseItem>().hasTriggerReleased &&
-            armTip.GetComponent<DetectCollision>().collidingObject != null &&
-            armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>())
+            armTip.GetComponent<DetectCollision>().collidingTrigger != null &&
+            armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>())
         {
             // Picking or dropping item
             // Usable item is click trigger to pick up, click shoulder to drop
@@ -397,7 +397,7 @@ public class ControlArm_UsingPhysics : ControlArm
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("LeftTrigger") >= triggerThreshold)
                 {
                     armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>().gameObject));
+                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
                 }
             }
 
@@ -407,7 +407,7 @@ public class ControlArm_UsingPhysics : ControlArm
                 if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("RightTrigger") >= triggerThreshold)
                 {
                     armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingObject.GetComponentInParent<ItemInfo>().gameObject));
+                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
                 }
             }
         }
