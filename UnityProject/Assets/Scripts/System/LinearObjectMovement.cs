@@ -41,6 +41,14 @@ public class LinearObjectMovement : MonoBehaviour
     }
 
     /// <summary>
+    /// Start the animation sequence
+    /// </summary>
+    public void StartAnimation()
+    {
+        StartCoroutine(Animate());
+    }
+
+    /// <summary>
     /// The coroutine that controls the entire animation sequence
     /// </summary>
     /// <returns></returns>
@@ -134,6 +142,14 @@ public class LinearObjectMovement : MonoBehaviour
         }
 
         animationFinished = true;
+
+        // If the animation is not loopable then just destroy this component
+        if (!loopable)
+        {
+            yield return new WaitForSeconds(animationSequence[animationSequence.Length - 1].waitTimeBeforeNext);
+
+            Destroy(this);
+        }
     }
 }
 

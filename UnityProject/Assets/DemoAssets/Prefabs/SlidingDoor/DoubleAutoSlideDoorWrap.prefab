@@ -77,7 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4169950317943964}
   m_Layer: 0
-  m_Name: DoubleSlideDoorWrap
+  m_Name: DoubleAutoSlideDoorWrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

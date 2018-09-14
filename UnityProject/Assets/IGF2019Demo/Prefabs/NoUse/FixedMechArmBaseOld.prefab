@@ -2042,6 +2042,8 @@ MonoBehaviour:
   armMovingSpeed: 400
   armHand: {fileID: 4336589751170084}
   arm: {fileID: 4356735593531544}
+  armCollisionDetectionTrigger: {fileID: 0}
+  armHandCollisionDetectionTrigger: {fileID: 0}
   currentAccessingArm: {fileID: 0}
 --- !u!114 &114478286458730156
 MonoBehaviour:

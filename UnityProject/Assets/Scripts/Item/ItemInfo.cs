@@ -31,6 +31,7 @@ public class ItemInfo : MonoBehaviour
             normalDrag = GetComponent<Rigidbody>().drag;
             normalAngularDrag = GetComponent<Rigidbody>().angularDrag;
             normalMass = GetComponent<Rigidbody>().mass;
+            itemWeight = GetComponent<Rigidbody>().mass;
         }
     }
 
