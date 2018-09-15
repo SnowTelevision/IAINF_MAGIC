@@ -437,7 +437,7 @@ public class ControlArm_UsingPhysics : ControlArm
     }
 
     /// <summary>
-    /// Detect if the player release the trigger to drop an unusable item
+    /// Detect if the player release the trigger to drop a heavy item
     /// </summary>
     public override void DetectIfDropHeavyItem()
     {
@@ -567,7 +567,11 @@ public class ControlArm_UsingPhysics : ControlArm
         pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
         pickingItem.GetComponent<ItemInfo>().holdingArmTip = armTip;
 
-        armTip.GetComponent<ArmUseItem>().SetUpItem(); // Invoke the setup item event
+        // If the ItemInfo component is enabled on the item to let it be setup when picked
+        if (pickingItem.GetComponent<ItemInfo>().enabled)
+        {
+            armTip.GetComponent<ArmUseItem>().SetUpItem(); // Invoke the setup item event
+        }
     }
 
     /// <summary>
@@ -590,8 +594,11 @@ public class ControlArm_UsingPhysics : ControlArm
         armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate = null;
         armTip.GetComponent<ArmUseItem>().resetItemDelegate = null;
 
-        // Enable the gravity on the rigidbody of the dropping item
-        droppingItem.GetComponent<Rigidbody>().useGravity = true;
+        // Enable the gravity on the rigidbody of the dropping item if it normally has gravity
+        if (droppingItem.GetComponent<ItemInfo>().isUsingGravity)
+        {
+            droppingItem.GetComponent<Rigidbody>().useGravity = true;
+        }
         // Rrestore the drag, angular drag, and mass of the dropping item
         //if (droppingItem.GetComponent<ItemInfo>().canUse)
         //{
