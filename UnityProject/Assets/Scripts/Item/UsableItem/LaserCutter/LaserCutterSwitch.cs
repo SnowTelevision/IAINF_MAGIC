@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -15,6 +16,7 @@ public class LaserCutterSwitch : MonoBehaviour
     public Transform laserHead; // The laser head that shoots laser
 
     public bool turnedOn; // If it is turned on
+    public DoorMeltByLaser hittingDoor; // The door the laser is currently hitting
 
     // Use this for initialization
     void Start()
@@ -63,7 +65,48 @@ public class LaserCutterSwitch : MonoBehaviour
             laserBeam.transform.LookAt(laserHit.point, Vector3.up);
             // Extend the laser to the hit position
             laserBeam.transform.localScale = Vector3.forward * laserHit.distance + Vector3.up + Vector3.left;
+
+            // If the laser is hitting a door
+            if (laserHit.collider.GetComponent<DoorMeltByLaser>())
+            {
+                if (hittingDoor != null)
+                {
+                    RemoveLaserToDoor();
+                }
+
+                hittingDoor = laserHit.collider.GetComponent<DoorMeltByLaser>();
+                AddLaserToDoor();
+            }
+            else
+            {
+                if (hittingDoor != null)
+                {
+                    RemoveLaserToDoor();
+                }
+            }
         }
+    }
+
+    /// <summary>
+    /// Aadd a laser to a meltable door
+    /// </summary>
+    public void AddLaserToDoor()
+    {
+        if (!hittingDoor.currentHittingLasers.Contains(laserBeam))
+        {
+            // Add this laser to the lasers that's currently hitting this door
+            hittingDoor.currentHittingLasers.Add(laserBeam);
+        }
+    }
+
+    /// <summary>
+    /// Remove a laser to a meltable door
+    /// </summary>
+    public void RemoveLaserToDoor()
+    {
+        // Remove this laser from the previously hitting door
+        hittingDoor.currentHittingLasers.Remove(laserBeam);
+        hittingDoor = null;
     }
 
     /// <summary>

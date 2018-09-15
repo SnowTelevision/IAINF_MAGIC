@@ -1558,8 +1558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7baa444e7fc294bb3bc474698e0f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumArmReach: 5
-  maximumArmLength: 7.8
+  maximumArmReach: 11
+  maximumArmLength: 16
   minimumArmLength: 1
   armMovingSpeed: 800
   armHand: {fileID: 4898597261419732}
@@ -2263,6 +2263,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
