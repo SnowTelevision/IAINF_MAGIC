@@ -18,6 +18,7 @@ public class ItemInfo : MonoBehaviour
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
     public float normalMass; // The item's normal mass
+    public bool isUsingGravity; // Does the item has gravity
     public bool isBeingHeld; // If this item is currently being held by an arm
     public Transform holdingArmTip; // The arm that is holding this item
     public Coroutine usingItem; // The coroutine that continuously triggers the using event
@@ -31,6 +32,8 @@ public class ItemInfo : MonoBehaviour
             normalDrag = GetComponent<Rigidbody>().drag;
             normalAngularDrag = GetComponent<Rigidbody>().angularDrag;
             normalMass = GetComponent<Rigidbody>().mass;
+            itemWeight = GetComponent<Rigidbody>().mass;
+            isUsingGravity = GetComponent<Rigidbody>().useGravity;
         }
     }
 

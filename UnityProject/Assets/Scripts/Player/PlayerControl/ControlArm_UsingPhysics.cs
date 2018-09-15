@@ -382,39 +382,62 @@ public class ControlArm_UsingPhysics : ControlArm
     /// </summary>
     public override void DetectIfPickingUpItem()
     {
-        // If the arm tip is colliding with an item and the trigger is released after the last item drop (no matter is forced drop or not)
-        if (armTip.GetComponent<ArmUseItem>().hasTriggerReleased &&
-            armTip.GetComponent<DetectCollision>().collidingTrigger != null &&
-            armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>())
+        // If the trigger is released after the last item drop (no matter is forced drop or not)
+        if (armTip.GetComponent<ArmUseItem>().hasTriggerReleased)
         {
-            // Picking or dropping item
-            // Usable item is click trigger to pick up, click shoulder to drop
-            // Other item is hold down trigger to pick up, release to drop
-
-            if (isLeftArm)
+            // If the arm tip is entering an item's trigger
+            if (armTip.GetComponent<DetectCollision>().collidingTrigger != null &&
+                armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>())
             {
-                // If the left armTip is not holding an item and the left trigger is pressed down
-                if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("LeftTrigger") >= triggerThreshold)
+                if (isLeftArm)
                 {
-                    armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
+                    // If the left armTip is not holding an item and the left trigger is pressed down
+                    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("LeftTrigger") >= triggerThreshold)
+                    {
+                        armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
+                        StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
+                    }
+                }
+
+                if (!isLeftArm)
+                {
+                    // If the right armTip is not holding an item and the right trigger is pressed down
+                    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("RightTrigger") >= triggerThreshold)
+                    {
+                        armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
+                        StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
+                    }
                 }
             }
-
-            if (!isLeftArm)
+            // If the arm tip is colliding with an item
+            else if (armTip.GetComponent<DetectCollision>().collidingCollider != null &&
+                     armTip.GetComponent<DetectCollision>().collidingCollider.GetComponentInParent<ItemInfo>())
             {
-                // If the right armTip is not holding an item and the right trigger is pressed down
-                if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("RightTrigger") >= triggerThreshold)
+                if (isLeftArm)
                 {
-                    armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
-                    StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingTrigger.GetComponentInParent<ItemInfo>().gameObject));
+                    // If the left armTip is not holding an item and the left trigger is pressed down
+                    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("LeftTrigger") >= triggerThreshold)
+                    {
+                        armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
+                        StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingCollider.GetComponentInParent<ItemInfo>().gameObject));
+                    }
+                }
+
+                if (!isLeftArm)
+                {
+                    // If the right armTip is not holding an item and the right trigger is pressed down
+                    if (armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null && Input.GetAxis("RightTrigger") >= triggerThreshold)
+                    {
+                        armTip.GetComponent<ArmUseItem>().hasTriggerReleased = false;
+                        StartCoroutine(PickUpItem(armTip.GetComponent<DetectCollision>().collidingCollider.GetComponentInParent<ItemInfo>().gameObject));
+                    }
                 }
             }
         }
     }
 
     /// <summary>
-    /// Detect if the player release the trigger to drop an unusable item
+    /// Detect if the player release the trigger to drop a heavy item
     /// </summary>
     public override void DetectIfDropHeavyItem()
     {
@@ -544,7 +567,11 @@ public class ControlArm_UsingPhysics : ControlArm
         pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
         pickingItem.GetComponent<ItemInfo>().holdingArmTip = armTip;
 
-        armTip.GetComponent<ArmUseItem>().SetUpItem(); // Invoke the setup item event
+        // If the ItemInfo component is enabled on the item to let it be setup when picked
+        if (pickingItem.GetComponent<ItemInfo>().enabled)
+        {
+            armTip.GetComponent<ArmUseItem>().SetUpItem(); // Invoke the setup item event
+        }
     }
 
     /// <summary>
@@ -567,8 +594,11 @@ public class ControlArm_UsingPhysics : ControlArm
         armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate = null;
         armTip.GetComponent<ArmUseItem>().resetItemDelegate = null;
 
-        // Enable the gravity on the rigidbody of the dropping item
-        droppingItem.GetComponent<Rigidbody>().useGravity = true;
+        // Enable the gravity on the rigidbody of the dropping item if it normally has gravity
+        if (droppingItem.GetComponent<ItemInfo>().isUsingGravity)
+        {
+            droppingItem.GetComponent<Rigidbody>().useGravity = true;
+        }
         // Rrestore the drag, angular drag, and mass of the dropping item
         //if (droppingItem.GetComponent<ItemInfo>().canUse)
         //{

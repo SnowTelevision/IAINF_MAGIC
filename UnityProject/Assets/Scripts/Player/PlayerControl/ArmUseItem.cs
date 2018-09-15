@@ -89,7 +89,8 @@ public class ArmUseItem : MonoBehaviour
     public void DetectIfUseItem()
     {
         // If the arm tip is holding an usable item
-        if (currentlyHoldingItem != null && currentlyHoldingItem.GetComponent<ItemInfo>().canUse)
+        if (currentlyHoldingItem != null &&
+            currentlyHoldingItem.GetComponent<ItemInfo>().canUse)
         {
             if (GetComponentInParent<ControlArm>().isLeftArm)
             {

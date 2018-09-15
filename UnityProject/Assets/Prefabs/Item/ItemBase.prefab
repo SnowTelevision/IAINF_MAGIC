@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 0
-  itemWeight: 1
+  itemWeight: 0
   setupEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -215,13 +215,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  resetEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   eventCoolDown: 0
   useLimit: 0
+  fixedPosition: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
   isBeingHeld: 0
-  holdingArm: {fileID: 0}
+  holdingArmTip: {fileID: 0}
   timeUsed: 0
 --- !u!135 &135361857347465414
 SphereCollider:
