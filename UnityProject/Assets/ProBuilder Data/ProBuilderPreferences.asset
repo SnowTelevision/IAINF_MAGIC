@@ -16,6 +16,7 @@ MonoBehaviour:
   - pbDisableAutoUV2Generation
   - pbForceConvex
   - pbMeshesAreAssets
+  - pbIconGUI
   m_Int_keys:
   - pbDefaultCollider
   - pbShadowCastingMode
@@ -32,7 +33,7 @@ MonoBehaviour:
   m_Color_keys: []
   m_Material_keys:
   - pbDefaultMaterial
-  m_Bool_values: 01000001
+  m_Bool_values: 0100000101
   m_Int_values: 02000000020000000000000000000000000000000000000000000000
   m_Float_values:
   - 0

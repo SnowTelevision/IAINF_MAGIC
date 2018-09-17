@@ -23,11 +23,11 @@ public class LinearObjectMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        animationFinished = false;
-        pause = false;
+        //animationFinished = false;
+        //pause = false;
         // Testing purpose
         //StartCoroutine(Animate());
-        isAnimationRunning = false;
+        //isAnimationRunning = false;
     }
 
     // Testing

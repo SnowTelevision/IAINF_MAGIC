@@ -313,7 +313,7 @@ Transform:
   m_LocalScale: {x: 8, y: 4, z: 14}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &71618283
 Rigidbody:
@@ -4736,7 +4736,7 @@ Transform:
   - {fileID: 408000595}
   - {fileID: 2115236617}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758497393
 GameObject:
@@ -6257,7 +6257,7 @@ Transform:
   m_LocalScale: {x: 8.002517, y: 1.3906075, z: 13.1769}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &991534733
 Rigidbody:
@@ -7355,7 +7355,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162024414
 GameObject:
@@ -8194,7 +8194,7 @@ Transform:
   m_LocalScale: {x: 8.002517, y: 1.3906075, z: 13.1769}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1332584509
 GameObject:
@@ -8325,7 +8325,7 @@ Transform:
   m_LocalScale: {x: 8.002517, y: 1.3906075, z: 13.1769}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1374872454
 GameObject:
@@ -11429,7 +11429,7 @@ Transform:
   m_LocalScale: {x: 8.002517, y: 1.3906075, z: 13.1769}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1868768893
 GameObject:
@@ -11582,7 +11582,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4333544805060196, guid: 67309157c3923c44c89773e279e43ae2, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1839780680453020, guid: 67309157c3923c44c89773e279e43ae2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67309157c3923c44c89773e279e43ae2, type: 2}
