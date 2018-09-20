@@ -1221,7 +1221,7 @@ Transform:
   m_GameObject: {fileID: 1659613286987954}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.5, z: 22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.65, y: 1.65, z: 1.65}
   m_Children:
   - {fileID: 4605718036553890}
   - {fileID: 4978222428162542}
@@ -1833,6 +1833,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 1
   holdingArmTip: {fileID: 0}
   timeUsed: 0

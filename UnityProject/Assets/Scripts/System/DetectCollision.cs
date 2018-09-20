@@ -35,6 +35,18 @@ public class DetectCollision : MonoBehaviour
         //isColliding = false;
         //isEnteringCollider = false;
         //isEnteringTrigger = false;
+        if (collidingCollider == null)
+        {
+            isColliding = false;
+        }
+        if (enteringCollider == null)
+        {
+            isEnteringCollider = false;
+        }
+        if (collidingTrigger == null)
+        {
+            isEnteringTrigger = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
