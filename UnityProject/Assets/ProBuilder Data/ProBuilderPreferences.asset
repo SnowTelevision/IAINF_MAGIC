@@ -17,6 +17,7 @@ MonoBehaviour:
   - pbForceConvex
   - pbMeshesAreAssets
   - pbIconGUI
+  - pb_TorusUsesInnerOuterMethod
   m_Int_keys:
   - pbDefaultCollider
   - pbShadowCastingMode
@@ -25,6 +26,7 @@ MonoBehaviour:
   - pbDefaultSelectionMode
   - pb_GIWorkflowMode
   - pbHandleAlignment
+  - pbRectSelectMode
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
@@ -33,8 +35,8 @@ MonoBehaviour:
   m_Color_keys: []
   m_Material_keys:
   - pbDefaultMaterial
-  m_Bool_values: 0100000101
-  m_Int_values: 02000000020000000000000000000000000000000000000000000000
+  m_Bool_values: 010000010100
+  m_Int_values: 0200000002000000000000000000000001000000000000000000000001000000
   m_Float_values:
   - 0
   - 0

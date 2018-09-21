@@ -588,11 +588,6 @@ public class ControlArm_UsingPhysics : ControlArm
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().useItem, startUsingAction);
         //UnityAction stopUsingAction = System.Delegate.CreateDelegate(typeof(UnityAction), droppingItem.GetComponent<ItemInfo>(), "StopUsing") as UnityAction;
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().stopUsingItem, stopUsingAction);
-        armTip.GetComponent<ArmUseItem>().resetItemDelegate.Invoke(); // Reset the item when drop it
-        armTip.GetComponent<ArmUseItem>().setupItemDelegate = null;
-        armTip.GetComponent<ArmUseItem>().useItemDelegate = null;
-        armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate = null;
-        armTip.GetComponent<ArmUseItem>().resetItemDelegate = null;
 
         // Enable the gravity on the rigidbody of the dropping item if it normally has gravity
         if (droppingItem.GetComponent<ItemInfo>().isUsingGravity)
@@ -612,6 +607,13 @@ public class ControlArm_UsingPhysics : ControlArm
         //}
         //else
         //{
+
+        armTip.GetComponent<ArmUseItem>().resetItemDelegate.Invoke(); // Reset the item when drop it
+        armTip.GetComponent<ArmUseItem>().setupItemDelegate = null;
+        armTip.GetComponent<ArmUseItem>().useItemDelegate = null;
+        armTip.GetComponent<ArmUseItem>().stopUsingItemDelegate = null;
+        armTip.GetComponent<ArmUseItem>().resetItemDelegate = null;
+
         // Destroy the fixed joint in the item that's currently holding by the armTip
         if (armTip.GetComponent<FixedJoint>())
         {
