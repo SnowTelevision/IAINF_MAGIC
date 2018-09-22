@@ -36,6 +36,11 @@ public class ArmUseItem : MonoBehaviour
     void Update()
     {
         DetectIfUseItem();
+
+        if (currentlyHoldingItem == null)
+        {
+            ClearUnremovedJoints();
+        }
     }
 
     private void LateUpdate()
@@ -162,5 +167,16 @@ public class ArmUseItem : MonoBehaviour
     private void OnJointBreak(float breakForce)
     {
         currentlyHoldingItem.GetComponent<ItemInfo>().ForceDropItem();
+    }
+
+    /// <summary>
+    /// If the armTip is not holding anything, check if there is any un-destroyed joints
+    /// </summary>
+    public void ClearUnremovedJoints()
+    {
+        foreach (Joint j in GetComponents<Joint>())
+        {
+            Destroy(j);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 /// <summary>
 /// Controls the compressed air cylinder (short as CAC) that are used in testing
@@ -20,7 +21,10 @@ public class TestedCompressedAirCylinderBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        GetComponent<BehaviorTree>().SetVariableValue("RandomSucceedMin", minSucceedForce);
+        GetComponent<BehaviorTree>().SetVariableValue("RandomSucceedMax", maxSucceedForce);
+        GetComponent<BehaviorTree>().SetVariableValue("RandomFailMin", minFailForce);
+        GetComponent<BehaviorTree>().SetVariableValue("RandomFailMax", maxFailForce);
     }
 
     // Update is called once per frame

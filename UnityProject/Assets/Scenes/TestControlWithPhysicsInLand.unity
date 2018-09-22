@@ -3476,9 +3476,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &153806664
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7668,9 +7674,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &413237134
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8192,9 +8204,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &422445761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13105,6 +13123,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -16913,9 +16932,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!23 &868016712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20656,6 +20681,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -21778,9 +21804,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!23 &1112935270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22168,6 +22200,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -23214,6 +23247,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -24169,9 +24203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!23 &1250871731
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27390,9 +27430,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!23 &1424673770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27590,6 +27636,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -28448,7 +28495,7 @@ MonoBehaviour:
   minDistance: 0
   followDistance: 0
   chaseSpeed: 20
-  target: {fileID: 1710820582}
+  target: {fileID: 2077007992}
   offset: {x: 0, y: 0, z: 0}
   sideScrollerCamRadius: 0
   test: 0
@@ -33109,6 +33156,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -39302,9 +39350,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &2023853826
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39480,9 +39534,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &2026643632
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -42610,9 +42670,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &2139429540
 Rigidbody:
   m_ObjectHideFlags: 0

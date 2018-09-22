@@ -13,20 +13,26 @@ public class CompressedAirCylinderTestingManager : MonoBehaviour
     public float testInterval; // How much time is between each test
     public float successRate; // How much percent of the CAC should success
 
+    public float lastCylinderSpawnTime; // When is the last cylinder spawned
+
     // Use this for initialization
     void Start()
     {
-
+        CreateNewCompressedAirCylinder();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Time.time - lastCylinderSpawnTime > testInterval)
+        {
+            CreateNewCompressedAirCylinder();
+        }
     }
 
     public void CreateNewCompressedAirCylinder()
     {
+        lastCylinderSpawnTime = Time.time;
         // Create new compressed air cylinder
         GameObject newCompressedAirCylinder = Instantiate(testingCompressedAirCylinder);
         // Set the success rate
