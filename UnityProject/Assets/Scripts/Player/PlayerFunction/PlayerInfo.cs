@@ -27,6 +27,8 @@ public class PlayerInfo : MonoBehaviour
     public Color canCreateEchoColor; // The color of the indicator when the player can create an echo
     public Color cannotCreateEchoColor; // The color of the indicator when the player cannot create an echo
     public float echoIndicatorEmissionIntensity; // How high is the emission intensity for the echo indicator
+    public ControlArm_UsingPhysics leftArmController; // The controller of the left arm
+    public ControlArm_UsingPhysics rightArmController; // The controller of the right arm
 
     public bool inWater; // Is the body in the water
     public static Transform sGameCamera; // The static reference to gameCamera

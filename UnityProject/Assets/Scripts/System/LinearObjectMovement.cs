@@ -11,6 +11,7 @@ public class LinearObjectMovement : MonoBehaviour
     public MovementInfo[] animationSequence; // The array that stores the information of each segment of the entire animation sequence
     public GameObject objectToBeAnimated; // The object that is going to be animated by this script. If this is null, then it will default to the GameObject the script is attached to
     public bool loopable; // Is this animation loopable
+    public bool destroyGameObject; // Should the animated GameObject be destroyed after the animation finish
 
     public bool animationFinished; // Is the animation finished
     public bool pause; // Is the animation paused
@@ -148,6 +149,11 @@ public class LinearObjectMovement : MonoBehaviour
         {
             yield return new WaitForSeconds(animationSequence[animationSequence.Length - 1].waitTimeBeforeNext);
 
+            // If the animated object should be destroy
+            if (destroyGameObject)
+            {
+                Destroy(objectToBeAnimated);
+            }
             Destroy(this);
         }
     }

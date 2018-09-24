@@ -638,7 +638,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1600553575569218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 210, y: -4.5, z: -2.5}
+  m_LocalPosition: {x: 210, y: -4.5, z: 24.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838451239381480}
@@ -23117,7 +23117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSequence:
   - startLocalPosition: {x: 0, y: 0, z: 0}
-    targetLocalPosition: {x: 210, y: 0, z: -2.5}
+    targetLocalPosition: {x: 210, y: 0, z: 24.5}
     targetShouldBeZero: 1
     moveSpeed: 2
     waitTimeBeforeNext: 0
