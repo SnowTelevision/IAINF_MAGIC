@@ -1,0 +1,252 @@
+fileFormatVersion: 2
+guid: 925ec5c13b06ad54283e4d8901166e45
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: cultivation_tanks_016
+    100002: cultivation_tanks_style05
+    100004: decession_table3
+    100006: info_pc_01_06
+    100008: info_pc_06
+    100010: info_pc_07
+    100012: info_table_style03
+    100014: info_table_style03 1
+    100016: info_table_style03_element1
+    100018: info_table_style03_element2
+    100020: L1_RM03_ground
+    100022: L1_RM2_walls
+    100024: L1_RM2_walls 1
+    100026: L1_RM2_walls_light
+    100028: //RootNode
+    100030: lab_door_room3
+    100032: lab_door_room3_left_door
+    100034: lab_door_room3_right_door
+    100036: lab_door_room3_wall
+    100038: lab_equipments_01_analysis
+    100040: lab_equipments_01_analysis 1
+    100042: lab_equipments_01_analysis_bottle1
+    100044: lab_equipments_01_analysis_bottle2
+    100046: lab_equipments_02_analysis
+    100048: lab_equipments_02_analysis1
+    100050: lab_equipments_02_analysis2
+    100052: lab_equipments_02_analysis3
+    100054: lab_equipments_02_analysis3_screen
+    100056: lab_equipments_02_analysis4
+    100058: lab_equipments_02_analysis4_screen
+    100060: laser_cutter1
+    100062: laser_cutter1_1
+    100064: laser_cutter1_2
+    100066: laser_cutter1_3
+    100068: laser_cutter1_4
+    100070: laser_cutter1_5
+    100072: laser_cutter1_6
+    400000: cultivation_tanks_016
+    400002: cultivation_tanks_style05
+    400004: decession_table3
+    400006: info_pc_01_06
+    400008: info_pc_06
+    400010: info_pc_07
+    400012: info_table_style03
+    400014: info_table_style03 1
+    400016: info_table_style03_element1
+    400018: info_table_style03_element2
+    400020: L1_RM03_ground
+    400022: L1_RM2_walls
+    400024: L1_RM2_walls 1
+    400026: L1_RM2_walls_light
+    400028: //RootNode
+    400030: lab_door_room3
+    400032: lab_door_room3_left_door
+    400034: lab_door_room3_right_door
+    400036: lab_door_room3_wall
+    400038: lab_equipments_01_analysis
+    400040: lab_equipments_01_analysis 1
+    400042: lab_equipments_01_analysis_bottle1
+    400044: lab_equipments_01_analysis_bottle2
+    400046: lab_equipments_02_analysis
+    400048: lab_equipments_02_analysis1
+    400050: lab_equipments_02_analysis2
+    400052: lab_equipments_02_analysis3
+    400054: lab_equipments_02_analysis3_screen
+    400056: lab_equipments_02_analysis4
+    400058: lab_equipments_02_analysis4_screen
+    400060: laser_cutter1
+    400062: laser_cutter1_1
+    400064: laser_cutter1_2
+    400066: laser_cutter1_3
+    400068: laser_cutter1_4
+    400070: laser_cutter1_5
+    400072: laser_cutter1_6
+    2100000: phongE1
+    2100002: lambert1
+    2300000: cultivation_tanks_016
+    2300002: cultivation_tanks_style05
+    2300004: decession_table3
+    2300006: info_pc_01_06
+    2300008: info_pc_06
+    2300010: info_pc_07
+    2300012: info_table_style03 1
+    2300014: info_table_style03_element1
+    2300016: info_table_style03_element2
+    2300018: L1_RM03_ground
+    2300020: L1_RM2_walls 1
+    2300022: L1_RM2_walls_light
+    2300024: lab_door_room3_left_door
+    2300026: lab_door_room3_right_door
+    2300028: lab_door_room3_wall
+    2300030: lab_equipments_01_analysis 1
+    2300032: lab_equipments_01_analysis_bottle1
+    2300034: lab_equipments_01_analysis_bottle2
+    2300036: lab_equipments_02_analysis1
+    2300038: lab_equipments_02_analysis2
+    2300040: lab_equipments_02_analysis3
+    2300042: lab_equipments_02_analysis3_screen
+    2300044: lab_equipments_02_analysis4
+    2300046: lab_equipments_02_analysis4_screen
+    2300048: laser_cutter1_1
+    2300050: laser_cutter1_2
+    2300052: laser_cutter1_3
+    2300054: laser_cutter1_4
+    2300056: laser_cutter1_5
+    2300058: laser_cutter1_6
+    3300000: cultivation_tanks_016
+    3300002: cultivation_tanks_style05
+    3300004: decession_table3
+    3300006: info_pc_01_06
+    3300008: info_pc_06
+    3300010: info_pc_07
+    3300012: info_table_style03 1
+    3300014: info_table_style03_element1
+    3300016: info_table_style03_element2
+    3300018: L1_RM03_ground
+    3300020: L1_RM2_walls 1
+    3300022: L1_RM2_walls_light
+    3300024: lab_door_room3_left_door
+    3300026: lab_door_room3_right_door
+    3300028: lab_door_room3_wall
+    3300030: lab_equipments_01_analysis 1
+    3300032: lab_equipments_01_analysis_bottle1
+    3300034: lab_equipments_01_analysis_bottle2
+    3300036: lab_equipments_02_analysis1
+    3300038: lab_equipments_02_analysis2
+    3300040: lab_equipments_02_analysis3
+    3300042: lab_equipments_02_analysis3_screen
+    3300044: lab_equipments_02_analysis4
+    3300046: lab_equipments_02_analysis4_screen
+    3300048: laser_cutter1_1
+    3300050: laser_cutter1_2
+    3300052: laser_cutter1_3
+    3300054: laser_cutter1_4
+    3300056: laser_cutter1_5
+    3300058: laser_cutter1_6
+    4300000: lab_door_room3_left_door
+    4300002: lab_door_room3_right_door
+    4300004: lab_door_room3_wall
+    4300006: laser_cutter1_2
+    4300008: laser_cutter1_3
+    4300010: laser_cutter1_4
+    4300012: laser_cutter1_5
+    4300014: laser_cutter1_1
+    4300016: laser_cutter1_6
+    4300018: lab_equipments_02_analysis4_screen
+    4300020: lab_equipments_02_analysis3
+    4300022: lab_equipments_02_analysis3_screen
+    4300024: lab_equipments_02_analysis2
+    4300026: lab_equipments_02_analysis4
+    4300028: lab_equipments_02_analysis1
+    4300030: lab_equipments_01_analysis_bottle1
+    4300032: lab_equipments_01_analysis_bottle2
+    4300034: lab_equipments_01_analysis
+    4300036: cultivation_tanks_style05
+    4300038: L1_RM03_ground
+    4300040: L1_RM2_walls_light
+    4300042: L1_RM2_walls
+    4300044: decession_table3
+    4300046: info_table_style03
+    4300048: info_table_style03_element2
+    4300050: info_table_style03_element1
+    4300052: info_pc_07
+    4300054: info_pc_01_06
+    4300056: info_pc_06
+    4300058: cultivation_tanks_016
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

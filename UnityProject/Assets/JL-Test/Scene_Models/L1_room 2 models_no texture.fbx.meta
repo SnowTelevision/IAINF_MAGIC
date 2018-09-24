@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: 5263c2c0d410952469104f2219fdbf6a
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: chair_02
+    100002: chair_03
+    100004: data_base_02
+    100006: info_boards
+    100008: info_display_02
+    100010: info_display_04
+    100012: info_display_07
+    100014: info_pc_01_02
+    100016: info_pc_01_03
+    100018: info_pc_01_04
+    100020: info_pc_01_05
+    100022: info_pc_02
+    100024: info_pc_style02
+    100026: info_table_02
+    100028: info_table_02 1
+    100030: info_table_04
+    100032: L1_RM02_terminal
+    100034: L1_RM2_database_door
+    100036: L1_RM2_database_ground1
+    100038: L1_RM2_database_ground2
+    100040: L1_RM2_database_wall_and_glass
+    100042: L1_RM2_left_wall
+    100044: L1_RM2_left_wall 1
+    100046: L1_RM2_left_wall_lighht
+    100048: //RootNode
+    100050: lab_door_room2
+    100052: lab_door_room2 1
+    100054: lab_door_room2_left
+    100056: lab_door_room2_right
+    100058: level_1_room2_ground_light3
+    100060: level_rm2_ground
+    100062: level_rm2_right_wall
+    100064: level_rm2_right_wall 1
+    100066: level_rm2_right_wall_light
+    400000: chair_02
+    400002: chair_03
+    400004: data_base_02
+    400006: info_boards
+    400008: info_display_02
+    400010: info_display_04
+    400012: info_display_07
+    400014: info_pc_01_02
+    400016: info_pc_01_03
+    400018: info_pc_01_04
+    400020: info_pc_01_05
+    400022: info_pc_02
+    400024: info_pc_style02
+    400026: info_table_02
+    400028: info_table_02 1
+    400030: info_table_04
+    400032: L1_RM02_terminal
+    400034: L1_RM2_database_door
+    400036: L1_RM2_database_ground1
+    400038: L1_RM2_database_ground2
+    400040: L1_RM2_database_wall_and_glass
+    400042: L1_RM2_left_wall
+    400044: L1_RM2_left_wall 1
+    400046: L1_RM2_left_wall_lighht
+    400048: //RootNode
+    400050: lab_door_room2
+    400052: lab_door_room2 1
+    400054: lab_door_room2_left
+    400056: lab_door_room2_right
+    400058: level_1_room2_ground_light3
+    400060: level_rm2_ground
+    400062: level_rm2_right_wall
+    400064: level_rm2_right_wall 1
+    400066: level_rm2_right_wall_light
+    2100000: lambert1
+    2100002: phongE1
+    2100004: blinn1
+    2300000: chair_02
+    2300002: chair_03
+    2300004: data_base_02
+    2300006: info_display_02
+    2300008: info_display_04
+    2300010: info_display_07
+    2300012: info_pc_01_02
+    2300014: info_pc_01_03
+    2300016: info_pc_01_04
+    2300018: info_pc_01_05
+    2300020: info_pc_02
+    2300022: info_pc_style02
+    2300024: info_table_02 1
+    2300026: info_table_04
+    2300028: L1_RM02_terminal
+    2300030: L1_RM2_database_door
+    2300032: L1_RM2_database_ground1
+    2300034: L1_RM2_database_ground2
+    2300036: L1_RM2_database_wall_and_glass
+    2300038: L1_RM2_left_wall 1
+    2300040: L1_RM2_left_wall_lighht
+    2300042: lab_door_room2 1
+    2300044: lab_door_room2_left
+    2300046: lab_door_room2_right
+    2300048: level_1_room2_ground_light3
+    2300050: level_rm2_ground
+    2300052: level_rm2_right_wall 1
+    2300054: level_rm2_right_wall_light
+    3300000: chair_02
+    3300002: chair_03
+    3300004: data_base_02
+    3300006: info_display_02
+    3300008: info_display_04
+    3300010: info_display_07
+    3300012: info_pc_01_02
+    3300014: info_pc_01_03
+    3300016: info_pc_01_04
+    3300018: info_pc_01_05
+    3300020: info_pc_02
+    3300022: info_pc_style02
+    3300024: info_table_02 1
+    3300026: info_table_04
+    3300028: L1_RM02_terminal
+    3300030: L1_RM2_database_door
+    3300032: L1_RM2_database_ground1
+    3300034: L1_RM2_database_ground2
+    3300036: L1_RM2_database_wall_and_glass
+    3300038: L1_RM2_left_wall 1
+    3300040: L1_RM2_left_wall_lighht
+    3300042: lab_door_room2 1
+    3300044: lab_door_room2_left
+    3300046: lab_door_room2_right
+    3300048: level_1_room2_ground_light3
+    3300050: level_rm2_ground
+    3300052: level_rm2_right_wall 1
+    3300054: level_rm2_right_wall_light
+    4300000: level_rm2_ground
+    4300002: data_base_02
+    4300004: info_table_04
+    4300006: info_table_02
+    4300008: chair_02
+    4300010: chair_03
+    4300012: info_pc_01_03
+    4300014: info_pc_01_02
+    4300016: info_pc_02
+    4300018: info_pc_01_04
+    4300020: info_pc_01_05
+    4300022: info_pc_style02
+    4300024: level_1_room2_ground_light3
+    4300026: L1_RM2_left_wall
+    4300028: L1_RM2_left_wall_lighht
+    4300030: level_rm2_right_wall
+    4300032: level_rm2_right_wall_light
+    4300034: L1_RM02_terminal
+    4300036: lab_door_room2_left
+    4300038: lab_door_room2_right
+    4300040: lab_door_room2
+    4300042: info_display_07
+    4300044: info_display_02
+    4300046: info_display_04
+    4300048: L1_RM2_database_door
+    4300050: L1_RM2_database_ground2
+    4300052: L1_RM2_database_ground1
+    4300054: L1_RM2_database_wall_and_glass
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

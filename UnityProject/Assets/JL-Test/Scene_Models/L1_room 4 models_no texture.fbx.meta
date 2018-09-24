@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: f7ee9cbfdad66984cad556ba510816ea
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: energy_clolumn
+    100002: energy_clolumn_frame
+    100004: energy_column_base
+    100006: energy_column_light
+    100008: energy_lines
+    100010: energy_machine
+    100012: energy_machine_base
+    100014: energy_machine_base_light
+    100016: energy_machine_dot
+    100018: energy_machine_middle
+    100020: energy_machine_pool
+    100022: energy_machine_pool 1
+    100024: energy_machine_pool_light
+    100026: energy_machine_top
+    100028: energy_machine_top_light
+    100030: L1_RM04_ground1
+    100032: L1_RM04_ground2
+    100034: //RootNode
+    100036: lab_door_room4
+    100038: lab_door_room4_left_door
+    100040: lab_door_room4_left_door1
+    100042: lab_door_room4_left_door_light
+    100044: lab_door_room4_right_door
+    100046: lab_door_room4_right_door1
+    100048: lab_door_room4_right_door_light
+    100050: lab_door_room4_walls
+    100052: level_rm4_wall_1
+    100054: level_rm4_wall_2
+    100056: level_rm4_wall_column
+    100058: level_rm4_wall_column 1
+    100060: level_rm4_wall_column_light
+    400000: energy_clolumn
+    400002: energy_clolumn_frame
+    400004: energy_column_base
+    400006: energy_column_light
+    400008: energy_lines
+    400010: energy_machine
+    400012: energy_machine_base
+    400014: energy_machine_base_light
+    400016: energy_machine_dot
+    400018: energy_machine_middle
+    400020: energy_machine_pool
+    400022: energy_machine_pool 1
+    400024: energy_machine_pool_light
+    400026: energy_machine_top
+    400028: energy_machine_top_light
+    400030: L1_RM04_ground1
+    400032: L1_RM04_ground2
+    400034: //RootNode
+    400036: lab_door_room4
+    400038: lab_door_room4_left_door
+    400040: lab_door_room4_left_door1
+    400042: lab_door_room4_left_door_light
+    400044: lab_door_room4_right_door
+    400046: lab_door_room4_right_door1
+    400048: lab_door_room4_right_door_light
+    400050: lab_door_room4_walls
+    400052: level_rm4_wall_1
+    400054: level_rm4_wall_2
+    400056: level_rm4_wall_column
+    400058: level_rm4_wall_column 1
+    400060: level_rm4_wall_column_light
+    2100000: lambert1
+    2100002: phongE1
+    2300000: energy_clolumn_frame
+    2300002: energy_column_base
+    2300004: energy_column_light
+    2300006: energy_lines
+    2300008: energy_machine_base
+    2300010: energy_machine_base_light
+    2300012: energy_machine_dot
+    2300014: energy_machine_middle
+    2300016: energy_machine_pool 1
+    2300018: energy_machine_pool_light
+    2300020: energy_machine_top
+    2300022: energy_machine_top_light
+    2300024: L1_RM04_ground1
+    2300026: L1_RM04_ground2
+    2300028: lab_door_room4_left_door1
+    2300030: lab_door_room4_left_door_light
+    2300032: lab_door_room4_right_door1
+    2300034: lab_door_room4_right_door_light
+    2300036: lab_door_room4_walls
+    2300038: level_rm4_wall_1
+    2300040: level_rm4_wall_2
+    2300042: level_rm4_wall_column 1
+    2300044: level_rm4_wall_column_light
+    3300000: energy_clolumn_frame
+    3300002: energy_column_base
+    3300004: energy_column_light
+    3300006: energy_lines
+    3300008: energy_machine_base
+    3300010: energy_machine_base_light
+    3300012: energy_machine_dot
+    3300014: energy_machine_middle
+    3300016: energy_machine_pool 1
+    3300018: energy_machine_pool_light
+    3300020: energy_machine_top
+    3300022: energy_machine_top_light
+    3300024: L1_RM04_ground1
+    3300026: L1_RM04_ground2
+    3300028: lab_door_room4_left_door1
+    3300030: lab_door_room4_left_door_light
+    3300032: lab_door_room4_right_door1
+    3300034: lab_door_room4_right_door_light
+    3300036: lab_door_room4_walls
+    3300038: level_rm4_wall_1
+    3300040: level_rm4_wall_2
+    3300042: level_rm4_wall_column 1
+    3300044: level_rm4_wall_column_light
+    4300000: level_rm4_wall_2
+    4300002: level_rm4_wall_1
+    4300004: L1_RM04_ground2
+    4300006: lab_door_room4_right_door1
+    4300008: lab_door_room4_right_door_light
+    4300010: lab_door_room4_walls
+    4300012: lab_door_room4_left_door1
+    4300014: lab_door_room4_left_door_light
+    4300016: L1_RM04_ground1
+    4300018: level_rm4_wall_column
+    4300020: level_rm4_wall_column_light
+    4300022: energy_machine_dot
+    4300024: energy_machine_middle
+    4300026: energy_machine_pool
+    4300028: energy_machine_pool_light
+    4300030: energy_machine_base
+    4300032: energy_machine_base_light
+    4300034: energy_machine_top_light
+    4300036: energy_machine_top
+    4300038: energy_column_light
+    4300040: energy_clolumn_frame
+    4300042: energy_column_base
+    4300044: energy_lines
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
