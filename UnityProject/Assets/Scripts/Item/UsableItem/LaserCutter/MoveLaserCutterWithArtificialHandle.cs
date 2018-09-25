@@ -10,6 +10,16 @@ public class MoveLaserCutterWithArtificialHandle : MonoBehaviour
     public Transform artificialHandle; // The artificial handle which will be grabbed by the player
     public Transform laserCutterBase; // The base of the laser cutter
     public Transform laserCutterHead; // The laser head that shoots laser
+    public Transform artificialHandleModel; // The model of the laser handle
+    public float maxLaserArmTilt; // How much angle degree the laser arm can raise up
+    public float handleDistanceDeadzone; // How much deadzone of the handle's min and max distance has 
+                                         //(So that the player doesn't need to pull the handle all the way out to make the laser arm flat)
+    public float handleMinDistance; // How close the handle can be to the base
+    public float handleMaxDistance; // How far the handle can be to the base
+
+    public float handleCurrentDistance; // How far is the handle currently away from the base
+    public Transform laserArm; // The laser arm that the laser gun is mounted on
+    public Transform laserGun; // The laser gun that shoots the laser
 
     // Use this for initialization
     void Start()
@@ -20,7 +30,57 @@ public class MoveLaserCutterWithArtificialHandle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Make the laser base rotate with the handle
-        laserCutterBase.LookAt(artificialHandle);
+        // Only update the laser arm's transform when it is turned off
+        if (artificialHandle.GetComponent<ItemInfo>().enabled)
+        {
+            UpdateBaseRotation();
+            UpdateHandleRotation();
+        }
+
+        // Get the handle's current distance from the base
+        handleCurrentDistance = Vector3.Distance(transform.position, artificialHandle.position);
+
+        // Only update the laser arm's transform when it is turned off
+        if (artificialHandle.GetComponent<ItemInfo>().enabled)
+        {
+            UpdateArmTilt();
+        }
+    }
+
+    /// <summary>
+    /// Make the laser base rotate with the handle
+    /// </summary>
+    public void UpdateBaseRotation()
+    {
+        laserCutterBase.LookAt(artificialHandle, Vector3.up);
+        laserCutterBase.localEulerAngles =
+            new Vector3(0, laserCutterBase.localEulerAngles.y, 0);
+    }
+
+    /// <summary>
+    /// Make the handle rotate with the base
+    /// </summary>
+    public void UpdateHandleRotation()
+    {
+        artificialHandleModel.LookAt(laserCutterBase, Vector3.up);
+        artificialHandleModel.localEulerAngles =
+            new Vector3(0, artificialHandleModel.localEulerAngles.y, 0);
+    }
+
+    /// <summary>
+    /// Make pushing and pulling handle control the laser arm's tilt
+    /// </summary>
+    public void UpdateArmTilt()
+    {
+        // Clamp the handle's distance within the deadzone
+        float clampedHandleDistance = Mathf.Clamp(handleCurrentDistance, handleMinDistance + handleDistanceDeadzone, handleMaxDistance - handleDistanceDeadzone);
+        // Normalize the handle's current distance
+        float normalizedHandleDistance = (clampedHandleDistance - (handleMinDistance + handleDistanceDeadzone)) /
+                                         (handleMaxDistance - handleDistanceDeadzone - (handleMinDistance + handleDistanceDeadzone));
+        // Get the tilt angle for the laser arm
+        float tiltAngle = maxLaserArmTilt * (1 - normalizedHandleDistance);
+        // Rotate the laser arm and the laser gun
+        laserArm.localEulerAngles = Vector3.right * tiltAngle;
+        laserGun.localEulerAngles = -Vector3.right * tiltAngle * 2;
     }
 }

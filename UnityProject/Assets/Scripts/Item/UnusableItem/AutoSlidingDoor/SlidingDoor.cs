@@ -23,11 +23,11 @@ public class SlidingDoor : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // Rotate the door if the door is open to the right
-        if (!openLeft)
-        {
-            transform.eulerAngles = transform.eulerAngles + new Vector3(0, 180, 0);
-        }
+        //// Rotate the door if the door is open to the right
+        //if (!openLeft)
+        //{
+        //    transform.eulerAngles = transform.eulerAngles + new Vector3(0, 180, 0);
+        //}
     }
 
     // Update is called once per frame

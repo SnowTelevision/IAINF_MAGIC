@@ -14,9 +14,13 @@ public class LaserCutterSwitch : MonoBehaviour
     public GameObject laserBeam; // The laser beam
     public LayerMask laserCollisionLayer; // What layers can the laser collide with
     public Transform laserHead; // The laser head that shoots laser
+    public float handleRetractDistance; // Where the handle should retract to when the laser is on
+    public Transform handleForwardRef; // The transform to get the forward direction of the handle
 
     public bool turnedOn; // If it is turned on
     public DoorMeltByLaser hittingDoor; // The door the laser is currently hitting
+    public float artificialHandleOriginalDistance; // How far the handle was away from the base when the player turn on the laser
+    public Vector3 artificialHandleOriginalDirection; // What was the handle's angle on the base when the player turn on the laser
 
     // Use this for initialization
     void Start()
@@ -125,9 +129,25 @@ public class LaserCutterSwitch : MonoBehaviour
     {
         // Prevent the player from switch again during a switch animation
         canSwitch = false;
+        // Get the handle's current distance and direction from the base
+        artificialHandleOriginalDistance = GetComponentInParent<MoveLaserCutterWithArtificialHandle>().handleCurrentDistance;
+        artificialHandleOriginalDirection =
+            Vector3.Normalize(GetComponentInParent<MoveLaserCutterWithArtificialHandle>().transform.position - artificialLaserCutterHandle.transform.position);
+        artificialHandleOriginalDirection.y = 0;
+        // Turn off the handle collider
+        artificialLaserCutterHandle.GetComponent<SphereCollider>().enabled = false;
         // Prevent the player from moving the laser cutter when it is turned on.
         artificialLaserCutterHandle.enabled = false;
-        yield return new WaitForSeconds(animationTime);
+
+        // Retract the handle
+        for (float t = 0; t < 1; t += Time.deltaTime / animationTime)
+        {
+            artificialLaserCutterHandle.transform.position +=
+                artificialHandleOriginalDirection * (artificialHandleOriginalDistance - handleRetractDistance) * Time.deltaTime / animationTime;
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(animationTime);
 
         turnedOn = true;
 
@@ -154,14 +174,24 @@ public class LaserCutterSwitch : MonoBehaviour
     {
         // Prevent the player from switch again during a switch animation
         canSwitch = false;
-        yield return new WaitForSeconds(animationTime);
-
         // Deactive laser beam
         laserBeam.SetActive(false);
         yield return new WaitForEndOfFrame();
         turnedOn = false;
+
+        // Extend the handle
+        for (float t = 0; t < 1; t += Time.deltaTime / animationTime)
+        {
+            artificialLaserCutterHandle.transform.position -=
+                artificialHandleOriginalDirection * (artificialHandleOriginalDistance - handleRetractDistance) * Time.deltaTime / animationTime;
+            yield return null;
+        }
+        // yield return new WaitForSeconds(animationTime);
+
         // Enable the player to move the laser cutter when it is turned off.
         artificialLaserCutterHandle.enabled = true;
+        // Turn on the handle collider
+        artificialLaserCutterHandle.GetComponent<SphereCollider>().enabled = true;
         // Enable the player to switch
         canSwitch = true;
     }
