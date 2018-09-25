@@ -1,0 +1,94 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using BehaviorDesigner.Runtime;
+
+/// <summary>
+/// Scientist's behavior when it is being attacked by the player
+/// </summary>
+public class ScientistBeingAttack : MonoBehaviour
+{
+    public float killTime; // How long does it take for the player to kill the scientist
+    public float singleArmHoldTime; // How long can the scientist be held by only one arm before escape
+
+    public List<GameObject> touchingArms; // The player's arm(s) that is currently within the attack range
+    public bool isDead; // Is this scientist dead
+    public float firstArmStartTouchingTime; // When does the player start holding the scientist with one arm
+    public float bothArmStartHoldingTime; // When does the player start holding with both arms
+
+    // Use this for initialization
+    void Start()
+    {
+        // Set the escape time is the scientist is touched by the player for too long
+        GetComponents<BehaviorTree>()[1].SetVariableValue("EscapeTime", singleArmHoldTime);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        UpdateAttackStatus();
+
+        // Set the other times
+        GetComponents<BehaviorTree>()[1].SetVariableValue("FirstArmStartTouchingTime", firstArmStartTouchingTime);
+        GetComponents<BehaviorTree>()[1].SetVariableValue("BothArmStartHoldingTime", bothArmStartHoldingTime);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        // If an arm enters the attack range
+        if (other.GetComponent<ArmUseItem>())
+        {
+            if (touchingArms.Count == 0)
+            {
+                firstArmStartTouchingTime = Time.time;
+            }
+
+            touchingArms.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // If an arm leaves the attack range
+        if (other.GetComponent<ArmUseItem>())
+        {
+            touchingArms.Remove(other.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Update the status relate to scientist been attacked
+    /// </summary>
+    public void UpdateAttackStatus()
+    {
+        // Reset timer when the player is not attacking the scientist
+        if (touchingArms.Count == 0)
+        {
+            firstArmStartTouchingTime = 0;
+            bothArmStartHoldingTime = 0;
+        }
+
+        // Count how many player arms is holding the scientist
+        float holdingArmCount = 0;
+
+        foreach (GameObject g in touchingArms)
+        {
+            if (!g.GetComponent<ArmUseItem>().hasTriggerReleased)
+            {
+                holdingArmCount++;
+            }
+        }
+
+        // Start timer when the player start holding the scientist with both arms
+        if (bothArmStartHoldingTime == 0 && holdingArmCount == 2)
+        {
+            bothArmStartHoldingTime = Time.time;
+        }
+
+        if (Time.time - bothArmStartHoldingTime >= killTime)
+        {
+            isDead = true;
+            GetComponents<BehaviorTree>()[1].DisableBehavior();
+        }
+    }
+}
