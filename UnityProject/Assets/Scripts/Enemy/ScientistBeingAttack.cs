@@ -10,6 +10,7 @@ public class ScientistBeingAttack : MonoBehaviour
 {
     public float killTime; // How long does it take for the player to kill the scientist
     public float singleArmHoldTime; // How long can the scientist be held by only one arm before escape
+    public CountDeadScientistToDropKey deadScientistCounter; // The counter that keep tracks of the dead scientists
 
     public List<GameObject> touchingArms; // The player's arm(s) that is currently within the attack range
     public bool isDead; // Is this scientist dead
@@ -43,7 +44,10 @@ public class ScientistBeingAttack : MonoBehaviour
                 firstArmStartTouchingTime = Time.time;
             }
 
-            touchingArms.Add(other.gameObject);
+            if (!touchingArms.Contains(other.gameObject))
+            {
+                touchingArms.Add(other.gameObject);
+            }
         }
     }
 
@@ -65,7 +69,6 @@ public class ScientistBeingAttack : MonoBehaviour
         if (touchingArms.Count == 0)
         {
             firstArmStartTouchingTime = 0;
-            bothArmStartHoldingTime = 0;
         }
 
         // Count how many player arms is holding the scientist
@@ -85,10 +88,26 @@ public class ScientistBeingAttack : MonoBehaviour
             bothArmStartHoldingTime = Time.time;
         }
 
-        if (Time.time - bothArmStartHoldingTime >= killTime)
+        // Reset the holding time when the player stop holding the scientist with two arms
+        if (holdingArmCount < 2)
+        {
+            bothArmStartHoldingTime = 0;
+        }
+
+        // If the player hold the scientist for long enough
+        if (bothArmStartHoldingTime != 0 && Time.time - bothArmStartHoldingTime >= killTime)
         {
             isDead = true;
             GetComponents<BehaviorTree>()[1].DisableBehavior();
+            GetComponent<CapsuleCollider>().isTrigger = false;
+            deadScientistCounter.deadScientistCount++;
+
+            // If this scientist is the last one needed for the key to be dropped
+            if (!deadScientistCounter.keyDropped && deadScientistCounter.deadScientistCount == deadScientistCounter.numberRequireToDropKey)
+            {
+                // Drop the key at this scientist's position
+                deadScientistCounter.DropKey(transform.position);
+            }
         }
     }
 }

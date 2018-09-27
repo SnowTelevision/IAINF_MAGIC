@@ -110,8 +110,8 @@ public class ControlArm_UsingPhysics : ControlArm
         firstSegmentDistanceFromBody = Vector3.Distance(jointConnectingBody.transform.position, body.position);
         DetectingArmMovement();
 
-        // Don't let the player control the character if the game is in a scripted event
-        if (GameManager.inScriptedEvent)
+        // Don't let the player control the character if the game is in a scripted event or is paused
+        if (GameManager.inScriptedEvent || GameManager.gamePause)
         {
             // Stop the player from grabbing the floor if the armTip is grabbing floor when the event start
             if (isGrabbingFloor)

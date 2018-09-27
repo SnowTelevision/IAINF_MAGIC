@@ -12,6 +12,7 @@ public class CountDeadScientistToDropKey : MonoBehaviour
     public GameObject key; // The key to be dropped
 
     public int deadScientistCount; // How many scientist is been attacked
+    public bool keyDropped; // Has the key dropped
 
     // Use this for initialization
     void Start()
@@ -31,6 +32,7 @@ public class CountDeadScientistToDropKey : MonoBehaviour
     /// <param name="dropPosition"></param>
     public void DropKey(Vector3 dropPosition)
     {
-        key.transform.position = dropPosition;
+        keyDropped = true;
+        key.transform.position = dropPosition + Vector3.up * 1.5f;
     }
 }
