@@ -56,7 +56,7 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
         UpdateJointMassScale();
         UpdateJointConnectedMassScale();
 
-        // Only update the joint positions if the arm is not using an item that 
+        // Only update the joint positions if the arm is not using an item that is fixed (not movable)
         if (armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null ||
             !armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().fixedPosition)
         {

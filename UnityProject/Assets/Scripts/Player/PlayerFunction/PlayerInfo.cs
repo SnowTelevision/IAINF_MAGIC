@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure; // Required in C#
@@ -29,8 +30,11 @@ public class PlayerInfo : MonoBehaviour
     public float echoIndicatorEmissionIntensity; // How high is the emission intensity for the echo indicator
     public ControlArm_UsingPhysics leftArmController; // The controller of the left arm
     public ControlArm_UsingPhysics rightArmController; // The controller of the right arm
+    public BodyMovementModeInfo[] bodyMovementModeInfos; // Infos of different body movement modes
 
     public bool inWater; // Is the body in the water
+    public bool onLand; // Is the body touching ground
+    public bool inAir; // Is the body in the air
     public static Transform sGameCamera; // The static reference to gameCamera
     public static PlayerInfo sPlayerInfo; // The static reference to PlayerInfo
     public static bool isSideScroller; // If the game is in side-scroller mode
@@ -268,4 +272,68 @@ public class PlayerInfo : MonoBehaviour
 
         totalHapticStrength -= strength; // Remove haptic strength
     }
+
+    /// <summary>
+    /// Change the mode to land-based
+    /// </summary>
+    public void SwitchToLandMode()
+    {
+        foreach (BodyMovementModeInfo b in bodyMovementModeInfos)
+        {
+            if (b.movementModeName == "Land")
+            {
+                ChangeBodyMovementParameters(b);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change the mode to water-based
+    /// </summary>
+    public void SwitchToWaterMode()
+    {
+        foreach (BodyMovementModeInfo b in bodyMovementModeInfos)
+        {
+            if (b.movementModeName == "Water")
+            {
+                ChangeBodyMovementParameters(b);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change the mode to air-based
+    /// </summary>
+    public void SwitchToAirMode()
+    {
+        foreach (BodyMovementModeInfo b in bodyMovementModeInfos)
+        {
+            if (b.movementModeName == "Air")
+            {
+                ChangeBodyMovementParameters(b);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change different physics parameters and component variebles for a body movement mode
+    /// </summary>
+    /// <param name="movementParameters"></param>
+    public void ChangeBodyMovementParameters(BodyMovementModeInfo movementParameters)
+    {
+        GetComponent<Rigidbody>().drag = movementParameters.bodyRigidbodyDrag;
+        GetComponent<Rigidbody>().angularDrag = movementParameters.bodyRigidbodyAngularDrag;
+    }
+}
+
+/// <summary>
+/// Stores informations of a body movement mode, this include but not limit to:
+/// Rigidbody parameters
+/// </summary>
+[Serializable]
+public class BodyMovementModeInfo
+{
+    public string movementModeName; // The name for the movement mode
+    public float bodyRigidbodyDrag; // The drag of the rigidbody on the body
+    public float bodyRigidbodyAngularDrag; // The angular drag on the rigidbody on the body
 }

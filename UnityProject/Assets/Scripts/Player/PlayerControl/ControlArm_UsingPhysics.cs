@@ -45,14 +45,19 @@ public class ControlArm_UsingPhysics : ControlArm
     public float echoProjectileWidth; // How wide is the echo projectile
     public SpringJoint jointConnectingBody; // The SpringJoint in the first arm segment that is connected to the body
     public Transform lastArmSegment; // The arm segment that connects the armTip
+    public ArmControlModeInfo[] armControlModeInfos; // Infos of different arm control modes
+    public ArmUpdatePhysicsVariebles[] armMiddleSegmentsPhysicsControllers; // The controllers that update the physics variebles for arm segments between the first and the last
 
     /// <summary>
     /// Arm flags
     /// </summary>
     public bool canGrabObject; // Can the armTip grab object or not
-    public bool isTouchingGround; // Is the arm touching ground or not
+    //public bool isTouchingGround; // Is the arm touching ground or not
     //public bool isSideScroller; // Is the camera in side-scroller mode or not
     public bool isUsingMechanicalArm; // Is this arm currently operating a mechanical extending arm or not
+    public bool inWater; // Is this armTip currently in water
+    public bool onLand; // Is this armTip currently touching ground
+    public bool inAir; // Is this armTip currently in the air
 
     //public bool isGrabbingFloor; // If the armTip is grabbing floor
     //public float joyStickRotationAngle; // The rotation of the arm
@@ -61,7 +66,6 @@ public class ControlArm_UsingPhysics : ControlArm
     public Vector3 joystickLastPosition; // The joystick's position in the last frame
     public float armCurrentStamina; // This arm's current stamina amount
     public Vector3 armTipGrabbingPosition; // The armTip's position when it starts grabbing
-    public bool inWater; // Is this armTip currently in water
     public float armPhysicsMagnitude; // The magnitude to be applied for different arm physics parameters
     public bool startedSwimming; // Does the player started swimming
     public bool isArmsSpreading; // Is the two arms spreading away from each other? (Is the angle between two arms increasing?)
@@ -134,10 +138,15 @@ public class ControlArm_UsingPhysics : ControlArm
             }
         }
 
+        // Collect player joystick input
         CalculateJoyStickRotation(isLeftArm);
         CalculateJoyStickLength(isLeftArm);
         GetClampedJoystickPosition();
+
+        // Control mode changing detection
         DetectIfSwitchEchoMode();
+
+        // Make sure the arm won't stretch too far from the body
         AdjustFirstSegmentConnectedMassScale();
 
         if (!isGrabbingFloor)
@@ -187,13 +196,18 @@ public class ControlArm_UsingPhysics : ControlArm
         //    armTip.position = bodyRotatingCenter.position;
         //}
 
-        if (!inWater) // If the arm is not in the water
+        if (onLand) // If the arm is touching ground
         {
             DetectGrabbingFloorInput();
         }
 
         if (isGrabbingFloor)
         {
+            // Stop the player from "grabbing the floor" if this armTip is no longer on land
+            if (!onLand)
+            {
+                StopGrabbingFloor();
+            }
             //armTip.position = bodyRotatingCenter.position;
             //RotateBody();
             MoveBody();
@@ -213,12 +227,12 @@ public class ControlArm_UsingPhysics : ControlArm
             CalculateArmPhysicsMagnitudeInWater();
         }
 
-        // Apply arm drag when the body is flying in the air
-        if (PlayerInfo.isSideScroller)
-        {
-            //ApplyGlidingForceToBody();
-            ApplyArmAirDrag();
-        }
+        //// Apply arm drag when the body is flying in the air
+        //if (PlayerInfo.sPlayerInfo.inAir)
+        //{
+        //    //ApplyGlidingForceToBody();
+        //    ApplyArmAirDrag();
+        //}
 
         // Test
         if (test)
@@ -1137,29 +1151,29 @@ public class ControlArm_UsingPhysics : ControlArm
         horizontalCameraAngle -= 90;
     }
 
-    /// <summary>
-    /// Calculates how much force the arm is giving to the body when gliding through lifting (or other directions) air blow
-    /// </summary>
-    /// <param name="windStrength"></param>
-    /// <param name="windDirecion"></param>
-    /// <returns></returns>
-    public Vector3 CalculateArmGlidingForce(float windStrength, Vector3 windDirecion)
-    {
-        Vector3 finalForceAppliedToBody = Vector3.one;
-        // Calculate the angle between the arm's stretch direction (from body to the armTip) and the direction of the wind
-        float angleBetweenArmAndWind = Vector3.Angle(armTip.position - transform.position, windDirecion);
-        // Calculate the actual wind force that is applying on a unit length of the arm
-        float effectiveWindStrength = windStrength * Mathf.Sin(angleBetweenArmAndWind * Mathf.Deg2Rad) *
-                                      Mathf.Sign(PlayerInfo.sGameCamera.InverseTransformVector(Vector3.Cross(armTip.position - transform.position, windDirecion)).z);
-        // Calculate the direction of the force that is applying on the arm
-        Vector3 appliedForceDirection = Vector3.Cross(armTip.position - transform.position, PlayerInfo.sGameCamera.position - body.position).normalized;
-        // Calculate the final force the entire arm provide to the body based on the actual arm length
-        finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * Vector3.Magnitude(armTip.position - transform.position);
-        //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * joyStickLength * armMaxLength;
-        //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * armMaxLength; // Uniform version
+    ///// <summary>
+    ///// Calculates how much force the arm is giving to the body when gliding through lifting (or other directions) air blow
+    ///// </summary>
+    ///// <param name="windStrength"></param>
+    ///// <param name="windDirecion"></param>
+    ///// <returns></returns>
+    //public Vector3 CalculateArmGlidingForce(float windStrength, Vector3 windDirecion)
+    //{
+    //    Vector3 finalForceAppliedToBody = Vector3.one;
+    //    // Calculate the angle between the arm's stretch direction (from body to the armTip) and the direction of the wind
+    //    float angleBetweenArmAndWind = Vector3.Angle(armTip.position - transform.position, windDirecion);
+    //    // Calculate the actual wind force that is applying on a unit length of the arm
+    //    float effectiveWindStrength = windStrength * Mathf.Sin(angleBetweenArmAndWind * Mathf.Deg2Rad) *
+    //                                  Mathf.Sign(PlayerInfo.sGameCamera.InverseTransformVector(Vector3.Cross(armTip.position - transform.position, windDirecion)).z);
+    //    // Calculate the direction of the force that is applying on the arm
+    //    Vector3 appliedForceDirection = Vector3.Cross(armTip.position - transform.position, PlayerInfo.sGameCamera.position - body.position).normalized;
+    //    // Calculate the final force the entire arm provide to the body based on the actual arm length
+    //    finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * Vector3.Magnitude(armTip.position - transform.position);
+    //    //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * joyStickLength * armMaxLength;
+    //    //finalForceAppliedToBody = effectiveWindStrength * appliedForceDirection * armMaxLength; // Uniform version
 
-        return finalForceAppliedToBody;
-    }
+    //    return finalForceAppliedToBody;
+    //}
 
     ///// <summary>
     ///// Check if the armTip is in a windy area and will provide the body lifting force
@@ -1169,14 +1183,14 @@ public class ControlArm_UsingPhysics : ControlArm
 
     //}
 
-    /// <summary>
-    /// Give body gliding force
-    /// </summary>
-    public void ApplyGlidingForceToBody()
-    {
-        body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(armCurrentTotalReceivedWindForce.magnitude, armCurrentTotalReceivedWindForce.normalized),
-                                                ForceMode.Force);
-    }
+    ///// <summary>
+    ///// Give body gliding force
+    ///// </summary>
+    //public void ApplyGlidingForceToBody()
+    //{
+    //    body.GetComponent<Rigidbody>().AddForce(CalculateArmGlidingForce(armCurrentTotalReceivedWindForce.magnitude, armCurrentTotalReceivedWindForce.normalized),
+    //                                            ForceMode.Force);
+    //}
 
     /// <summary>
     /// Calculates how much drag the arm should have on the player's body based on the player's current velocity and applies it to the player's body
@@ -1267,6 +1281,79 @@ public class ControlArm_UsingPhysics : ControlArm
         newEchoProjectile.GetComponent<Rigidbody>().AddForce(echoTravelSpeed * newEchoProjectile.transform.forward, ForceMode.VelocityChange); // Add speed to the echo
         newEchoProjectile.GetComponent<VibrationEchoBehavior>().echoTravelSpeed = echoTravelSpeed;
     }
+
+    /// <summary>
+    /// Change the control to land-based
+    /// </summary>
+    public void SwitchToLandControl()
+    {
+        foreach (ArmControlModeInfo a in armControlModeInfos)
+        {
+            if (a.controlModeName == "Land")
+            {
+                ChangeArmControlParameters(a);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change the control to water-based
+    /// </summary>
+    public void SwitchToWaterControl()
+    {
+        foreach (ArmControlModeInfo a in armControlModeInfos)
+        {
+            if (a.controlModeName == "Water")
+            {
+                ChangeArmControlParameters(a);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change the control to air-based
+    /// </summary>
+    public void SwitchToAirControl()
+    {
+        foreach (ArmControlModeInfo a in armControlModeInfos)
+        {
+            if (a.controlModeName == "Air")
+            {
+                ChangeArmControlParameters(a);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Change different physics parameters and component variebles for an arm control mode
+    /// </summary>
+    /// <param name="controlParameters"></param>
+    public void ChangeArmControlParameters(ArmControlModeInfo controlParameters)
+    {
+        // Update armTip's rigidbody constraints
+        armTip.GetComponent<Rigidbody>().constraints =
+            controlParameters.armTipRigidBodyConstraint |
+            RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        // Update physics controller for arm middle segments
+        foreach (ArmUpdatePhysicsVariebles a in armMiddleSegmentsPhysicsControllers)
+        {
+            a.armMinConnectedAnchor = controlParameters.middleJointsMinConnectedAnchor;
+        }
+        // Update the first arm segment
+        jointConnectingBody.GetComponent<Rigidbody>().drag = controlParameters.firstArmSegmentRigidbodyDrag;
+        jointConnectingBody.massScale = controlParameters.firstArmSegmentJointMassScale;
+        jointConnectingBody.connectedMassScale = controlParameters.firstArmSegmentJointConnectedMassScale;
+        jointConnectingBody.GetComponent<ArmUpdatePhysicsVariebles>().updateJointMassScale = controlParameters.firstArmSegmentUpdateJointMassScale;
+        jointConnectingBody.GetComponent<ArmUpdatePhysicsVariebles>().armTipJointDefaultMassScale = controlParameters.firstArmSegmentDefaultMassScale;
+        jointConnectingBody.GetComponent<ArmUpdatePhysicsVariebles>().armTipJointMaximumMassScale = controlParameters.firstArmSegmentMaximumMassScale;
+        jointConnectingBody.GetComponent<ArmUpdatePhysicsVariebles>().updateAnchor = controlParameters.firstArmSegmentUpdateAnchor;
+        jointConnectingBody.GetComponent<ArmUpdatePhysicsVariebles>().armMinAnchor = controlParameters.firstArmSegmentMinAnchor;
+        jointConnectingBody.GetComponent<ArmUpdatePhysicsVariebles>().maxJointChangingSpeed = controlParameters.firstArmSegmentMaxJointChangingSpeed;
+        // Update the last arm segment
+        lastArmSegment.GetComponent<SpringJoint>().connectedMassScale = controlParameters.lastArmSegmentArmTipJointConnectedMassScale;
+        lastArmSegment.GetComponent<ArmUpdatePhysicsVariebles>().armTipJointDefaultConnectedMassScale = controlParameters.lastArmSegmentDefaultConnectedMassScale;
+        //lastArmSegment.GetComponent<ArmUpdatePhysicsVariebles>().armTipJointMaximumConnectedMassScale = controlParameters.lastArmSegmentMaximumConnectedMassScale;
+    }
 }
 
 ///// <summary>
@@ -1281,3 +1368,35 @@ public class ControlArm_UsingPhysics : ControlArm
 //    public bool activated; // Has this echo "travelled" to the colliding point thus being "activated" 
 //                           // (An echo will only start to check the player's position if it's being activated)
 //}
+
+/// <summary>
+/// Stores informations of an arm control mode, this include but not limit to:
+/// Rigidbody parameters,
+/// Arm segments joint parameters
+/// </summary>
+[Serializable]
+public class ArmControlModeInfo
+{
+    public string controlModeName; // The name for the control mode
+    public RigidbodyConstraints armTipRigidBodyConstraint; // The armTip's rigidbody's constriants
+    // The ArmMinConnectedAnchor value on the ArmUpdatePhysicsVariebles component for the arm segments between the first and the last segment
+    public float middleJointsMinConnectedAnchor;
+
+    // First arm segment variebles
+    public float firstArmSegmentRigidbodyDrag; // The drag on the rigidbody on the first arm segment
+    public float firstArmSegmentJointMassScale;
+    public float firstArmSegmentJointConnectedMassScale;
+    public bool firstArmSegmentUpdateJointMassScale; // The UpdateJointMassScale boolean on the ArmUpdatePhysicsVariebles on the first segment
+    public float firstArmSegmentDefaultMassScale;
+    public float firstArmSegmentMaximumMassScale;
+    public bool firstArmSegmentUpdateAnchor;
+    public float firstArmSegmentMinAnchor;
+    public float firstArmSegmentMaxJointChangingSpeed;
+
+    // Last arm segment variebles
+    public float lastArmSegmentArmTipJointConnectedMassScale;
+    public float lastArmSegmentDefaultConnectedMassScale;
+    //public float lastArmSegmentMaximumConnectedMassScale;
+
+
+}

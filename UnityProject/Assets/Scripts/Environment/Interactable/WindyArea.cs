@@ -29,9 +29,14 @@ public class WindyArea : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<ArmUseItem>()) // If this is an armTip
+        //if (other.GetComponent<ArmUseItem>()) // If this is an armTip
+        //{
+        //    other.GetComponentInParent<ControlArm_UsingPhysics>().armCurrentTotalReceivedWindForce += windStrength * transform.forward;
+        //}
+
+        if (other.GetComponent<ArmSegmentReceiveAirResistance>()) // If this is an arm segment
         {
-            other.GetComponentInParent<ControlArm_UsingPhysics>().armCurrentTotalReceivedWindForce += windStrength * transform.forward;
+            other.GetComponent<ArmSegmentReceiveAirResistance>().armSegmentCurrentTotalReceivedWindForce += windStrength * transform.forward;
         }
     }
 }

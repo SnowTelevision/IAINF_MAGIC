@@ -8,6 +8,7 @@ public class DetectCollision : MonoBehaviour
 {
     public bool ignoreTrigger; // If ignore trigger
     public Transform[] ignoredGameObjects; // Which game object(s) should this collider/trigger ignore (not in the Unity physics engine level, only in this script)
+    public LayerMask ignoredLayers; // Which layer should this collider/trigger ignore (not in the Unity physics engine level, only in this script)
 
     public bool isColliding; // If the collider is colliding something
     public GameObject collidingCollider; // The collider it is colliding with
@@ -176,6 +177,12 @@ public class DetectCollision : MonoBehaviour
     /// <returns></returns>
     public bool VerifyCollision(bool trigger, GameObject other)
     {
+        // If other's layer is in the ignored layer
+        if (ignoredLayers == (ignoredLayers | (1 << other.layer)))
+        {
+            return false;
+        }
+
         // Don't detect ignored colliders/triggers
         foreach (Transform t in ignoredGameObjects)
         {

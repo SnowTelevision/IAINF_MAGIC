@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 19770611}
   - component: {fileID: 19770610}
   - component: {fileID: 19770615}
+  - component: {fileID: 19770616}
   m_Layer: 10
   m_Name: ChainLink (5)
   m_TagString: Untagged
@@ -445,6 +446,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &19770616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 19770608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &23636039
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +677,7 @@ GameObject:
   - component: {fileID: 43190677}
   - component: {fileID: 43190676}
   - component: {fileID: 43190681}
+  - component: {fileID: 43190682}
   m_Layer: 10
   m_Name: ChainLink (6)
   m_TagString: Untagged
@@ -815,6 +835,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &43190682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43190674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &46481891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1241,7 @@ GameObject:
   - component: {fileID: 66669672}
   - component: {fileID: 66669671}
   - component: {fileID: 66669676}
+  - component: {fileID: 66669677}
   m_Layer: 10
   m_Name: ChainLink (3)
   m_TagString: Untagged
@@ -1360,6 +1399,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &66669677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66669669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &70065681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,6 +2320,7 @@ GameObject:
   - component: {fileID: 138453386}
   - component: {fileID: 138453385}
   - component: {fileID: 138453390}
+  - component: {fileID: 138453391}
   m_Layer: 10
   m_Name: ChainLink (7)
   m_TagString: Untagged
@@ -2420,6 +2478,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &138453391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 138453383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &147897929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,7 +2631,12 @@ MonoBehaviour:
   canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
   cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
   echoIndicatorEmissionIntensity: 0
+  leftArmController: {fileID: 0}
+  rightArmController: {fileID: 0}
+  bodyMovementModeInfos: []
   inWater: 0
+  onLand: 0
+  inAir: 0
   totalHapticStrength: 0
   test: 0
 --- !u!1 &149575384
@@ -2956,9 +3037,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &153806664
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3428,6 +3517,7 @@ GameObject:
   - component: {fileID: 238590143}
   - component: {fileID: 238590142}
   - component: {fileID: 238590147}
+  - component: {fileID: 238590148}
   m_Layer: 10
   m_Name: ChainLink (4)
   m_TagString: Untagged
@@ -3585,6 +3675,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &238590148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238590140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &243866673
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,9 +6346,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &413237134
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6735,9 +6851,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &422445761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6822,6 +6946,7 @@ GameObject:
   - component: {fileID: 431757844}
   - component: {fileID: 431757843}
   - component: {fileID: 431757848}
+  - component: {fileID: 431757849}
   m_Layer: 10
   m_Name: ChainLink (2)
   m_TagString: Untagged
@@ -6979,6 +7104,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &431757849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431757841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &431922646
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,14 +7748,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 0}
   lastArmSegment: {fileID: 0}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 0
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 0
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -9166,14 +9312,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 0}
   lastArmSegment: {fileID: 0}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 1
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -9722,14 +9871,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 1154143861}
   lastArmSegment: {fileID: 965917816}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 0
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 0
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -9895,6 +10047,7 @@ GameObject:
   - component: {fileID: 668635964}
   - component: {fileID: 668635963}
   - component: {fileID: 668635968}
+  - component: {fileID: 668635969}
   m_Layer: 10
   m_Name: ChainLink (7)
   m_TagString: Untagged
@@ -10052,6 +10205,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &668635969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 668635961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &669842524
 GameObject:
   m_ObjectHideFlags: 0
@@ -10570,6 +10741,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -11001,14 +11173,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 0}
   lastArmSegment: {fileID: 0}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 0
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 0
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -11739,6 +11914,7 @@ GameObject:
   - component: {fileID: 776196351}
   - component: {fileID: 776196350}
   - component: {fileID: 776196355}
+  - component: {fileID: 776196356}
   m_Layer: 10
   m_Name: ChainLink (4)
   m_TagString: Untagged
@@ -11896,6 +12072,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &776196356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776196348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &777415927
 GameObject:
   m_ObjectHideFlags: 0
@@ -12140,6 +12334,7 @@ GameObject:
   - component: {fileID: 785284278}
   - component: {fileID: 785284277}
   - component: {fileID: 785284282}
+  - component: {fileID: 785284283}
   m_Layer: 10
   m_Name: ChainLink (5)
   m_TagString: Untagged
@@ -12297,6 +12492,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &785284283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785284275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &786554118
 GameObject:
   m_ObjectHideFlags: 0
@@ -13266,14 +13479,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 0}
   lastArmSegment: {fileID: 0}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 1
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -14109,9 +14325,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!23 &868016712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23522,6 +23746,7 @@ GameObject:
   - component: {fileID: 965917819}
   - component: {fileID: 965917818}
   - component: {fileID: 965917817}
+  - component: {fileID: 965917824}
   m_Layer: 10
   m_Name: ChainLink (9)
   m_TagString: Untagged
@@ -23701,6 +23926,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 965917815}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &965917824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 965917815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &967564959
 GameObject:
   m_ObjectHideFlags: 0
@@ -24708,6 +24951,7 @@ GameObject:
   - component: {fileID: 1030056043}
   - component: {fileID: 1030056042}
   - component: {fileID: 1030056041}
+  - component: {fileID: 1030056047}
   m_Layer: 10
   m_Name: ChainLink (1)
   m_TagString: Untagged
@@ -24865,6 +25109,24 @@ Transform:
   m_Father: {fileID: 1498490716}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1030056047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030056039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1037383991
 GameObject:
   m_ObjectHideFlags: 0
@@ -25224,6 +25486,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -26017,9 +26280,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!23 &1112935270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26407,6 +26678,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -26711,6 +26983,7 @@ GameObject:
   - component: {fileID: 1154143861}
   - component: {fileID: 1154143860}
   - component: {fileID: 1154143859}
+  - component: {fileID: 1154143865}
   m_Layer: 10
   m_Name: ChainLink (1)
   m_TagString: Untagged
@@ -26868,6 +27141,24 @@ Transform:
   m_Father: {fileID: 840423195}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154143865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154143857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1156773727
 GameObject:
   m_ObjectHideFlags: 0
@@ -27350,6 +27641,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -28947,6 +29239,7 @@ GameObject:
   - component: {fileID: 1309165208}
   - component: {fileID: 1309165207}
   - component: {fileID: 1309165212}
+  - component: {fileID: 1309165213}
   m_Layer: 10
   m_Name: ChainLink (6)
   m_TagString: Untagged
@@ -29104,6 +29397,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &1309165213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1309165205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1309456528
 GameObject:
   m_ObjectHideFlags: 0
@@ -29957,6 +30268,7 @@ GameObject:
   - component: {fileID: 1363346582}
   - component: {fileID: 1363346581}
   - component: {fileID: 1363346586}
+  - component: {fileID: 1363346587}
   m_Layer: 10
   m_Name: ChainLink (2)
   m_TagString: Untagged
@@ -30114,6 +30426,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &1363346587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1363346579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1365867880
 GameObject:
   m_ObjectHideFlags: 0
@@ -30573,6 +30903,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -30892,6 +31223,7 @@ GameObject:
   - component: {fileID: 1449650409}
   - component: {fileID: 1449650408}
   - component: {fileID: 1449650407}
+  - component: {fileID: 1449650414}
   m_Layer: 10
   m_Name: ChainLink (9)
   m_TagString: Untagged
@@ -31071,6 +31403,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1449650405}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1449650414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1449650405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1453645221
 GameObject:
   m_ObjectHideFlags: 0
@@ -33187,6 +33537,7 @@ GameObject:
   - component: {fileID: 1576258905}
   - component: {fileID: 1576258904}
   - component: {fileID: 1576258909}
+  - component: {fileID: 1576258910}
   m_Layer: 10
   m_Name: ChainLink (3)
   m_TagString: Untagged
@@ -33344,6 +33695,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &1576258910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1576258902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1576693984
 GameObject:
   m_ObjectHideFlags: 0
@@ -33434,14 +33803,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 0}
   lastArmSegment: {fileID: 0}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 1
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -34381,7 +34753,12 @@ MonoBehaviour:
   canCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
   cannotCreateEchoColor: {r: 0, g: 0, b: 0, a: 0}
   echoIndicatorEmissionIntensity: 0
+  leftArmController: {fileID: 0}
+  rightArmController: {fileID: 0}
+  bodyMovementModeInfos: []
   inWater: 0
+  onLand: 0
+  inAir: 1
   totalHapticStrength: 0
   test: 1
 --- !u!54 &1656264737
@@ -34903,6 +35280,7 @@ GameObject:
   - component: {fileID: 1672060183}
   - component: {fileID: 1672060182}
   - component: {fileID: 1672060187}
+  - component: {fileID: 1672060188}
   m_Layer: 10
   m_Name: ChainLink (8)
   m_TagString: Untagged
@@ -35060,6 +35438,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &1672060188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672060180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 422445758}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1672408315
 GameObject:
   m_ObjectHideFlags: 0
@@ -35334,6 +35730,7 @@ MonoBehaviour:
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
+  isUsingGravity: 0
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -35552,14 +35949,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 0}
   lastArmSegment: {fileID: 0}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 1
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 1
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -36339,6 +36739,7 @@ GameObject:
   - component: {fileID: 1764311012}
   - component: {fileID: 1764311011}
   - component: {fileID: 1764311016}
+  - component: {fileID: 1764311017}
   m_Layer: 10
   m_Name: ChainLink (8)
   m_TagString: Untagged
@@ -36496,6 +36897,24 @@ MonoBehaviour:
   lastConnectedAnchorPos: 0
   lastAnchorPos: 0
   jointAnchorChangingSpeed: 0
+--- !u!114 &1764311017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764311009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aab6511100aec488113c03c463ce81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyRigidBody: {fileID: 1656264737}
+  armTip: {fileID: 413237131}
+  armSegmentAirDragMultiplier: 0.000001
+  minEffectiveArmLength: 0.5
+  bodyAppliedForceMultiplier: 0.1
+  maximumArmLength: 0
+  armSegmentCurrentTotalReceivedWindForce: {x: 0, y: 0, z: 0}
 --- !u!1 &1770780407
 GameObject:
   m_ObjectHideFlags: 0
@@ -38315,14 +38734,17 @@ MonoBehaviour:
   echoProjectileWidth: 0
   jointConnectingBody: {fileID: 1030056043}
   lastArmSegment: {fileID: 1449650406}
+  armControlModeInfos: []
+  armMiddleSegmentsPhysicsControllers: []
   canGrabObject: 0
-  isTouchingGround: 0
   isUsingMechanicalArm: 0
+  inWater: 0
+  onLand: 0
+  inAir: 0
   joystickPosition: {x: 0, y: 0, z: 0}
   joystickLastPosition: {x: 0, y: 0, z: 0}
   armCurrentStamina: 0
   armTipGrabbingPosition: {x: 0, y: 0, z: 0}
-  inWater: 0
   armPhysicsMagnitude: 0
   startedSwimming: 0
   isArmsSpreading: 0
@@ -40363,9 +40785,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &2023853826
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40542,9 +40972,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &2026643632
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -42624,9 +43062,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 0
   isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
   collidingPoint: {x: 0, y: 0, z: 0}
-  collidingObject: {fileID: 0}
 --- !u!54 &2139429540
 Rigidbody:
   m_ObjectHideFlags: 0
