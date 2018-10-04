@@ -1,0 +1,149 @@
+fileFormatVersion: 2
+guid: 5c33528c6785d8a4f8c6e21394f854da
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: cultivation_tanks_style04_big_back
+    100002: cultivation_tanks_style04_big_bottom
+    100004: cultivation_tanks_style04_big_door
+    100006: cultivation_tanks_style04_big_front
+    100008: cultivation_tanks_style04_big_front1
+    100010: cultivation_tanks_style04_big_front_2
+    100012: cultivation_tanks_style04_big_left_wall
+    100014: cultivation_tanks_style04_big_right_wall
+    100016: cultivation_tanks_style04_big_top
+    100018: cultivation_tanks_style04_big_top_low
+    100020: cultivation_tanks_style04_glass
+    100022: cultivation_tanks_style04_glass2
+    100024: cultivation_tanks_style04_top_high
+    100026: //RootNode
+    400000: cultivation_tanks_style04_big_back
+    400002: cultivation_tanks_style04_big_bottom
+    400004: cultivation_tanks_style04_big_door
+    400006: cultivation_tanks_style04_big_front
+    400008: cultivation_tanks_style04_big_front1
+    400010: cultivation_tanks_style04_big_front_2
+    400012: cultivation_tanks_style04_big_left_wall
+    400014: cultivation_tanks_style04_big_right_wall
+    400016: cultivation_tanks_style04_big_top
+    400018: cultivation_tanks_style04_big_top_low
+    400020: cultivation_tanks_style04_glass
+    400022: cultivation_tanks_style04_glass2
+    400024: cultivation_tanks_style04_top_high
+    400026: //RootNode
+    2100000: lambert1
+    2100002: blinn1
+    2300000: cultivation_tanks_style04_big_back
+    2300002: cultivation_tanks_style04_big_bottom
+    2300004: cultivation_tanks_style04_big_door
+    2300006: cultivation_tanks_style04_big_front1
+    2300008: cultivation_tanks_style04_big_front_2
+    2300010: cultivation_tanks_style04_big_left_wall
+    2300012: cultivation_tanks_style04_big_right_wall
+    2300014: cultivation_tanks_style04_big_top_low
+    2300016: cultivation_tanks_style04_glass
+    2300018: cultivation_tanks_style04_glass2
+    2300020: cultivation_tanks_style04_top_high
+    3300000: cultivation_tanks_style04_big_back
+    3300002: cultivation_tanks_style04_big_bottom
+    3300004: cultivation_tanks_style04_big_door
+    3300006: cultivation_tanks_style04_big_front1
+    3300008: cultivation_tanks_style04_big_front_2
+    3300010: cultivation_tanks_style04_big_left_wall
+    3300012: cultivation_tanks_style04_big_right_wall
+    3300014: cultivation_tanks_style04_big_top_low
+    3300016: cultivation_tanks_style04_glass
+    3300018: cultivation_tanks_style04_glass2
+    3300020: cultivation_tanks_style04_top_high
+    4300000: cultivation_tanks_style04_top_high
+    4300002: cultivation_tanks_style04_big_front1
+    4300004: cultivation_tanks_style04_glass2
+    4300006: cultivation_tanks_style04_big_door
+    4300008: cultivation_tanks_style04_big_left_wall
+    4300010: cultivation_tanks_style04_big_right_wall
+    4300012: cultivation_tanks_style04_big_back
+    4300014: cultivation_tanks_style04_big_bottom
+    4300016: cultivation_tanks_style04_big_front_2
+    4300018: cultivation_tanks_style04_glass
+    4300020: cultivation_tanks_style04_big_top_low
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
