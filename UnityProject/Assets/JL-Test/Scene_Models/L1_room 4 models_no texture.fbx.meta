@@ -34,6 +34,14 @@ ModelImporter:
     100056: level_rm4_wall_column
     100058: level_rm4_wall_column 1
     100060: level_rm4_wall_column_light
+    100062: L1_RM4_energy_line_ball
+    100064: L1_RM4_energy_line_left
+    100066: L1_RM4_energy_line_left2
+    100068: L1_RM4_energy_line_right
+    100070: lab_door_room4_left_door 1
+    100072: lab_door_room4_right_door 1
+    100074: lab_door_room4_wall_right
+    100076: lab_door_room4_walls_left
     400000: energy_clolumn
     400002: energy_clolumn_frame
     400004: energy_column_base
@@ -65,6 +73,14 @@ ModelImporter:
     400056: level_rm4_wall_column
     400058: level_rm4_wall_column 1
     400060: level_rm4_wall_column_light
+    400062: L1_RM4_energy_line_ball
+    400064: L1_RM4_energy_line_left
+    400066: L1_RM4_energy_line_left2
+    400068: L1_RM4_energy_line_right
+    400070: lab_door_room4_left_door 1
+    400072: lab_door_room4_right_door 1
+    400074: lab_door_room4_wall_right
+    400076: lab_door_room4_walls_left
     2100000: lambert1
     2100002: phongE1
     2300000: energy_clolumn_frame
@@ -90,6 +106,14 @@ ModelImporter:
     2300040: level_rm4_wall_2
     2300042: level_rm4_wall_column 1
     2300044: level_rm4_wall_column_light
+    2300046: L1_RM4_energy_line_ball
+    2300048: L1_RM4_energy_line_left
+    2300050: L1_RM4_energy_line_left2
+    2300052: L1_RM4_energy_line_right
+    2300054: lab_door_room4_left_door 1
+    2300056: lab_door_room4_right_door 1
+    2300058: lab_door_room4_wall_right
+    2300060: lab_door_room4_walls_left
     3300000: energy_clolumn_frame
     3300002: energy_column_base
     3300004: energy_column_light
@@ -113,6 +137,14 @@ ModelImporter:
     3300040: level_rm4_wall_2
     3300042: level_rm4_wall_column 1
     3300044: level_rm4_wall_column_light
+    3300046: L1_RM4_energy_line_ball
+    3300048: L1_RM4_energy_line_left
+    3300050: L1_RM4_energy_line_left2
+    3300052: L1_RM4_energy_line_right
+    3300054: lab_door_room4_left_door 1
+    3300056: lab_door_room4_right_door 1
+    3300058: lab_door_room4_wall_right
+    3300060: lab_door_room4_walls_left
     4300000: level_rm4_wall_2
     4300002: level_rm4_wall_1
     4300004: L1_RM04_ground2
@@ -136,6 +168,14 @@ ModelImporter:
     4300040: energy_clolumn_frame
     4300042: energy_column_base
     4300044: energy_lines
+    4300046: lab_door_room4_right_door
+    4300048: lab_door_room4_walls_left
+    4300050: lab_door_room4_wall_right
+    4300052: lab_door_room4_left_door
+    4300054: L1_RM4_energy_line_ball
+    4300056: L1_RM4_energy_line_left2
+    4300058: L1_RM4_energy_line_right
+    4300060: L1_RM4_energy_line_left
   externalObjects: {}
   materials:
     importMaterials: 1
