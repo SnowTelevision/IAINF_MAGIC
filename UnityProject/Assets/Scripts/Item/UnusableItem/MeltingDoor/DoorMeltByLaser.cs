@@ -22,7 +22,8 @@ public class DoorMeltByLaser : MonoBehaviour
     {
         if (currentHittingLasers.Count >= lasersNeedToMelt)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            this.enabled = false;
         }
     }
 }

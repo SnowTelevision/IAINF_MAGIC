@@ -14,11 +14,12 @@ public class SlidingDoor : MonoBehaviour
     public int passcode; // The passcode this door is check againest when the player enters it
     public bool openLeft; // Does this door slides towards the negative(left) local x direction or the positive(right) local x direction
     public float doorKeepOpenDuration; // How long the door will stay open after it is opened by a key or pass code
+    public bool detectNPC; // Can this door detect close-by NPC and open
 
     public Coroutine controlDoorAnimationCoroutine; // The coroutine that runs the door's open&close animation
     public float lastKeyPassEnterTime; // The latest time a correct key or pass code is used on this door
     //public List<KeyInfo> touchingKeys; // The keys that are currently touching the door
-    public bool isBodyAround; // Is there a body (player or NPC) close to the door
+    public int closeByBodyCount; // How many bodies (player or NPC) are close to the door
 
     // Use this for initialization
     void Start()
@@ -51,7 +52,7 @@ public class SlidingDoor : MonoBehaviour
         if (requireKey || requirePass)
         {
             // If a body is not close to the door and the duration of the door should keep open passed then close the door
-            if (Time.time - lastKeyPassEnterTime >= doorKeepOpenDuration && !isBodyAround)
+            if (Time.time - lastKeyPassEnterTime >= doorKeepOpenDuration && closeByBodyCount == 0)
             {
                 controlDoorAnimationCoroutine = StartCoroutine(GetComponentsInChildren<LinearObjectMovement>()[1].Animate());
             }
@@ -65,7 +66,12 @@ public class SlidingDoor : MonoBehaviour
         // If the player is close to the door
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
         {
-            isBodyAround = true;
+            closeByBodyCount++;
+        }
+        // If this door can detect NPC
+        if (detectNPC && other.tag == "MovingEnemy")
+        {
+            closeByBodyCount++;
         }
 
         if (requireKey)
@@ -101,6 +107,11 @@ public class SlidingDoor : MonoBehaviour
             {
                 openDoor = true;
             }
+            // If this door can detect NPC
+            if (detectNPC && other.tag == "MovingEnemy")
+            {
+                openDoor = true;
+            }
         }
 
         if (openDoor)
@@ -127,7 +138,7 @@ public class SlidingDoor : MonoBehaviour
         //}
         // If this door needs a key to open and a key touching it is just picked up by someone and the door is closed
         if (requireKey &&
-            Time.time - lastKeyPassEnterTime >= doorKeepOpenDuration && 
+            Time.time - lastKeyPassEnterTime >= doorKeepOpenDuration &&
             other.GetComponent<KeyInfo>() &&
             other.GetComponent<KeyInfo>().keyCode == keyCode &&
             other.GetComponent<ItemInfo>().isBeingHeld)
@@ -157,7 +168,12 @@ public class SlidingDoor : MonoBehaviour
         // If the player is close to the door
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
         {
-            isBodyAround = false;
+            closeByBodyCount--;
+        }
+        // If this door can detect NPC
+        if (detectNPC && other.tag == "MovingEnemy")
+        {
+            closeByBodyCount--;
         }
 
         if (requireKey)
@@ -186,9 +202,14 @@ public class SlidingDoor : MonoBehaviour
             {
                 closeDoor = true;
             }
+            // If this door can detect NPC
+            if (detectNPC && other.tag == "MovingEnemy")
+            {
+                closeDoor = true;
+            }
         }
 
-        if (closeDoor)
+        if (closeDoor && closeByBodyCount == 0)
         {
             CloseDoor();
         }
