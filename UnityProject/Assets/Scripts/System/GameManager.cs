@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         }
 
         sGameManager = this;
+        StaticUnpauseGame();
         sPlayer = player;
         sTutorialText = tutorialText;
 
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(3);
+        //yield return new WaitForSeconds(3);
 
         gamePause = false;
     }

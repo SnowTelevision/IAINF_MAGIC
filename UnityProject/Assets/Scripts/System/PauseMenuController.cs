@@ -116,7 +116,7 @@ public class PauseMenuController : MonoBehaviour
     public void TestLoadScene()
     {
         // Unpause the game before load scene
-        GameManager.StaticUnpauseGame();
+        //GameManager.StaticUnpauseGame();
         //GameManager.gamePause = false;
         //Time.timeScale = 1;
         // Reload the current scene
