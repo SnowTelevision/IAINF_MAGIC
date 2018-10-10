@@ -67,7 +67,7 @@ public class PauseMenuController : MonoBehaviour
         // Turn off the pauseMenu
         pauseMenu.SetActive(false);
         // Unpause the game
-        GameManager.UnpauseGame();
+        GameManager.StaticUnpauseGame();
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public class PauseMenuController : MonoBehaviour
     public void LoadCheckPointButton()
     {
         // Unpause the game before load scene
-        GameManager.UnpauseGame();
+        GameManager.StaticUnpauseGame();
         // Reload the current scene, this will put the player to the last checkpoint
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -108,5 +108,18 @@ public class PauseMenuController : MonoBehaviour
     {
         ES3.DeleteKey("PlayerPosition");
         LoadCheckPointButton();
+    }
+
+    /// <summary>
+    /// Test load scene
+    /// </summary>
+    public void TestLoadScene()
+    {
+        // Unpause the game before load scene
+        //GameManager.StaticUnpauseGame();
+        //GameManager.gamePause = false;
+        //Time.timeScale = 1;
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

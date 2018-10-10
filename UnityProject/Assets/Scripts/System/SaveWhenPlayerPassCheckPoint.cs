@@ -26,7 +26,7 @@ public class SaveWhenPlayerPassCheckPoint : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
         {
             // Save the player's position
-            ES3.Save<Vector3>("PlayerPosition", GameManager.sPlayer.transform.position);
+            ES3.Save<Vector3>("PlayerPosition", transform.position);
             // Prevent duplicate save
             this.enabled = false;
         }

@@ -15,10 +15,17 @@ public class GameManager : MonoBehaviour
     public static bool gamePause; // Is the game paused or not
     public static bool inScriptedEvent; // Is the game currently in some scripted event where the player don't have free control over the character
     public static TextMeshProUGUI sTutorialText; // Static reference for the tutorial UI area
+    public static GameManager sGameManager; // The static reference of the game manager;
 
     // Test
     public bool test; // Is testing
     public bool deleteSave; // If we delete the save when the game start
+
+    private void Awake()
+    {
+        // Cap frame rate to 60
+        Application.targetFrameRate = 60;
+    }
 
     // Use this for initialization
     void Start()
@@ -28,6 +35,8 @@ public class GameManager : MonoBehaviour
             ES3.DeleteKey("PlayerPosition");
         }
 
+        sGameManager = this;
+        StaticUnpauseGame();
         sPlayer = player;
         sTutorialText = tutorialText;
 
@@ -57,11 +66,33 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Static unpause game method
+    /// </summary>
+    public static void StaticUnpauseGame()
+    {
+        sGameManager.UnpauseGame();
+    }
+
+    /// <summary>
     /// Unpause the game
     /// </summary>
-    public static void UnpauseGame()
+    public void UnpauseGame()
+    {
+        StartCoroutine(UnpauseGameProcedure());
+    }
+
+    /// <summary>
+    /// The unpause game coroutine
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator UnpauseGameProcedure()
     {
         Time.timeScale = 1;
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        //yield return new WaitForSeconds(3);
+
         gamePause = false;
     }
 
