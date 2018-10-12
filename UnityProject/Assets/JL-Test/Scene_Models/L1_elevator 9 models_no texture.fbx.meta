@@ -19,6 +19,10 @@ ModelImporter:
     100026: polySlevel_1_room_9_elevator_top
     100028: level_1_room_9_elevator_ground1
     100030: polySlevel_1_room_9_elevator_front
+    100032: level_1_room_9_elevator_back
+    100034: level_1_room_9_elevator_front_right
+    100036: level_1_room_9_elevator_left
+    100038: level_1_room_9_elevator_right
     400000: air_bottle_trolley
     400002: full_air_bottle_no_energy290290290290290291
     400004: //RootNode
@@ -35,6 +39,10 @@ ModelImporter:
     400026: polySlevel_1_room_9_elevator_top
     400028: level_1_room_9_elevator_ground1
     400030: polySlevel_1_room_9_elevator_front
+    400032: level_1_room_9_elevator_back
+    400034: level_1_room_9_elevator_front_right
+    400036: level_1_room_9_elevator_left
+    400038: level_1_room_9_elevator_right
     2100000: lambert1
     2100002: blinn1
     2100004: phongE1
@@ -51,6 +59,10 @@ ModelImporter:
     2300020: polySlevel_1_room_9_elevator_top
     2300022: level_1_room_9_elevator_ground1
     2300024: polySlevel_1_room_9_elevator_front
+    2300026: level_1_room_9_elevator_back
+    2300028: level_1_room_9_elevator_front_right
+    2300030: level_1_room_9_elevator_left
+    2300032: level_1_room_9_elevator_right
     3300000: full_air_bottle_no_energy290290290290290291
     3300002: level_1_room_9_elevator_front_left
     3300004: level_1_room_9_elevator_galss
@@ -64,6 +76,10 @@ ModelImporter:
     3300020: polySlevel_1_room_9_elevator_top
     3300022: level_1_room_9_elevator_ground1
     3300024: polySlevel_1_room_9_elevator_front
+    3300026: level_1_room_9_elevator_back
+    3300028: level_1_room_9_elevator_front_right
+    3300030: level_1_room_9_elevator_left
+    3300032: level_1_room_9_elevator_right
     4300000: polySlevel_1_room_9_elevator_back
     4300002: polySlevel_1_room_9_elevator_right
     4300004: polySlevel_1_room_9_elevator_left
@@ -77,6 +93,10 @@ ModelImporter:
     4300020: full_air_bottle_no_energy290290290290290291
     4300022: polySlevel_1_room_9_elevator_front
     4300024: level_1_room_9_elevator_ground1
+    4300026: level_1_room_9_elevator_back
+    4300028: level_1_room_9_elevator_left
+    4300030: level_1_room_9_elevator_right
+    4300032: level_1_room_9_elevator_front_right
   externalObjects: {}
   materials:
     importMaterials: 1
