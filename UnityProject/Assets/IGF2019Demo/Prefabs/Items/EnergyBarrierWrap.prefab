@@ -1315,7 +1315,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1600553575569218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.168, y: -9.94, z: 3.46}
+  m_LocalPosition: {x: 2.168, y: -9.78, z: 3.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838451239381480}
@@ -24749,8 +24749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWeakBarrier: 1
   leftGenerator: {fileID: 1570455458762564}
-  rightGenerator: {fileID: 1873240840591494}
-  middleGenerator: {fileID: 1683481334206112}
+  rightGenerator: {fileID: 1683481334206112}
+  middleGenerator: {fileID: 1873240840591494}
   barrier: {fileID: 1446715468039580}
 --- !u!114 &114742742671155102
 MonoBehaviour:
