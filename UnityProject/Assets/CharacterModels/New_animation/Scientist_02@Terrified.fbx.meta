@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 4e3500ee161b02d4fa1a7dcde36d517b
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Mask:Head
+    100002: Mask:HeadTop_End
+    100004: Mask:Hips
+    100006: Mask:LeftArm
+    100008: Mask:LeftFoot
+    100010: Mask:LeftForeArm
+    100012: Mask:LeftHand
+    100014: Mask:LeftHandIndex1
+    100016: Mask:LeftHandIndex2
+    100018: Mask:LeftHandIndex3
+    100020: Mask:LeftHandIndex4
+    100022: Mask:LeftHandMiddle1
+    100024: Mask:LeftHandMiddle2
+    100026: Mask:LeftHandMiddle3
+    100028: Mask:LeftHandMiddle4
+    100030: Mask:LeftHandPinky1
+    100032: Mask:LeftHandPinky2
+    100034: Mask:LeftHandPinky3
+    100036: Mask:LeftHandPinky4
+    100038: Mask:LeftHandRing1
+    100040: Mask:LeftHandRing2
+    100042: Mask:LeftHandRing3
+    100044: Mask:LeftHandRing4
+    100046: Mask:LeftHandThumb1
+    100048: Mask:LeftHandThumb2
+    100050: Mask:LeftHandThumb3
+    100052: Mask:LeftHandThumb4
+    100054: Mask:LeftLeg
+    100056: Mask:LeftShoulder
+    100058: Mask:LeftToe_End
+    100060: Mask:LeftToeBase
+    100062: Mask:LeftUpLeg
+    100064: Mask:Mask
+    100066: Mask:Neck
+    100068: Mask:RightArm
+    100070: Mask:RightFoot
+    100072: Mask:RightForeArm
+    100074: Mask:RightHand
+    100076: Mask:RightHandIndex1
+    100078: Mask:RightHandIndex2
+    100080: Mask:RightHandIndex3
+    100082: Mask:RightHandIndex4
+    100084: Mask:RightHandMiddle1
+    100086: Mask:RightHandMiddle2
+    100088: Mask:RightHandMiddle3
+    100090: Mask:RightHandMiddle4
+    100092: Mask:RightHandPinky1
+    100094: Mask:RightHandPinky2
+    100096: Mask:RightHandPinky3
+    100098: Mask:RightHandPinky4
+    100100: Mask:RightHandRing1
+    100102: Mask:RightHandRing2
+    100104: Mask:RightHandRing3
+    100106: Mask:RightHandRing4
+    100108: Mask:RightHandThumb1
+    100110: Mask:RightHandThumb2
+    100112: Mask:RightHandThumb3
+    100114: Mask:RightHandThumb4
+    100116: Mask:RightLeg
+    100118: Mask:RightShoulder
+    100120: Mask:RightToe_End
+    100122: Mask:RightToeBase
+    100124: Mask:RightUpLeg
+    100126: Mask:Spine
+    100128: Mask:Spine1
+    100130: Mask:Spine2
+    100132: //RootNode
+    400000: Mask:Head
+    400002: Mask:HeadTop_End
+    400004: Mask:Hips
+    400006: Mask:LeftArm
+    400008: Mask:LeftFoot
+    400010: Mask:LeftForeArm
+    400012: Mask:LeftHand
+    400014: Mask:LeftHandIndex1
+    400016: Mask:LeftHandIndex2
+    400018: Mask:LeftHandIndex3
+    400020: Mask:LeftHandIndex4
+    400022: Mask:LeftHandMiddle1
+    400024: Mask:LeftHandMiddle2
+    400026: Mask:LeftHandMiddle3
+    400028: Mask:LeftHandMiddle4
+    400030: Mask:LeftHandPinky1
+    400032: Mask:LeftHandPinky2
+    400034: Mask:LeftHandPinky3
+    400036: Mask:LeftHandPinky4
+    400038: Mask:LeftHandRing1
+    400040: Mask:LeftHandRing2
+    400042: Mask:LeftHandRing3
+    400044: Mask:LeftHandRing4
+    400046: Mask:LeftHandThumb1
+    400048: Mask:LeftHandThumb2
+    400050: Mask:LeftHandThumb3
+    400052: Mask:LeftHandThumb4
+    400054: Mask:LeftLeg
+    400056: Mask:LeftShoulder
+    400058: Mask:LeftToe_End
+    400060: Mask:LeftToeBase
+    400062: Mask:LeftUpLeg
+    400064: Mask:Mask
+    400066: Mask:Neck
+    400068: Mask:RightArm
+    400070: Mask:RightFoot
+    400072: Mask:RightForeArm
+    400074: Mask:RightHand
+    400076: Mask:RightHandIndex1
+    400078: Mask:RightHandIndex2
+    400080: Mask:RightHandIndex3
+    400082: Mask:RightHandIndex4
+    400084: Mask:RightHandMiddle1
+    400086: Mask:RightHandMiddle2
+    400088: Mask:RightHandMiddle3
+    400090: Mask:RightHandMiddle4
+    400092: Mask:RightHandPinky1
+    400094: Mask:RightHandPinky2
+    400096: Mask:RightHandPinky3
+    400098: Mask:RightHandPinky4
+    400100: Mask:RightHandRing1
+    400102: Mask:RightHandRing2
+    400104: Mask:RightHandRing3
+    400106: Mask:RightHandRing4
+    400108: Mask:RightHandThumb1
+    400110: Mask:RightHandThumb2
+    400112: Mask:RightHandThumb3
+    400114: Mask:RightHandThumb4
+    400116: Mask:RightLeg
+    400118: Mask:RightShoulder
+    400120: Mask:RightToe_End
+    400122: Mask:RightToeBase
+    400124: Mask:RightUpLeg
+    400126: Mask:Spine
+    400128: Mask:Spine1
+    400130: Mask:Spine2
+    400132: //RootNode
+    2100000: lambert1
+    4300000: Mask:Mask
+    7400000: mixamo.com
+    9500000: //RootNode
+    13700000: Mask:Mask
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
