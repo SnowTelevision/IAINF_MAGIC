@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/TestLevel01_w_sceneAssets_EasySave.unity
+    guid: 3edeff2b9bcc9aa4ea34229ae9e1ef38
   - enabled: 1
-    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/Lv1Rm01-06SubmitVersion0.1.unity
-    guid: a01c04e881e739f4392ef66d2016edb2
+    path: Assets/Extra/WorkingHours.unity
+    guid: d8c0a2d558cf1a445bdbcf3daeb134e6
   m_configObjects: {}

@@ -881,7 +881,10 @@ public class ControlArm_UsingPhysics : ControlArm
         //    //MoveArmTipTowardsLastArmSegment();
         //}
 
-        armTip.GetComponent<Rigidbody>().AddForce(armTipAppliedForce, ForceMode.Impulse);
+        if (!float.IsNaN(armTipAppliedForce.x))
+        {
+            armTip.GetComponent<Rigidbody>().AddForce(armTipAppliedForce, ForceMode.Impulse);
+        }
     }
 
     /// <summary>

@@ -101,12 +101,13 @@ public class ScientistBeingAttack : MonoBehaviour
             GetComponents<BehaviorTree>()[1].DisableBehavior();
             GetComponent<CapsuleCollider>().isTrigger = false;
             deadScientistCounter.deadScientistCount++;
+            GetComponentInChildren<Animator>().SetBool("PlayDead", true);
 
             // If this scientist is the last one needed for the key to be dropped
             if (!deadScientistCounter.keyDropped && deadScientistCounter.deadScientistCount == deadScientistCounter.numberRequireToDropKey)
             {
                 // Drop the key at this scientist's position
-                deadScientistCounter.DropKey(transform.position);
+                deadScientistCounter.DropKey(transform.position + Vector3.up * 2);
             }
         }
     }

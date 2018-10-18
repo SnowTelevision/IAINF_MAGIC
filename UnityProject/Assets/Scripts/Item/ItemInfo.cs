@@ -47,6 +47,11 @@ public class ItemInfo : MonoBehaviour
     {
         if (isBeingHeld)
         {
+            // If the item is not actually being hold by player arm
+            if (holdingArmTip == null)
+            {
+                return;
+            }
             // If the item can be lifted by the arm then match its transform with the armTip
             if (!fixedPosition && itemWeight <= holdingArmTip.GetComponentInParent<ControlArm>().armLiftingStrength)
             {
