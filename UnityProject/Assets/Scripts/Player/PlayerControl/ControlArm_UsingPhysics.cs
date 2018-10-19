@@ -567,18 +567,25 @@ public class ControlArm_UsingPhysics : ControlArm
             armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
             armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
         }
-        // Add a fixed joint to the holding item to attach it to the armTip
-        //pickingItem.gameObject.AddComponent<FixedJoint>();
-        //pickingItem.GetComponent<FixedJoint>().connectedBody = armTip.GetComponent<Rigidbody>();
-        //pickingItem.GetComponent<FixedJoint>().autoConfigureConnectedAnchor = true;
-        //pickingItem.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
 
-        // Using fixed joint
-        //armTip.gameObject.AddComponent<FixedJoint>();
-        //armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
-        //armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
+        // If the item cannot be moved
+        if (pickingItem.GetComponent<ItemInfo>().fixedPosition)
+        {
+            // Change the status indicator color
+            pickingItem.GetComponent<ItemInfo>().ChangeIndicatorColor(pickingItem.GetComponent<ItemInfo>().isUsingStatusColor, 1);
+        }
+            // Add a fixed joint to the holding item to attach it to the armTip
+            //pickingItem.gameObject.AddComponent<FixedJoint>();
+            //pickingItem.GetComponent<FixedJoint>().connectedBody = armTip.GetComponent<Rigidbody>();
+            //pickingItem.GetComponent<FixedJoint>().autoConfigureConnectedAnchor = true;
+            //pickingItem.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
 
-        pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
+            // Using fixed joint
+            //armTip.gameObject.AddComponent<FixedJoint>();
+            //armTip.GetComponent<FixedJoint>().connectedBody = pickingItem.GetComponent<Rigidbody>();
+            //armTip.GetComponent<FixedJoint>().breakForce = armHoldingJointBreakForce;
+
+            pickingItem.GetComponent<ItemInfo>().isBeingHeld = true;
         pickingItem.GetComponent<ItemInfo>().holdingArmTip = armTip;
 
         // If the ItemInfo component is enabled on the item to let it be setup when picked
@@ -646,6 +653,14 @@ public class ControlArm_UsingPhysics : ControlArm
         droppingItem.GetComponent<ItemInfo>().holdingArmTip = null;
         // Remove the dropping item from armTip's currentHoldingItem
         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
+
+        // If the item cannot be moved
+        if (droppingItem.GetComponent<ItemInfo>().fixedPosition)
+        {
+            // Change the status indicator color
+            droppingItem.GetComponent<ItemInfo>().ChangeIndicatorColor(droppingItem.GetComponent<ItemInfo>().defaultStatusColor, 1);
+        }
+
         isArmBurstForceUsed = false;
     }
 

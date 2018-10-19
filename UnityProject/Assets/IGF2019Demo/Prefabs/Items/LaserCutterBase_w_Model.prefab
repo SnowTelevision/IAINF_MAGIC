@@ -1222,6 +1222,11 @@ MonoBehaviour:
   eventCoolDown: 0
   useLimit: 0
   fixedPosition: 0
+  itemStatusIndicator: {fileID: 0}
+  defaultStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isUsingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isControllingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  unusableStatusColor: {r: 0, g: 0, b: 0, a: 0}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -1276,6 +1281,11 @@ MonoBehaviour:
   eventCoolDown: Infinity
   useLimit: 0
   fixedPosition: 1
+  itemStatusIndicator: {fileID: 23914947226651264}
+  defaultStatusColor: {r: 1, g: 1, b: 1, a: 1}
+  isUsingStatusColor: {r: 0, g: 0.8210938, b: 1, a: 1}
+  isControllingStatusColor: {r: 0, g: 1, b: 0.05528426, a: 1}
+  unusableStatusColor: {r: 1, g: 0, b: 0, a: 1}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0

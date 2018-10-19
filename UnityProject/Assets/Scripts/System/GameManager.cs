@@ -89,11 +89,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         //yield return new WaitForSeconds(3);
 
         gamePause = false;
+
+        yield return null;
     }
 
     /// <summary>

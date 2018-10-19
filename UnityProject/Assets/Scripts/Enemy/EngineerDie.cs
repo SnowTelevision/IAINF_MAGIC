@@ -28,6 +28,7 @@ public class EngineerDie : EnemyDie
     {
         Instantiate(carryingKey, transform.position - transform.forward - Vector3.up, transform.rotation);
 
+        GetComponentInChildren<Animator>().speed = 0; // Stop the engineer animation when he dies
         Destroy(this);
     }
 }

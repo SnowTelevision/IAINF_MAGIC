@@ -14,6 +14,12 @@ public class ItemInfo : MonoBehaviour
     public float eventCoolDown; // When the player is holding down the use button and constantly using the item, how long it should wait before each use
     public int useLimit; // How many times can this item being used (0 means infinite)
     public bool fixedPosition; // Can this item be picked up by the player or is fixed on the ground
+    public MeshRenderer itemStatusIndicator; // The emissive mesh that indicate the item's status
+    public Color defaultStatusColor; // The color of the indicator for default status;
+    //public Color inRangeStatusColor; // The color of the indicator for the player's armTip is within using range status;
+    public Color isUsingStatusColor; // The color of the indicator for the player is using (attached armTip to the item, but not controlling) status;
+    public Color isControllingStatusColor; // The color of the indicator for the player is controlling (is pressing down the trigger) status;
+    public Color unusableStatusColor; // The color of the indicator for not usable status;
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
@@ -41,6 +47,19 @@ public class ItemInfo : MonoBehaviour
     void Update()
     {
         CalculatingItemTransform();
+    }
+
+    /// <summary>
+    /// Change the emissive color on the indicator
+    /// </summary>
+    /// <param name="newColor"></param>
+    /// <param name="emissionIntensity"></param>
+    public void ChangeIndicatorColor(Color newColor, float emissionIntensity)
+    {
+        // Change Albedo color
+        itemStatusIndicator.material.color = newColor;
+        // Change emissive color
+        itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(newColor, 1));
     }
 
     public void CalculatingItemTransform()
@@ -83,6 +102,9 @@ public class ItemInfo : MonoBehaviour
     /// </summary>
     public void StartUsing()
     {
+        // Change the status indicator color
+        ChangeIndicatorColor(isControllingStatusColor, 1);
+
         usingItem = StartCoroutine(UsingItem());
     }
 
@@ -103,6 +125,9 @@ public class ItemInfo : MonoBehaviour
             }
 
             usingItem = null;
+
+            // Change the status indicator color
+            ChangeIndicatorColor(isUsingStatusColor, 1);
         }
     }
 
