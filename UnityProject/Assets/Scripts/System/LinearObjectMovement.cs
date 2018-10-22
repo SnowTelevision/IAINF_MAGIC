@@ -46,6 +46,12 @@ public class LinearObjectMovement : MonoBehaviour
     /// </summary>
     public void StartAnimation()
     {
+        // Reset the animation finished flag if the animation is loopable
+        if (loopable)
+        {
+            animationFinished = false;
+        }
+
         StartCoroutine(Animate());
     }
 

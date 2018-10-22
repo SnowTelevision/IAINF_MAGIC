@@ -15,11 +15,18 @@ public class ItemInfo : MonoBehaviour
     public int useLimit; // How many times can this item being used (0 means infinite)
     public bool fixedPosition; // Can this item be picked up by the player or is fixed on the ground
     public MeshRenderer itemStatusIndicator; // The emissive mesh that indicate the item's status
+    public float statusIndicatorOnEmissionIntensity; // The emission intensity of the status indicator when it's in the player's camera view
+    public float statusIndicatorOffEmissionIntensity; // The emission intensity of the status indicator when it's out of the player's camera view
+    public float statusIndicatorLerpIntensityDuration; // The duration of the lerping intensity animation
+    public Light statusIndicatorLight; // The light on the status indicator
+    public float statusIndicatorLightOnIntensity; // The intensity when the light is on
     public Color defaultStatusColor; // The color of the indicator for default status;
     //public Color inRangeStatusColor; // The color of the indicator for the player's armTip is within using range status;
     public Color isUsingStatusColor; // The color of the indicator for the player is using (attached armTip to the item, but not controlling) status;
     public Color isControllingStatusColor; // The color of the indicator for the player is controlling (is pressing down the trigger) status;
     public Color unusableStatusColor; // The color of the indicator for not usable status;
+    public float playerCameraDetectorDistance; // How far is each player camera detector away from the item
+    public GameObject playerCameraDetectorPrefab; // The player camera detector prefab
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
@@ -29,6 +36,13 @@ public class ItemInfo : MonoBehaviour
     public Transform holdingArmTip; // The arm that is holding this item
     public Coroutine usingItem; // The coroutine that continuously triggers the using event
     public int timeUsed; // How many time has this item been used
+    public List<DetectPlayerCameraViewRange> playerCameraDetectors; // The detectors that detects the player's camera view
+    public int beingSeenCameraDetectorCount; // The number of player camera detectors that's being seen by the player's camera
+    public Coroutine lerpStatusIndicatorEmissionCoroutine; // The current coroutine that is lerping the status indicator's emission
+
+    // Test
+    public Vector4 emissionColorV4; // The emission color in vector4 form
+    public Color emissionColor; // The emission color
 
     // Use this for initialization
     void Start()
@@ -41,12 +55,127 @@ public class ItemInfo : MonoBehaviour
             itemWeight = GetComponent<Rigidbody>().mass;
             isUsingGravity = GetComponent<Rigidbody>().useGravity;
         }
+
+        // Create player camera detectors for fixed items
+        if (fixedPosition && itemStatusIndicator != null)
+        {
+            // "Turn off" the status indicator emission and light
+            itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, statusIndicatorOffEmissionIntensity));
+            statusIndicatorLight.intensity = 0;
+            // Create player camera detectors
+            SetUpPlayerCameraDetectors();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         CalculatingItemTransform();
+        ControlFixedItemStatusIndicatorEmission();
+
+        // Test
+        if (itemStatusIndicator != null)
+        {
+            emissionColorV4 = itemStatusIndicator.material.GetColor("_EmissionColor");
+            emissionColor = itemStatusIndicator.material.GetColor("_EmissionColor");
+            //print(Mathf.Log(emissionColorV4.x * (1f / 0.7490196f), 2));
+        }
+    }
+
+    /// <summary>
+    /// Turn on the status indicator if the fixed item moves into player's camera view,
+    /// turn off when it leaves the player's camera view
+    /// </summary>
+    public void ControlFixedItemStatusIndicatorEmission()
+    {
+        // Stored the number of seen camera detectors in the last frame
+        int previousSeenCameraDetectorCount = beingSeenCameraDetectorCount;
+
+        // Count the number of currently seen detectors
+        beingSeenCameraDetectorCount = 0;
+        foreach (DetectPlayerCameraViewRange d in playerCameraDetectors)
+        {
+            if (d.isInCamera)
+            {
+                beingSeenCameraDetectorCount++;
+            }
+        }
+
+        // Detect if lerp status indicator emission
+        // If the item enters the player's camera view
+        if (previousSeenCameraDetectorCount < 4 && beingSeenCameraDetectorCount == 4)
+        {
+            // If there is a lerping animation currently running
+            if (lerpStatusIndicatorEmissionCoroutine != null)
+            {
+                StopCoroutine(lerpStatusIndicatorEmissionCoroutine);
+            }
+            // "Turn on" the emission
+            lerpStatusIndicatorEmissionCoroutine =
+                StartCoroutine(LerpStatusIndicatorEmission(statusIndicatorOnEmissionIntensity, statusIndicatorLightOnIntensity, statusIndicatorLerpIntensityDuration));
+        }
+        // If the item leaves the player's camera view
+        if (previousSeenCameraDetectorCount == 4 && beingSeenCameraDetectorCount < 4)
+        {
+            // If there is a lerping animation currently running
+            if (lerpStatusIndicatorEmissionCoroutine != null)
+            {
+                StopCoroutine(lerpStatusIndicatorEmissionCoroutine);
+            }
+            // "Turn off" the emission
+            lerpStatusIndicatorEmissionCoroutine =
+                StartCoroutine(LerpStatusIndicatorEmission(statusIndicatorOffEmissionIntensity, 0, statusIndicatorLerpIntensityDuration));
+        }
+    }
+
+    /// <summary>
+    /// Lerp the emission and light intensity on the status indicator
+    /// </summary>
+    /// <param name="endEmissionIntensity"></param>
+    /// <param name="endLightIntensity"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    public IEnumerator LerpStatusIndicatorEmission(float endEmissionIntensity, float endLightIntensity, float duration)
+    {
+        // Get the current emission and light intensity
+        Vector4 startColor = itemStatusIndicator.material.GetColor("_EmissionColor");
+        float currentEmissionIntensity = Mathf.Log(startColor.x * (1f / 0.7490196f), 2);
+        float currentLightIntensity = statusIndicatorLight.intensity;
+
+        // Lerp the emission intensity
+        for (float t = 0; t < 1; t += Time.deltaTime / duration)
+        {
+            itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, Mathf.Lerp(currentEmissionIntensity, endEmissionIntensity, t)));
+            statusIndicatorLight.intensity = Mathf.Lerp(currentLightIntensity, endLightIntensity, t);
+            yield return null;
+        }
+
+        itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, endEmissionIntensity));
+        lerpStatusIndicatorEmissionCoroutine = null;
+    }
+
+    public void SetUpPlayerCameraDetectors()
+    {
+        // Initiate the detector list
+        playerCameraDetectors = new List<DetectPlayerCameraViewRange>();
+
+        // Create camera detector in four directions
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject newDetector = Instantiate(playerCameraDetectorPrefab, transform);
+            playerCameraDetectors.Add(newDetector.GetComponent<DetectPlayerCameraViewRange>());
+        }
+
+        // Place the detectors in correct positions
+        playerCameraDetectors[0].transform.position = transform.position + Vector3.forward * playerCameraDetectorDistance;
+        playerCameraDetectors[1].transform.position = transform.position + Vector3.back * playerCameraDetectorDistance;
+        playerCameraDetectors[2].transform.position = transform.position + Vector3.left * playerCameraDetectorDistance;
+        playerCameraDetectors[3].transform.position = transform.position + Vector3.right * playerCameraDetectorDistance;
+        for (int i = 0; i < 4; i++)
+        {
+            // Place the detectors on 0 in the y-asix
+            playerCameraDetectors[i].transform.position -= Vector3.up * playerCameraDetectors[i].transform.position.y;
+        }
     }
 
     /// <summary>
@@ -59,7 +188,13 @@ public class ItemInfo : MonoBehaviour
         // Change Albedo color
         itemStatusIndicator.material.color = newColor;
         // Change emissive color
-        itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(newColor, 1));
+        itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(newColor, statusIndicatorOnEmissionIntensity));
+
+        // If the player dropped the item, then set emission color to default
+        if (newColor == Color.black)
+        {
+            itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, statusIndicatorOnEmissionIntensity));
+        }
     }
 
     public void CalculatingItemTransform()
@@ -85,8 +220,12 @@ public class ItemInfo : MonoBehaviour
 
     public void ForceDropItem()
     {
-        StopUsing(); // Stop using the item
-        holdingArmTip.GetComponentInParent<ControlArm>().DropDownItem(gameObject);
+        // If the item is being holding by an armTip
+        if (holdingArmTip != null)
+        {
+            StopUsing(); // Stop using the item
+            holdingArmTip.GetComponentInParent<ControlArm>().DropDownItem(gameObject);
+        }
     }
 
     /// <summary>
@@ -102,8 +241,11 @@ public class ItemInfo : MonoBehaviour
     /// </summary>
     public void StartUsing()
     {
-        // Change the status indicator color
-        ChangeIndicatorColor(isControllingStatusColor, 1);
+        if (itemStatusIndicator != null)
+        {
+            // Change the status indicator color
+            ChangeIndicatorColor(isControllingStatusColor, 1);
+        }
 
         usingItem = StartCoroutine(UsingItem());
     }
@@ -126,8 +268,11 @@ public class ItemInfo : MonoBehaviour
 
             usingItem = null;
 
-            // Change the status indicator color
-            ChangeIndicatorColor(isUsingStatusColor, 1);
+            if (itemStatusIndicator != null)
+            {
+                // Change the status indicator color
+                ChangeIndicatorColor(isUsingStatusColor, 1);
+            }
         }
     }
 

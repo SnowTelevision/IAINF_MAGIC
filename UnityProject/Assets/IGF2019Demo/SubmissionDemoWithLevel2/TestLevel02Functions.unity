@@ -925,7 +925,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40309025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1171,6 +1171,79 @@ Transform:
   - {fileID: 1410977917}
   m_Father: {fileID: 580597598}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &63796163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 63796165}
+  - component: {fileID: 63796164}
+  m_Layer: 0
+  m_Name: SpotLightPatrolRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &63796164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 63796163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9570253fb79ec704f818bc1b3a0b292b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSequence:
+  - startLocalPosition: {x: 0, y: 0, z: 0}
+    targetLocalPosition: {x: 5, y: 0, z: 5}
+    targetShouldBeZero: 1
+    moveSpeed: 3
+    waitTimeBeforeNext: 0
+    pauseBeforeNext: 0
+  - startLocalPosition: {x: 0, y: 0, z: 0}
+    targetLocalPosition: {x: 5, y: 0, z: -5}
+    targetShouldBeZero: 1
+    moveSpeed: 3
+    waitTimeBeforeNext: 0
+    pauseBeforeNext: 0
+  - startLocalPosition: {x: 0, y: 0, z: 0}
+    targetLocalPosition: {x: -5, y: 0, z: -5}
+    targetShouldBeZero: 1
+    moveSpeed: 3
+    waitTimeBeforeNext: 0
+    pauseBeforeNext: 0
+  - startLocalPosition: {x: 0, y: 0, z: 0}
+    targetLocalPosition: {x: -5, y: 0, z: 5}
+    targetShouldBeZero: 1
+    moveSpeed: 3
+    waitTimeBeforeNext: 0
+    pauseBeforeNext: 0
+  objectToBeAnimated: {fileID: 0}
+  loopable: 1
+  destroyGameObject: 0
+  animationFinished: 0
+  pause: 0
+  endDistanceTolerance: 0.1
+  isAnimationRunning: 0
+  testing: 0
+--- !u!4 &63796165
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 63796163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &64505650
 GameObject:
@@ -5746,6 +5819,18 @@ MonoBehaviour:
   eventCoolDown: 0
   useLimit: 0
   fixedPosition: 1
+  itemStatusIndicator: {fileID: 0}
+  statusIndicatorOnEmissionIntensity: 0
+  statusIndicatorOffEmissionIntensity: 0
+  statusIndicatorLerpIntensityDuration: 0
+  statusIndicatorLight: {fileID: 0}
+  statusIndicatorLightOnIntensity: 0
+  defaultStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isUsingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isControllingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  unusableStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  playerCameraDetectorDistance: 0
+  playerCameraDetectorPrefab: {fileID: 0}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -5753,6 +5838,10 @@ MonoBehaviour:
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
+  playerCameraDetectors: []
+  beingSeenCameraDetectorCount: 0
+  emissionColorV4: {x: 0, y: 0, z: 0, w: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &567193104
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7113,6 +7202,35 @@ Transform:
   m_Father: {fileID: 3183317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &590034372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 590034373}
+  m_Layer: 0
+  m_Name: DetectingRangeWrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &590034373
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590034372}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.679, y: 2.679, z: 10}
+  m_Children:
+  - {fileID: 1560930384}
+  m_Father: {fileID: 1259346186}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590962069
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,7 +7558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &623453875
 Transform:
   m_ObjectHideFlags: 0
@@ -9077,6 +9195,18 @@ MonoBehaviour:
   eventCoolDown: 0
   useLimit: 0
   fixedPosition: 0
+  itemStatusIndicator: {fileID: 0}
+  statusIndicatorOnEmissionIntensity: 0
+  statusIndicatorOffEmissionIntensity: 0
+  statusIndicatorLerpIntensityDuration: 0
+  statusIndicatorLight: {fileID: 0}
+  statusIndicatorLightOnIntensity: 0
+  defaultStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isUsingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isControllingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  unusableStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  playerCameraDetectorDistance: 0
+  playerCameraDetectorPrefab: {fileID: 0}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -9084,6 +9214,10 @@ MonoBehaviour:
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
+  playerCameraDetectors: []
+  beingSeenCameraDetectorCount: 0
+  emissionColorV4: {x: 0, y: 0, z: 0, w: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!136 &799480034
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13729,6 +13863,72 @@ Transform:
   m_Father: {fileID: 580597598}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1259346185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1259346186}
+  - component: {fileID: 1259346187}
+  m_Layer: 0
+  m_Name: Spot Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1259346186
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1259346185}
+  m_LocalRotation: {x: 0.44271606, y: -0, z: -0, w: 0.89666194}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 590034373}
+  m_Father: {fileID: 1570192138}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 52.555004, y: 0, z: 0}
+--- !u!108 &1259346187
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1259346185}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 100
+  m_Range: 100
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1260503490
 GameObject:
   m_ObjectHideFlags: 0
@@ -15663,6 +15863,18 @@ MonoBehaviour:
   eventCoolDown: 0
   useLimit: 0
   fixedPosition: 0
+  itemStatusIndicator: {fileID: 0}
+  statusIndicatorOnEmissionIntensity: 0
+  statusIndicatorOffEmissionIntensity: 0
+  statusIndicatorLerpIntensityDuration: 0
+  statusIndicatorLight: {fileID: 0}
+  statusIndicatorLightOnIntensity: 0
+  defaultStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isUsingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isControllingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  unusableStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  playerCameraDetectorDistance: 0
+  playerCameraDetectorPrefab: {fileID: 0}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -15670,6 +15882,10 @@ MonoBehaviour:
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
+  playerCameraDetectors: []
+  beingSeenCameraDetectorCount: 0
+  emissionColorV4: {x: 0, y: 0, z: 0, w: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &1427952322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16972,6 +17188,117 @@ Transform:
   m_Father: {fileID: 1756661451}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1560930379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1560930384}
+  - component: {fileID: 1560930383}
+  - component: {fileID: 1560930382}
+  - component: {fileID: 1560930381}
+  - component: {fileID: 1560930380}
+  m_Layer: 0
+  m_Name: DetectingRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1560930380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1560930379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e553cd746c9e6c43bf70ae66bee55a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreTrigger: 0
+  ignoredGameObjects: []
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 4294967039
+  isColliding: 0
+  collidingCollider: {fileID: 0}
+  isEnteringCollider: 0
+  enteringCollider: {fileID: 0}
+  isEnteringTrigger: 0
+  collidingTrigger: {fileID: 0}
+  collidingPoint: {x: 0, y: 0, z: 0}
+--- !u!64 &1560930381
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1560930379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: c54f29061082f0b45ac84a6d5b2c6720, type: 2}
+--- !u!33 &1560930382
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1560930379}
+  m_Mesh: {fileID: 4300000, guid: c54f29061082f0b45ac84a6d5b2c6720, type: 2}
+--- !u!23 &1560930383
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1560930379}
+  m_Enabled: 0
+  m_CastShadows: 2
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: f8af10ae2c674e569782e57b09c76a13, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 2
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!4 &1560930384
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1560930379}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 590034373}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1564421505
 GameObject:
   m_ObjectHideFlags: 0
@@ -17028,6 +17355,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 685402534}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1570192136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1570192138}
+  - component: {fileID: 1570192137}
+  m_Layer: 0
+  m_Name: SecuritySpotlightWrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1570192137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570192136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112ee259804a5f44fa49eb3995c1b13f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spotLightTransform: {fileID: 1259346186}
+  spotLightRoute: {fileID: 63796165}
+  objectDetectorWrap: {fileID: 590034373}
+  objectDetector: {fileID: 1560930380}
+  spotLightAngle: 30
+  spotLightMaxChaseSpeed: 10
+  chasePlayer: 1
+  spotLightDefaultIntensity: 0
+  spotLightDefaultRange: 0
+  distanceToWaterSurface: 0
+  spotLightFollowingTransform: {fileID: 0}
+--- !u!4 &1570192138
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570192136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1259346186}
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571891278
 GameObject:
@@ -18218,6 +18597,18 @@ MonoBehaviour:
   eventCoolDown: 0
   useLimit: 0
   fixedPosition: 0
+  itemStatusIndicator: {fileID: 0}
+  statusIndicatorOnEmissionIntensity: 0
+  statusIndicatorOffEmissionIntensity: 0
+  statusIndicatorLerpIntensityDuration: 0
+  statusIndicatorLight: {fileID: 0}
+  statusIndicatorLightOnIntensity: 0
+  defaultStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isUsingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  isControllingStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  unusableStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  playerCameraDetectorDistance: 0
+  playerCameraDetectorPrefab: {fileID: 0}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -18225,6 +18616,10 @@ MonoBehaviour:
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
+  playerCameraDetectors: []
+  beingSeenCameraDetectorCount: 0
+  emissionColorV4: {x: 0, y: 0, z: 0, w: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!23 &1683184772
 MeshRenderer:
   m_ObjectHideFlags: 0

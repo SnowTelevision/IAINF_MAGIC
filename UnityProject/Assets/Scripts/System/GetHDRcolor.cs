@@ -33,7 +33,7 @@ public class GetHDRcolor : MonoBehaviour
         color = LinearToGammaSpace(color);
 #endif
         // apply intensity exposure
-        color *= Mathf.Pow(2.0f, intensity);
+        color *= Mathf.Pow(2.0f, intensity) * 0.7490196f;
         // if not using gamma color space, convert back to linear
 # if UNITY_COLORSPACE_GAMMA
         color = GammaToLinearSpace(color);

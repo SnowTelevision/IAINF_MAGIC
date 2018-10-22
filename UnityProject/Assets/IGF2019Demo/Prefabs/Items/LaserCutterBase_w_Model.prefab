@@ -1223,10 +1223,17 @@ MonoBehaviour:
   useLimit: 0
   fixedPosition: 0
   itemStatusIndicator: {fileID: 0}
+  statusIndicatorOnEmissionIntensity: 0
+  statusIndicatorOffEmissionIntensity: 0
+  statusIndicatorLerpIntensityDuration: 0
+  statusIndicatorLight: {fileID: 0}
+  statusIndicatorLightOnIntensity: 0
   defaultStatusColor: {r: 0, g: 0, b: 0, a: 0}
   isUsingStatusColor: {r: 0, g: 0, b: 0, a: 0}
   isControllingStatusColor: {r: 0, g: 0, b: 0, a: 0}
   unusableStatusColor: {r: 0, g: 0, b: 0, a: 0}
+  playerCameraDetectorDistance: 0
+  playerCameraDetectorPrefab: {fileID: 0}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -1234,6 +1241,10 @@ MonoBehaviour:
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
+  playerCameraDetectors: []
+  beingSeenCameraDetectorCount: 0
+  emissionColorV4: {x: 0, y: 0, z: 0, w: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114911567041580370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1281,11 +1292,19 @@ MonoBehaviour:
   eventCoolDown: Infinity
   useLimit: 0
   fixedPosition: 1
-  itemStatusIndicator: {fileID: 23914947226651264}
+  itemStatusIndicator: {fileID: 0}
+  statusIndicatorOnEmissionIntensity: 0.5
+  statusIndicatorOffEmissionIntensity: -0.3
+  statusIndicatorLerpIntensityDuration: 1
+  statusIndicatorLight: {fileID: 0}
+  statusIndicatorLightOnIntensity: 2.5
   defaultStatusColor: {r: 1, g: 1, b: 1, a: 1}
   isUsingStatusColor: {r: 0, g: 0.8210938, b: 1, a: 1}
   isControllingStatusColor: {r: 0, g: 1, b: 0.05528426, a: 1}
   unusableStatusColor: {r: 1, g: 0, b: 0, a: 1}
+  playerCameraDetectorDistance: 1.5
+  playerCameraDetectorPrefab: {fileID: 1413040682180772, guid: 0048ef37a769f7445a8edcf858025eab,
+    type: 2}
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -1293,6 +1312,10 @@ MonoBehaviour:
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
+  playerCameraDetectors: []
+  beingSeenCameraDetectorCount: 0
+  emissionColorV4: {x: 0, y: 0, z: 0, w: 0}
+  emissionColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!135 &135350420126095144
 SphereCollider:
   m_ObjectHideFlags: 1

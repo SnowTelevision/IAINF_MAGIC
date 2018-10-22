@@ -76,9 +76,24 @@ public class ScientistBeingAttack : MonoBehaviour
 
         foreach (GameObject g in touchingArms)
         {
+            // If the player is holding down trigger to hold the scientist
             if (!g.GetComponent<ArmUseItem>().hasTriggerReleased)
             {
+                // "Attach" the armTip on the scientist
+                if (!g.GetComponent<Rigidbody>().isKinematic)
+                {
+                    g.GetComponent<Rigidbody>().isKinematic = true;
+                }
+
                 holdingArmCount++;
+            }
+            else
+            {
+                // "Detach" the armTip on the scientist
+                if (g.GetComponent<Rigidbody>().isKinematic)
+                {
+                    g.GetComponent<Rigidbody>().isKinematic = false;
+                }
             }
         }
 
@@ -99,7 +114,8 @@ public class ScientistBeingAttack : MonoBehaviour
         {
             isDead = true;
             GetComponents<BehaviorTree>()[1].DisableBehavior();
-            GetComponent<CapsuleCollider>().isTrigger = false;
+            //GetComponent<CapsuleCollider>().isTrigger = false;
+            Destroy(GetComponent<CapsuleCollider>());
             deadScientistCounter.deadScientistCount++;
             GetComponentInChildren<Animator>().SetBool("PlayDead", true);
 
@@ -109,6 +125,17 @@ public class ScientistBeingAttack : MonoBehaviour
                 // Drop the key at this scientist's position
                 deadScientistCounter.DropKey(transform.position + Vector3.up * 2);
             }
+
+            // "Detach" the "attached" armTip on the scientist when the scientist is dead
+            foreach (GameObject g in touchingArms)
+            {
+                if (g.GetComponent<Rigidbody>().isKinematic)
+                {
+                    g.GetComponent<Rigidbody>().isKinematic = false;
+                }
+            }
+
+            this.enabled = false;
         }
     }
 }
