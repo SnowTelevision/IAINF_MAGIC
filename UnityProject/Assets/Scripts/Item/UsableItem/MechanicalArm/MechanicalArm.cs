@@ -13,17 +13,20 @@ public class MechanicalArm : MonoBehaviour
     public float armMovingSpeed; // How fast can the arm hand move
     public Transform armHand; // The mechanical arm's hand
     public Transform arm; // The arm
+    public Transform armHandLookAtTransform; // The transform the arm hand should look at
     public GameObject armCollisionDetectionTrigger; // The trigger that detects any potential collision to the arm
     public GameObject armHandCollisionDetectionTrigger; // The trigger that detects any potential collision to the arm hand
     //public float armLengthScalingMagnitude; // The multiplier to calculate how long the arm should extend based on the armHand's distance
 
     public ControlArm_UsingPhysics currentAccessingArm; // The arm (joystick) that is currently controlling it
+    public float armHandLocalHeight; // The default local height of the arm hand
     Vector3 targetPosition; // Arm hand's target position
 
     // Use this for initialization
     void Start()
     {
-
+        // Set the local height for the arm hand
+        armHandLocalHeight = armHand.localPosition.y;
     }
 
     // Update is called once per frame
@@ -79,7 +82,7 @@ public class MechanicalArm : MonoBehaviour
     /// </summary>
     public void CorrectArmRotation()
     {
-        armHand.LookAt(transform, Vector3.up);
+        armHand.LookAt(armHandLookAtTransform, Vector3.up);
         arm.LookAt(armHand, Vector3.up);
     }
 
@@ -89,7 +92,9 @@ public class MechanicalArm : MonoBehaviour
     public void StretchArm()
     {
         Vector3 armTargetScale = arm.localScale;
-        armTargetScale.z = minimumArmLength + (maximumArmLength - minimumArmLength) * Vector3.Distance(transform.position, armHand.position) / maximumArmReach;
+        armTargetScale.z = 
+            minimumArmLength + (maximumArmLength - minimumArmLength) * 
+            Vector3.Distance(transform.position + Vector3.up * armHandLocalHeight, armHand.position) / maximumArmReach;
         arm.localScale = armTargetScale;
     }
 
@@ -126,7 +131,7 @@ public class MechanicalArm : MonoBehaviour
     public void MoveArm()
     {
         // Get arm hand's target position
-        targetPosition = transform.position + currentAccessingArm.joystickPosition.normalized * //(Mathf.Clamp(currentAccessingArm.joystickPosition.magnitude, 0.01f, 1))
+        targetPosition = transform.position + Vector3.up * armHandLocalHeight + currentAccessingArm.joystickPosition.normalized * //(Mathf.Clamp(currentAccessingArm.joystickPosition.magnitude, 0.01f, 1))
                          currentAccessingArm.joystickPosition.magnitude * maximumArmReach;
 
         if (DetectIfBlocked())

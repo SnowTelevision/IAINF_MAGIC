@@ -20,6 +20,7 @@ public class SecuritySpotLightController : MonoBehaviour
     public float distanceToWaterSurface; // How far is the spot light's origin to the water's surface
     public Transform spotLightFollowingTransform; // Which transform the spot light should follow
     public Coroutine spotLightReturnPatrolCoroutine; // The coroutine when the spot light is returning to patrol
+    public GameObject objectChaser; // The empty gameObject that chase behind the spot light's chasing object
 
     // Use this for initialization
     void Start()
@@ -60,13 +61,20 @@ public class SecuritySpotLightController : MonoBehaviour
         spotLightTransform.LookAt(spotLightRoute);
     }
 
-    //UNFINISHED
     /// <summary>
     /// Spot light chase an object
     /// </summary>
     public void SpotLightChase()
     {
+        // Get the displacement between the following object and the object chaser
+        Vector3 targetDis = spotLightFollowingTransform.position - objectChaser.transform.position;
+        // Move the object chaser towards the following object
+        objectChaser.transform.position +=
+            (targetDis).normalized *
+            Mathf.Clamp(targetDis.magnitude, 0, spotLightMaxChaseSpeed * Time.deltaTime);
 
+        // Make the spot light aim the object chaser
+        spotLightTransform.LookAt(objectChaser.transform);
     }
 
     /// <summary>
@@ -115,6 +123,17 @@ public class SecuritySpotLightController : MonoBehaviour
 
         // Pause the patrol route
         spotLightRoute.GetComponent<LinearObjectMovement>().pause = true;
+
+        // If there is already an object chaser
+        if (objectChaser != null)
+        {
+            // Destroy the player chaser
+            Destroy(objectChaser);
+        }
+
+        // Create an empty object that follows the player
+        objectChaser = Instantiate(new GameObject(), CalculateSpotLightIntersectingPositionWithWater(), Quaternion.identity);
+        objectChaser.transform.parent = transform;
     }
 
     /// <summary>
@@ -131,7 +150,6 @@ public class SecuritySpotLightController : MonoBehaviour
         spotLightReturnPatrolCoroutine = StartCoroutine(SpotLightReturnPatrol());
     }
 
-    // UNFINISHED
     /// <summary>
     /// Spot light return to the patrol route when it is no longer chasing an object
     /// </summary>
@@ -139,12 +157,23 @@ public class SecuritySpotLightController : MonoBehaviour
     public IEnumerator SpotLightReturnPatrol()
     {
         // While the spot light is not back to the patrol route
-        yield return null;
+        int whileStopper = int.MaxValue;
+
+        while ((Mathf.Abs(objectChaser.transform.position.x - spotLightRoute.position.x) > 0.1f ||
+                Mathf.Abs(objectChaser.transform.position.z - spotLightRoute.position.z) > 0.1f) &&
+               whileStopper > 0)
+        {
+            yield return null;
+        }
 
         // Resume patrol
         spotLightRoute.GetComponent<LinearObjectMovement>().pause = false;
         spotLightFollowingTransform = null;
         spotLightReturnPatrolCoroutine = null;
+
+        // Destroy the player chaser
+        Destroy(objectChaser);
+        objectChaser = null;
     }
 
     public void AutoReplayPatrolRoute()
@@ -174,5 +203,28 @@ public class SecuritySpotLightController : MonoBehaviour
 
         // Start the patrol route
         spotLightRoute.GetComponent<LinearObjectMovement>().StartAnimation();
+    }
+
+    /// <summary>
+    /// Calculate the position where the spot light's forward vector intersect with the water
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 CalculateSpotLightIntersectingPositionWithWater()
+    {
+        // Get the spot light's altitude
+        float spotLightHeight = spotLightTransform.position.y;
+
+        // Get the base position to calculate the final position
+        Vector3 basePosition = new Vector3(spotLightTransform.position.x, 0, spotLightTransform.position.z);
+
+        // Calculate the x and z distance from the base position based on the forward unit vector and spot light height
+        float xDistance = spotLightHeight / (-spotLightTransform.forward.y) * spotLightTransform.forward.x;
+        float zDistance = spotLightHeight / (-spotLightTransform.forward.y) * spotLightTransform.forward.z;
+
+        // Get the final position
+        basePosition.x += xDistance;
+        basePosition.z += zDistance;
+
+        return basePosition;
     }
 }
