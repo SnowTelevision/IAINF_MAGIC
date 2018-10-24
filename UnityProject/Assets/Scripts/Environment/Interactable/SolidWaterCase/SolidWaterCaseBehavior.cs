@@ -21,13 +21,29 @@ public class SolidWaterCaseBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        // Normalize the alpha
+        targetCaseAlpha /= 255f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        GetComponent<BehaviorTree>().SetVariableValue("ArrivedGeneratorCount", arrivedGeneratorCount);
+    }
 
+    /// <summary>
+    /// Let the generator start flocking
+    /// </summary>
+    public void GeneratorStartFlock()
+    {
+        // Reset the arrived generator count
+        arrivedGeneratorCount = 0;
+
+        for (int i = 0; i < solidWaterGenerators.Length; i++)
+        {
+            // Start the generators flocking behavior
+            solidWaterGenerators[i].GetComponent<SolidWaterGeneratorBehavior>().StartFlocking();
+        }
     }
 
     /// <summary>
@@ -35,17 +51,23 @@ public class SolidWaterCaseBehavior : MonoBehaviour
     /// </summary>
     public void GeneratorsGoToCoords()
     {
-        // Reset the arrived generator count
-        arrivedGeneratorCount = 0;
-
         // Set up the target position for each generator
         for (int i = 0; i < solidWaterGenerators.Length; i++)
         {
-            solidWaterGenerators[i].GetComponent<BehaviorTree>().
-                SetVariableValue("TargetPosition", new Vector3(UnitCubeCoords[i].x * solidWaterCaseSize.x * 0.5f,
-                                                               UnitCubeCoords[i].y * solidWaterCaseSize.y * 0.5f,
-                                                               UnitCubeCoords[i].z * solidWaterCaseSize.z * 0.5f) + transform.position);
-            solidWaterGenerators[i].GetComponent<BehaviorTree>().enabled = true;
+            // Stop the generators flocking behavior
+            solidWaterGenerators[i].GetComponent<SolidWaterGeneratorBehavior>().StopFlocking();
+
+            // Assign relative target position
+            solidWaterGenerators[i].GetComponent<SolidWaterGeneratorBehavior>().relativeTargetPosition =
+                 new Vector3(UnitCubeCoords[i].x * solidWaterCaseSize.x * 0.5f,
+                             UnitCubeCoords[i].y * solidWaterCaseSize.y * 0.5f,
+                             UnitCubeCoords[i].z * solidWaterCaseSize.z * 0.5f);
+
+            // Assign target rotation
+            solidWaterGenerators[i].GetComponent<SolidWaterGeneratorBehavior>().targetRotation = Quaternion.LookRotation(UnitCubeCoords[i]);
+
+            // Let the generators start moving to target position
+            solidWaterGenerators[i].GetComponent<SolidWaterGeneratorBehavior>().StartMoveToTargetPosition();
         }
     }
 
@@ -77,21 +99,22 @@ public class SolidWaterCaseBehavior : MonoBehaviour
     public IEnumerator LerpMaterial(float startAlpha, float targetAlpha, float startEmission, float targetEmission)
     {
         // Set up lerping colors
-        Color startColor = solidWaterCase.GetComponent<Material>().color;
+        Color startColor = solidWaterCase.GetComponent<MeshRenderer>().material.color;
         startColor.a = startAlpha;
-        Color targetColor = solidWaterCase.GetComponent<Material>().color;
-        startColor.a = targetAlpha;
-        Color emissionColor = solidWaterCase.GetComponent<Material>().GetColor("_EmissionColor");
+        Color targetColor = solidWaterCase.GetComponent<MeshRenderer>().material.color;
+        targetColor.a = targetAlpha;
+        Color emissionColor = solidWaterCase.GetComponent<MeshRenderer>().material.GetColor("_EmissionColor");
 
         // Lerp the material colors
         for (float t = 0; t < 1; t += Time.deltaTime / caseFormingDuration)
         {
-            solidWaterCase.GetComponent<Material>().color = Color.Lerp(startColor, targetColor, t);
-            solidWaterCase.GetComponent<Material>().SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(emissionColor, Mathf.Lerp(startEmission, targetEmission, t)));
+            solidWaterCase.GetComponent<MeshRenderer>().material.color = Color.Lerp(startColor, targetColor, t);
+            //solidWaterCase.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(emissionColor, Mathf.Lerp(startEmission, targetEmission, t)));
             yield return null;
         }
     }
 
+    /*
     /// <summary>
     /// Add 1 to the arrivedGeneratorCount when a generator reached target position
     /// </summary>
@@ -100,4 +123,5 @@ public class SolidWaterCaseBehavior : MonoBehaviour
         solidWaterGenerators[generatorIndex].GetComponent<BehaviorTree>().enabled = false;
         arrivedGeneratorCount++;
     }
+    */
 }
