@@ -1,0 +1,480 @@
+fileFormatVersion: 2
+guid: 1debb5ca35d638f4a9a6a570c8ab085f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: L1_RM1_monitor_style01_base
+    100002: L1_RM1_monitor_style01_base 1
+    100004: L1_RM1_monitor_style01_screen
+    100006: L1_RM1_monitor_style01_screen 1
+    100008: L1_RM2_chair_style01_1
+    100010: L1_RM2_chair_style01_2
+    100012: L1_RM2_chair_style01_2 1
+    100014: L1_RM2_data_base_02
+    100016: L1_RM2_database_door
+    100018: L1_RM2_database_glass
+    100020: L1_RM2_database_glass1
+    100022: L1_RM2_database_ground1
+    100024: L1_RM2_database_ground2
+    100026: L1_RM2_database_wall
+    100028: L1_RM2_database_wall_and_glass
+    100030: L1_RM2_door_left
+    100032: L1_RM2_door_left_wall2
+    100034: L1_RM2_door_right
+    100036: L1_RM2_door_right_wall1
+    100038: L1_RM2_ground
+    100040: L1_RM2_ground_light3
+    100042: L1_RM2_info_display_style01
+    100044: L1_RM2_info_display_style01_1
+    100046: L1_RM2_info_display_style01_screen
+    100048: L1_RM2_info_display_style02_1
+    100050: L1_RM2_info_display_style02_2
+    100052: L1_RM2_info_display_style02_frmae
+    100054: L1_RM2_info_display_style02_frmae 1
+    100056: L1_RM2_info_display_style02_screen
+    100058: L1_RM2_info_display_style02_screen 1
+    100060: L1_RM2_info_pc_style02_terminal1_base1
+    100062: L1_RM2_info_pc_style02_terminal1_keyboard
+    100064: L1_RM2_info_pc_style02_terminal1_screen
+    100066: L1_RM2_info_pc_style02_terminal2
+    100068: L1_RM2_info_pc_style03_1
+    100070: L1_RM2_info_pc_style03_base
+    100072: L1_RM2_info_pc_style03_keyboard
+    100074: L1_RM2_info_pc_style03_screen
+    100076: L1_RM2_info_table_01_5
+    100078: L1_RM2_lab_door2
+    100080: L1_RM2_lab_equipments_01_analysis_bottle6
+    100082: L1_RM2_lab_equipments_01_analysis_bottle7
+    100084: L1_RM2_left_wall
+    100086: L1_RM2_left_wall 1
+    100088: L1_RM2_left_wall_lighht
+    100090: //RootNode
+    100092: L1_RM2_monitor_style01
+    100094: L1_RM2_monitor_style01 1
+    100096: L1_RM2_monitor_style01_2
+    100098: L1_RM2_monitor_style01_base
+    100100: L1_RM2_monitor_style01_screen
+    100102: L1_RM2_monitor_style02_1
+    100104: L1_RM2_monitor_style02_2
+    100106: L1_RM2_monitor_style02_base
+    100108: L1_RM2_monitor_style02_base 1
+    100110: L1_RM2_monitor_style02_keyboard
+    100112: L1_RM2_monitor_style02_keyboard 1
+    100114: L1_RM2_monitor_style02_screen
+    100116: L1_RM2_monitor_style02_screen 1
+    100118: L1_RM2_monitor_style03
+    100120: L1_RM2_monitor_style03_base
+    100122: L1_RM2_monitor_style03_base 1
+    100124: L1_RM2_monitor_style03_screen
+    100126: L1_RM2_monitor_style03_screen 1
+    100128: L1_RM2_monitor_style04
+    100130: L1_RM2_monitor_style04 1
+    100132: L1_RM2_monitor_style04_2
+    100134: L1_RM2_monitor_style05
+    100136: L1_RM2_monitor_style05_base
+    100138: L1_RM2_monitor_style05_keyboard
+    100140: L1_RM2_monitor_style05_screen
+    100142: L1_RM2_monitor_style05_screen_monitor_style04_base
+    100144: L1_RM2_monitor_style05_screen_monitor_style04_base 1
+    100146: L1_RM2_monitor_style05_screen_monitor_style04_screen
+    100148: L1_RM2_monitor_style05_screen_monitor_style04_screen 1
+    100150: L1_RM2_right_wall
+    100152: L1_RM2_right_wall 1
+    100154: L1_RM2_right_wall_light
+    100156: L1_RM2_table_deco_style01
+    100158: L1_RM2_table_deco_style04_base
+    100160: L1_RM2_table_deco_style04_bottle
+    100162: L1_RM2_table_deco_style04_bottle2
+    100164: L1_RM2_table_deco_style04_bottle3
+    100166: L1_RM2_table_deco_style04_bottle4
+    100168: L1_RM2_table_style01
+    100170: L1_RM2_table_style01_keyboard1
+    100172: L1_RM2_table_style03
+    100174: L1_RM2_table_style03 1
+    100176: L1_RM2_table_style03_keyboard
+    100178: L1_RM2_table_style03_keyboard2
+    100180: L1_RM2_table_style03_table
+    100182: L1_RM2_table_style03_table 1
+    100184: lab_door_room2
+    400000: L1_RM1_monitor_style01_base
+    400002: L1_RM1_monitor_style01_base 1
+    400004: L1_RM1_monitor_style01_screen
+    400006: L1_RM1_monitor_style01_screen 1
+    400008: L1_RM2_chair_style01_1
+    400010: L1_RM2_chair_style01_2
+    400012: L1_RM2_chair_style01_2 1
+    400014: L1_RM2_data_base_02
+    400016: L1_RM2_database_door
+    400018: L1_RM2_database_glass
+    400020: L1_RM2_database_glass1
+    400022: L1_RM2_database_ground1
+    400024: L1_RM2_database_ground2
+    400026: L1_RM2_database_wall
+    400028: L1_RM2_database_wall_and_glass
+    400030: L1_RM2_door_left
+    400032: L1_RM2_door_left_wall2
+    400034: L1_RM2_door_right
+    400036: L1_RM2_door_right_wall1
+    400038: L1_RM2_ground
+    400040: L1_RM2_ground_light3
+    400042: L1_RM2_info_display_style01
+    400044: L1_RM2_info_display_style01_1
+    400046: L1_RM2_info_display_style01_screen
+    400048: L1_RM2_info_display_style02_1
+    400050: L1_RM2_info_display_style02_2
+    400052: L1_RM2_info_display_style02_frmae
+    400054: L1_RM2_info_display_style02_frmae 1
+    400056: L1_RM2_info_display_style02_screen
+    400058: L1_RM2_info_display_style02_screen 1
+    400060: L1_RM2_info_pc_style02_terminal1_base1
+    400062: L1_RM2_info_pc_style02_terminal1_keyboard
+    400064: L1_RM2_info_pc_style02_terminal1_screen
+    400066: L1_RM2_info_pc_style02_terminal2
+    400068: L1_RM2_info_pc_style03_1
+    400070: L1_RM2_info_pc_style03_base
+    400072: L1_RM2_info_pc_style03_keyboard
+    400074: L1_RM2_info_pc_style03_screen
+    400076: L1_RM2_info_table_01_5
+    400078: L1_RM2_lab_door2
+    400080: L1_RM2_lab_equipments_01_analysis_bottle6
+    400082: L1_RM2_lab_equipments_01_analysis_bottle7
+    400084: L1_RM2_left_wall
+    400086: L1_RM2_left_wall 1
+    400088: L1_RM2_left_wall_lighht
+    400090: //RootNode
+    400092: L1_RM2_monitor_style01
+    400094: L1_RM2_monitor_style01 1
+    400096: L1_RM2_monitor_style01_2
+    400098: L1_RM2_monitor_style01_base
+    400100: L1_RM2_monitor_style01_screen
+    400102: L1_RM2_monitor_style02_1
+    400104: L1_RM2_monitor_style02_2
+    400106: L1_RM2_monitor_style02_base
+    400108: L1_RM2_monitor_style02_base 1
+    400110: L1_RM2_monitor_style02_keyboard
+    400112: L1_RM2_monitor_style02_keyboard 1
+    400114: L1_RM2_monitor_style02_screen
+    400116: L1_RM2_monitor_style02_screen 1
+    400118: L1_RM2_monitor_style03
+    400120: L1_RM2_monitor_style03_base
+    400122: L1_RM2_monitor_style03_base 1
+    400124: L1_RM2_monitor_style03_screen
+    400126: L1_RM2_monitor_style03_screen 1
+    400128: L1_RM2_monitor_style04
+    400130: L1_RM2_monitor_style04 1
+    400132: L1_RM2_monitor_style04_2
+    400134: L1_RM2_monitor_style05
+    400136: L1_RM2_monitor_style05_base
+    400138: L1_RM2_monitor_style05_keyboard
+    400140: L1_RM2_monitor_style05_screen
+    400142: L1_RM2_monitor_style05_screen_monitor_style04_base
+    400144: L1_RM2_monitor_style05_screen_monitor_style04_base 1
+    400146: L1_RM2_monitor_style05_screen_monitor_style04_screen
+    400148: L1_RM2_monitor_style05_screen_monitor_style04_screen 1
+    400150: L1_RM2_right_wall
+    400152: L1_RM2_right_wall 1
+    400154: L1_RM2_right_wall_light
+    400156: L1_RM2_table_deco_style01
+    400158: L1_RM2_table_deco_style04_base
+    400160: L1_RM2_table_deco_style04_bottle
+    400162: L1_RM2_table_deco_style04_bottle2
+    400164: L1_RM2_table_deco_style04_bottle3
+    400166: L1_RM2_table_deco_style04_bottle4
+    400168: L1_RM2_table_style01
+    400170: L1_RM2_table_style01_keyboard1
+    400172: L1_RM2_table_style03
+    400174: L1_RM2_table_style03 1
+    400176: L1_RM2_table_style03_keyboard
+    400178: L1_RM2_table_style03_keyboard2
+    400180: L1_RM2_table_style03_table
+    400182: L1_RM2_table_style03_table 1
+    400184: lab_door_room2
+    2100000: lambert1
+    2100002: phongE1
+    2100004: blinn1
+    2300000: L1_RM1_monitor_style01_base
+    2300002: L1_RM1_monitor_style01_base 1
+    2300004: L1_RM1_monitor_style01_screen
+    2300006: L1_RM1_monitor_style01_screen 1
+    2300008: L1_RM2_chair_style01_1
+    2300010: L1_RM2_chair_style01_2
+    2300012: L1_RM2_chair_style01_2 1
+    2300014: L1_RM2_data_base_02
+    2300016: L1_RM2_database_door
+    2300018: L1_RM2_database_glass
+    2300020: L1_RM2_database_glass1
+    2300022: L1_RM2_database_ground1
+    2300024: L1_RM2_database_ground2
+    2300026: L1_RM2_database_wall
+    2300028: L1_RM2_door_left
+    2300030: L1_RM2_door_left_wall2
+    2300032: L1_RM2_door_right
+    2300034: L1_RM2_door_right_wall1
+    2300036: L1_RM2_ground
+    2300038: L1_RM2_ground_light3
+    2300040: L1_RM2_info_display_style01
+    2300042: L1_RM2_info_display_style01_screen
+    2300044: L1_RM2_info_display_style02_frmae
+    2300046: L1_RM2_info_display_style02_frmae 1
+    2300048: L1_RM2_info_display_style02_screen
+    2300050: L1_RM2_info_display_style02_screen 1
+    2300052: L1_RM2_info_pc_style02_terminal1_base1
+    2300054: L1_RM2_info_pc_style02_terminal1_keyboard
+    2300056: L1_RM2_info_pc_style02_terminal1_screen
+    2300058: L1_RM2_info_pc_style03_base
+    2300060: L1_RM2_info_pc_style03_keyboard
+    2300062: L1_RM2_info_pc_style03_screen
+    2300064: L1_RM2_lab_equipments_01_analysis_bottle6
+    2300066: L1_RM2_lab_equipments_01_analysis_bottle7
+    2300068: L1_RM2_left_wall 1
+    2300070: L1_RM2_left_wall_lighht
+    2300072: L1_RM2_monitor_style01_base
+    2300074: L1_RM2_monitor_style01_screen
+    2300076: L1_RM2_monitor_style02_base
+    2300078: L1_RM2_monitor_style02_base 1
+    2300080: L1_RM2_monitor_style02_keyboard
+    2300082: L1_RM2_monitor_style02_keyboard 1
+    2300084: L1_RM2_monitor_style02_screen
+    2300086: L1_RM2_monitor_style02_screen 1
+    2300088: L1_RM2_monitor_style03_base
+    2300090: L1_RM2_monitor_style03_base 1
+    2300092: L1_RM2_monitor_style03_screen
+    2300094: L1_RM2_monitor_style03_screen 1
+    2300096: L1_RM2_monitor_style05_base
+    2300098: L1_RM2_monitor_style05_keyboard
+    2300100: L1_RM2_monitor_style05_screen
+    2300102: L1_RM2_monitor_style05_screen_monitor_style04_base
+    2300104: L1_RM2_monitor_style05_screen_monitor_style04_base 1
+    2300106: L1_RM2_monitor_style05_screen_monitor_style04_screen
+    2300108: L1_RM2_monitor_style05_screen_monitor_style04_screen 1
+    2300110: L1_RM2_right_wall 1
+    2300112: L1_RM2_right_wall_light
+    2300114: L1_RM2_table_deco_style04_base
+    2300116: L1_RM2_table_deco_style04_bottle
+    2300118: L1_RM2_table_deco_style04_bottle2
+    2300120: L1_RM2_table_deco_style04_bottle3
+    2300122: L1_RM2_table_deco_style04_bottle4
+    2300124: L1_RM2_table_style01
+    2300126: L1_RM2_table_style01_keyboard1
+    2300128: L1_RM2_table_style03 1
+    2300130: L1_RM2_table_style03_keyboard
+    2300132: L1_RM2_table_style03_keyboard2
+    2300134: L1_RM2_table_style03_table 1
+    3300000: L1_RM1_monitor_style01_base
+    3300002: L1_RM1_monitor_style01_base 1
+    3300004: L1_RM1_monitor_style01_screen
+    3300006: L1_RM1_monitor_style01_screen 1
+    3300008: L1_RM2_chair_style01_1
+    3300010: L1_RM2_chair_style01_2
+    3300012: L1_RM2_chair_style01_2 1
+    3300014: L1_RM2_data_base_02
+    3300016: L1_RM2_database_door
+    3300018: L1_RM2_database_glass
+    3300020: L1_RM2_database_glass1
+    3300022: L1_RM2_database_ground1
+    3300024: L1_RM2_database_ground2
+    3300026: L1_RM2_database_wall
+    3300028: L1_RM2_door_left
+    3300030: L1_RM2_door_left_wall2
+    3300032: L1_RM2_door_right
+    3300034: L1_RM2_door_right_wall1
+    3300036: L1_RM2_ground
+    3300038: L1_RM2_ground_light3
+    3300040: L1_RM2_info_display_style01
+    3300042: L1_RM2_info_display_style01_screen
+    3300044: L1_RM2_info_display_style02_frmae
+    3300046: L1_RM2_info_display_style02_frmae 1
+    3300048: L1_RM2_info_display_style02_screen
+    3300050: L1_RM2_info_display_style02_screen 1
+    3300052: L1_RM2_info_pc_style02_terminal1_base1
+    3300054: L1_RM2_info_pc_style02_terminal1_keyboard
+    3300056: L1_RM2_info_pc_style02_terminal1_screen
+    3300058: L1_RM2_info_pc_style03_base
+    3300060: L1_RM2_info_pc_style03_keyboard
+    3300062: L1_RM2_info_pc_style03_screen
+    3300064: L1_RM2_lab_equipments_01_analysis_bottle6
+    3300066: L1_RM2_lab_equipments_01_analysis_bottle7
+    3300068: L1_RM2_left_wall 1
+    3300070: L1_RM2_left_wall_lighht
+    3300072: L1_RM2_monitor_style01_base
+    3300074: L1_RM2_monitor_style01_screen
+    3300076: L1_RM2_monitor_style02_base
+    3300078: L1_RM2_monitor_style02_base 1
+    3300080: L1_RM2_monitor_style02_keyboard
+    3300082: L1_RM2_monitor_style02_keyboard 1
+    3300084: L1_RM2_monitor_style02_screen
+    3300086: L1_RM2_monitor_style02_screen 1
+    3300088: L1_RM2_monitor_style03_base
+    3300090: L1_RM2_monitor_style03_base 1
+    3300092: L1_RM2_monitor_style03_screen
+    3300094: L1_RM2_monitor_style03_screen 1
+    3300096: L1_RM2_monitor_style05_base
+    3300098: L1_RM2_monitor_style05_keyboard
+    3300100: L1_RM2_monitor_style05_screen
+    3300102: L1_RM2_monitor_style05_screen_monitor_style04_base
+    3300104: L1_RM2_monitor_style05_screen_monitor_style04_base 1
+    3300106: L1_RM2_monitor_style05_screen_monitor_style04_screen
+    3300108: L1_RM2_monitor_style05_screen_monitor_style04_screen 1
+    3300110: L1_RM2_right_wall 1
+    3300112: L1_RM2_right_wall_light
+    3300114: L1_RM2_table_deco_style04_base
+    3300116: L1_RM2_table_deco_style04_bottle
+    3300118: L1_RM2_table_deco_style04_bottle2
+    3300120: L1_RM2_table_deco_style04_bottle3
+    3300122: L1_RM2_table_deco_style04_bottle4
+    3300124: L1_RM2_table_style01
+    3300126: L1_RM2_table_style01_keyboard1
+    3300128: L1_RM2_table_style03 1
+    3300130: L1_RM2_table_style03_keyboard
+    3300132: L1_RM2_table_style03_keyboard2
+    3300134: L1_RM2_table_style03_table 1
+    4300000: L1_RM2_ground
+    4300002: L1_RM2_data_base_02
+    4300004: L1_RM2_ground_light3
+    4300006: L1_RM2_left_wall
+    4300008: L1_RM2_left_wall_lighht
+    4300010: L1_RM2_right_wall
+    4300012: L1_RM2_right_wall_light
+    4300014: L1_RM2_door_right
+    4300016: L1_RM2_door_left
+    4300018: L1_RM2_door_left_wall2
+    4300020: L1_RM2_door_right_wall1
+    4300022: L1_RM2_database_door
+    4300024: L1_RM2_database_ground2
+    4300026: L1_RM2_database_ground1
+    4300028: L1_RM2_database_glass
+    4300030: L1_RM2_database_glass1
+    4300032: L1_RM2_database_wall
+    4300034: L1_RM2_monitor_style02_screen
+    4300036: L1_RM2_monitor_style02_base
+    4300038: L1_RM2_monitor_style02_keyboard
+    4300040: L1_RM2_monitor_style02_screen
+    4300042: L1_RM2_monitor_style02_base
+    4300044: L1_RM2_monitor_style02_keyboard
+    4300046: L1_RM2_monitor_style03_screen
+    4300048: L1_RM2_monitor_style03_base
+    4300050: L1_RM2_monitor_style03_screen
+    4300052: L1_RM2_monitor_style03_base
+    4300054: L1_RM2_table_style03
+    4300056: L1_RM2_info_pc_style02_terminal1_screen
+    4300058: L1_RM2_info_pc_style02_terminal1_base1
+    4300060: L1_RM2_info_pc_style02_terminal1_keyboard
+    4300062: L1_RM1_monitor_style01_base
+    4300064: L1_RM1_monitor_style01_screen
+    4300066: L1_RM2_table_style03_table
+    4300068: L1_RM2_monitor_style05_screen_monitor_style04_screen
+    4300070: L1_RM2_monitor_style05_screen_monitor_style04_base
+    4300072: L1_RM2_monitor_style05_screen
+    4300074: L1_RM2_monitor_style05_base
+    4300076: L1_RM2_monitor_style05_keyboard
+    4300078: L1_RM1_monitor_style01_base
+    4300080: L1_RM1_monitor_style01_screen
+    4300082: L1_RM2_monitor_style05_screen_monitor_style04_screen
+    4300084: L1_RM2_monitor_style05_screen_monitor_style04_base
+    4300086: L1_RM2_table_style03_keyboard
+    4300088: L1_RM2_table_style03_keyboard2
+    4300090: L1_RM2_chair_style01_1
+    4300092: L1_RM2_chair_style01_2
+    4300094: L1_RM2_chair_style01_2
+    4300096: L1_RM2_table_style01
+    4300098: L1_RM2_table_style01_keyboard1
+    4300100: L1_RM2_table_deco_style04_base
+    4300102: L1_RM2_table_deco_style04_bottle
+    4300104: L1_RM2_table_deco_style04_bottle2
+    4300106: L1_RM2_table_deco_style04_bottle3
+    4300108: L1_RM2_table_deco_style04_bottle4
+    4300110: L1_RM2_lab_equipments_01_analysis_bottle6
+    4300112: L1_RM2_lab_equipments_01_analysis_bottle7
+    4300114: L1_RM2_monitor_style01_base
+    4300116: L1_RM2_monitor_style01_screen
+    4300118: L1_RM2_info_display_style02_screen
+    4300120: L1_RM2_info_display_style02_frmae
+    4300122: L1_RM2_info_display_style01_screen
+    4300124: L1_RM2_info_display_style01
+    4300126: L1_RM2_info_display_style02_screen
+    4300128: L1_RM2_info_display_style02_frmae
+    4300130: L1_RM2_info_pc_style03_screen
+    4300132: L1_RM2_info_pc_style03_base
+    4300134: L1_RM2_info_pc_style03_keyboard
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

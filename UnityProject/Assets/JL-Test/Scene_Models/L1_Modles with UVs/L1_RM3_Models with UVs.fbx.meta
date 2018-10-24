@@ -1,0 +1,431 @@
+fileFormatVersion: 2
+guid: 97a7e5fa0613a304cb450eb53f525811
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: L1_RM03_ground
+    100002: L1_RM2_lab_equipments_01_analysis_bottle7
+    100004: L1_RM2_table_deco_style04_base
+    100006: L1_RM2_table_deco_style04_bottle
+    100008: L1_RM2_table_deco_style04_bottle2
+    100010: L1_RM2_table_deco_style04_bottle3
+    100012: L1_RM2_table_deco_style04_bottle4
+    100014: L1_RM3_chair_style01_1
+    100016: L1_RM3_chair_style01_2
+    100018: L1_RM3_chair_style01_2 1
+    100020: L1_RM3_cultivation_tanks_style06_1
+    100022: L1_RM3_cultivation_tanks_style06_2
+    100024: L1_RM3_cultivation_tanks_style06_3
+    100026: L1_RM3_cultivation_tanks_style06_4
+    100028: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    100030: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 1
+    100032: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 2
+    100034: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 3
+    100036: L1_RM3_cultivation_tanks_style06_glass
+    100038: L1_RM3_cultivation_tanks_style06_glass 1
+    100040: L1_RM3_cultivation_tanks_style06_glass 2
+    100042: L1_RM3_cultivation_tanks_style06_glass 3
+    100044: L1_RM3_dissection_table
+    100046: L1_RM3_door_left1
+    100048: L1_RM3_door_left_wall3
+    100050: L1_RM3_door_right1
+    100052: L1_RM3_door_right_wall2
+    100054: L1_RM3_info_pc_style01_2
+    100056: L1_RM3_info_pc_style01_base1
+    100058: L1_RM3_info_pc_style01_keyboard
+    100060: L1_RM3_info_pc_style01_screen
+    100062: L1_RM3_info_pc_style03_2
+    100064: L1_RM3_info_pc_style03_base
+    100066: L1_RM3_info_pc_style03_keyboard
+    100068: L1_RM3_info_pc_style03_screen
+    100070: L1_RM3_info_table_01_6
+    100072: L1_RM3_lab_equipments_01_analysis_bottle6
+    100074: L1_RM3_laser_cutter1
+    100076: L1_RM3_laser_cutter1_handle
+    100078: //RootNode
+    100080: L1_RM3_monitor_style01
+    100082: L1_RM3_monitor_style01 1
+    100084: L1_RM3_monitor_style01_2
+    100086: L1_RM3_monitor_style01_base
+    100088: L1_RM3_monitor_style01_base 1
+    100090: L1_RM3_monitor_style01_base 2
+    100092: L1_RM3_monitor_style01_screen
+    100094: L1_RM3_monitor_style01_screen 1
+    100096: L1_RM3_monitor_style01_screen 2
+    100098: L1_RM3_monitor_style04
+    100100: L1_RM3_monitor_style04_2
+    100102: L1_RM3_monitor_style05
+    100104: L1_RM3_monitor_style05_base
+    100106: L1_RM3_monitor_style05_keyboard
+    100108: L1_RM3_monitor_style05_screen
+    100110: L1_RM3_monitor_style05_screen_monitor_style04_base
+    100112: L1_RM3_monitor_style05_screen_monitor_style04_base 1
+    100114: L1_RM3_monitor_style05_screen_monitor_style04_screen
+    100116: L1_RM3_monitor_style05_screen_monitor_style04_screen 1
+    100118: L1_RM3_table_deco_style01
+    100120: L1_RM3_table_style01
+    100122: L1_RM3_table_style01_keyboard1
+    100124: L1_RM3_table_style03_keyboard
+    100126: L1_RM3_table_style03_keyboard2
+    100128: L1_RM3_table_style03_table
+    100130: L1_RM3_table_style03_table1
+    100132: L1_RM3_walls
+    100134: L1_RM3_walls 1
+    100136: L1_RM3_walls_left
+    100138: L1_RM3_walls_light
+    100140: L1_RM3_walls_right
+    100142: lab_door_room3
+    100144: laser_cutter1_1
+    100146: laser_cutter1_2
+    100148: laser_cutter1_3
+    100150: laser_cutter1_4
+    100152: laser_cutter1_6
+    100154: laser_cutter1_handle1
+    100156: laser_cutter1_handle2
+    100158: laser_cutter1_handle3
+    100160: laser_cutter1_handle4
+    400000: L1_RM03_ground
+    400002: L1_RM2_lab_equipments_01_analysis_bottle7
+    400004: L1_RM2_table_deco_style04_base
+    400006: L1_RM2_table_deco_style04_bottle
+    400008: L1_RM2_table_deco_style04_bottle2
+    400010: L1_RM2_table_deco_style04_bottle3
+    400012: L1_RM2_table_deco_style04_bottle4
+    400014: L1_RM3_chair_style01_1
+    400016: L1_RM3_chair_style01_2
+    400018: L1_RM3_chair_style01_2 1
+    400020: L1_RM3_cultivation_tanks_style06_1
+    400022: L1_RM3_cultivation_tanks_style06_2
+    400024: L1_RM3_cultivation_tanks_style06_3
+    400026: L1_RM3_cultivation_tanks_style06_4
+    400028: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    400030: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 1
+    400032: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 2
+    400034: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 3
+    400036: L1_RM3_cultivation_tanks_style06_glass
+    400038: L1_RM3_cultivation_tanks_style06_glass 1
+    400040: L1_RM3_cultivation_tanks_style06_glass 2
+    400042: L1_RM3_cultivation_tanks_style06_glass 3
+    400044: L1_RM3_dissection_table
+    400046: L1_RM3_door_left1
+    400048: L1_RM3_door_left_wall3
+    400050: L1_RM3_door_right1
+    400052: L1_RM3_door_right_wall2
+    400054: L1_RM3_info_pc_style01_2
+    400056: L1_RM3_info_pc_style01_base1
+    400058: L1_RM3_info_pc_style01_keyboard
+    400060: L1_RM3_info_pc_style01_screen
+    400062: L1_RM3_info_pc_style03_2
+    400064: L1_RM3_info_pc_style03_base
+    400066: L1_RM3_info_pc_style03_keyboard
+    400068: L1_RM3_info_pc_style03_screen
+    400070: L1_RM3_info_table_01_6
+    400072: L1_RM3_lab_equipments_01_analysis_bottle6
+    400074: L1_RM3_laser_cutter1
+    400076: L1_RM3_laser_cutter1_handle
+    400078: //RootNode
+    400080: L1_RM3_monitor_style01
+    400082: L1_RM3_monitor_style01 1
+    400084: L1_RM3_monitor_style01_2
+    400086: L1_RM3_monitor_style01_base
+    400088: L1_RM3_monitor_style01_base 1
+    400090: L1_RM3_monitor_style01_base 2
+    400092: L1_RM3_monitor_style01_screen
+    400094: L1_RM3_monitor_style01_screen 1
+    400096: L1_RM3_monitor_style01_screen 2
+    400098: L1_RM3_monitor_style04
+    400100: L1_RM3_monitor_style04_2
+    400102: L1_RM3_monitor_style05
+    400104: L1_RM3_monitor_style05_base
+    400106: L1_RM3_monitor_style05_keyboard
+    400108: L1_RM3_monitor_style05_screen
+    400110: L1_RM3_monitor_style05_screen_monitor_style04_base
+    400112: L1_RM3_monitor_style05_screen_monitor_style04_base 1
+    400114: L1_RM3_monitor_style05_screen_monitor_style04_screen
+    400116: L1_RM3_monitor_style05_screen_monitor_style04_screen 1
+    400118: L1_RM3_table_deco_style01
+    400120: L1_RM3_table_style01
+    400122: L1_RM3_table_style01_keyboard1
+    400124: L1_RM3_table_style03_keyboard
+    400126: L1_RM3_table_style03_keyboard2
+    400128: L1_RM3_table_style03_table
+    400130: L1_RM3_table_style03_table1
+    400132: L1_RM3_walls
+    400134: L1_RM3_walls 1
+    400136: L1_RM3_walls_left
+    400138: L1_RM3_walls_light
+    400140: L1_RM3_walls_right
+    400142: lab_door_room3
+    400144: laser_cutter1_1
+    400146: laser_cutter1_2
+    400148: laser_cutter1_3
+    400150: laser_cutter1_4
+    400152: laser_cutter1_6
+    400154: laser_cutter1_handle1
+    400156: laser_cutter1_handle2
+    400158: laser_cutter1_handle3
+    400160: laser_cutter1_handle4
+    2100000: phongE1
+    2100002: lambert1
+    2300000: L1_RM03_ground
+    2300002: L1_RM2_lab_equipments_01_analysis_bottle7
+    2300004: L1_RM2_table_deco_style04_base
+    2300006: L1_RM2_table_deco_style04_bottle
+    2300008: L1_RM2_table_deco_style04_bottle2
+    2300010: L1_RM2_table_deco_style04_bottle3
+    2300012: L1_RM2_table_deco_style04_bottle4
+    2300014: L1_RM3_chair_style01_1
+    2300016: L1_RM3_chair_style01_2
+    2300018: L1_RM3_chair_style01_2 1
+    2300020: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    2300022: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 1
+    2300024: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 2
+    2300026: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 3
+    2300028: L1_RM3_cultivation_tanks_style06_glass
+    2300030: L1_RM3_cultivation_tanks_style06_glass 1
+    2300032: L1_RM3_cultivation_tanks_style06_glass 2
+    2300034: L1_RM3_cultivation_tanks_style06_glass 3
+    2300036: L1_RM3_dissection_table
+    2300038: L1_RM3_door_left1
+    2300040: L1_RM3_door_left_wall3
+    2300042: L1_RM3_door_right1
+    2300044: L1_RM3_door_right_wall2
+    2300046: L1_RM3_info_pc_style01_base1
+    2300048: L1_RM3_info_pc_style01_keyboard
+    2300050: L1_RM3_info_pc_style01_screen
+    2300052: L1_RM3_info_pc_style03_base
+    2300054: L1_RM3_info_pc_style03_keyboard
+    2300056: L1_RM3_info_pc_style03_screen
+    2300058: L1_RM3_lab_equipments_01_analysis_bottle6
+    2300060: L1_RM3_monitor_style01_base
+    2300062: L1_RM3_monitor_style01_base 1
+    2300064: L1_RM3_monitor_style01_base 2
+    2300066: L1_RM3_monitor_style01_screen
+    2300068: L1_RM3_monitor_style01_screen 1
+    2300070: L1_RM3_monitor_style01_screen 2
+    2300072: L1_RM3_monitor_style05_base
+    2300074: L1_RM3_monitor_style05_keyboard
+    2300076: L1_RM3_monitor_style05_screen
+    2300078: L1_RM3_monitor_style05_screen_monitor_style04_base
+    2300080: L1_RM3_monitor_style05_screen_monitor_style04_base 1
+    2300082: L1_RM3_monitor_style05_screen_monitor_style04_screen
+    2300084: L1_RM3_monitor_style05_screen_monitor_style04_screen 1
+    2300086: L1_RM3_table_style01
+    2300088: L1_RM3_table_style01_keyboard1
+    2300090: L1_RM3_table_style03_keyboard
+    2300092: L1_RM3_table_style03_keyboard2
+    2300094: L1_RM3_table_style03_table
+    2300096: L1_RM3_walls_left
+    2300098: L1_RM3_walls_light
+    2300100: L1_RM3_walls_right
+    2300102: laser_cutter1_1
+    2300104: laser_cutter1_2
+    2300106: laser_cutter1_3
+    2300108: laser_cutter1_4
+    2300110: laser_cutter1_6
+    2300112: laser_cutter1_handle1
+    2300114: laser_cutter1_handle2
+    2300116: laser_cutter1_handle3
+    2300118: laser_cutter1_handle4
+    3300000: L1_RM03_ground
+    3300002: L1_RM2_lab_equipments_01_analysis_bottle7
+    3300004: L1_RM2_table_deco_style04_base
+    3300006: L1_RM2_table_deco_style04_bottle
+    3300008: L1_RM2_table_deco_style04_bottle2
+    3300010: L1_RM2_table_deco_style04_bottle3
+    3300012: L1_RM2_table_deco_style04_bottle4
+    3300014: L1_RM3_chair_style01_1
+    3300016: L1_RM3_chair_style01_2
+    3300018: L1_RM3_chair_style01_2 1
+    3300020: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    3300022: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 1
+    3300024: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 2
+    3300026: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame 3
+    3300028: L1_RM3_cultivation_tanks_style06_glass
+    3300030: L1_RM3_cultivation_tanks_style06_glass 1
+    3300032: L1_RM3_cultivation_tanks_style06_glass 2
+    3300034: L1_RM3_cultivation_tanks_style06_glass 3
+    3300036: L1_RM3_dissection_table
+    3300038: L1_RM3_door_left1
+    3300040: L1_RM3_door_left_wall3
+    3300042: L1_RM3_door_right1
+    3300044: L1_RM3_door_right_wall2
+    3300046: L1_RM3_info_pc_style01_base1
+    3300048: L1_RM3_info_pc_style01_keyboard
+    3300050: L1_RM3_info_pc_style01_screen
+    3300052: L1_RM3_info_pc_style03_base
+    3300054: L1_RM3_info_pc_style03_keyboard
+    3300056: L1_RM3_info_pc_style03_screen
+    3300058: L1_RM3_lab_equipments_01_analysis_bottle6
+    3300060: L1_RM3_monitor_style01_base
+    3300062: L1_RM3_monitor_style01_base 1
+    3300064: L1_RM3_monitor_style01_base 2
+    3300066: L1_RM3_monitor_style01_screen
+    3300068: L1_RM3_monitor_style01_screen 1
+    3300070: L1_RM3_monitor_style01_screen 2
+    3300072: L1_RM3_monitor_style05_base
+    3300074: L1_RM3_monitor_style05_keyboard
+    3300076: L1_RM3_monitor_style05_screen
+    3300078: L1_RM3_monitor_style05_screen_monitor_style04_base
+    3300080: L1_RM3_monitor_style05_screen_monitor_style04_base 1
+    3300082: L1_RM3_monitor_style05_screen_monitor_style04_screen
+    3300084: L1_RM3_monitor_style05_screen_monitor_style04_screen 1
+    3300086: L1_RM3_table_style01
+    3300088: L1_RM3_table_style01_keyboard1
+    3300090: L1_RM3_table_style03_keyboard
+    3300092: L1_RM3_table_style03_keyboard2
+    3300094: L1_RM3_table_style03_table
+    3300096: L1_RM3_walls_left
+    3300098: L1_RM3_walls_light
+    3300100: L1_RM3_walls_right
+    3300102: laser_cutter1_1
+    3300104: laser_cutter1_2
+    3300106: laser_cutter1_3
+    3300108: laser_cutter1_4
+    3300110: laser_cutter1_6
+    3300112: laser_cutter1_handle1
+    3300114: laser_cutter1_handle2
+    3300116: laser_cutter1_handle3
+    3300118: laser_cutter1_handle4
+    4300000: L1_RM3_door_left1
+    4300002: L1_RM3_door_right1
+    4300004: L1_RM3_door_right_wall2
+    4300006: L1_RM3_door_left_wall3
+    4300008: laser_cutter1_2
+    4300010: laser_cutter1_3
+    4300012: laser_cutter1_4
+    4300014: laser_cutter1_1
+    4300016: laser_cutter1_6
+    4300018: laser_cutter1_handle1
+    4300020: laser_cutter1_handle2
+    4300022: laser_cutter1_handle3
+    4300024: laser_cutter1_handle4
+    4300026: L1_RM3_walls_light
+    4300028: L1_RM3_walls_right
+    4300030: L1_RM3_walls_left
+    4300032: L1_RM03_ground
+    4300034: L1_RM3_dissection_table
+    4300036: L1_RM3_cultivation_tanks_style06_glass
+    4300038: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    4300040: L1_RM3_cultivation_tanks_style06_glass
+    4300042: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    4300044: L1_RM3_cultivation_tanks_style06_glass
+    4300046: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    4300048: L1_RM3_cultivation_tanks_style06_glass
+    4300050: L1_RM3_cultivation_tanks_style06_cultivation_tanks_style06_frame
+    4300052: L1_RM3_info_pc_style01_screen
+    4300054: L1_RM3_info_pc_style01_keyboard
+    4300056: L1_RM3_info_pc_style01_base1
+    4300058: L1_RM3_monitor_style01_base
+    4300060: L1_RM3_monitor_style01_screen
+    4300062: L1_RM3_table_style03_table
+    4300064: L1_RM3_monitor_style05_screen_monitor_style04_screen
+    4300066: L1_RM3_monitor_style05_screen_monitor_style04_base
+    4300068: L1_RM3_monitor_style05_screen
+    4300070: L1_RM3_monitor_style05_base
+    4300072: L1_RM3_monitor_style05_keyboard
+    4300074: L1_RM3_monitor_style01_base
+    4300076: L1_RM3_monitor_style01_screen
+    4300078: L1_RM3_monitor_style05_screen_monitor_style04_screen
+    4300080: L1_RM3_monitor_style05_screen_monitor_style04_base
+    4300082: L1_RM3_table_style03_keyboard
+    4300084: L1_RM3_table_style03_keyboard2
+    4300086: L1_RM3_chair_style01_1
+    4300088: L1_RM3_chair_style01_2
+    4300090: L1_RM3_chair_style01_2
+    4300092: L1_RM3_table_style01
+    4300094: L1_RM3_table_style01_keyboard1
+    4300096: L1_RM2_table_deco_style04_base
+    4300098: L1_RM2_table_deco_style04_bottle
+    4300100: L1_RM2_table_deco_style04_bottle2
+    4300102: L1_RM2_table_deco_style04_bottle3
+    4300104: L1_RM2_table_deco_style04_bottle4
+    4300106: L1_RM3_lab_equipments_01_analysis_bottle6
+    4300108: L1_RM2_lab_equipments_01_analysis_bottle7
+    4300110: L1_RM3_monitor_style01_base
+    4300112: L1_RM3_monitor_style01_screen
+    4300114: L1_RM3_info_pc_style03_screen
+    4300116: L1_RM3_info_pc_style03_base
+    4300118: L1_RM3_info_pc_style03_keyboard
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

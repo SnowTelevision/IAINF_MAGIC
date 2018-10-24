@@ -1,0 +1,150 @@
+fileFormatVersion: 2
+guid: 4e97e3b54d258ea4cb5b5a9edde6cce9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: air_bottle_trolley_base
+    100002: full_air_bottle_full_energy1
+    100004: full_air_bottle_full_energy2
+    100006: full_air_bottle_full_energy3
+    100008: full_air_bottle_full_energy4
+    100010: L1_RM9_air_bottle_trolley
+    100012: L1_RM9_elevator
+    100014: L1_RM9_elevator_back
+    100016: L1_RM9_elevator_front_left
+    100018: L1_RM9_elevator_front_right
+    100020: L1_RM9_elevator_ground
+    100022: L1_RM9_elevator_left
+    100024: L1_RM9_elevator_right
+    100026: //RootNode
+    400000: air_bottle_trolley_base
+    400002: full_air_bottle_full_energy1
+    400004: full_air_bottle_full_energy2
+    400006: full_air_bottle_full_energy3
+    400008: full_air_bottle_full_energy4
+    400010: L1_RM9_air_bottle_trolley
+    400012: L1_RM9_elevator
+    400014: L1_RM9_elevator_back
+    400016: L1_RM9_elevator_front_left
+    400018: L1_RM9_elevator_front_right
+    400020: L1_RM9_elevator_ground
+    400022: L1_RM9_elevator_left
+    400024: L1_RM9_elevator_right
+    400026: //RootNode
+    2100000: lambert1
+    2100002: phongE1
+    2300000: air_bottle_trolley_base
+    2300002: full_air_bottle_full_energy1
+    2300004: full_air_bottle_full_energy2
+    2300006: full_air_bottle_full_energy3
+    2300008: full_air_bottle_full_energy4
+    2300010: L1_RM9_elevator_back
+    2300012: L1_RM9_elevator_front_left
+    2300014: L1_RM9_elevator_front_right
+    2300016: L1_RM9_elevator_ground
+    2300018: L1_RM9_elevator_left
+    2300020: L1_RM9_elevator_right
+    3300000: air_bottle_trolley_base
+    3300002: full_air_bottle_full_energy1
+    3300004: full_air_bottle_full_energy2
+    3300006: full_air_bottle_full_energy3
+    3300008: full_air_bottle_full_energy4
+    3300010: L1_RM9_elevator_back
+    3300012: L1_RM9_elevator_front_left
+    3300014: L1_RM9_elevator_front_right
+    3300016: L1_RM9_elevator_ground
+    3300018: L1_RM9_elevator_left
+    3300020: L1_RM9_elevator_right
+    4300000: L1_RM9_elevator_back
+    4300002: L1_RM9_elevator_left
+    4300004: L1_RM9_elevator_ground
+    4300006: L1_RM9_elevator_right
+    4300008: L1_RM9_elevator_front_right
+    4300010: L1_RM9_elevator_front_left
+    4300012: full_air_bottle_full_energy1
+    4300014: full_air_bottle_full_energy2
+    4300016: full_air_bottle_full_energy4
+    4300018: full_air_bottle_full_energy3
+    4300020: air_bottle_trolley_base
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
