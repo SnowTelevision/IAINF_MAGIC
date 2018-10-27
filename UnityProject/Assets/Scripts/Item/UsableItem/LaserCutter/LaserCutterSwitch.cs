@@ -16,6 +16,9 @@ public class LaserCutterSwitch : MonoBehaviour
     public Transform laserHead; // The laser head that shoots laser
     public float handleRetractDistance; // Where the handle should retract to when the laser is on
     public Transform handleForwardRef; // The transform to get the forward direction of the handle
+    public MeshRenderer handleIndicatorMesh; // The mesh that indicates the handle's status (if the handle can be used or not
+    public Color handleOnColor; // The color when the handle cannot be used
+    public Color handleOffColor; // The color when the handle can be used
 
     public bool turnedOn; // If it is turned on
     public DoorMeltByLaser hittingDoor; // The door the laser is currently hitting
@@ -26,6 +29,9 @@ public class LaserCutterSwitch : MonoBehaviour
     void Start()
     {
         canSwitch = true;
+
+        // Set the color to be off color
+        handleIndicatorMesh.materials[1].color = handleOffColor;
     }
 
     // Update is called once per frame
@@ -144,6 +150,10 @@ public class LaserCutterSwitch : MonoBehaviour
         {
             artificialLaserCutterHandle.transform.position +=
                 artificialHandleOriginalDirection * (artificialHandleOriginalDistance - handleRetractDistance) * Time.deltaTime / animationTime;
+
+            // Change the handle indicator color
+            handleIndicatorMesh.materials[1].color = Color.Lerp(handleOnColor, handleOffColor, t);
+
             yield return null;
         }
 
@@ -184,6 +194,10 @@ public class LaserCutterSwitch : MonoBehaviour
         {
             artificialLaserCutterHandle.transform.position -=
                 artificialHandleOriginalDirection * (artificialHandleOriginalDistance - handleRetractDistance) * Time.deltaTime / animationTime;
+
+            // Change the handle indicator color
+            handleIndicatorMesh.materials[1].color = Color.Lerp(handleOffColor, handleOnColor, t);
+
             yield return null;
         }
         // yield return new WaitForSeconds(animationTime);

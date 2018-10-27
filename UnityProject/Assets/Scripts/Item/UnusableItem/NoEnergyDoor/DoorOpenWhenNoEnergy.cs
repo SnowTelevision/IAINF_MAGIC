@@ -8,7 +8,7 @@ using UnityEngine;
 public class DoorOpenWhenNoEnergy : MonoBehaviour
 {
     public EnergyBeam_Wide_Behavior[] wideEnergyBeams; // The wide energy beams that need to overload the room's energy
-    public LinearObjectMovement[] slidingDoors; // The sliding doors to be opened after energy overload
+    public SlidingDoor[] slidingDoors; // The sliding doors to be opened after energy overload
 
     public bool overloadProcessStarted; // Has the energy overloading process started
 
@@ -53,9 +53,9 @@ public class DoorOpenWhenNoEnergy : MonoBehaviour
     /// </summary>
     void StartEnergyOverloadProcess()
     {
-        foreach (LinearObjectMovement l in slidingDoors)
+        foreach (SlidingDoor s in slidingDoors)
         {
-            l.StartAnimation();
+            s.OpenDoor();
         }
     }
 }

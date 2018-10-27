@@ -242,6 +242,20 @@ public class SlidingDoor : MonoBehaviour
         controlDoorAnimationCoroutine = StartCoroutine(GetComponentsInChildren<LinearObjectMovement>()[1].Animate());
     }
 
+    /// <summary>
+    /// Completely shut off the door, prevent the player from going back
+    /// </summary>
+    public void SealDoor()
+    {
+        if (controlDoorAnimationCoroutine != null)
+        {
+            StopCoroutine(controlDoorAnimationCoroutine);
+        }
+
+        GetComponentsInChildren<LinearObjectMovement>()[1].StartAnimation();
+        this.enabled = false;
+    }
+
     ///// <summary>
     ///// When a key start/stop touching the door, detect if anything happenes to the door
     ///// </summary>

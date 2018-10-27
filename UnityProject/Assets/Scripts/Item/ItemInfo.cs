@@ -15,6 +15,8 @@ public class ItemInfo : MonoBehaviour
     public int useLimit; // How many times can this item being used (0 means infinite)
     public bool fixedPosition; // Can this item be picked up by the player or is fixed on the ground
     public MeshRenderer itemStatusIndicator; // The emissive mesh that indicate the item's status
+    public int itemStatusIndicatorMaterialIndex; // The index of the material for the indicator
+    public MeshRenderer itemEmissiveIndicator; // The emissive mesh that indicate the item's on/off emission
     public float statusIndicatorOnEmissionIntensity; // The emission intensity of the status indicator when it's in the player's camera view
     public float statusIndicatorOffEmissionIntensity; // The emission intensity of the status indicator when it's out of the player's camera view
     public float statusIndicatorLerpIntensityDuration; // The duration of the lerping intensity animation
@@ -27,6 +29,7 @@ public class ItemInfo : MonoBehaviour
     public Color unusableStatusColor; // The color of the indicator for not usable status;
     public float playerCameraDetectorDistance; // How far is each player camera detector away from the item
     public GameObject playerCameraDetectorPrefab; // The player camera detector prefab
+    public float playerDetectingRange; // How close the player has to be with the fixed item to turn on the emission
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
@@ -39,6 +42,7 @@ public class ItemInfo : MonoBehaviour
     public List<DetectPlayerCameraViewRange> playerCameraDetectors; // The detectors that detects the player's camera view
     public int beingSeenCameraDetectorCount; // The number of player camera detectors that's being seen by the player's camera
     public Coroutine lerpStatusIndicatorEmissionCoroutine; // The current coroutine that is lerping the status indicator's emission
+    public bool isIndicatorEmissionOn; // Is the indicator's emission turned on
 
     // Test
     public Vector4 emissionColorV4; // The emission color in vector4 form
@@ -57,10 +61,10 @@ public class ItemInfo : MonoBehaviour
         }
 
         // Create player camera detectors for fixed items
-        if (fixedPosition && itemStatusIndicator != null)
+        if (fixedPosition && itemEmissiveIndicator != null)
         {
             // "Turn off" the status indicator emission and light
-            itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, statusIndicatorOffEmissionIntensity));
+            itemEmissiveIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, statusIndicatorOffEmissionIntensity));
             statusIndicatorLight.intensity = 0;
             // Create player camera detectors
             SetUpPlayerCameraDetectors();
@@ -88,6 +92,41 @@ public class ItemInfo : MonoBehaviour
     /// </summary>
     public void ControlFixedItemStatusIndicatorEmission()
     {
+        // If there is no emissive indicator on this item
+        if (itemEmissiveIndicator == null)
+        {
+            return;
+        }
+
+        // Detect if lerp status indicator emission
+        // If the player get close to the fixed item
+        if (!isIndicatorEmissionOn && Vector3.Distance(transform.position, PlayerInfo.sPlayerInfo.transform.position) < playerDetectingRange)
+        {
+            // If there is a lerping animation currently running
+            if (lerpStatusIndicatorEmissionCoroutine != null)
+            {
+                StopCoroutine(lerpStatusIndicatorEmissionCoroutine);
+            }
+            // "Turn on" the emission
+            isIndicatorEmissionOn = true;
+            lerpStatusIndicatorEmissionCoroutine =
+                StartCoroutine(LerpStatusIndicatorEmission(statusIndicatorOnEmissionIntensity, statusIndicatorLightOnIntensity, statusIndicatorLerpIntensityDuration));
+        }
+        // If the player move away from the fixed item
+        else if (isIndicatorEmissionOn && Vector3.Distance(transform.position, PlayerInfo.sPlayerInfo.transform.position) >= playerDetectingRange)
+        {
+            // If there is a lerping animation currently running
+            if (lerpStatusIndicatorEmissionCoroutine != null)
+            {
+                StopCoroutine(lerpStatusIndicatorEmissionCoroutine);
+            }
+            // "Turn off" the emission
+            isIndicatorEmissionOn = false;
+            lerpStatusIndicatorEmissionCoroutine =
+                StartCoroutine(LerpStatusIndicatorEmission(statusIndicatorOffEmissionIntensity, 0, statusIndicatorLerpIntensityDuration));
+        }
+
+        /*
         // Stored the number of seen camera detectors in the last frame
         int previousSeenCameraDetectorCount = beingSeenCameraDetectorCount;
 
@@ -126,6 +165,7 @@ public class ItemInfo : MonoBehaviour
             lerpStatusIndicatorEmissionCoroutine =
                 StartCoroutine(LerpStatusIndicatorEmission(statusIndicatorOffEmissionIntensity, 0, statusIndicatorLerpIntensityDuration));
         }
+        */
     }
 
     /// <summary>
@@ -138,19 +178,19 @@ public class ItemInfo : MonoBehaviour
     public IEnumerator LerpStatusIndicatorEmission(float endEmissionIntensity, float endLightIntensity, float duration)
     {
         // Get the current emission and light intensity
-        Vector4 startColor = itemStatusIndicator.material.GetColor("_EmissionColor");
+        Vector4 startColor = itemEmissiveIndicator.material.GetColor("_EmissionColor");
         float currentEmissionIntensity = Mathf.Log(startColor.x * (1f / 0.7490196f), 2);
         float currentLightIntensity = statusIndicatorLight.intensity;
 
         // Lerp the emission intensity
         for (float t = 0; t < 1; t += Time.deltaTime / duration)
         {
-            itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, Mathf.Lerp(currentEmissionIntensity, endEmissionIntensity, t)));
+            itemEmissiveIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, Mathf.Lerp(currentEmissionIntensity, endEmissionIntensity, t)));
             statusIndicatorLight.intensity = Mathf.Lerp(currentLightIntensity, endLightIntensity, t);
             yield return null;
         }
 
-        itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, endEmissionIntensity));
+        itemEmissiveIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, endEmissionIntensity));
         lerpStatusIndicatorEmissionCoroutine = null;
     }
 
@@ -186,14 +226,14 @@ public class ItemInfo : MonoBehaviour
     public void ChangeIndicatorColor(Color newColor, float emissionIntensity)
     {
         // Change Albedo color
-        itemStatusIndicator.material.color = newColor;
+        itemStatusIndicator.materials[itemStatusIndicatorMaterialIndex].color = newColor;
         // Change emissive color
-        itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(newColor, statusIndicatorOnEmissionIntensity));
+        itemStatusIndicator.materials[itemStatusIndicatorMaterialIndex].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(newColor, statusIndicatorOnEmissionIntensity));
 
         // If the player dropped the item, then set emission color to default
         if (newColor == Color.black)
         {
-            itemStatusIndicator.material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, statusIndicatorOnEmissionIntensity));
+            itemStatusIndicator.materials[itemStatusIndicatorMaterialIndex].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(defaultStatusColor, statusIndicatorOnEmissionIntensity));
         }
     }
 

@@ -29,7 +29,7 @@ public class EnergyBeam_Wide_Behavior : MonoBehaviour
         if (collision.collider.GetComponent<EnergyBallBehavior>())
         {
             // Make the emission brighter
-            GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(GetComponent<MeshRenderer>().material.color, 1));
+            GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(GetComponent<MeshRenderer>().material.color, 2));
 
             isOverloaded = true;
         }
