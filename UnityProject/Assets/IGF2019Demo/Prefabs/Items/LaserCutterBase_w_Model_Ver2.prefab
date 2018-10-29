@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 54251198895247750}
   - component: {fileID: 153843403416389454}
   - component: {fileID: 135716454105276630}
+  - component: {fileID: 135750202319547434}
   m_Layer: 0
   m_Name: ArtificialLaserGunHandle
   m_TagString: Untagged
@@ -807,7 +808,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164823849573366}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 2.1670074, y: -5.52437, z: -0.8580003}
+  m_LocalPosition: {x: -3.322998, y: -5.52437, z: 6.332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4873419764174952}
@@ -868,7 +869,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 86412a336cbb55d488df20062d94549b, type: 2}
-  - {fileID: 2100000, guid: 5f1dce9da73f0094491630c015439715, type: 2}
+  - {fileID: 2100000, guid: b63566915554f0c4290bc91f28d9a12a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -938,7 +939,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: 97a7e5fa0613a304cb450eb53f525811, type: 3}
+  - {fileID: 2100000, guid: 86412a336cbb55d488df20062d94549b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -974,7 +975,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 86412a336cbb55d488df20062d94549b, type: 2}
-  - {fileID: 2100000, guid: 9b4a056fe46f6c74b82de4c3a017941a, type: 2}
+  - {fileID: 2100000, guid: d2725441be0f63c4c94dd01109ecfcd0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1394,7 +1395,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: 97a7e5fa0613a304cb450eb53f525811, type: 3}
+  - {fileID: 2100000, guid: 86412a336cbb55d488df20062d94549b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1429,7 +1430,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: 97a7e5fa0613a304cb450eb53f525811, type: 3}
+  - {fileID: 2100000, guid: 86412a336cbb55d488df20062d94549b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1963,6 +1964,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.004
   m_Center: {x: 0, y: 0.0034, z: 0}
+--- !u!135 &135750202319547434
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714436327181934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.003
+  m_Center: {x: 0, y: 0.00057, z: 0}
 --- !u!135 &135963325274556900
 SphereCollider:
   m_ObjectHideFlags: 1
