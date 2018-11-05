@@ -47,6 +47,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public Transform lastArmSegment; // The arm segment that connects the armTip
     public ArmControlModeInfo[] armControlModeInfos; // Infos of different arm control modes
     public ArmUpdatePhysicsVariebles[] armMiddleSegmentsPhysicsControllers; // The controllers that update the physics variebles for arm segments between the first and the last
+    public AudioClip armTipGrabbingGroundSFX; // The sfx for armTip grabbing onto ground
+    public AudioClip armTipStopGrabbingGroundSFX; // The sfx for armTip grabbing move away from ground
 
     /// <summary>
     /// Arm flags
@@ -513,7 +515,10 @@ public class ControlArm_UsingPhysics : ControlArm
         yield return new WaitForEndOfFrame();
 
         // Turn off the gravity of the picking item
-        pickingItem.GetComponent<Rigidbody>().useGravity = false;
+        if (!pickingItem.GetComponent<ItemInfo>().fixedPosition)
+        {
+            pickingItem.GetComponent<Rigidbody>().useGravity = false;
+        }
 
         //// If the item can be lifted by the arm, then disable it's gravity and raise it to the arm's height
         if (pickingItem.GetComponent<ItemInfo>().itemWeight <= armLiftingStrength && !pickingItem.GetComponent<ItemInfo>().fixedPosition)
@@ -569,7 +574,7 @@ public class ControlArm_UsingPhysics : ControlArm
         }
 
         // If the item cannot be moved
-        if (pickingItem.GetComponent<ItemInfo>().fixedPosition)
+        if (pickingItem.GetComponent<ItemInfo>().fixedPosition && pickingItem.GetComponent<ItemInfo>().canUse)
         {
             // Change the status indicator color
             pickingItem.GetComponent<ItemInfo>().ChangeIndicatorColor(pickingItem.GetComponent<ItemInfo>().isUsingStatusColor, 1);
@@ -611,23 +616,27 @@ public class ControlArm_UsingPhysics : ControlArm
         //UnityEventTools.RemovePersistentListener(armTip.GetComponent<ArmUseItem>().stopUsingItem, stopUsingAction);
 
         // Enable the gravity on the rigidbody of the dropping item if it normally has gravity
-        if (droppingItem.GetComponent<ItemInfo>().isUsingGravity)
+        if (!droppingItem.GetComponent<ItemInfo>().fixedPosition)
         {
-            droppingItem.GetComponent<Rigidbody>().useGravity = true;
+            if (droppingItem.GetComponent<ItemInfo>().isUsingGravity)
+            {
+                droppingItem.GetComponent<Rigidbody>().useGravity = true;
+            }
+
+            // Rrestore the drag, angular drag, and mass of the dropping item
+            //if (droppingItem.GetComponent<ItemInfo>().canUse)
+            //{
+            droppingItem.GetComponent<Rigidbody>().drag = droppingItem.GetComponent<ItemInfo>().normalDrag;
+            droppingItem.GetComponent<Rigidbody>().angularDrag = droppingItem.GetComponent<ItemInfo>().normalAngularDrag;
+            droppingItem.GetComponent<Rigidbody>().mass = droppingItem.GetComponent<ItemInfo>().normalMass;
+            //// Turn on the collider
+            //TurnOnColliders(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
+            // Change the item to not kinematic
+            //droppingItem.GetComponent<Rigidbody>().isKinematic = false;
+            //}
+            //else
+            //{
         }
-        // Rrestore the drag, angular drag, and mass of the dropping item
-        //if (droppingItem.GetComponent<ItemInfo>().canUse)
-        //{
-        droppingItem.GetComponent<Rigidbody>().drag = droppingItem.GetComponent<ItemInfo>().normalDrag;
-        droppingItem.GetComponent<Rigidbody>().angularDrag = droppingItem.GetComponent<ItemInfo>().normalAngularDrag;
-        droppingItem.GetComponent<Rigidbody>().mass = droppingItem.GetComponent<ItemInfo>().normalMass;
-        //// Turn on the collider
-        //TurnOnColliders(armTip.GetComponent<ArmUseItem>().currentlyHoldingItem);
-        // Change the item to not kinematic
-        //droppingItem.GetComponent<Rigidbody>().isKinematic = false;
-        //}
-        //else
-        //{
 
         armTip.GetComponent<ArmUseItem>().resetItemDelegate.Invoke(); // Reset the item when drop it
         armTip.GetComponent<ArmUseItem>().setupItemDelegate = null;
@@ -655,10 +664,10 @@ public class ControlArm_UsingPhysics : ControlArm
         armTip.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
 
         // If the item cannot be moved
-        if (droppingItem.GetComponent<ItemInfo>().fixedPosition)
+        if (droppingItem.GetComponent<ItemInfo>().fixedPosition && droppingItem.GetComponent<ItemInfo>().canUse)
         {
             // Change the status indicator color
-            droppingItem.GetComponent<ItemInfo>().ChangeIndicatorColor(Color.black, 1);
+            droppingItem.GetComponent<ItemInfo>().ChangeIndicatorColor(droppingItem.GetComponent<ItemInfo>().defaultStatusColor, 1);
         }
 
         isArmBurstForceUsed = false;
@@ -896,10 +905,7 @@ public class ControlArm_UsingPhysics : ControlArm
         //    //MoveArmTipTowardsLastArmSegment();
         //}
 
-        if (!float.IsNaN(armTipAppliedForce.x))
-        {
-            armTip.GetComponent<Rigidbody>().AddForce(armTipAppliedForce, ForceMode.Impulse);
-        }
+        armTip.GetComponent<Rigidbody>().AddForce(armTipAppliedForce, ForceMode.Impulse);
     }
 
     /// <summary>
@@ -961,6 +967,9 @@ public class ControlArm_UsingPhysics : ControlArm
         //body.SetParent(bodyRotatingCenter, true);
         UpdateArmFlags();
 
+        // Play start grabbing sfx
+        GetComponentInChildren<AudioSource>().PlayOneShot(armTipGrabbingGroundSFX);
+
         // Creates an echo projectile if the player is in echo mode and there is no echo currently alive
         if (PlayerInfo.isInEchoMode && PlayerInfo.canCreateEcho)
         {
@@ -982,6 +991,9 @@ public class ControlArm_UsingPhysics : ControlArm
         }
 
         UpdateArmFlags();
+
+        // Play stop grabbing sfx
+        GetComponentInChildren<AudioSource>().PlayOneShot(armTipStopGrabbingGroundSFX);
     }
 
     /// <summary>

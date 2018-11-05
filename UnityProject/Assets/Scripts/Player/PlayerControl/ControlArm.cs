@@ -377,6 +377,8 @@ public class ControlArm : ArmUseItem
     /// <param name="left"></param>
     public void CalculateJoyStickRotation(bool left)
     {
+        float lastJoyStickAngle = joyStickRotationAngle;
+
         // Calculate the euler angles of the arm relative to the world
         if (left)
         {
@@ -394,6 +396,12 @@ public class ControlArm : ArmUseItem
                 joyStickRotationAngle = Mathf.Sign(Input.GetAxis("HorizontalRight")) * (180 - Mathf.Abs(joyStickRotationAngle));
             }
         }
+
+        // Check for NaN float
+        if (float.IsNaN(joyStickRotationAngle))
+        {
+            joyStickRotationAngle = lastJoyStickAngle;
+        }
     }
 
     /// <summary>
@@ -402,6 +410,8 @@ public class ControlArm : ArmUseItem
     /// <param name="left"></param>
     public void CalculateJoyStickLength(bool left)
     {
+        float lastJoyStickLength = joyStickLength;
+
         // Calculate how far the joy stick is away from the center
         if (left)
         {
@@ -410,6 +420,12 @@ public class ControlArm : ArmUseItem
         else
         {
             joyStickLength = Mathf.Clamp01(Mathf.Sqrt(Mathf.Pow(Input.GetAxis("HorizontalRight"), 2) + Mathf.Pow(Input.GetAxis("VerticalRight"), 2)));
+        }
+
+        // Check for NaN float
+        if (float.IsNaN(joyStickLength))
+        {
+            joyStickLength = lastJoyStickLength;
         }
 
         // Create a min "dead-zone" to ignore the small amount of joystick input when it is released and put to the center

@@ -58,7 +58,8 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
 
         // Only update the joint positions if the arm is not using an item that is fixed (not movable)
         if (armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null ||
-            !armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().fixedPosition)
+            //(armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>() &&
+             !armController.armTip.GetComponent<ArmUseItem>().currentlyHoldingItem.GetComponent<ItemInfo>().fixedPosition)
         {
             UpdateJointConnectedAnchor();
             UpdateJointAnchor();
@@ -187,7 +188,7 @@ public class ArmUpdatePhysicsVariebles : MonoBehaviour
                               Mathf.Clamp((armMaxAnchor + (armMinAnchor - armMaxAnchor) * lastJoystickLength - lastAnchorPos),
                                           -maxJointChangingSpeed, maxJointChangingSpeed));
 
-            if(test)
+            if (test)
             {
                 //print(armMaxAnchor + (armMinAnchor - armMaxAnchor) * lastJoystickLength);
             }

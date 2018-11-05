@@ -247,6 +247,9 @@ public class SlidingDoor : MonoBehaviour
     /// </summary>
     public void SealDoor()
     {
+        // Disable the open door trigger
+        GetComponent<BoxCollider>().enabled = false;
+
         if (controlDoorAnimationCoroutine != null)
         {
             StopCoroutine(controlDoorAnimationCoroutine);

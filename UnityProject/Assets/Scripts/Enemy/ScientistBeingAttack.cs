@@ -56,6 +56,13 @@ public class ScientistBeingAttack : MonoBehaviour
         // If an arm leaves the attack range
         if (other.GetComponent<ArmUseItem>())
         {
+            // "Detach" the armTip on the scientist
+            if (other.GetComponent<FixedJoint>())
+            {
+                Destroy(other.GetComponent<FixedJoint>());
+                other.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
+            }
+
             touchingArms.Remove(other.gameObject);
         }
     }
@@ -80,9 +87,10 @@ public class ScientistBeingAttack : MonoBehaviour
             if (!g.GetComponent<ArmUseItem>().hasTriggerReleased)
             {
                 // "Attach" the armTip on the scientist
-                if (!g.GetComponent<Rigidbody>().isKinematic)
+                if (!g.GetComponent<FixedJoint>())
                 {
-                    g.GetComponent<Rigidbody>().isKinematic = true;
+                    g.GetComponent<ArmUseItem>().currentlyHoldingItem = gameObject;
+                    FixedJoint newJoint = g.AddComponent<FixedJoint>();
                 }
 
                 holdingArmCount++;
@@ -90,9 +98,10 @@ public class ScientistBeingAttack : MonoBehaviour
             else
             {
                 // "Detach" the armTip on the scientist
-                if (g.GetComponent<Rigidbody>().isKinematic)
+                if (g.GetComponent<FixedJoint>())
                 {
-                    g.GetComponent<Rigidbody>().isKinematic = false;
+                    Destroy(g.GetComponent<FixedJoint>());
+                    g.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
                 }
             }
         }
@@ -129,10 +138,14 @@ public class ScientistBeingAttack : MonoBehaviour
             // "Detach" the "attached" armTip on the scientist when the scientist is dead
             foreach (GameObject g in touchingArms)
             {
-                if (g.GetComponent<Rigidbody>().isKinematic)
+                // "Detach" the armTip on the scientist
+                if (g.GetComponent<FixedJoint>())
                 {
-                    g.GetComponent<Rigidbody>().isKinematic = false;
+                    Destroy(g.GetComponent<FixedJoint>());
+                    g.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
                 }
+
+                GetComponent<ItemInfo>().ForceDropItem();
             }
 
             this.enabled = false;

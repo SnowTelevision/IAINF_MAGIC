@@ -24,7 +24,12 @@ public class TutorialEvent : MonoBehaviour
         if (eventFinished)
         {
             Destroy(currentTutorialTextTrigger);
-            nextTutorialTextTrigger.SetActive(true);
+
+            if (nextTutorialTextTrigger != null)
+            {
+                nextTutorialTextTrigger.SetActive(true);
+            }
+
             Destroy(gameObject);
         }
     }

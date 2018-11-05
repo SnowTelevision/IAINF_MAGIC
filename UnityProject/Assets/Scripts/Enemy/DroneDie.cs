@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class DroneDie : EnemyDie
 {
+    public GameObject lightningAttackRangeTrigger; // The trigger represents the lightning's attack range
 
     // Use this for initialization
     void Start()
@@ -18,5 +19,13 @@ public class DroneDie : EnemyDie
     void Update()
     {
 
+    }
+
+    public override void OnEnemyDie()
+    {
+        // Destroy the lightning attack range trigger when the enemy die
+        Destroy(lightningAttackRangeTrigger);
+
+        base.OnEnemyDie();
     }
 }

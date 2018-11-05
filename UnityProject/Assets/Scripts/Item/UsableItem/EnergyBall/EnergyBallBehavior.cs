@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyBallBehavior : MonoBehaviour
 {
-
+    public GameObject energyBallExplosionEffect; // The visual effect when the energy ball explode
 
     public Transform followingArmTip; // The armTip this energy ball should follow
     public bool activated; // Is the energy ball activated? (Has the player click the trigger to hold it)
@@ -31,7 +31,8 @@ public class EnergyBallBehavior : MonoBehaviour
         // Energy ball explode if it collides after the player dropped it
         if (followingArmTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
         {
-            Destroy(gameObject);
+            GetComponent<Rigidbody>().isKinematic = true;
+            EnergyBallCollideExplode();
         }
     }
 
@@ -40,8 +41,21 @@ public class EnergyBallBehavior : MonoBehaviour
         // Energy ball explode if it collides after the player dropped it
         if (followingArmTip.GetComponent<ArmUseItem>().currentlyHoldingItem == null)
         {
-            Destroy(gameObject);
+            GetComponent<Rigidbody>().isKinematic = true;
+            EnergyBallCollideExplode();
         }
+    }
+
+    /// <summary>
+    /// When the energy ball collide on something
+    /// </summary>
+    public void EnergyBallCollideExplode()
+    {
+        energyBallExplosionEffect.transform.parent = null;
+        energyBallExplosionEffect.SetActive(true);
+
+        Destroy(gameObject);
+        Destroy(energyBallExplosionEffect, 5f);
     }
 
     // Activate the energy ball when the player clicks the trigger

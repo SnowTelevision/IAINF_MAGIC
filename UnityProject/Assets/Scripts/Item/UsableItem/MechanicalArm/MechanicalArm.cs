@@ -20,7 +20,7 @@ public class MechanicalArm : MonoBehaviour
 
     public ControlArm_UsingPhysics currentAccessingArm; // The arm (joystick) that is currently controlling it
     public float armHandLocalHeight; // The default local height of the arm hand
-    Vector3 targetPosition; // Arm hand's target position
+    public Vector3 targetPosition; // Arm hand's target position
 
     // Use this for initialization
     void Start()

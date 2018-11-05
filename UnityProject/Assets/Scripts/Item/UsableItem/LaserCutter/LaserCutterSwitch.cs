@@ -32,6 +32,7 @@ public class LaserCutterSwitch : MonoBehaviour
 
         // Set the color to be off color
         handleIndicatorMesh.materials[1].color = handleOffColor;
+        handleIndicatorMesh.materials[1].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(handleOffColor, 0.4432004f));
     }
 
     // Update is called once per frame
@@ -153,6 +154,7 @@ public class LaserCutterSwitch : MonoBehaviour
 
             // Change the handle indicator color
             handleIndicatorMesh.materials[1].color = Color.Lerp(handleOnColor, handleOffColor, t);
+            handleIndicatorMesh.materials[1].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(Color.Lerp(handleOnColor, handleOffColor, t), 0.4432004f));
 
             yield return null;
         }
@@ -197,6 +199,7 @@ public class LaserCutterSwitch : MonoBehaviour
 
             // Change the handle indicator color
             handleIndicatorMesh.materials[1].color = Color.Lerp(handleOffColor, handleOnColor, t);
+            handleIndicatorMesh.materials[1].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(Color.Lerp(handleOffColor, handleOnColor, t), 0.4432004f));
 
             yield return null;
         }

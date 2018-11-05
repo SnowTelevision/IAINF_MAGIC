@@ -25,7 +25,7 @@ public class EnemyDie : MonoBehaviour
     /// <summary>
     /// What happenes if an enemy die
     /// </summary>
-    public void OnEnemyDie()
+    public virtual void OnEnemyDie()
     {
         // Stop all behavior trees on this enemy
         foreach (BehaviorTree b in GetComponents<BehaviorTree>())
