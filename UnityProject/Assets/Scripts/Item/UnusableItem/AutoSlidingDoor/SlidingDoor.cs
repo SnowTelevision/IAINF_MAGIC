@@ -15,11 +15,13 @@ public class SlidingDoor : MonoBehaviour
     public bool openLeft; // Does this door slides towards the negative(left) local x direction or the positive(right) local x direction
     public float doorKeepOpenDuration; // How long the door will stay open after it is opened by a key or pass code
     public bool detectNPC; // Can this door detect close-by NPC and open
+    public bool keepOpenUntilPlayerPass; // Does this door keep open until the player pass it (typically when the door is leading to the next level/room/puzzle)
 
     public Coroutine controlDoorAnimationCoroutine; // The coroutine that runs the door's open&close animation
     public float lastKeyPassEnterTime; // The latest time a correct key or pass code is used on this door
     //public List<KeyInfo> touchingKeys; // The keys that are currently touching the door
     public int closeByBodyCount; // How many bodies (player or NPC) are close to the door
+    public bool keepOpen; // Should this door keep open
 
     // Use this for initialization
     void Start()
@@ -106,6 +108,12 @@ public class SlidingDoor : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
             {
                 openDoor = true;
+
+                // If this door should keep open when the player opens it
+                if (keepOpenUntilPlayerPass)
+                {
+                    keepOpen = true;
+                }
             }
             // If this door can detect NPC
             if (detectNPC && other.tag == "MovingEnemy")
@@ -209,7 +217,7 @@ public class SlidingDoor : MonoBehaviour
             }
         }
 
-        if (closeDoor && closeByBodyCount == 0)
+        if (closeDoor && closeByBodyCount == 0 && !keepOpen)
         {
             CloseDoor();
         }

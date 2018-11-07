@@ -12,6 +12,7 @@ public class LaserCutterSwitch : MonoBehaviour
     public float animationTime; // The animation time of the laser cutter
     public ItemInfo artificialLaserCutterHandle; // The artificial handle for the player to move the laser cutter
     public GameObject laserBeam; // The laser beam
+    public GameObject guideBeam; // The guidance beam
     public LayerMask laserCollisionLayer; // What layers can the laser collide with
     public Transform laserHead; // The laser head that shoots laser
     public float handleRetractDistance; // Where the handle should retract to when the laser is on
@@ -38,9 +39,14 @@ public class LaserCutterSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (turnedOn)
+        if (laserBeam.activeInHierarchy)
         {
             ShootLaserBeam();
+        }
+
+        if (guideBeam.activeInHierarchy)
+        {
+            ShootGuideBeam();
         }
     }
 
@@ -99,6 +105,22 @@ public class LaserCutterSwitch : MonoBehaviour
     }
 
     /// <summary>
+    /// Shoot the guidance beam to help the player target the laser
+    /// </summary>
+    public void ShootGuideBeam()
+    {
+        RaycastHit laserHit;
+        // If the laser hit on something
+        if (Physics.Raycast(laserHead.position, -laserHead.forward, out laserHit, Mathf.Infinity, laserCollisionLayer))
+        {
+            // Let the laser shoot at the hit position
+            guideBeam.transform.LookAt(laserHit.point, Vector3.up);
+            // Extend the laser to the hit position
+            guideBeam.transform.localScale = Vector3.forward * laserHit.distance + Vector3.up + Vector3.left;
+        }
+    }
+
+    /// <summary>
     /// Aadd a laser to a meltable door
     /// </summary>
     public void AddLaserToDoor()
@@ -136,6 +158,9 @@ public class LaserCutterSwitch : MonoBehaviour
     {
         // Prevent the player from switch again during a switch animation
         canSwitch = false;
+        // Deactive guide beam
+        guideBeam.SetActive(false);
+
         // Get the handle's current distance and direction from the base
         artificialHandleOriginalDistance = GetComponentInParent<MoveLaserCutterWithArtificialHandle>().handleCurrentDistance;
         artificialHandleOriginalDirection =
@@ -205,6 +230,8 @@ public class LaserCutterSwitch : MonoBehaviour
         }
         // yield return new WaitForSeconds(animationTime);
 
+        // Active guide beam
+        guideBeam.SetActive(true);
         // Enable the player to move the laser cutter when it is turned off.
         artificialLaserCutterHandle.enabled = true;
         // Turn on the handle collider
