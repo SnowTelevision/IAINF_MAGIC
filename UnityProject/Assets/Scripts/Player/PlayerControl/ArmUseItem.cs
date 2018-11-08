@@ -160,6 +160,23 @@ public class ArmUseItem : MonoBehaviour
         setupItemDelegate();
     }
 
+    ///// <summary>
+    ///// Invoke the start using event that is currently registered to this armTip when the item is setup
+    ///// </summary>
+    ///// <returns></returns>
+    //public IEnumerator TryUsingItemOnSetup()
+    //{
+    //    // Wait until the next update
+    //    yield return new WaitForEndOfFrame();
+    //    yield return null;
+    //    yield return new WaitForEndOfFrame();
+
+    //    if (currentlyHoldingItem != null)
+    //    {
+    //        TryUsingItem();
+    //    }
+    //}
+
     /// <summary>
     /// If the item is forced to be dropped
     /// </summary>

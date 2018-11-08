@@ -53,7 +53,7 @@ public class LaserCutterSwitch : MonoBehaviour
     /// <summary>
     /// Switch the laser on/off
     /// </summary>
-    public void Switch()
+    public void TrySwitch()
     {
         // If the laser cutter can be switch on / off
         if (canSwitch)
@@ -181,6 +181,9 @@ public class LaserCutterSwitch : MonoBehaviour
             handleIndicatorMesh.materials[1].color = Color.Lerp(handleOnColor, handleOffColor, t);
             handleIndicatorMesh.materials[1].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(Color.Lerp(handleOnColor, handleOffColor, t), 0.4432004f));
 
+            // Make sure the item status indicator is the "Is Controlling" color
+            GetComponent<ItemInfo>().ChangeIndicatorColor(GetComponent<ItemInfo>().isControllingStatusColor, 1);
+
             yield return null;
         }
 
@@ -193,6 +196,9 @@ public class LaserCutterSwitch : MonoBehaviour
         laserBeam.SetActive(true);
         // Enable the player to switch
         canSwitch = true;
+
+        // Change the item status indicator to the "Default Status" color
+        GetComponent<ItemInfo>().ChangeIndicatorColor(GetComponent<ItemInfo>().defaultStatusColor, 1);
     }
 
     /// <summary>
@@ -226,6 +232,9 @@ public class LaserCutterSwitch : MonoBehaviour
             handleIndicatorMesh.materials[1].color = Color.Lerp(handleOffColor, handleOnColor, t);
             handleIndicatorMesh.materials[1].SetColor("_EmissionColor", GetHDRcolor.GetColorInHDR(Color.Lerp(handleOffColor, handleOnColor, t), 0.4432004f));
 
+            // Make sure the item status indicator is the "Is Controlling" color
+            GetComponent<ItemInfo>().ChangeIndicatorColor(GetComponent<ItemInfo>().isControllingStatusColor, 1);
+
             yield return null;
         }
         // yield return new WaitForSeconds(animationTime);
@@ -238,5 +247,8 @@ public class LaserCutterSwitch : MonoBehaviour
         artificialLaserCutterHandle.GetComponent<SphereCollider>().enabled = true;
         // Enable the player to switch
         canSwitch = true;
+
+        // Change the item status indicator to the "Default Status" color
+        GetComponent<ItemInfo>().ChangeIndicatorColor(GetComponent<ItemInfo>().defaultStatusColor, 1);
     }
 }

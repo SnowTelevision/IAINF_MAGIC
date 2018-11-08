@@ -30,6 +30,7 @@ public class ItemInfo : MonoBehaviour
     public float playerCameraDetectorDistance; // How far is each player camera detector away from the item
     public GameObject playerCameraDetectorPrefab; // The player camera detector prefab
     public float playerDetectingRange; // How close the player has to be with the fixed item to turn on the emission
+    public bool isFixedToggle; // Is this a fixed usable item that is only used to toggle on/off some functions
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
@@ -274,6 +275,24 @@ public class ItemInfo : MonoBehaviour
     public void SetupItem()
     {
         setupEvent.Invoke();
+
+        // If this is a fixed item that is used for toggle on/off
+        if (isFixedToggle)
+        {
+            // Invoke the using event
+            StartUsing();
+            // Let the item be dropped from the armTip
+            ForceDropItem();
+        }
+    }
+
+    /// <summary>
+    /// The toggle event for a toggle item
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ToggleEvent()
+    {
+        yield return null;
     }
 
     /// <summary>

@@ -1856,7 +1856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSwitch: 0
-  animationTime: 1
+  animationTime: 0.5
   artificialLaserCutterHandle: {fileID: 114854447108264194}
   laserBeam: {fileID: 1095647492083922}
   guideBeam: {fileID: 1628479694403844}
@@ -1968,6 +1968,7 @@ MonoBehaviour:
   playerCameraDetectorDistance: 0
   playerCameraDetectorPrefab: {fileID: 0}
   playerDetectingRange: 0
+  isFixedToggle: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
@@ -2002,7 +2003,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114040791410969500}
-        m_MethodName: Switch
+        m_MethodName: TrySwitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2043,6 +2044,7 @@ MonoBehaviour:
   playerCameraDetectorPrefab: {fileID: 1413040682180772, guid: 0048ef37a769f7445a8edcf858025eab,
     type: 2}
   playerDetectingRange: 5
+  isFixedToggle: 1
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0
