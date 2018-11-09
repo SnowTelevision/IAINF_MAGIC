@@ -54,9 +54,9 @@ public class SlidingDoor : MonoBehaviour
         if (requireKey || requirePass)
         {
             // If a body is not close to the door and the duration of the door should keep open passed then close the door
-            if (Time.time - lastKeyPassEnterTime >= doorKeepOpenDuration && closeByBodyCount == 0)
+            if (Time.time - lastKeyPassEnterTime >= doorKeepOpenDuration && closeByBodyCount == 0 && !keepOpen)
             {
-                controlDoorAnimationCoroutine = StartCoroutine(GetComponentsInChildren<LinearObjectMovement>()[1].Animate());
+                CloseDoor();
             }
         }
     }
@@ -94,6 +94,16 @@ public class SlidingDoor : MonoBehaviour
                 if (other.GetComponent<KeyInfo>().keyCode == keyCode)
                 {
                     openDoor = true;
+
+                    // If the key is holding by the player
+                    if (other.GetComponent<ItemInfo>().holdingArmTip != null)
+                    {
+                        // If this door should keep open when the player opens it
+                        if (keepOpenUntilPlayerPass)
+                        {
+                            keepOpen = true;
+                        }
+                    }
                 }
             }
         }
@@ -108,12 +118,6 @@ public class SlidingDoor : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
             {
                 openDoor = true;
-
-                // If this door should keep open when the player opens it
-                if (keepOpenUntilPlayerPass)
-                {
-                    keepOpen = true;
-                }
             }
             // If this door can detect NPC
             if (detectNPC && other.tag == "MovingEnemy")
@@ -165,6 +169,16 @@ public class SlidingDoor : MonoBehaviour
             //if (openDoor)
             {
                 OpenDoor();
+            }
+
+            // If the key is holding by the player
+            if (other.GetComponent<ItemInfo>().holdingArmTip != null)
+            {
+                // If this door should keep open when the player opens it
+                if (keepOpenUntilPlayerPass)
+                {
+                    keepOpen = true;
+                }
             }
         }
     }

@@ -30,18 +30,19 @@ public class CompressedAirCylinder : MonoBehaviour
         if (isBeingUsed && collision.collider.GetComponent<EnemyDie>())
         {
             // Make the enemy fly away
+            EnemyFlyAway(collision.gameObject, collision.impulse, collision.contacts[0].point);
+
             collision.collider.GetComponent<EnemyDie>().OnEnemyDie();
             // If it hits an engineer
             if (collision.collider.GetComponent<EngineerDie>())
             {
-                collision.collider.GetComponent<EngineerDie>().OnEngineerDie();
+                collision.collider.GetComponent<EngineerDie>().OnEngineerBeenHit();
             }
             // If it hits a drone
             if (collision.collider.GetComponent<DroneDie>())
             {
 
             }
-            EnemyFlyAway(collision.gameObject, collision.impulse, collision.contacts[0].point);
         }
     }
 
@@ -55,8 +56,12 @@ public class CompressedAirCylinder : MonoBehaviour
     {
         collidingEnemy.AddComponent<Rigidbody>();
         collidingEnemy.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        // Prevent engineer from fliping
+        collidingEnemy.GetComponent<Rigidbody>().constraints =
+            RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         //collidingEnemy.GetComponent<Rigidbody>().AddForceAtPosition(-collisionForce * 20000000f, collisionPosition, ForceMode.Impulse);
-        collidingEnemy.GetComponent<Rigidbody>().AddForceAtPosition(-collisionForce * 20000000f + collisionForce.magnitude * Vector3.up * 10000000f, collisionPosition, ForceMode.Impulse);
+        collidingEnemy.GetComponent<Rigidbody>().AddForceAtPosition(
+            -collisionForce * 20000000f + collisionForce.magnitude * Vector3.up * 10000000f, collisionPosition, ForceMode.Impulse);
     }
 
     /// <summary>
