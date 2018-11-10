@@ -968,7 +968,10 @@ public class ControlArm_UsingPhysics : ControlArm
         UpdateArmFlags();
 
         // Play start grabbing sfx
-        GetComponentInChildren<AudioSource>().PlayOneShot(armTipGrabbingGroundSFX);
+        if (GetComponentInChildren<AudioSource>())
+        {
+            GetComponentInChildren<AudioSource>().PlayOneShot(armTipGrabbingGroundSFX);
+        }
 
         // Creates an echo projectile if the player is in echo mode and there is no echo currently alive
         if (PlayerInfo.isInEchoMode && PlayerInfo.canCreateEcho)
@@ -993,7 +996,10 @@ public class ControlArm_UsingPhysics : ControlArm
         UpdateArmFlags();
 
         // Play stop grabbing sfx
-        GetComponentInChildren<AudioSource>().PlayOneShot(armTipStopGrabbingGroundSFX);
+        if (GetComponentInChildren<AudioSource>())
+        {
+            GetComponentInChildren<AudioSource>().PlayOneShot(armTipStopGrabbingGroundSFX);
+        }
     }
 
     /// <summary>
