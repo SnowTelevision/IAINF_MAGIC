@@ -88,6 +88,14 @@ public class ItemInfo : MonoBehaviour
     }
 
     /// <summary>
+    /// Make an usable item to be unusable
+    /// </summary>
+    public void MakeItemUnusable()
+    {
+        canUse = false;
+    }
+
+    /// <summary>
     /// Turn on the status indicator if the fixed item moves into player's camera view,
     /// turn off when it leaves the player's camera view
     /// </summary>

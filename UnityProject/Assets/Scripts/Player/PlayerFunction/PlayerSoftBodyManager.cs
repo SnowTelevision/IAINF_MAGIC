@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GK;
 
 /// <summary>
 /// Setup and update the player body's soft body mesh
@@ -15,6 +16,9 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public List<int> triangleVertexIndexList; // The list of int with the index of vertex for triangles
     public int[] triangleVertexIndexArray; // The array of int with the index of vertex for triangles
     public List<Vector3> meshVerticesPositionList; // The list of the vector3 that represents the position of the vertices for the player body mesh
+    public ConvexHullCalculator convexHullCalculator; // The convex hull calculator instance
+    public List<Vector3> convexHullVerticesPositionList; // The list of the vector3 that represents the position of the convex hull vertices for the player body mesh
+    public List<Vector3> convexHullNormalsList; // The list of the vector3 that represents the normals of the convex hull triangles for the player body mesh
 
     // Use this for initialization
     void Start()
@@ -23,6 +27,11 @@ public class PlayerSoftBodyManager : MonoBehaviour
         InitialSetup();
         // Get all the triangle face vertex index
         //GetAllTriangles();
+
+        // Make a convex hull mesh for the player
+        GetConvexHullForPlayerBodyMesh();
+        // Update the transform list according to the order in convexHullVerticesPositionList calculated by convexHullCalculator
+        UpdateVertexTransformsList();
     }
 
     // Update is called once per frame
@@ -33,8 +42,9 @@ public class PlayerSoftBodyManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateAllTriangles();
-        UpdateBodyMesh();
+        //UpdateAllTriangles();
+        //UpdateBodyMesh();
+        UpdateConvexHullMesh();
     }
 
     /// <summary>
@@ -50,6 +60,84 @@ public class PlayerSoftBodyManager : MonoBehaviour
         // Create and assign new mesh instance
         playerBodyMesh = new Mesh();
         playerBodyMeshFilter.mesh = playerBodyMesh;
+
+        // Create new ConvexHullCalculator instance
+        convexHullCalculator = new ConvexHullCalculator();
+    }
+
+    /// <summary>
+    /// Use the convex hull calculator to get a convex hull for the player soft body mesh
+    /// </summary>
+    public void GetConvexHullForPlayerBodyMesh()
+    {
+        // Add new positions
+        foreach (Transform t in vertexTransforms)
+        {
+            meshVerticesPositionList.Add(playerTransform.InverseTransformPoint(t.position));
+        }
+
+        // Get convex hull
+        convexHullCalculator.GenerateHull(meshVerticesPositionList, false, ref convexHullVerticesPositionList, ref triangleVertexIndexList, ref convexHullNormalsList);
+
+        // Create the mesh
+        playerBodyMeshFilter.mesh.Clear();
+        playerBodyMeshFilter.mesh.vertices = convexHullVerticesPositionList.ToArray();
+        playerBodyMeshFilter.mesh.triangles = triangleVertexIndexList.ToArray();
+        playerBodyMeshFilter.mesh.normals = convexHullVerticesPositionList.ToArray();
+    }
+
+    /// <summary>
+    /// Update the index of the vertexTransforms list according to the order in the convexHullVerticesPositionList
+    /// </summary>
+    public void UpdateVertexTransformsList()
+    {
+        // Store the initial transform list
+        Transform[] initialTransformList = vertexTransforms.ToArray();
+        // Clear the vertexTransforms list
+        vertexTransforms.RemoveRange(0, vertexTransforms.Count);
+
+        // Add the transform back in the correct order
+        foreach (Vector3 v in convexHullVerticesPositionList)
+        {
+            foreach (Transform t in initialTransformList)
+            {
+                // If the position match
+                if (playerTransform.InverseTransformPoint(t.position) == v)
+                {
+                    // Insert the transform back in
+                    vertexTransforms.Add(t);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Update the soft body mesh created by the convex hull calculator
+    /// </summary>
+    public void UpdateConvexHullMesh()
+    {
+        //GetConvexHullForPlayerBodyMesh();
+
+        // Clear the position list
+        meshVerticesPositionList.RemoveRange(0, meshVerticesPositionList.Count);
+
+        // Add new positions
+        foreach (Transform t in vertexTransforms)
+        {
+            meshVerticesPositionList.Add(playerTransform.InverseTransformPoint(t.position));
+        }
+
+        //playerBodyMeshFilter.mesh.Clear();
+        playerBodyMeshFilter.mesh.vertices = meshVerticesPositionList.ToArray();
+        //playerBodyMeshFilter.mesh.triangles = triangleVertexIndexList.ToArray();
+        //playerBodyMeshFilter.mesh.normals = convexHullVerticesPositionList.ToArray();
+
+        // Recalculate the normal and tangent for the player body mesh
+        playerBodyMeshFilter.mesh.RecalculateNormals();
+        playerBodyMeshFilter.mesh.RecalculateTangents();
+
+        // Update physics mesh collider
+        playerBodyMeshFilter.GetComponent<MeshCollider>().sharedMesh = playerBodyMesh;
     }
 
     ///// <summary>
