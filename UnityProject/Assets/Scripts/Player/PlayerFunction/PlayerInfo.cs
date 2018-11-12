@@ -31,6 +31,7 @@ public class PlayerInfo : MonoBehaviour
     public ControlArm_UsingPhysics leftArmController; // The controller of the left arm
     public ControlArm_UsingPhysics rightArmController; // The controller of the right arm
     public BodyMovementModeInfo[] bodyMovementModeInfos; // Infos of different body movement modes
+    public FixedJoint bodySoftBodyFixedJoint; // The fixed joint on the soft body of the player body
 
     public bool inWater; // Is the body in the water
     public bool onLand; // Is the body touching ground
@@ -323,6 +324,7 @@ public class PlayerInfo : MonoBehaviour
     {
         GetComponent<Rigidbody>().drag = movementParameters.bodyRigidbodyDrag;
         GetComponent<Rigidbody>().angularDrag = movementParameters.bodyRigidbodyAngularDrag;
+        bodySoftBodyFixedJoint.connectedMassScale = movementParameters.bodySoftBodyFixedJointConnectedMassScale;
     }
 }
 
@@ -336,4 +338,5 @@ public class BodyMovementModeInfo
     public string movementModeName; // The name for the movement mode
     public float bodyRigidbodyDrag; // The drag of the rigidbody on the body
     public float bodyRigidbodyAngularDrag; // The angular drag on the rigidbody on the body
+    public float bodySoftBodyFixedJointConnectedMassScale; // The connected mass scale on the fixed joint on the soft body of the player body
 }
