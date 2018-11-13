@@ -13,9 +13,12 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public MeshFilter playerBodyMeshFilter; // The mesh filter that has the player body soft body mesh
     public Transform playerTransform; // The player's transform
     public GameObject playerSoftBodyJointSetup; // The game object that has the joint components that represents the joint to be used for the player soft body
+    public bool generateNewVertexGameObjects; // Do we generate a new set of vertex objects for the player soft body
+    public Transform meshToGetVertices; // The transform of the mesh used to get the surface vertices
+    public GameObject vertexObjectRef; // The reference of the gameobject to be created for mesh vertices
 
-    public SpringJoint surfaceJoint; // The joint that connects the surface edges
-    public SpringJoint centerJoint; // The joint that connects the center to the surface vertex transforms
+    public SpringJoint surfaceJointRef; // The reference for the joint that connects the surface edges
+    public SpringJoint centerJointRef; // The reference for the joint that connects the center to the surface vertex transforms
     public Mesh playerBodyMesh; // The mesh for the player body soft body mesh
     public List<int> triangleVertexIndexList; // The list of int with the index of vertex for triangles
     public int[] triangleVertexIndexArray; // The array of int with the index of vertex for triangles
@@ -24,6 +27,8 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public List<Vector3> convexHullVerticesPositionList; // The list of the vector3 that represents the position of the convex hull vertices for the player body mesh
     public List<Vector3> convexHullNormalsList; // The list of the vector3 that represents the normals of the convex hull triangles for the player body mesh
     public List<int> jointConnections; // The list of the index of the pairs of vertex transforms that should be connected with a joint (spring joint or other)
+    public List<SpringJoint> surfaceJoints; // The joints that connecting surface edges
+    public List<SpringJoint> centerJoints; // The joints that connecting center to surface vertices
 
     // Use this for initialization
     void Start()
@@ -42,6 +47,12 @@ public class PlayerSoftBodyManager : MonoBehaviour
         // Add joints to the player soft body
         AddJointsToSurfaceEdges();
         AddJointsToCenter();
+
+        // Get new set of vertex game objects
+        if (generateNewVertexGameObjects)
+        {
+            CreateVertexObjectsOnMesh();
+        }
     }
 
     // Update is called once per frame
@@ -75,8 +86,8 @@ public class PlayerSoftBodyManager : MonoBehaviour
         convexHullCalculator = new ConvexHullCalculator();
 
         // Get the joint setup
-        surfaceJoint = playerSoftBodyJointSetup.GetComponents<SpringJoint>()[0];
-        centerJoint = playerSoftBodyJointSetup.GetComponents<SpringJoint>()[1];
+        surfaceJointRef = playerSoftBodyJointSetup.GetComponents<SpringJoint>()[0];
+        centerJointRef = playerSoftBodyJointSetup.GetComponents<SpringJoint>()[1];
     }
 
     /// <summary>
@@ -88,8 +99,11 @@ public class PlayerSoftBodyManager : MonoBehaviour
         foreach (Transform t in vertexTransforms)
         {
             // Add joint to the center and connect it with the vertex transform
-            SpringJoint newJoint = softBodyCenter.AddComponent<SpringJoint>(centerJoint);
+            SpringJoint newJoint = softBodyCenter.AddComponent<SpringJoint>(centerJointRef);
             newJoint.connectedBody = t.gameObject.GetComponent<Rigidbody>();
+
+            // Store joint to the centerJoints list
+            centerJoints.Add(newJoint);
         }
     }
 
@@ -102,9 +116,12 @@ public class PlayerSoftBodyManager : MonoBehaviour
         for (int i = 0; i < jointConnections.Count; i += 2)
         {
             // Add joint
-            SpringJoint newJoint = vertexTransforms[jointConnections[i]].gameObject.AddComponent<SpringJoint>(surfaceJoint);
+            SpringJoint newJoint = vertexTransforms[jointConnections[i]].gameObject.AddComponent<SpringJoint>(surfaceJointRef);
             // Connect the joint to the other vertex
             newJoint.connectedBody = (vertexTransforms[jointConnections[i + 1]].GetComponent<Rigidbody>());
+
+            // Store joint to the surfaceJoints list
+            surfaceJoints.Add(newJoint);
         }
     }
 
@@ -416,4 +433,27 @@ public class PlayerSoftBodyManager : MonoBehaviour
     //    // Update physics mesh collider
     //    playerBodyMeshFilter.GetComponent<MeshCollider>().sharedMesh = playerBodyMesh;
     //}
+
+    /// <summary>
+    /// Create a gameobject on each vertex of the given mesh
+    /// </summary>
+    public void CreateVertexObjectsOnMesh()
+    {
+        // Get the list of vertices
+        List<Vector3> vertices = new List<Vector3>();
+        meshToGetVertices.GetComponent<MeshFilter>().mesh.GetVertices(vertices);
+
+        // Instantiate reference game object on each vertex
+        List<Vector3> createdVertices = new List<Vector3>(); // The vertices already created
+
+        foreach (Vector3 v in vertices)
+        {
+            if (!createdVertices.Contains(v))
+            {
+                createdVertices.Add(v);
+                GameObject newVertexGameObject = Instantiate(vertexObjectRef, meshToGetVertices.TransformPoint(v), Quaternion.identity);
+                newVertexGameObject.transform.parent = meshToGetVertices;
+            }
+        }
+    }
 }
