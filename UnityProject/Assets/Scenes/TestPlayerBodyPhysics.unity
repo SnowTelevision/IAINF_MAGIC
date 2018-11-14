@@ -2061,7 +2061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &54292631
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24555,6 +24555,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -26114,6 +26115,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -27251,6 +27253,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -35842,6 +35845,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -39956,6 +39960,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -46669,6 +46674,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -52318,6 +52324,9 @@ MonoBehaviour:
   generateNewVertexGameObjects: 0
   meshToGetVertices: {fileID: 488080323}
   vertexObjectRef: {fileID: 47711371}
+  defaultSurfaceVertexDistance: 0.5
+  centerJointsMassScaleAdjustmentThreshold: 0.2
+  centerJointsMassScaleMultiplier: 10
   surfaceJointRef: {fileID: 0}
   centerJointRef: {fileID: 0}
   playerBodyMesh: {fileID: 0}
@@ -52329,6 +52338,13 @@ MonoBehaviour:
   jointConnections: 
   surfaceJoints: []
   centerJoints: []
+  centerJointDefaultMassScale: 0
+  centerJointDefaultSpring: 0
+  centerJointDefaultDamper: 0
+  centerFixedJointDefaultConnectedMassScale: 0
+  vertexRigidbodyDefaultAngularDrag: 0
+  vertexJointDefaultMassScale: 0
+  softBodyMeshCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1190230475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52459,7 +52475,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 04779b6bafcea064fae5fcae5d1e5199, type: 2}
+  - {fileID: 2100000, guid: 19f880fe6766a3e44835f6a92d2416f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -52817,6 +52833,9 @@ MonoBehaviour:
   generateNewVertexGameObjects: 0
   meshToGetVertices: {fileID: 488080323}
   vertexObjectRef: {fileID: 47711371}
+  defaultSurfaceVertexDistance: 0
+  centerJointsMassScaleAdjustmentThreshold: 0
+  centerJointsMassScaleMultiplier: 0
   surfaceJointRef: {fileID: 0}
   centerJointRef: {fileID: 0}
   playerBodyMesh: {fileID: 0}
@@ -52828,6 +52847,13 @@ MonoBehaviour:
   jointConnections: 
   surfaceJoints: []
   centerJoints: []
+  centerJointDefaultMassScale: 0
+  centerJointDefaultSpring: 0
+  centerJointDefaultDamper: 0
+  centerFixedJointDefaultConnectedMassScale: 0
+  vertexRigidbodyDefaultAngularDrag: 0
+  vertexJointDefaultMassScale: 0
+  softBodyMeshCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1194985605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58820,6 +58846,9 @@ MonoBehaviour:
   generateNewVertexGameObjects: 0
   meshToGetVertices: {fileID: 0}
   vertexObjectRef: {fileID: 0}
+  defaultSurfaceVertexDistance: 0
+  centerJointsMassScaleAdjustmentThreshold: 0
+  centerJointsMassScaleMultiplier: 0
   surfaceJointRef: {fileID: 0}
   centerJointRef: {fileID: 0}
   playerBodyMesh: {fileID: 0}
@@ -58831,6 +58860,13 @@ MonoBehaviour:
   jointConnections: 
   surfaceJoints: []
   centerJoints: []
+  centerJointDefaultMassScale: 0
+  centerJointDefaultSpring: 0
+  centerJointDefaultDamper: 0
+  centerFixedJointDefaultConnectedMassScale: 0
+  vertexRigidbodyDefaultAngularDrag: 0
+  vertexJointDefaultMassScale: 0
+  softBodyMeshCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1334184741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65249,6 +65285,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -68269,6 +68306,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -70924,6 +70962,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -74030,6 +74069,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -82689,6 +82729,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -83731,6 +83772,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -84725,6 +84767,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -88574,6 +88617,7 @@ MonoBehaviour:
   armStartGrabbingTime: 0
   isArmBurstForceUsed: 0
   firstSegmentDistanceFromBody: 0
+  firstSegmentDistanceFromSoftBody: 0
   lastArmSegmentDefaultConnectedMassScale: 0
   test: 0
   bodySpeed: 0
@@ -90243,6 +90287,9 @@ MonoBehaviour:
   generateNewVertexGameObjects: 0
   meshToGetVertices: {fileID: 488080323}
   vertexObjectRef: {fileID: 47711371}
+  defaultSurfaceVertexDistance: 0
+  centerJointsMassScaleAdjustmentThreshold: 0
+  centerJointsMassScaleMultiplier: 0
   surfaceJointRef: {fileID: 0}
   centerJointRef: {fileID: 0}
   playerBodyMesh: {fileID: 0}
@@ -90254,6 +90301,13 @@ MonoBehaviour:
   jointConnections: 
   surfaceJoints: []
   centerJoints: []
+  centerJointDefaultMassScale: 0
+  centerJointDefaultSpring: 0
+  centerJointDefaultDamper: 0
+  centerFixedJointDefaultConnectedMassScale: 0
+  vertexRigidbodyDefaultAngularDrag: 0
+  vertexJointDefaultMassScale: 0
+  softBodyMeshCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2079215352
 GameObject:
   m_ObjectHideFlags: 0

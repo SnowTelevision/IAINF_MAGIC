@@ -358,6 +358,7 @@ public class PlayerInfo : MonoBehaviour
             s.massScale = movementModeParameters.softBodySurfaceJointMassScale;
             s.connectedMassScale = movementModeParameters.softBodySurfaceJointConnectedMassScale;
         }
+        GetComponent<PlayerSoftBodyManager>().vertexJointDefaultMassScale = movementModeParameters.softBodySurfaceJointMassScale;
         foreach (SpringJoint s in centerJoints)
         {
             s.spring = movementModeParameters.softBodyCenterSpringJointSpring;
@@ -365,6 +366,9 @@ public class PlayerInfo : MonoBehaviour
             s.massScale = movementModeParameters.softBodyCenterSpringJointMassScale;
             s.connectedMassScale = movementModeParameters.softBodyCenterSpringJointConnectedMassScale;
         }
+        GetComponent<PlayerSoftBodyManager>().centerJointDefaultMassScale = movementModeParameters.softBodyCenterSpringJointConnectedMassScale;
+        GetComponent<PlayerSoftBodyManager>().centerJointDefaultSpring = movementModeParameters.softBodyCenterSpringJointSpring;
+        GetComponent<PlayerSoftBodyManager>().centerJointDefaultDamper = movementModeParameters.softBodyCenterSpringJointDamper;
 
         // Change the center parameters
         bodySoftBodyCenter.GetComponent<Rigidbody>().mass = movementModeParameters.softBodyCenterRigidbodyMass;
@@ -372,6 +376,7 @@ public class PlayerInfo : MonoBehaviour
         bodySoftBodyCenter.GetComponent<Rigidbody>().angularDrag = movementModeParameters.softBodyCenterRigidbodyAngularDrag;
         bodySoftBodyCenter.GetComponent<FixedJoint>().massScale = movementModeParameters.softBodyCenterFixedJointMassScale;
         bodySoftBodyCenter.GetComponent<FixedJoint>().connectedMassScale = movementModeParameters.softBodyCenterFixedJointConnectedMassScale;
+        GetComponent<PlayerSoftBodyManager>().centerFixedJointDefaultConnectedMassScale = movementModeParameters.softBodyCenterFixedJointConnectedMassScale;
 
         // Change the vertex parameters
         foreach (Rigidbody r in vertexRigidbodies)
@@ -380,6 +385,7 @@ public class PlayerInfo : MonoBehaviour
             r.drag = movementModeParameters.softBodySurfaceRigidbodyDrag;
             r.angularDrag = movementModeParameters.softBodySurfaceRigidbodyAngularDrag;
         }
+        GetComponent<PlayerSoftBodyManager>().vertexRigidbodyDefaultAngularDrag = movementModeParameters.softBodySurfaceRigidbodyAngularDrag;
     }
 }
 

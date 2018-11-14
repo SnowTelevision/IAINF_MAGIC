@@ -16,6 +16,10 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public bool generateNewVertexGameObjects; // Do we generate a new set of vertex objects for the player soft body
     public Transform meshToGetVertices; // The transform of the mesh used to get the surface vertices
     public GameObject vertexObjectRef; // The reference of the gameobject to be created for mesh vertices
+    public float defaultSurfaceVertexDistance; // How long is the default distance from the surface vertex to the center
+    // How far away the vertex has to be from the default distance should the center joint start adjusting mass scale
+    public float centerJointsMassScaleAdjustmentThreshold;
+    public float centerJointsMassScaleMultiplier; // The multiplier for adjusting center spring mass scale
 
     public SpringJoint surfaceJointRef; // The reference for the joint that connects the surface edges
     public SpringJoint centerJointRef; // The reference for the joint that connects the center to the surface vertex transforms
@@ -29,6 +33,14 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public List<int> jointConnections; // The list of the index of the pairs of vertex transforms that should be connected with a joint (spring joint or other)
     public List<SpringJoint> surfaceJoints; // The joints that connecting surface edges
     public List<SpringJoint> centerJoints; // The joints that connecting center to surface vertices
+    public float centerJointDefaultMassScale; // The default mass scale for center joints in current movement mode
+    public float centerJointDefaultSpring; // The default spring for center joints in current movement mode
+    public float centerJointDefaultDamper; // The default damper for center joints in current movement mode
+    public float centerFixedJointDefaultConnectedMassScale; // The default connected mass scale for center fixed joint in current movement mode
+    public float vertexRigidbodyDefaultAngularDrag; // The default angular drag for vertex rigidbodies in current movement mode
+    public float vertexJointDefaultMassScale; // The default mass scale for vertex joints in current movement mode
+    public Vector3 softBodyMeshCenterPosition; // The position of the center of the soft body mesh
+    public float softBodyMeshCenterDistance; // The distance from the position of the center of the soft body mesh to the player body center
 
     // Use this for initialization
     void Start()
@@ -65,6 +77,18 @@ public class PlayerSoftBodyManager : MonoBehaviour
     {
         //UpdateAllTriangles();
         //UpdateBodyMesh();
+
+        // Get the position of the center of the soft body mesh
+        softBodyMeshCenterPosition = playerBodyMeshFilter.GetComponent<MeshCollider>().bounds.center;
+        // Get the distance from the position of the center of the soft body mesh to the player body center
+        softBodyMeshCenterDistance = Vector3.Distance(softBodyCenter.transform.position, softBodyMeshCenterPosition);
+
+        //if (!GetComponent<PlayerInfo>().inWater)
+        {
+            AdjustCenterJointsParameters();
+            AdjustSurfaceVertexRigidbodyParameters();
+        }
+
         UpdateConvexHullMesh();
     }
 
@@ -88,6 +112,100 @@ public class PlayerSoftBodyManager : MonoBehaviour
         // Get the joint setup
         surfaceJointRef = playerSoftBodyJointSetup.GetComponents<SpringJoint>()[0];
         centerJointRef = playerSoftBodyJointSetup.GetComponents<SpringJoint>()[1];
+    }
+
+
+
+    /// <summary>
+    /// Inceased the mass scale of the spring joint on the soft body center that connects to the vertex objects
+    /// 
+    /// if the vertices is moved too far
+    /// </summary>
+    public void AdjustCenterJointsParameters()
+    {
+        // Update each joint
+        foreach (SpringJoint j in centerJoints)
+        {
+            /// Adjust based on individual vertex distance
+            //j.massScale =
+            //    centerJointDefaultMassScale * 
+            //    (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
+            //                      centerJointsMassScaleAdjustmentThreshold),
+            //                     0, Mathf.Infinity) * centerJointsMassScaleMultiplier);
+            j.massScale =
+                centerJointDefaultMassScale *
+                (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
+                               6) * 1300);
+            j.spring =
+                centerJointDefaultSpring *
+                (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
+                               6) * 1300);
+
+            //foreach (SpringJoint jJ in j.connectedBody.GetComponents<SpringJoint>())
+            //{
+            //    jJ.massScale =
+            //        vertexJointDefaultMassScale *
+            //        (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
+            //                       3.2f) * 2f);
+            //}
+
+            //j.damper =
+            //    centerJointDefaultDamper *
+            //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, softBodyMeshCenterPosition) - defaultSurfaceVertexDistance),
+            //                   6) * 1300);
+
+            /// Adjust based on soft body mesh center distance
+            //j.massScale =
+            //    centerJointDefaultMassScale *
+            //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
+            //                   6) * 1300);
+            //j.spring =
+            //    centerJointDefaultSpring *
+            //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, softBodyMeshCenterPosition) - defaultSurfaceVertexDistance),
+            //                   6) * 1300);
+            //j.damper =
+            //    centerJointDefaultDamper *
+            //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, softBodyMeshCenterPosition) - defaultSurfaceVertexDistance),
+            //                   6) * 1300);
+
+            //// Test
+            //if (centerJoints.IndexOf(j) == 0)
+            //{
+            //    print(j.massScale);
+            //}
+        }
+
+        softBodyCenter.GetComponent<FixedJoint>().connectedMassScale =
+            centerFixedJointDefaultConnectedMassScale *
+            (1 + Mathf.Pow(Mathf.Abs(softBodyMeshCenterDistance - defaultSurfaceVertexDistance), 6) * 1300);
+    }
+
+    /// <summary>
+    /// Adjust rigidbody parameters of the surface vertices
+    /// 
+    /// if the vertices is moved too far
+    /// </summary>
+    public void AdjustSurfaceVertexRigidbodyParameters()
+    {
+        // Update each rigidbody
+        foreach (SpringJoint j in centerJoints)
+        {
+            j.massScale =
+                centerJointDefaultMassScale *
+                (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
+                                  centerJointsMassScaleAdjustmentThreshold),
+                                 0, Mathf.Infinity) * centerJointsMassScaleMultiplier);
+            //j.GetComponent<Rigidbody>().angularDrag =
+            //    vertexRigidbodyDefaultAngularDrag /
+            //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
+            //                   6) * 9600);
+
+            //// Test
+            //if (centerJoints.IndexOf(j) == 0)
+            //{
+            //    print(j.GetComponent<Rigidbody>().angularDrag);
+            //}
+        }
     }
 
     /// <summary>

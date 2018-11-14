@@ -84,6 +84,7 @@ public class ControlArm_UsingPhysics : ControlArm
     //public EchoCollisionInfo currentCreatingEcho; // The vibration echo that's currently being created (if the player continuously generate it)
     //public List<VibrationEchoBehavior> currentExistingEchoProjectiles; // The list contains all the "living" echo projectiles
     public float firstSegmentDistanceFromBody; // How far is the first arm segments away from the body
+    public float firstSegmentDistanceFromSoftBody; // How far is the first arm segments away from the body
     public float lastArmSegmentDefaultConnectedMassScale; // The default connected mass scale on the spring joint of the last arm segment that connects to the armTip
 
     //Test//
@@ -114,6 +115,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public override void Update()
     {
         firstSegmentDistanceFromBody = Vector3.Distance(jointConnectingBody.transform.position, body.position);
+        firstSegmentDistanceFromSoftBody = 
+            Vector3.Distance(jointConnectingBody.transform.position, PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterPosition);
         DetectingArmMovement();
 
         // Don't let the player control the character if the game is in a scripted event or is paused
@@ -925,12 +928,14 @@ public class ControlArm_UsingPhysics : ControlArm
     /// </summary>
     public void AdjustFirstSegmentConnectedMassScale()
     {
-        float startAdjustingDistance = 0.35f;
+        float startAdjustingDistanceFromBody = 0.35f;
+        float startAdjustingDistanceFromSoftBody = 0.2f;
 
-        if (firstSegmentDistanceFromBody >= startAdjustingDistance)
+        if (firstSegmentDistanceFromBody >= startAdjustingDistanceFromBody) //|| 
+            //PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterDistance >= startAdjustingDistanceFromSoftBody)
         {
             lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
-                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistance)) * 900f;
+                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistanceFromBody)) * 900f;
         }
         else
         {
