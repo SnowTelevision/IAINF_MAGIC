@@ -24,6 +24,11 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public float centerJointsDamperMultiplier; // The multiplier for adjusting center spring jiont damper
     public float vertexRigidbodyAngularDragMultiplier; // The multiplier for adjusting vertex rigidbody angular drag
     public float vertexJointDefaultDamperMultiplier; // The multiplier for adjusting damper for vertex joints in current movement mode
+    public float vertexJointDefaultSpringMultiplier; // The multiplier for adjusting spring for vertex joints in current movement mode
+    public float startAdjustingSoftBodyDistanceFromBody; // How far the soft body is away should the last arm segment start adjusting joint parameters
+    public float softBodyLeavingDistanceFromBody; // How far the soft body is away is considered "leaving" the body
+    // The maximum changing rate of the connected mass scale on the fixed joint on the center when the soft body is returning
+    public float maxCenterFixedJointConnectedMassScaleChangeRate;
 
     public SpringJoint surfaceJointRef; // The reference for the joint that connects the surface edges
     public SpringJoint centerJointRef; // The reference for the joint that connects the center to the surface vertex transforms
@@ -44,8 +49,17 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public float vertexRigidbodyDefaultAngularDrag; // The default angular drag for vertex rigidbodies in current movement mode
     public float vertexJointDefaultMassScale; // The default mass scale for vertex joints in current movement mode
     public float vertexJointDefaultDamper; // The default damper for vertex joints in current movement mode
+    public float vertexJointDefaultSpring; // The default spring for vertex joints in current movement mode
     public Vector3 softBodyMeshCenterPosition; // The position of the center of the soft body mesh
     public float softBodyMeshCenterDistance; // The distance from the position of the center of the soft body mesh to the player body center
+    public bool isSoftBodyReturning; // Is the soft body return to the core after it is stretched too far
+    public float centerFixedJointLastConnectedMassScale; // The connected mass scale on the fixed joint on the soft body center in the last frame
+
+    private void Awake()
+    {
+        // Initial setup
+        InitialSetup();
+    }
 
     // Use this for initialization
     void Start()
@@ -56,8 +70,6 @@ public class PlayerSoftBodyManager : MonoBehaviour
             CreateVertexObjectsOnMesh();
         }
 
-        // Initial setup
-        InitialSetup();
         // Get all the triangle face vertex index
         //GetAllTriangles();
 
@@ -91,7 +103,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
         //if (!GetComponent<PlayerInfo>().inWater)
         {
             AdjustCenterJointsParameters();
-            AdjustSurfaceVertexRigidbodyParameters();
+            //AdjustSurfaceVertexRigidbodyParameters();
             AdjustCenterFixedJointParameters();
         }
 
@@ -126,9 +138,53 @@ public class PlayerSoftBodyManager : MonoBehaviour
     /// </summary>
     public void AdjustCenterFixedJointParameters()
     {
-        // Adjust the fixed joint connects to the body
-        softBodyCenter.GetComponent<FixedJoint>().connectedMassScale =
+        // Calculate the target connected mass scale based on the distance from the soft body to the body center
+        float targetConnectedMassScale =
             centerFixedJointDefaultConnectedMassScale * (1 + Mathf.Pow(softBodyMeshCenterDistance, 6) * 1300);
+
+        //// Calculate the target connected mass scale based on the distance from the soft body to the body center
+        //float targetConnectedMassScale =
+        //    centerFixedJointDefaultConnectedMassScale *
+        //    (1 + Mathf.Clamp((softBodyMeshCenterDistance - centerJointsAdjustmentThreshold), 0, Mathf.Infinity) * centerJointsMassScaleMultiplier);
+
+        // Test
+        //if (isSoftBodyReturning)
+        //{
+        //    print("calc: " + targetConnectedMassScale);
+        //}
+
+        // If the soft body is stretched too far
+        if (softBodyMeshCenterDistance > softBodyLeavingDistanceFromBody)
+        {
+            isSoftBodyReturning = true;
+        }
+
+        // If the soft body is stretched too far and begin to come back
+        if (isSoftBodyReturning)
+        {
+            // If the connected mass scale is decreasing too fast
+            if (Mathf.Abs(centerFixedJointLastConnectedMassScale - targetConnectedMassScale) > maxCenterFixedJointConnectedMassScaleChangeRate * Time.fixedDeltaTime)
+            {
+                targetConnectedMassScale =
+                    centerFixedJointLastConnectedMassScale +
+                    Mathf.Sign(targetConnectedMassScale - centerFixedJointLastConnectedMassScale) *
+                    maxCenterFixedJointConnectedMassScaleChangeRate * Time.fixedDeltaTime;
+            }
+        }
+
+        // Update connected mass scale
+        softBodyCenter.GetComponent<FixedJoint>().connectedMassScale = targetConnectedMassScale;
+        centerFixedJointLastConnectedMassScale = targetConnectedMassScale;
+
+        // If the soft body returned
+        if (softBodyMeshCenterDistance <= softBodyLeavingDistanceFromBody)
+        {
+            isSoftBodyReturning = false;
+        }
+
+        //// Adjust the fixed joint connects to the body
+        //softBodyCenter.GetComponent<FixedJoint>().connectedMassScale =
+        //    centerFixedJointDefaultConnectedMassScale * (1 + Mathf.Pow(softBodyMeshCenterDistance, 6) * 1300);
     }
 
     /// <summary>
@@ -143,6 +199,18 @@ public class PlayerSoftBodyManager : MonoBehaviour
         {
             /// Adjust based on individual vertex distance
             //j.massScale =
+            //    centerJointDefaultMassScale *
+            //    (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
+            //                      centerJointsAdjustmentThreshold),
+            //                     0, Mathf.Infinity) * centerJointsMassScaleMultiplier);
+
+            j.damper =
+                centerJointDefaultDamper *
+                (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
+                                  centerJointsAdjustmentThreshold),
+                                 0, Mathf.Infinity) * centerJointsDamperMultiplier);
+
+            //j.massScale =
             //    centerJointDefaultMassScale * 
             //    (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
             //                      centerJointsMassScaleAdjustmentThreshold),
@@ -151,11 +219,6 @@ public class PlayerSoftBodyManager : MonoBehaviour
             //    centerJointDefaultMassScale *
             //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
             //                   6) * 1300);
-            j.massScale =
-                centerJointDefaultMassScale *
-                (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
-                                  centerJointsAdjustmentThreshold),
-                                 0, Mathf.Infinity) * centerJointsMassScaleMultiplier);
             //j.spring =
             //    centerJointDefaultSpring *
             //    (1 + Mathf.Pow(Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance),
@@ -166,20 +229,21 @@ public class PlayerSoftBodyManager : MonoBehaviour
             //                      centerJointsAdjustmentThreshold),
             //                     0, Mathf.Infinity) * centerJointsSpringMultiplier);
 
-            j.damper =
-                centerJointDefaultDamper *
-                (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
-                                  centerJointsAdjustmentThreshold),
-                                 0, Mathf.Infinity) * centerJointsDamperMultiplier);
 
-            //foreach (SpringJoint jJ in j.connectedBody.GetComponents<SpringJoint>())
-            //{
-            //    jJ.damper =
-            //        vertexJointDefaultDamper *
-            //        (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
-            //                          centerJointsAdjustmentThreshold),
-            //                         0, Mathf.Infinity) * vertexJointDefaultDamperMultiplier);
-            //}
+            foreach (SpringJoint jJ in j.connectedBody.GetComponents<SpringJoint>())
+            {
+                //jJ.damper =
+                //    vertexJointDefaultDamper *
+                //    (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
+                //                      centerJointsAdjustmentThreshold),
+                //                     0, Mathf.Infinity) * vertexJointDefaultDamperMultiplier);
+
+                jJ.spring =
+                    vertexJointDefaultSpring /
+                    (1 + Mathf.Clamp((Mathf.Abs(Vector3.Distance(softBodyCenter.transform.position, j.connectedBody.position) - defaultSurfaceVertexDistance) -
+                                      centerJointsAdjustmentThreshold),
+                                     0, Mathf.Infinity) * vertexJointDefaultSpringMultiplier);
+            }
 
             //j.damper =
             //    centerJointDefaultDamper *
@@ -245,6 +309,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
         foreach (Transform t in vertexTransforms)
         {
             // Add joint to the center and connect it with the vertex transform
+            //SpringJoint newJoint = softBodyCenter.AddComponent<SpringJoint>();
             SpringJoint newJoint = softBodyCenter.AddComponent<SpringJoint>(centerJointRef);
             newJoint.connectedBody = t.gameObject.GetComponent<Rigidbody>();
 
@@ -262,6 +327,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
         for (int i = 0; i < jointConnections.Count; i += 2)
         {
             // Add joint
+            //SpringJoint newJoint = vertexTransforms[jointConnections[i]].gameObject.AddComponent<SpringJoint>();
             SpringJoint newJoint = vertexTransforms[jointConnections[i]].gameObject.AddComponent<SpringJoint>(surfaceJointRef);
             // Connect the joint to the other vertex
             newJoint.connectedBody = (vertexTransforms[jointConnections[i + 1]].GetComponent<Rigidbody>());

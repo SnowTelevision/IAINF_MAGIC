@@ -64,6 +64,9 @@ public class PlayerInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Set up body mode (Assume if the body start on land)
+        SwitchToLandMode();
+
         // Test
         if (test)
         {
@@ -360,6 +363,7 @@ public class PlayerInfo : MonoBehaviour
         }
         GetComponent<PlayerSoftBodyManager>().vertexJointDefaultMassScale = movementModeParameters.softBodySurfaceJointMassScale;
         GetComponent<PlayerSoftBodyManager>().vertexJointDefaultDamper = movementModeParameters.softBodySurfaceJointDamper;
+        GetComponent<PlayerSoftBodyManager>().vertexJointDefaultSpring = movementModeParameters.softBodySurfaceJointSpring;
         foreach (SpringJoint s in centerJoints)
         {
             s.spring = movementModeParameters.softBodyCenterSpringJointSpring;
