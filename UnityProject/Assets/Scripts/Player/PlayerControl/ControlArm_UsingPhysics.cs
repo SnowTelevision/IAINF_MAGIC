@@ -49,6 +49,9 @@ public class ControlArm_UsingPhysics : ControlArm
     public ArmUpdatePhysicsVariebles[] armMiddleSegmentsPhysicsControllers; // The controllers that update the physics variebles for arm segments between the first and the last
     public AudioClip armTipGrabbingGroundSFX; // The sfx for armTip grabbing onto ground
     public AudioClip armTipStopGrabbingGroundSFX; // The sfx for armTip grabbing move away from ground
+    public PlayerSoftBodyManager softBodyManager; // The soft body manager on the player body
+    // The multiplier for adjusting connected mass scale on the spring joint of the last arm segment that connects to the armTip
+    public float lastArmSegmentAdjustConnectedMassScaleMultiplier;
 
     /// <summary>
     /// Arm flags
@@ -100,6 +103,7 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         armCurrentStamina = armMaximumStamina;
         lastArmSegmentDefaultConnectedMassScale = lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale;
+        softBodyManager = PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>();
 
         // Set up the flags
         canGrabObject = true;
@@ -115,7 +119,7 @@ public class ControlArm_UsingPhysics : ControlArm
     public override void Update()
     {
         firstSegmentDistanceFromBody = Vector3.Distance(jointConnectingBody.transform.position, body.position);
-        firstSegmentDistanceFromSoftBody = 
+        firstSegmentDistanceFromSoftBody =
             Vector3.Distance(jointConnectingBody.transform.position, PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterPosition);
         DetectingArmMovement();
 
@@ -930,18 +934,24 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         float startAdjustingDistanceFromBody = 0.35f;
         float startAdjustingDistanceFromSoftBody = 0.2f;
+        float startAdjustingSoftBodyDistanceFromBody = 0.1f;
 
-        if (firstSegmentDistanceFromBody >= startAdjustingDistanceFromBody) //|| 
-            //PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterDistance >= startAdjustingDistanceFromSoftBody)
-        {
-            lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
-                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistanceFromBody)) * 900f;
-        }
-        else
-        {
-            lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
-                lastArmSegmentDefaultConnectedMassScale;
-        }
+        lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+                lastArmSegmentDefaultConnectedMassScale *
+                (1 + (Mathf.Clamp((softBodyManager.softBodyMeshCenterDistance - startAdjustingSoftBodyDistanceFromBody), 0, Mathf.Infinity) * 
+                      lastArmSegmentAdjustConnectedMassScaleMultiplier));
+
+        //if (firstSegmentDistanceFromBody >= startAdjustingDistanceFromBody) //|| 
+        //                                                                    //PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterDistance >= startAdjustingDistanceFromSoftBody)
+        //{
+        //    lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+        //        lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistanceFromBody)) * 900f;
+        //}
+        //else
+        //{
+        //    lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+        //        lastArmSegmentDefaultConnectedMassScale;
+        //}
     }
 
     ///// <summary>

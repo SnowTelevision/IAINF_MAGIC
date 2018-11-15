@@ -334,9 +334,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cdbdde3536891429f81b0e6de14a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushingForce: 200
+  propelAcceleration: 4000
   defaultFirstArmSegmentConnectedMassScale: 0
   isBeingUsed: 0
+  isTurning: 0
+  lastPropelMultiplier: 0
 --- !u!114 &114046118038815466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,6 +423,7 @@ MonoBehaviour:
   playerCameraDetectorDistance: 0
   playerCameraDetectorPrefab: {fileID: 0}
   playerDetectingRange: 0
+  isFixedToggle: 0
   normalDrag: 0
   normalAngularDrag: 0
   normalMass: 0

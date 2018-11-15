@@ -7,10 +7,12 @@ using UnityEngine;
 /// </summary>
 public class CompressedAirCylinder : MonoBehaviour
 {
-    public float pushingForce; // How strong the cylinder will push the player's armTip
+    public float propelAcceleration; // How strong the cylinder will push the player's armTip
 
     public float defaultFirstArmSegmentConnectedMassScale;
     public bool isBeingUsed; // If the player is using it by holding down the trigger
+    public bool isTurning; // Is the player using the cylinder to turn around
+    public float lastPropelMultiplier; // The propel acceleration multiplier in the last frame
 
     // Use this for initialization
     void Start()
@@ -70,9 +72,58 @@ public class CompressedAirCylinder : MonoBehaviour
     public void Propel()
     {
         GetComponent<ItemInfo>().holdingArmTip.GetComponentInParent<ControlArm_UsingPhysics>().jointConnectingBody.connectedMassScale = 1000;
-        GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().AddForce(transform.forward * pushingForce, ForceMode.Force);
+        //GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().AddForce(transform.forward * pushingForce, ForceMode.Force);
+
+        //// Get the player body current velocity
+        //Vector3 playerVelocity = PlayerInfo.sPlayerInfo.GetComponent<Rigidbody>().velocity;
+
+        //// Check if the player is turning
+        //if (Vector3.Angle(playerVelocity, transform.forward) > 90)
+        //{
+        //    isTurning = true;
+        //}
+
+        //// Get the propel acceleration multiplier
+        //float propelMultiplier = Mathf.Cos(Vector3.Angle(playerVelocity, transform.forward) * Mathf.Deg2Rad * 0.5f);
+
+        //if (isTurning && (propelMultiplier - lastPropelMultiplier) > 0.1f)
+        //{
+        //    propelMultiplier = lastPropelMultiplier + 0.3f * Time.fixedDeltaTime;
+        //}
+        //else
+        //{
+        //    propelMultiplier = Mathf.Cos(Vector3.Angle(playerVelocity, transform.forward) * Mathf.Deg2Rad * 0.5f);
+        //}
+
+        //// Apply propelling acceleration
+        //GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().AddForce(propelMultiplier * transform.forward * propelAcceleration, ForceMode.Acceleration);
+
+        //lastPropelMultiplier = propelMultiplier;
+
+        //// If the player stop turning
+        //if (propelMultiplier > 0.8f)
+        //{
+        //    isTurning = false;
+        //}
+
+        // Apply propelling acceleration
+        GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().AddForce(transform.forward * propelAcceleration, ForceMode.Acceleration);
+
+        //// Get the player body current velocity
+        //Vector3 playerVelocity = PlayerInfo.sPlayerInfo.GetComponent<Rigidbody>().velocity;
+        //// Get the difference between the propelling acceleration and the player body current velocity
+        //Vector3 velocityDifference =
+        //    (transform.forward * propelAcceleration) - (10 * playerVelocity / GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().mass);
+        //// Apply propelling acceleration
+        //if (Vector3.Angle(transform.forward, velocityDifference) <= 90)
+        //{
+        //    GetComponent<ItemInfo>().holdingArmTip.GetComponent<Rigidbody>().AddForce(velocityDifference, ForceMode.Acceleration);
+        //}
         //GetComponent<Rigidbody>().AddForce(transform.forward * pushingForce, ForceMode.Force);
         isBeingUsed = true;
+
+        //// Test
+        //print(propelMultiplier);
     }
 
     /// <summary>

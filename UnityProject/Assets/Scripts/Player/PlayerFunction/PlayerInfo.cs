@@ -359,6 +359,7 @@ public class PlayerInfo : MonoBehaviour
             s.connectedMassScale = movementModeParameters.softBodySurfaceJointConnectedMassScale;
         }
         GetComponent<PlayerSoftBodyManager>().vertexJointDefaultMassScale = movementModeParameters.softBodySurfaceJointMassScale;
+        GetComponent<PlayerSoftBodyManager>().vertexJointDefaultDamper = movementModeParameters.softBodySurfaceJointDamper;
         foreach (SpringJoint s in centerJoints)
         {
             s.spring = movementModeParameters.softBodyCenterSpringJointSpring;
