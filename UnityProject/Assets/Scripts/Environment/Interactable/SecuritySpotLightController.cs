@@ -86,18 +86,18 @@ public class SecuritySpotLightController : MonoBehaviour
         if (chasePlayer)
         {
             // If the spot light spot on player
-            if (objectDetector.isEnteringCollider && objectDetector.enteringCollider.layer == LayerMask.NameToLayer("PlayerBody"))
+            if (objectDetector.isEnteringCollider && objectDetector.enteringCollider.gameObject == GameManager.sPlayer)
             {
-                if (spotLightFollowingTransform == null || spotLightFollowingTransform.gameObject.layer != LayerMask.NameToLayer("PlayerBody"))
+                if (spotLightFollowingTransform == null || spotLightFollowingTransform.gameObject != GameManager.sPlayer)
                 {
                     SpotLightDetectPlayer();
                 }
             }
 
             // If the spot light does not spot on player
-            if (!objectDetector.isEnteringCollider || objectDetector.enteringCollider.layer != LayerMask.NameToLayer("PlayerBody"))
+            if (!objectDetector.isEnteringCollider || objectDetector.enteringCollider.gameObject != GameManager.sPlayer)
             {
-                if (spotLightFollowingTransform != null && spotLightFollowingTransform.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
+                if (spotLightFollowingTransform != null && spotLightFollowingTransform.gameObject == GameManager.sPlayer)
                 {
                     PlayerEscapedSpotLight();
                 }

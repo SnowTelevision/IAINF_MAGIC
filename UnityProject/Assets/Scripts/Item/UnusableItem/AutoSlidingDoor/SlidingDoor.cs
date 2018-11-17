@@ -66,7 +66,7 @@ public class SlidingDoor : MonoBehaviour
         bool openDoor = false;
 
         // If the player is close to the door
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
+        if (other.gameObject == GameManager.sPlayer)
         {
             closeByBodyCount++;
         }
@@ -115,7 +115,7 @@ public class SlidingDoor : MonoBehaviour
         else
         {
             // If the player is close to the door then open it
-            if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
+            if (other.gameObject == GameManager.sPlayer)
             {
                 openDoor = true;
             }
@@ -188,7 +188,7 @@ public class SlidingDoor : MonoBehaviour
         bool closeDoor = false;
 
         // If the player is close to the door
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
+        if (other.gameObject == GameManager.sPlayer)
         {
             closeByBodyCount--;
         }
@@ -220,7 +220,7 @@ public class SlidingDoor : MonoBehaviour
         else
         {
             // If the player is leaving the door then close it
-            if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
+            if (other.gameObject == GameManager.sPlayer)
             {
                 closeDoor = true;
             }

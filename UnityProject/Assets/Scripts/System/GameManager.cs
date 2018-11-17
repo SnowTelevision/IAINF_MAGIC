@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player; // The player's gameobject
     public TextMeshProUGUI tutorialText; // The tutorial text
+    public bool showPlayerSelfDialog; // Do we show the player self dialog
+    public Image playerSelfDialogImage; // The player self dialog image that show hints during game event
 
     public static GameObject sPlayer; // The static reference of the player's gameobject
     public static bool gamePause; // Is the game paused or not
@@ -35,10 +38,8 @@ public class GameManager : MonoBehaviour
             ES3.DeleteKey("PlayerPosition");
         }
 
-        sGameManager = this;
+        InitializeStaticClassReferences();
         StaticUnpauseGame();
-        sPlayer = player;
-        sTutorialText = tutorialText;
 
         // If there is a save for the current chapter
         if (ES3.KeyExists("PlayerPosition"))
@@ -54,6 +55,16 @@ public class GameManager : MonoBehaviour
         {
             print(gamePause);
         }
+    }
+
+    /// <summary>
+    /// Initialize static references for this instance
+    /// </summary>
+    public void InitializeStaticClassReferences()
+    {
+        sGameManager = this;
+        sPlayer = player;
+        sTutorialText = tutorialText;
     }
 
     /// <summary>

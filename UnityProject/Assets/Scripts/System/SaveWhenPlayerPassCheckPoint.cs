@@ -23,7 +23,7 @@ public class SaveWhenPlayerPassCheckPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // If the player enters the check point
-        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerBody"))
+        if (other.gameObject == GameManager.sPlayer)
         {
             // Save the player's position
             ES3.Save<Vector3>("PlayerPosition", transform.position);
