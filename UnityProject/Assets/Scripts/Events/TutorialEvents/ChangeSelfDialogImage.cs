@@ -46,7 +46,7 @@ public class ChangeSelfDialogImage : MonoBehaviour
             // If the dialog should auto hide
             if (autoHide)
             {
-                DelayedHide();
+                StartCoroutine(DelayedHide());
             }
         }
     }

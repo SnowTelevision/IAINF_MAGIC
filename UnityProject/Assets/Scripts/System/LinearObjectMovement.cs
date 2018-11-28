@@ -42,6 +42,14 @@ public class LinearObjectMovement : MonoBehaviour
     }
 
     /// <summary>
+    /// Resume the animation
+    /// </summary>
+    public void ResumeAnimation()
+    {
+        pause = false;
+    }
+
+    /// <summary>
     /// Start the animation sequence
     /// </summary>
     public void StartAnimation()
@@ -53,6 +61,14 @@ public class LinearObjectMovement : MonoBehaviour
         }
 
         StartCoroutine(Animate());
+    }
+
+    /// <summary>
+    /// Destroy this component instance
+    /// </summary>
+    public void DestroyThis()
+    {
+        Destroy(this);
     }
 
     /// <summary>
@@ -160,7 +176,11 @@ public class LinearObjectMovement : MonoBehaviour
             {
                 Destroy(objectToBeAnimated);
             }
-            Destroy(this);
+
+            if (!GetComponent<BehaviorDesigner.Runtime.BehaviorTree>())
+            {
+                Destroy(this);
+            }
         }
     }
 }
