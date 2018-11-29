@@ -24,6 +24,7 @@ public class MoveLaserCutterWithArtificialHandle : MonoBehaviour
     public float handleCurrentDistance; // How far is the handle currently away from the base
     public Transform laserArm; // The laser arm that the laser gun is mounted on
     public Transform laserGun; // The laser gun that shoots the laser
+    public Coroutine delayedCameraChangeCoroutine; // The coroutine that wait for player move laser handle then change the camera
 
     // Use this for initialization
     void Start()
@@ -93,6 +94,27 @@ public class MoveLaserCutterWithArtificialHandle : MonoBehaviour
     /// </summary>
     public void CameraLookRoom()
     {
+        // Stop existing change camera coroutine
+        if (delayedCameraChangeCoroutine != null)
+        {
+            StopCoroutine(delayedCameraChangeCoroutine);
+        }
+
+        delayedCameraChangeCoroutine = StartCoroutine(CameraWaitForPlayerAction(artificialHandle.position));
+    }
+
+    /// <summary>
+    /// Let the camera wait until the player start to move the handle then change the camera to look entire room
+    /// </summary>
+    /// <param name="handleStartPosition"></param>
+    /// <returns></returns>
+    public IEnumerator CameraWaitForPlayerAction(Vector3 handleStartPosition)
+    {
+        while (Vector3.Distance(artificialHandle.position, handleStartPosition) < 0.1f)
+        {
+            yield return null;
+        }
+
         FollowCamera.CameraChangeFollowingTarget(laserRoomCenter, laserRoomCameraHeight);
     }
 
@@ -101,6 +123,13 @@ public class MoveLaserCutterWithArtificialHandle : MonoBehaviour
     /// </summary>
     public void CameraLookPlayer()
     {
+        // Stop existing change camera coroutine
+        if (delayedCameraChangeCoroutine != null)
+        {
+            StopCoroutine(delayedCameraChangeCoroutine);
+            delayedCameraChangeCoroutine = null;
+        }
+
         FollowCamera.CameraChangeFollowingTarget(GameManager.sPlayer, FollowCamera.mainGameCamera.defaultCameraHeight);
     }
 }

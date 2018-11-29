@@ -31,6 +31,7 @@ public class ItemInfo : MonoBehaviour
     public GameObject playerCameraDetectorPrefab; // The player camera detector prefab
     public float playerDetectingRange; // How close the player has to be with the fixed item to turn on the emission
     public bool isFixedToggle; // Is this a fixed usable item that is only used to toggle on/off some functions
+    public bool noPuttingArmOnState; // Is this a fixed usable item that the player only need to press down the trigger to start using
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
@@ -292,6 +293,15 @@ public class ItemInfo : MonoBehaviour
             // Let the item be dropped from the armTip
             ForceDropItem();
         }
+
+        // If this is a fixed item that the player does not need to "start put the arm on the item",
+        // means as soon as the player's arm is within the item range and press down the trigger, 
+        // the item should begin to be used by the player
+        if (noPuttingArmOnState)
+        {
+            // Invoke the using event
+            StartUsing();
+        }
     }
 
     /// <summary>
@@ -339,6 +349,15 @@ public class ItemInfo : MonoBehaviour
             {
                 // Change the status indicator color
                 ChangeIndicatorColor(isUsingStatusColor, 1);
+            }
+
+            // If this is a fixed item that the player does not need to "start put the arm on the item",
+            // means as soon as the player's arm is within the item range and press down the trigger, 
+            // the item should begin to be used by the player
+            if (noPuttingArmOnState)
+            {
+                // Let the item be dropped from the armTip
+                ForceDropItem();
             }
         }
     }
