@@ -31,6 +31,7 @@ public class PlayerInfo : MonoBehaviour
     public ControlArm_UsingPhysics leftArmController; // The controller of the left arm
     public ControlArm_UsingPhysics rightArmController; // The controller of the right arm
     public BodyMovementModeInfo[] bodyMovementModeInfos; // Infos of different body movement modes
+    public GameObject bodySoftBodyCenter; // The center of the soft body of the player body
 
     public bool inWater; // Is the body in the water
     public bool onLand; // Is the body touching ground
@@ -63,6 +64,9 @@ public class PlayerInfo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Set up body mode (Assume if the body start on land)
+        SwitchToLandMode();
+
         // Test
         if (test)
         {
@@ -318,11 +322,75 @@ public class PlayerInfo : MonoBehaviour
     /// <summary>
     /// Change different physics parameters and component variebles for a body movement mode
     /// </summary>
-    /// <param name="movementParameters"></param>
-    public void ChangeBodyMovementParameters(BodyMovementModeInfo movementParameters)
+    /// <param name="movementModeParameters"></param>
+    public void ChangeBodyMovementParameters(BodyMovementModeInfo movementModeParameters)
     {
-        GetComponent<Rigidbody>().drag = movementParameters.bodyRigidbodyDrag;
-        GetComponent<Rigidbody>().angularDrag = movementParameters.bodyRigidbodyAngularDrag;
+        GetComponent<Rigidbody>().drag = movementModeParameters.bodyRigidbodyDrag;
+        GetComponent<Rigidbody>().angularDrag = movementModeParameters.bodyRigidbodyAngularDrag;
+        //bodySoftBodyFixedJoint.connectedMassScale = movementParameters.softBodySurfaceJointConnectedMassScale;
+
+        // Change the player soft body parameters
+        ChangeSoftBodyPhysicsParameters(movementModeParameters);
+    }
+
+    /// <summary>
+    /// Change the player soft body parameters
+    /// </summary>
+    /// <param name="movementModeParameters"></param>
+    public void ChangeSoftBodyPhysicsParameters(BodyMovementModeInfo movementModeParameters)
+    {
+        // Get the joints
+        List<SpringJoint> surfaceJoints = GetComponent<PlayerSoftBodyManager>().surfaceJoints;
+        List<SpringJoint> centerJoints = GetComponent<PlayerSoftBodyManager>().centerJoints;
+
+        // Get the surface vertex rigidbodies
+        List<Transform> vertexTransforms = GetComponent<PlayerSoftBodyManager>().vertexTransforms;
+        List<Rigidbody> vertexRigidbodies = new List<Rigidbody>();
+        foreach (Transform t in vertexTransforms)
+        {
+            vertexRigidbodies.Add(t.GetComponent<Rigidbody>());
+        }
+
+        // Get the 
+
+        // Change joints parameters
+        foreach (SpringJoint s in surfaceJoints)
+        {
+            s.spring = movementModeParameters.softBodySurfaceJointSpring;
+            s.damper = movementModeParameters.softBodySurfaceJointDamper;
+            s.massScale = movementModeParameters.softBodySurfaceJointMassScale;
+            s.connectedMassScale = movementModeParameters.softBodySurfaceJointConnectedMassScale;
+        }
+        GetComponent<PlayerSoftBodyManager>().vertexJointDefaultMassScale = movementModeParameters.softBodySurfaceJointMassScale;
+        GetComponent<PlayerSoftBodyManager>().vertexJointDefaultDamper = movementModeParameters.softBodySurfaceJointDamper;
+        GetComponent<PlayerSoftBodyManager>().vertexJointDefaultSpring = movementModeParameters.softBodySurfaceJointSpring;
+        foreach (SpringJoint s in centerJoints)
+        {
+            s.spring = movementModeParameters.softBodyCenterSpringJointSpring;
+            s.damper = movementModeParameters.softBodyCenterSpringJointDamper;
+            s.massScale = movementModeParameters.softBodyCenterSpringJointMassScale;
+            s.connectedMassScale = movementModeParameters.softBodyCenterSpringJointConnectedMassScale;
+        }
+        GetComponent<PlayerSoftBodyManager>().centerJointDefaultMassScale = movementModeParameters.softBodyCenterSpringJointConnectedMassScale;
+        GetComponent<PlayerSoftBodyManager>().centerJointDefaultSpring = movementModeParameters.softBodyCenterSpringJointSpring;
+        GetComponent<PlayerSoftBodyManager>().centerJointDefaultDamper = movementModeParameters.softBodyCenterSpringJointDamper;
+
+        // Change the center parameters
+        bodySoftBodyCenter.GetComponent<Rigidbody>().mass = movementModeParameters.softBodyCenterRigidbodyMass;
+        bodySoftBodyCenter.GetComponent<Rigidbody>().drag = movementModeParameters.softBodyCenterRigidbodyDrag;
+        bodySoftBodyCenter.GetComponent<Rigidbody>().angularDrag = movementModeParameters.softBodyCenterRigidbodyAngularDrag;
+        bodySoftBodyCenter.GetComponent<FixedJoint>().massScale = movementModeParameters.softBodyCenterFixedJointMassScale;
+        bodySoftBodyCenter.GetComponent<FixedJoint>().connectedMassScale = movementModeParameters.softBodyCenterFixedJointConnectedMassScale;
+        GetComponent<PlayerSoftBodyManager>().centerFixedJointDefaultConnectedMassScale = movementModeParameters.softBodyCenterFixedJointConnectedMassScale;
+
+        // Change the vertex parameters
+        foreach (Rigidbody r in vertexRigidbodies)
+        {
+            r.mass = movementModeParameters.softBodySurfaceRigidbodyMass;
+            r.drag = movementModeParameters.softBodySurfaceRigidbodyDrag;
+            r.angularDrag = movementModeParameters.softBodySurfaceRigidbodyAngularDrag;
+        }
+        GetComponent<PlayerSoftBodyManager>().vertexRigidbodyDefaultAngularDrag = movementModeParameters.softBodySurfaceRigidbodyAngularDrag;
     }
 }
 
@@ -336,4 +404,22 @@ public class BodyMovementModeInfo
     public string movementModeName; // The name for the movement mode
     public float bodyRigidbodyDrag; // The drag of the rigidbody on the body
     public float bodyRigidbodyAngularDrag; // The angular drag on the rigidbody on the body
+    public float softBodyCenterRigidbodyMass; // The mass of the rigidbody on the center
+    public float softBodyCenterRigidbodyDrag; // The drag of the rigidbody on the center
+    public float softBodyCenterRigidbodyAngularDrag; // The angular drag of the rigidbody on the center
+    public float softBodyCenterFixedJointMassScale; // The mass scale on the fixed joint on the center
+    public float softBodyCenterFixedJointConnectedMassScale; // The connected mass scale on the fixed joint on the center
+    public float softBodyCenterSpringJointSpring; // The spring on the spring joints on the center
+    public float softBodyCenterSpringJointDamper; // The damper on the spring joints on the center
+    public float softBodyCenterSpringJointTolerance; // The tolerance on the spring joints on the center
+    public float softBodyCenterSpringJointMassScale; // The mass scale on the spring joints on the center
+    public float softBodyCenterSpringJointConnectedMassScale; // The connected mass scale on the spring joints on the center
+    public float softBodySurfaceRigidbodyMass; // The mass of the rigidbody on the surface objects
+    public float softBodySurfaceRigidbodyDrag; // The drag of the rigidbody on the surface objects
+    public float softBodySurfaceRigidbodyAngularDrag; // The angular drag of the rigidbody on the surface objects
+    public float softBodySurfaceJointSpring; // The spring on the spring joint on the surface objects
+    public float softBodySurfaceJointDamper; // The damper on the spring joint on the surface objects
+    public float softBodySurfaceJointTolerance; // The tolerance on the spring joints on the surface objects
+    public float softBodySurfaceJointMassScale; // The mass scale on the spring joint on the surface objects
+    public float softBodySurfaceJointConnectedMassScale; // The connected mass scale on the spring joint on the surface objects
 }

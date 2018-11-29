@@ -30,6 +30,8 @@ public class ItemInfo : MonoBehaviour
     public float playerCameraDetectorDistance; // How far is each player camera detector away from the item
     public GameObject playerCameraDetectorPrefab; // The player camera detector prefab
     public float playerDetectingRange; // How close the player has to be with the fixed item to turn on the emission
+    public bool isFixedToggle; // Is this a fixed usable item that is only used to toggle on/off some functions
+    public bool noPuttingArmOnState; // Is this a fixed usable item that the player only need to press down the trigger to start using
 
     public float normalDrag; // The item's normal drag
     public float normalAngularDrag; // The item's normal angular drag
@@ -84,6 +86,14 @@ public class ItemInfo : MonoBehaviour
             emissionColor = itemStatusIndicator.material.GetColor("_EmissionColor");
             //print(Mathf.Log(emissionColorV4.x * (1f / 0.7490196f), 2));
         }
+    }
+
+    /// <summary>
+    /// Make an usable item to be unusable
+    /// </summary>
+    public void MakeItemUnusable()
+    {
+        canUse = false;
     }
 
     /// <summary>
@@ -274,6 +284,33 @@ public class ItemInfo : MonoBehaviour
     public void SetupItem()
     {
         setupEvent.Invoke();
+
+        // If this is a fixed item that is used for toggle on/off
+        if (isFixedToggle)
+        {
+            // Invoke the using event
+            StartUsing();
+            // Let the item be dropped from the armTip
+            ForceDropItem();
+        }
+
+        // If this is a fixed item that the player does not need to "start put the arm on the item",
+        // means as soon as the player's arm is within the item range and press down the trigger, 
+        // the item should begin to be used by the player
+        if (noPuttingArmOnState)
+        {
+            // Invoke the using event
+            StartUsing();
+        }
+    }
+
+    /// <summary>
+    /// The toggle event for a toggle item
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator ToggleEvent()
+    {
+        yield return null;
     }
 
     /// <summary>
@@ -312,6 +349,15 @@ public class ItemInfo : MonoBehaviour
             {
                 // Change the status indicator color
                 ChangeIndicatorColor(isUsingStatusColor, 1);
+            }
+
+            // If this is a fixed item that the player does not need to "start put the arm on the item",
+            // means as soon as the player's arm is within the item range and press down the trigger, 
+            // the item should begin to be used by the player
+            if (noPuttingArmOnState)
+            {
+                // Let the item be dropped from the armTip
+                ForceDropItem();
             }
         }
     }

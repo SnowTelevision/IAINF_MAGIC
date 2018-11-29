@@ -290,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 1862997902161002}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4715275562624604}
   m_Father: {fileID: 4597983122855408}
@@ -320,7 +320,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554775103050968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.794, y: -2.665, z: 0}
+  m_LocalPosition: {x: -3.794, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4429383797907304}
@@ -377,7 +377,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258957322779806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.409}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4485241064370552}
@@ -390,8 +390,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496491327479720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0999999}
-  m_LocalScale: {x: 0.2818939, y: 0.2818939, z: 0.2818939}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 4485241064370552}
   m_RootOrder: 1
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 1
-  itemWeight: 0
+  itemWeight: 0.1
   setupEvent:
     m_PersistentCalls:
       m_Calls:
@@ -868,10 +868,11 @@ MonoBehaviour:
   playerCameraDetectorDistance: 0
   playerCameraDetectorPrefab: {fileID: 0}
   playerDetectingRange: 0
-  normalDrag: 0
-  normalAngularDrag: 0
-  normalMass: 0
-  isUsingGravity: 0
+  isFixedToggle: 0
+  normalDrag: 0.5
+  normalAngularDrag: 0.5
+  normalMass: 0.1
+  isUsingGravity: 1
   isBeingHeld: 0
   holdingArmTip: {fileID: 0}
   timeUsed: 0
@@ -988,18 +989,27 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -1.3087741
-      outSlope: -1.3087741
+      time: 0.53642094
+      value: 0.28828907
+      inSlope: -1.6587027
+      outSlope: -1.6587027
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.07650416
+    - serializedVersion: 3
+      time: 0.9994872
+      value: -0.0011588195
+      inSlope: -0.15694161
+      outSlope: -0.15694161
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.44433206
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  GraphTimeMultiplier: 1.5
+  GraphTimeMultiplier: 0.5
   GraphIntensityMultiplier: 1.5
   IsLoop: 0
   canUpdate: 0
@@ -1015,7 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivatedGameObject: {fileID: 1584814049886520}
-  Delay: 0.07
+  Delay: 0
 --- !u!114 &114816842687557736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1674,7 +1684,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 4
+    type: 0
     angle: 60
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1701,8 +1711,8 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
+    randomDirectionAmount: 1
+    sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
       value: 0.1

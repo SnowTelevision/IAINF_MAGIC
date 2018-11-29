@@ -38,7 +38,8 @@ public class ControlArm_UsingPhysics : ControlArm
     //public float armMinSwimmingSpreadingAngle;
     public float armAirDragMultiplier; // The strength multiplier of the arm's drag when the player is in the air
     public float joyStickMoveSpeedControlBurstForceThreshold; // How fast the joystick has to be moved for the arm to try to use burst force
-    public float timeAllowedToUseBurstForceSinceMaxStamina; // How much time is given the player to use the burst force when they started grabbing on full stamina
+    // How much time is given the player to use the burst force when they started grabbing on full stamina
+    public float timeAllowedToUseBurstForceSinceMaxStamina;
     public GameObject echoProjectile; // The echo projectile created by the player's armTip
     public float maxEchoTravelDistance; // How far the viberation echo can travel
     public float echoTravelSpeed; // How fast the echo travels
@@ -46,9 +47,17 @@ public class ControlArm_UsingPhysics : ControlArm
     public SpringJoint jointConnectingBody; // The SpringJoint in the first arm segment that is connected to the body
     public Transform lastArmSegment; // The arm segment that connects the armTip
     public ArmControlModeInfo[] armControlModeInfos; // Infos of different arm control modes
-    public ArmUpdatePhysicsVariebles[] armMiddleSegmentsPhysicsControllers; // The controllers that update the physics variebles for arm segments between the first and the last
+    // The controllers that update the physics variebles for arm segments between the first and the last
+    public ArmUpdatePhysicsVariebles[] armMiddleSegmentsPhysicsControllers;
     public AudioClip armTipGrabbingGroundSFX; // The sfx for armTip grabbing onto ground
     public AudioClip armTipStopGrabbingGroundSFX; // The sfx for armTip grabbing move away from ground
+    public PlayerSoftBodyManager softBodyManager; // The soft body manager on the player body
+    public float startAdjustingSoftBodyDistanceFromBody; // How far the soft body is away should the last arm segment start adjusting joint parameters
+    public float softBodyLeavingDistanceFromBody; // How far the soft body is away is considered "leaving" the body
+    // The multiplier for adjusting connected mass scale on the spring joint of the last arm segment that connects to the armTip
+    public float lastArmSegmentAdjustConnectedMassScaleMultiplier;
+    // The maximum changing rate of the connected mass scale on the spring joint of the last arm segment that connects to the armTip when the soft body is returning
+    public float maxLastArmSegmentConnectedMassScaleChangeRate;
 
     /// <summary>
     /// Arm flags
@@ -84,7 +93,12 @@ public class ControlArm_UsingPhysics : ControlArm
     //public EchoCollisionInfo currentCreatingEcho; // The vibration echo that's currently being created (if the player continuously generate it)
     //public List<VibrationEchoBehavior> currentExistingEchoProjectiles; // The list contains all the "living" echo projectiles
     public float firstSegmentDistanceFromBody; // How far is the first arm segments away from the body
-    public float lastArmSegmentDefaultConnectedMassScale; // The default connected mass scale on the spring joint of the last arm segment that connects to the armTip
+    public float firstSegmentDistanceFromSoftBody; // How far is the first arm segments away from the body
+    // The default connected mass scale on the spring joint of the last arm segment that connects to the armTip
+    public float lastArmSegmentDefaultConnectedMassScale;
+    public bool isSoftBodyReturning; // Is the soft body return to the core after it is stretched too far
+    // The connected mass scale on the spring joint of the last arm segment that connects to the armTip in the last frame
+    public float lastArmSegmentLastConnectedMassScale;
 
     //Test//
     public bool test; // Do we print test outputs
@@ -99,6 +113,9 @@ public class ControlArm_UsingPhysics : ControlArm
     {
         armCurrentStamina = armMaximumStamina;
         lastArmSegmentDefaultConnectedMassScale = lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale;
+        softBodyManager = PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>();
+        startAdjustingSoftBodyDistanceFromBody = softBodyManager.startAdjustingSoftBodyDistanceFromBody;
+        softBodyLeavingDistanceFromBody = softBodyManager.softBodyLeavingDistanceFromBody;
 
         // Set up the flags
         canGrabObject = true;
@@ -114,6 +131,8 @@ public class ControlArm_UsingPhysics : ControlArm
     public override void Update()
     {
         firstSegmentDistanceFromBody = Vector3.Distance(jointConnectingBody.transform.position, body.position);
+        firstSegmentDistanceFromSoftBody =
+            Vector3.Distance(jointConnectingBody.transform.position, PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterPosition);
         DetectingArmMovement();
 
         // Don't let the player control the character if the game is in a scripted event or is paused
@@ -147,9 +166,6 @@ public class ControlArm_UsingPhysics : ControlArm
 
         // Control mode changing detection
         DetectIfSwitchEchoMode();
-
-        // Make sure the arm won't stretch too far from the body
-        AdjustFirstSegmentConnectedMassScale();
 
         if (!isGrabbingFloor)
         {
@@ -252,7 +268,8 @@ public class ControlArm_UsingPhysics : ControlArm
 
     private void FixedUpdate()
     {
-
+        // Make sure the arm won't stretch too far from the body
+        AdjustFirstSegmentConnectedMassScale();
     }
 
     /// <summary>
@@ -925,18 +942,67 @@ public class ControlArm_UsingPhysics : ControlArm
     /// </summary>
     public void AdjustFirstSegmentConnectedMassScale()
     {
-        float startAdjustingDistance = 0.35f;
+        float startAdjustingDistanceFromBody = 0.35f;
+        float startAdjustingDistanceFromSoftBody = 0.2f;
 
-        if (firstSegmentDistanceFromBody >= startAdjustingDistance)
+        // Calculate the target connected mass scale based on the distance from the soft body to the body center
+        float targetConnectedMassScale =
+            lastArmSegmentDefaultConnectedMassScale *
+            (1 + (Mathf.Clamp((softBodyManager.softBodyMeshCenterDistance - startAdjustingSoftBodyDistanceFromBody), 0, Mathf.Infinity) *
+                  lastArmSegmentAdjustConnectedMassScaleMultiplier));
+
+        //// Test
+        //if (isSoftBodyReturning)
+        //{
+        //    print("calc: " + targetConnectedMassScale);
+        //}
+
+        // If the soft body is stretched too far
+        if (softBodyManager.softBodyMeshCenterDistance > softBodyLeavingDistanceFromBody)
         {
-            lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
-                lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistance)) * 900f;
+            isSoftBodyReturning = true;
         }
-        else
+
+        // If the soft body is stretched too far and begin to come back
+        if (isSoftBodyReturning)
         {
-            lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
-                lastArmSegmentDefaultConnectedMassScale;
+            // If the connected mass scale is decreasing too fast
+            if (Mathf.Abs(lastArmSegmentLastConnectedMassScale - targetConnectedMassScale) > maxLastArmSegmentConnectedMassScaleChangeRate * Time.fixedDeltaTime)
+            {
+                targetConnectedMassScale =
+                    lastArmSegmentLastConnectedMassScale +
+                    Mathf.Sign(targetConnectedMassScale - lastArmSegmentLastConnectedMassScale) *
+                    maxLastArmSegmentConnectedMassScaleChangeRate * Time.fixedDeltaTime;
+            }
         }
+
+        // Update connected mass scale
+        lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale = targetConnectedMassScale;
+        lastArmSegmentLastConnectedMassScale = targetConnectedMassScale;
+
+        // If the soft body returned
+        if (softBodyManager.softBodyMeshCenterDistance <= softBodyLeavingDistanceFromBody)
+        {
+            isSoftBodyReturning = false;
+        }
+
+        //if (firstSegmentDistanceFromBody >= startAdjustingDistanceFromBody) //|| 
+        //                                                                    //PlayerInfo.sPlayerInfo.GetComponent<PlayerSoftBodyManager>().softBodyMeshCenterDistance >= startAdjustingDistanceFromSoftBody)
+        //{
+        //    lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+        //        lastArmSegmentDefaultConnectedMassScale * (firstSegmentDistanceFromBody + (1 - startAdjustingDistanceFromBody)) * 900f;
+        //}
+        //else
+        //{
+        //    lastArmSegment.GetComponents<SpringJoint>()[1].connectedMassScale =
+        //        lastArmSegmentDefaultConnectedMassScale;
+        //}
+
+        //// Test
+        //if (isSoftBodyReturning)
+        //{
+        //    print("real: " + targetConnectedMassScale);
+        //}
     }
 
     ///// <summary>
@@ -968,7 +1034,10 @@ public class ControlArm_UsingPhysics : ControlArm
         UpdateArmFlags();
 
         // Play start grabbing sfx
-        GetComponentInChildren<AudioSource>().PlayOneShot(armTipGrabbingGroundSFX);
+        if (GetComponentInChildren<AudioSource>())
+        {
+            GetComponentInChildren<AudioSource>().PlayOneShot(armTipGrabbingGroundSFX);
+        }
 
         // Creates an echo projectile if the player is in echo mode and there is no echo currently alive
         if (PlayerInfo.isInEchoMode && PlayerInfo.canCreateEcho)
@@ -993,7 +1062,10 @@ public class ControlArm_UsingPhysics : ControlArm
         UpdateArmFlags();
 
         // Play stop grabbing sfx
-        GetComponentInChildren<AudioSource>().PlayOneShot(armTipStopGrabbingGroundSFX);
+        if (GetComponentInChildren<AudioSource>())
+        {
+            GetComponentInChildren<AudioSource>().PlayOneShot(armTipStopGrabbingGroundSFX);
+        }
     }
 
     /// <summary>

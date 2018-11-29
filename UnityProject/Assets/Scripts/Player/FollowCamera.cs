@@ -14,7 +14,12 @@ public class FollowCamera : MonoBehaviour
     Vector3 targetPos;
 
     // Custom use
+    public bool isMainGameCamera; // Is this the main game camera
     public float sideScrollerCamRadius; // The radius of the camera's orbit in side-scrolling session
+
+    public float defaultCameraHeight; // The default height of the camera in top-down mode
+    public static FollowCamera mainGameCamera; // The main camera in the game
+    public float targetHeight; // The target camera height
 
     //Test
     public bool test;
@@ -23,6 +28,15 @@ public class FollowCamera : MonoBehaviour
     void Start()
     {
         targetPos = transform.position;
+        // Get the camera's default height
+        defaultCameraHeight = transform.position.y;
+        targetHeight = defaultCameraHeight;
+
+        // Set up as main game camera
+        if (isMainGameCamera)
+        {
+            mainGameCamera = this;
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +61,8 @@ public class FollowCamera : MonoBehaviour
                 interpVelocity = targetDirection.magnitude * chaseSpeed;
 
                 targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime);
+                // Get the height offset
+                offset.y = (targetHeight - transform.position.y) * interpVelocity * Time.deltaTime;
 
                 transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
             }
@@ -72,6 +88,22 @@ public class FollowCamera : MonoBehaviour
                 transform.LookAt(new Vector3(0, transform.position.y, 0), Vector3.up);
                 transform.eulerAngles += new Vector3(0, 180, 0);
             }
+        }
+    }
+
+    /// <summary>
+    /// Change the camera's following object
+    /// </summary>
+    /// <param name="newFollowingObject"></param>
+    /// <param name="cameraHeight"></param>
+    public static void CameraChangeFollowingTarget(GameObject newFollowingObject, float cameraHeight)
+    {
+        if (mainGameCamera.target != newFollowingObject)
+        {
+            // Change following target
+            mainGameCamera.target = newFollowingObject;
+            // Change the camera offset
+            mainGameCamera.targetHeight = cameraHeight;
         }
     }
 }
