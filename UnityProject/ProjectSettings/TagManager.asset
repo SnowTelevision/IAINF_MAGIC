@@ -27,7 +27,7 @@ TagManager:
   - WaterCollision
   - NoCollisionWithWater
   - NoCollisionWithArmBody
-  - 
+  - PlayerBodyParticleCollider
   - 
   - 
   - 

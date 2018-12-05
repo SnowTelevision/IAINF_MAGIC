@@ -48,6 +48,11 @@ public class ChangeSelfDialogImage : MonoBehaviour
             {
                 StartCoroutine(DelayedHide());
             }
+
+            GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.
+                ChangeParticleSystemProfile(GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyExcited);
+            GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyCurrentProfile =
+                GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyExcited;
         }
     }
 
@@ -72,6 +77,11 @@ public class ChangeSelfDialogImage : MonoBehaviour
             GameManager.sGameManager.playerSelfDialogImage.enabled)
         {
             GameManager.sGameManager.playerSelfDialogImage.enabled = false;
+
+            GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.
+                ChangeParticleSystemProfile(GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyDefault);
+            GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyCurrentProfile =
+                GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyDefault;
         }
     }
 }

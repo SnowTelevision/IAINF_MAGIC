@@ -9,6 +9,7 @@ public class DetectCollision : MonoBehaviour
     public bool ignoreTrigger; // If ignore trigger
     public Transform[] ignoredGameObjects; // Which game object(s) should this collider/trigger ignore (not in the Unity physics engine level, only in this script)
     public LayerMask ignoredLayers; // Which layer should this collider/trigger ignore (not in the Unity physics engine level, only in this script)
+    public bool isArmTip; // Is this an armTip detector
 
     public bool isColliding; // If the collider is colliding something
     public GameObject collidingCollider; // The collider it is colliding with
@@ -50,7 +51,7 @@ public class DetectCollision : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         // If the collision should not be detected
         if (!VerifyCollision(false, collision.gameObject))
@@ -62,7 +63,7 @@ public class DetectCollision : MonoBehaviour
         collidingCollider = collision.gameObject;
     }
 
-    private void OnCollisionStay(Collision collision)
+    public virtual void OnCollisionStay(Collision collision)
     {
         // If the collision should not be detected
         if (!VerifyCollision(false, collision.gameObject))
@@ -75,7 +76,7 @@ public class DetectCollision : MonoBehaviour
         collidingPoint = collision.contacts[0].point;
     }
 
-    private void OnCollisionExit(Collision collision)
+    public virtual void OnCollisionExit(Collision collision)
     {
         // If the collision should not be detected
         if (!VerifyCollision(false, collision.gameObject))
@@ -88,7 +89,7 @@ public class DetectCollision : MonoBehaviour
         isColliding = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         // If the collision should not be detected
         if (!VerifyCollision(false, other.gameObject))
@@ -113,7 +114,7 @@ public class DetectCollision : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public virtual void OnTriggerStay(Collider other)
     {
         // If the collision should not be detected
         if (!VerifyCollision(false, other.gameObject))
@@ -142,7 +143,7 @@ public class DetectCollision : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public virtual void OnTriggerExit(Collider other)
     {
         // If the collision should not be detected
         if (!VerifyCollision(false, other.gameObject))
@@ -199,7 +200,8 @@ public class DetectCollision : MonoBehaviour
         }
 
         // If this is the armTip and the collider is not an item
-        if (trigger && GetComponent<ArmUseItem>() && !other.GetComponent<ItemInfo>())
+        if (isArmTip && (!other.GetComponent<ItemInfo>() && 
+                         (other.transform.parent != null && !other.transform.parent.GetComponent<ItemInfo>())))
         {
             return false;
         }

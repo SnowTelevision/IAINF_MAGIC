@@ -32,6 +32,7 @@ public class PlayerInfo : MonoBehaviour
     public ControlArm_UsingPhysics rightArmController; // The controller of the right arm
     public BodyMovementModeInfo[] bodyMovementModeInfos; // Infos of different body movement modes
     public GameObject bodySoftBodyCenter; // The center of the soft body of the player body
+    public PlayerBodyParticleManager bodyParticleManager; // The particle manager for the player body particle systems
 
     public bool inWater; // Is the body in the water
     public bool onLand; // Is the body touching ground

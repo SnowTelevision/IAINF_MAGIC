@@ -29,6 +29,8 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public float softBodyLeavingDistanceFromBody; // How far the soft body is away is considered "leaving" the body
     // The maximum changing rate of the connected mass scale on the fixed joint on the center when the soft body is returning
     public float maxCenterFixedJointConnectedMassScaleChangeRate;
+    public MeshCollider playerBodyParticleCollider; // The collider that prevent the player body particle from getting out
+    public MeshCollider playerBodyParticleDestroyer; // The collider that destroy the particle that escape from the collider
 
     public SpringJoint surfaceJointRef; // The reference for the joint that connects the surface edges
     public SpringJoint centerJointRef; // The reference for the joint that connects the center to the surface vertex transforms
@@ -54,6 +56,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public float softBodyMeshCenterDistance; // The distance from the position of the center of the soft body mesh to the player body center
     public bool isSoftBodyReturning; // Is the soft body return to the core after it is stretched too far
     public float centerFixedJointLastConnectedMassScale; // The connected mass scale on the fixed joint on the soft body center in the last frame
+    public Mesh playerParticleColliderMesh; // The mesh to create the collider that keeps the player body particles from getting out side of the player's soft body
 
     private void Awake()
     {
@@ -123,6 +126,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
         // Create and assign new mesh instance
         playerBodyMesh = new Mesh();
         playerBodyMeshFilter.mesh = playerBodyMesh;
+        playerParticleColliderMesh = new Mesh();
 
         // Create new ConvexHullCalculator instance
         convexHullCalculator = new ConvexHullCalculator();
@@ -424,6 +428,17 @@ public class PlayerSoftBodyManager : MonoBehaviour
         playerBodyMeshFilter.mesh.vertices = convexHullVerticesPositionList.ToArray();
         playerBodyMeshFilter.mesh.triangles = triangleVertexIndexList.ToArray();
         playerBodyMeshFilter.mesh.normals = convexHullVerticesPositionList.ToArray();
+
+        // Create the body particle collider mesh
+        playerParticleColliderMesh.Clear();
+        playerParticleColliderMesh.vertices = convexHullVerticesPositionList.ToArray();
+
+        List<int> colliderMeshTriangleIndexList = new List<int>();
+        foreach (int i in triangleVertexIndexList)
+        {
+            colliderMeshTriangleIndexList.Insert(0, i);
+        }
+        playerParticleColliderMesh.triangles = colliderMeshTriangleIndexList.ToArray();
     }
 
     /// <summary>
@@ -461,7 +476,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
         // Clear the position list
         meshVerticesPositionList.RemoveRange(0, meshVerticesPositionList.Count);
 
-        // Add new positions
+        // Add new positions for the body mesh
         foreach (Transform t in vertexTransforms)
         {
             meshVerticesPositionList.Add(playerTransform.InverseTransformPoint(t.position));
@@ -478,6 +493,14 @@ public class PlayerSoftBodyManager : MonoBehaviour
 
         // Update physics mesh collider
         playerBodyMeshFilter.GetComponent<MeshCollider>().sharedMesh = playerBodyMesh;
+
+        // Update player body particle collider and destroyer mesh
+        playerParticleColliderMesh.vertices = meshVerticesPositionList.ToArray();
+        playerBodyParticleDestroyer.sharedMesh = playerBodyMesh;
+        // Recalculate the normal and tangent for the player body mesh
+        playerParticleColliderMesh.RecalculateNormals();
+        playerParticleColliderMesh.RecalculateTangents();
+        playerBodyParticleCollider.sharedMesh = playerParticleColliderMesh;
     }
 
     ///// <summary>
