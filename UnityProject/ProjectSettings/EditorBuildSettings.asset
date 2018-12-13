@@ -6,9 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/TestLevel01_w_sceneAssets_EasySave.unity
-    guid: 3edeff2b9bcc9aa4ea34229ae9e1ef38
+    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/TestLevel01_w_BodyParticles.unity
+    guid: 952593efe5b8024489ab05e780afb1d1
   - enabled: 0
     path: Assets/Extra/WorkingHours.unity
     guid: d8c0a2d558cf1a445bdbcf3daeb134e6
+  - enabled: 0
+    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/TestLevel01_TestBuild.unity
+    guid: e79e6a8669ca994439042a41d0b5606c
+  - enabled: 0
+    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/TestLevel01_TestCrash.unity
+    guid: 97de428386650d84fa57195e59708215
+  - enabled: 0
+    path: Assets/IGF2019Demo/SubmissionDemoWithLevel1/TestLevel01_w_BodyParticles
+      1.unity
+    guid: 234c1f15b209d9146b8d1e8b402152f2
   m_configObjects: {}

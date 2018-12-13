@@ -869,6 +869,7 @@ MonoBehaviour:
   playerCameraDetectorPrefab: {fileID: 0}
   playerDetectingRange: 0
   isFixedToggle: 0
+  noPuttingArmOnState: 0
   normalDrag: 0.5
   normalAngularDrag: 0.5
   normalMass: 0.1

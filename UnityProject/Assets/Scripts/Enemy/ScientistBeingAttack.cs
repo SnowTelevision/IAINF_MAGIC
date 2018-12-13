@@ -142,6 +142,8 @@ public class ScientistBeingAttack : MonoBehaviour
                 if (g.GetComponent<FixedJoint>())
                 {
                     Destroy(g.GetComponent<FixedJoint>());
+                    g.GetComponent<DetectCollision>().isEnteringTrigger = false;
+                    g.GetComponent<DetectCollision>().collidingTrigger = null;
                     g.GetComponent<ArmUseItem>().currentlyHoldingItem = null;
                 }
 

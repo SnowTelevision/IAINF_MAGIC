@@ -57,6 +57,7 @@ public class PlayerSoftBodyManager : MonoBehaviour
     public bool isSoftBodyReturning; // Is the soft body return to the core after it is stretched too far
     public float centerFixedJointLastConnectedMassScale; // The connected mass scale on the fixed joint on the soft body center in the last frame
     public Mesh playerParticleColliderMesh; // The mesh to create the collider that keeps the player body particles from getting out side of the player's soft body
+    public float meshClosestPointToCenter; // The distance of the closest vertex on the mesh to the center of the body
 
     private void Awake()
     {
@@ -475,11 +476,21 @@ public class PlayerSoftBodyManager : MonoBehaviour
 
         // Clear the position list
         meshVerticesPositionList.RemoveRange(0, meshVerticesPositionList.Count);
+        // Reset closest vertex distance
+        meshClosestPointToCenter = 10;
 
         // Add new positions for the body mesh
         foreach (Transform t in vertexTransforms)
         {
-            meshVerticesPositionList.Add(playerTransform.InverseTransformPoint(t.position));
+            Vector3 vertexLocalPosition = playerTransform.InverseTransformPoint(t.position);
+
+            meshVerticesPositionList.Add(vertexLocalPosition);
+
+            // Get the closest vertex distance to center
+            if (Vector3.Distance(Vector3.zero, vertexLocalPosition) < meshClosestPointToCenter)
+            {
+                meshClosestPointToCenter = Vector3.Distance(Vector3.zero, vertexLocalPosition);
+            }
         }
 
         //playerBodyMeshFilter.mesh.Clear();

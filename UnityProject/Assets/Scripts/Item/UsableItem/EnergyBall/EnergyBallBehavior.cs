@@ -64,6 +64,12 @@ public class EnergyBallBehavior : MonoBehaviour
         activated = true;
         GetComponent<MeshRenderer>().enabled = true;
         GetComponent<SphereCollider>().enabled = true;
+
+        // Stop showing energy ball self dialog
+        if (ChangeSelfDialogImage.showImageCoroutine != null)
+        {
+            StopCoroutine(ChangeSelfDialogImage.showImageCoroutine);
+        }
     }
 
     /// <summary>

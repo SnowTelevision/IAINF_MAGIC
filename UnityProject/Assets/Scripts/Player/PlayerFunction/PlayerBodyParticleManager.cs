@@ -18,26 +18,34 @@ public class PlayerBodyParticleManager : MonoBehaviour
     public ParticleProfile rightArmExcited; // The particle profile for when the right arm is excited
     public ParticleProfile rightArmTired; // The particle profile for when the right arm is tired
     public ParticleProfile playerDead; // The particle profile for when the player is dead
+    // The ratio of the radius of the sphere shape of the body center particle system to the radius of the soft body
+    public float bodyCenterParticleShapeRadiusToBodyRadiusRatio;
 
     public ParticleProfile bodyCurrentProfile; // The current particle profile of the body
     public ParticleProfile leftArmCurrentProfile; // The current particle profile of the left arm
     public ParticleProfile rightArmCurrentProfile; // The current particle profile of the right arm
     public UpdatePlayerUI playerUIcontroller; // The controller for the player info UI
+    public PlayerSoftBodyManager softBodyManager; // The player's soft body manager
 
     // Use this for initialization
     void Start()
     {
         playerUIcontroller = FindObjectOfType<UpdatePlayerUI>();
+        softBodyManager = GetComponentInParent<PlayerSoftBodyManager>();
 
         // Change the particle profiles to default for body and arms
         ChangeParticleSystemProfile(bodyDefault);
+        bodyCurrentProfile = bodyDefault;
         ChangeParticleSystemProfile(leftArmDefault);
+        leftArmCurrentProfile = leftArmDefault;
         ChangeParticleSystemProfile(rightArmDefault);
+        rightArmCurrentProfile = rightArmDefault;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //UpdateBodyCenterParticleSystem();
         UpdateArmParticleSystem(GameManager.sPlayer.GetComponent<PlayerInfo>().leftArmController);
         UpdateArmParticleSystem(GameManager.sPlayer.GetComponent<PlayerInfo>().rightArmController);
     }
@@ -81,6 +89,18 @@ public class PlayerBodyParticleManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Update some variables of the body particle system
+    /// </summary>
+    public void UpdateBodyCenterParticleSystem()
+    {
+        foreach (ParticleSystem ps in bodyCurrentProfile.particleSystems)
+        {
+            ParticleSystem.ShapeModule shape = ps.shape;
+            shape.radius = bodyCenterParticleShapeRadiusToBodyRadiusRatio * softBodyManager.meshClosestPointToCenter;
+        }
+    }
+
+    /// <summary>
     /// Update the arm's particle system based on if the arm is touching or carrying/holding an item, is the arm low stamina
     /// </summary>
     /// <param name="arm"></param>
@@ -89,7 +109,8 @@ public class PlayerBodyParticleManager : MonoBehaviour
         DetectCollision armTipCollision = arm.armTip.GetComponent<DetectCollision>();
 
         // If the armTip is touching or carrying/holding an item
-        if (armTipCollision.isColliding || armTipCollision.isEnteringTrigger)
+        if (armTipCollision.isColliding || armTipCollision.isEnteringTrigger ||
+            armTipCollision.GetComponent<ArmUseItem>().currentlyHoldingItem != null)
         {
             if (arm.isLeftArm && leftArmCurrentProfile != leftArmExcited)
             {

@@ -11,8 +11,10 @@ public class ChangeSelfDialogImage : MonoBehaviour
     public Sprite imageToShow; // The sprite of the dialog image to show
     public bool autoHide; // Does the dialog hide automatically after some time
     public float autoHideDelay; // How long does the dialog keep display before auto hide
+    public float showDelay; // How long the dialog should wait until shown
 
     public bool isShown; // Has this dialog been shown
+    public static Coroutine showImageCoroutine; // The show image coroutine
 
     // Use this for initialization
     void Start()
@@ -27,6 +29,26 @@ public class ChangeSelfDialogImage : MonoBehaviour
     }
 
     /// <summary>
+    /// Start the delayed show image coroutine
+    /// </summary>
+    public void DelayedShowImage()
+    {
+        showImageCoroutine = StartCoroutine(DelayedShowImageCoroutine());
+    }
+
+    /// <summary>
+    /// Show the dialog after some delay
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator DelayedShowImageCoroutine()
+    {
+        yield return new WaitForSeconds(showDelay);
+
+        ShowImage();
+        showImageCoroutine = null;
+    }
+
+    /// <summary>
     /// Show the dialog image
     /// </summary>
     public void ShowImage()
@@ -35,6 +57,13 @@ public class ChangeSelfDialogImage : MonoBehaviour
         if (!isShown)
         {
             isShown = true;
+
+            // Prevent the delayed show image shows after new image has been shown
+            if (showImageCoroutine != null)
+            {
+                StopCoroutine(showImageCoroutine);
+                showImageCoroutine = null;
+            }
 
             GameManager.sGameManager.playerSelfDialogImage.sprite = imageToShow;
 
@@ -49,6 +78,7 @@ public class ChangeSelfDialogImage : MonoBehaviour
                 StartCoroutine(DelayedHide());
             }
 
+            // Change body particles
             GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.
                 ChangeParticleSystemProfile(GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyExcited);
             GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyCurrentProfile =
@@ -78,6 +108,7 @@ public class ChangeSelfDialogImage : MonoBehaviour
         {
             GameManager.sGameManager.playerSelfDialogImage.enabled = false;
 
+            // Change body particles
             GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.
                 ChangeParticleSystemProfile(GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyDefault);
             GameManager.sPlayer.GetComponent<PlayerInfo>().bodyParticleManager.bodyCurrentProfile =

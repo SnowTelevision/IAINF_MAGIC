@@ -200,10 +200,25 @@ public class DetectCollision : MonoBehaviour
         }
 
         // If this is the armTip and the collider is not an item
-        if (isArmTip && (!other.GetComponent<ItemInfo>() && 
-                         (other.transform.parent != null && !other.transform.parent.GetComponent<ItemInfo>())))
+        if (isArmTip)
         {
-            return false;
+            // If it is a child
+            if (other.transform.parent != null)
+            {
+                // If it is not a touch range of an item or not an item itself
+                if (other.name != "ArmTipTouchRange" && !other.GetComponent<ItemInfo>())
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                // If it is not an item
+                if (!other.GetComponent<ItemInfo>())
+                {
+                    return false;
+                }
+            }
         }
 
         return true;
